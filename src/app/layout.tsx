@@ -29,12 +29,33 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <nav className="flex gap-4 p-4">
-          <Link href="/" className="hover:underline">Home</Link>
-          <Link href="/about" className="hover:underline">About</Link>
-        </nav>
+        <Nav />
         {children}
       </body>
     </html>
   );
 }
+
+const navLinks = [
+  { href: "/", label: "首頁" },
+  { href: "/services", label: "服務項目" },
+  { href: "/solutions", label: "解決方案" },
+  { href: "/projects", label: "工程實績" },
+  { href: "/news", label: "最新消息" },
+  { href: "/esg", label: "ESG" },
+  { href: "/careers", label: "人才專區" },
+  { href: "/contact", label: "聯絡我們" },
+];
+
+const Nav = () => {
+  return (
+    <nav className="flex gap-4 p-4">
+      {navLinks.map(link => (
+        <Link key={link.href} href={link.href} className="hover:underline">
+          {link.label}
+        </Link>
+      ))}
+    </nav>
+  );
+};
+
