@@ -87,18 +87,27 @@ const Nav = () => {
 
             {/* Mobile Navigation */}
             {isOpen && (
-                <div className="md:hidden">
-                    <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white shadow-lg">
-                        {navLinks.map(link => (
-                            <Link
-                                key={link.href}
-                                href={link.href}
-                                className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
-                                onClick={() => setIsOpen(false)}
-                            >
-                                {link.label}
-                            </Link>
-                        ))}
+                <div className="md:hidden fixed inset-0 z-50">
+                    {/* Backdrop */}
+                    <div
+                        className="fixed inset-0 bg-black/30 transition-opacity animate-fade-in"
+                        onClick={() => setIsOpen(false)}
+                    />
+
+                    {/* Drawer panel */}
+                    <div className="fixed inset-y-0 right-0 w-64 bg-white shadow-xl animate-slide-in-right">
+                        <div className="px-2 pt-2 pb-3 space-y-1">
+                            {navLinks.map(link => (
+                                <Link
+                                    key={link.href}
+                                    href={link.href}
+                                    className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
+                                    onClick={() => setIsOpen(false)}
+                                >
+                                    {link.label}
+                                </Link>
+                            ))}
+                        </div>
                     </div>
                 </div>
             )}
