@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "智兆科技官方網站 | Zhi Zhao Tech",
+  title: "智兆科技 | Zhi Zhao Tech",
   description: "智兆科技官方網站",
 };
 
