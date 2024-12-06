@@ -49,7 +49,7 @@ const navLinks = [
 
 const Nav = () => {
   return (
-    <nav className="flex gap-4 p-4">
+    <nav className="flex gap-4 p-4 bg-gray-100">
       {navLinks.map(link => (
         <Link key={link.href} href={link.href} className="hover:underline">
           {link.label}
