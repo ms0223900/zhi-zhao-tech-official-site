@@ -1,13 +1,20 @@
+
 async function getNewsArticle(slug: string) {
-    // TODO: 實作 API 串接
     console.log(slug)
     return {
         title: '測試',
     }
 }
 
-export default async function NewsArticlePage({ params }: { params: { slug: string } }) {
-    const article = await getNewsArticle(params.slug)
+interface NewsArticleProps {
+    params: Promise<{
+        slug: string
+    }>
+}
+
+export default async function NewsArticlePage({ params }: NewsArticleProps) {
+    const { slug } = await params
+    const article = await getNewsArticle(slug)
 
     return (
         <main className="container mx-auto px-4 py-8">
