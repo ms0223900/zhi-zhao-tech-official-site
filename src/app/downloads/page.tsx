@@ -2,7 +2,8 @@
 import { gql, useQuery } from '@apollo/client';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 
-const API_URL = process.env.NEXT_API_URL || 'http://localhost:1337/graphql';
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:1337/graphql';
 
 const GET_UPLOADED_FILES = gql`
   query GetUploadedFiles {
