@@ -4,6 +4,8 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:1337/graphql';
+const S3_BUCKET_URL = process.env.NEXT_PUBLIC_S3_BUCKET_URL || '';
+const S3_CLOUDFRONT_URL = process.env.NEXT_PUBLIC_S3_CLOUDFRONT_URL || '';
 
 const GET_UPLOADED_FILES = gql`
   query GetUploadedFiles {
@@ -40,7 +42,7 @@ function Downloads() {
                         <span className="text-lg font-semibold ">{file.name}</span>
                         <a
                             className="text-blue-500 hover:text-blue-700 p-2"
-                            href={`https://d3dobgs0mffzva.cloudfront.net/${file.url.replace('https://dev-penguin.s3.ap-southeast-1.amazonaws.com/', '')}`}
+                            href={`${S3_CLOUDFRONT_URL}/${file.url.replace(new RegExp(S3_BUCKET_URL + '/?'), '')}`}
                             target="_blank"
                             download
                         >
