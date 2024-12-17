@@ -1,15 +1,26 @@
 
 async function getNewsArticle(slug: string) {
-    console.log(slug)
-    return {
-        title: '測試',
-    }
+    const mockDataList = [
+        {
+            id: '1',
+            title: '測試',
+        },
+        {
+            id: '2',
+            title: '測試2',
+        },
+    ]
+    return mockDataList.find((item) => item.id === slug)
 }
 
 interface NewsArticleProps {
     params: Promise<{
         slug: string
     }>
+}
+
+export async function generateStaticParams() {
+    return [{ slug: '1' }, { slug: '2' }]
 }
 
 export default async function NewsArticlePage({ params }: NewsArticleProps) {
