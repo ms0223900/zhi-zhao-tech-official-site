@@ -25,17 +25,18 @@ ENV NEXT_TELEMETRY_DISABLED 1
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
+# 安裝 serve 套件 (在切換用戶之前)
+RUN npm install -g serve
+
 COPY --from=builder /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/out ./out
 
+# 最後才切換到 nextjs 用戶
 USER nextjs
 
 EXPOSE 3000
 
 ENV PORT 3000
 ENV HOSTNAME "0.0.0.0"
-
-# 安裝 serve 套件
-RUN npm install -g serve --unsafe-perm=true --allow-root
 
 CMD ["serve", "-l", "3000", "out"]
