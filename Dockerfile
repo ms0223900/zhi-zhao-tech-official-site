@@ -36,6 +36,6 @@ ENV PORT 3000
 ENV HOSTNAME "0.0.0.0"
 
 # 安裝 serve 套件
-RUN npm install -g serve
+RUN npm install -g serve --unsafe-perm=true --allow-root
 
 CMD ["serve", "-l", "3000", "out"]
