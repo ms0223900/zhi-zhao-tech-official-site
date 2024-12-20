@@ -38,7 +38,7 @@ app.post('/rebuild', validateWebhook, async (req, res) => {
 
     try {
         // 執行重建命令
-        exec('docker-compose up frontend --build -d', {
+        exec('git pull && docker-compose up frontend --build -d', {
             shell: true
         }, (error, stdout, stderr) => {
             if (error) {
