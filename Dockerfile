@@ -1,5 +1,5 @@
 # 基礎映像
-FROM node:18-alpine
+FROM node:18-alpine AS base
 
 # 依賴階段
 FROM base AS deps
@@ -35,4 +35,7 @@ EXPOSE 3000
 ENV PORT 3000
 ENV HOSTNAME "0.0.0.0"
 
-CMD ["serve", "-l", "3000", "out"] 
+# 安裝 serve 套件
+RUN npm install -g serve
+
+CMD ["serve", "-l", "3000", "out"]
