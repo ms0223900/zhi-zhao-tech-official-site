@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL="http://strapi:1337"
+      - NEXT_PUBLIC_S3_CLOUDFRONT_URL=${NEXT_PUBLIC_S3_CLOUDFRONT_URL}
+      - NEXT_PUBLIC_S3_BUCKET_URL=${NEXT_PUBLIC_S3_BUCKET_URL}
+    networks:
+      - app-network
+      - strapi-network
+
+networks:
+  app-network:
+    driver: bridge
+  strapi-network:
+    external: true
