@@ -3,12 +3,12 @@ import { exec } from 'child_process';
 
 const app = express();
 const PORT = 9000;
-const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET;
+// const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET;
 
-if (!WEBHOOK_SECRET) {
-    console.error('WEBHOOK_SECRET environment variable is required');
-    process.exit(1);
-}
+// if (!WEBHOOK_SECRET) {
+//     console.error('WEBHOOK_SECRET environment variable is required');
+//     process.exit(1);
+// }
 
 app.use(express.json());
 
