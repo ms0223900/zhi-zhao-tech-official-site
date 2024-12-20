@@ -12,7 +12,7 @@ const navLinks = [
     { href: "/esg", label: "ESG" },
     { href: "/careers", label: "人才專區" },
     { href: "/contact", label: "聯絡我們" },
-    { href: "/downloads", label: "下載專區" },
+    { href: "/downloads", label: "下載專區 :)" },
 ];
 
 const Nav = () => {
