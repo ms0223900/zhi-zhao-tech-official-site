@@ -27,30 +27,36 @@ interface UploadedFile {
     url: string;
 }
 
-function Downloads() {
+const DonloadFileList: React.FC = () => {
     const { loading, error, data } = useQuery<{ uploadFiles: UploadedFile[] }>(GET_UPLOADED_FILES);
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error.message}</p>;
 
     return (
+        <ul className="mt-4 list-disc">
+            {data?.uploadFiles.map((file: UploadedFile) => (
+                <li key={file.documentId} className="mb-2">
+                    <span className="text-lg font-semibold ">{file.name}</span>
+                    <a
+                        className="text-blue-500 hover:text-blue-700 p-2"
+                        href={`${S3_CLOUDFRONT_URL}/${file.url.replace(new RegExp(S3_BUCKET_URL + '/?'), '')}`}
+                        target="_blank"
+                        download
+                    >
+                        Download
+                    </a>
+                </li>
+            ))}
+        </ul>
+    );
+}
+
+function Downloads() {
+    return (
         <div className="container mx-auto px-4">
             <h1 className="text-2xl font-bold">Download Area</h1>
-            <ul className="mt-4 list-disc">
-                {data?.uploadFiles.map((file: UploadedFile) => (
-                    <li key={file.documentId} className="mb-2">
-                        <span className="text-lg font-semibold ">{file.name}</span>
-                        <a
-                            className="text-blue-500 hover:text-blue-700 p-2"
-                            href={`${S3_CLOUDFRONT_URL}/${file.url.replace(new RegExp(S3_BUCKET_URL + '/?'), '')}`}
-                            target="_blank"
-                            download
-                        >
-                            Download
-                        </a>
-                    </li>
-                ))}
-            </ul>
+            <DonloadFileList />
         </div>
     );
 }
