@@ -33,7 +33,7 @@ const validateWebhook = (req, res, next) => {
 };
 
 // Webhook endpoint
-app.post('/rebuild', validateWebhook, async (req, res) => {
+app.post('/build-frontend-webhook', validateWebhook, async (req, res) => {
     console.log('Received rebuild request:', new Date().toISOString());
 
     try {
