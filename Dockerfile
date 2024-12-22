@@ -12,7 +12,7 @@ FROM base AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-ENV NEXT_PUBLIC_API_URL=/graphql
+ENV NEXT_PUBLIC_API_URL="http://54.252.162.98/graphql"
 RUN npm run build
 
 # 執行階段

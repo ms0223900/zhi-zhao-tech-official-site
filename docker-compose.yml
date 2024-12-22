@@ -15,21 +15,6 @@ services:
       - app-network
       - strapi-network
 
-  webhook:
-    build:
-      context: ./webhook
-      dockerfile: Dockerfile
-    ports:
-      - "9000:9000"
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - ..:/app
-    environment:
-      - WEBHOOK_SECRET=${WEBHOOK_SECRET}
-    networks:
-      - app-network
-      - strapi-network
-
 networks:
   app-network:
     driver: bridge
