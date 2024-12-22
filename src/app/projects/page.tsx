@@ -1,20 +1,79 @@
-async function getProjects() {
+import ProjectList from "@/components/projects/ProjectList";
+import { Project } from "@/types/Project";
+import { ApolloClient, gql, InMemoryCache } from "@apollo/client";
+
+const API_URL =
+    process.env.NEXT_PUBLIC_API_URL ||
+    'http://localhost:1337/graphql';
+
+const client = new ApolloClient({
+    uri: API_URL,
+    cache: new InMemoryCache(),
+});
+
+type ProjectDto = {
+    documentId: string;
+    title: string;
+    description: string;
+    image: {
+        url: string;
+    };
+    createdAt: string;
+};
+
+const ProjectVoConverter = {
+    toVo: (projectDto: ProjectDto) => {
+        return {
+            id: projectDto.documentId,
+            title: projectDto.title,
+            description: projectDto.description,
+            image: projectDto.image.url,
+        };
+    }
+};
+
+async function asyncGetProjects(): Promise<Project[]> {
+
     // TODO: 實作 API 串接
-    return []
+    const { data } = await client.query<{
+        projects: ProjectDto[];
+    }>({
+        query: gql`
+            query GetProjects {
+                projects {
+                    documentId
+                    title
+                    description
+                    image {
+                        url
+                    }
+                    createdAt
+                }
+            }
+        `,
+    });
+
+    return data.projects.map(ProjectVoConverter.toVo);
 }
 
+// export async function getStaticProps() {
+//     const projects = await asyncGetProjects(); // 獲取 API 資料
+
+//     return {
+//         props: {
+//             projects,
+//         },
+//     };
+// }
+
 export default async function ProjectsPage() {
-    const projects = await getProjects()
+    const projects = await asyncGetProjects();
+    console.log(projects);
 
     return (
         <main className="container mx-auto px-4 py-8">
             <h1 className="text-3xl font-bold mb-6">工程實績</h1>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {projects.map(() => (
-                    // 專案列表項目
-                    <></>
-                ))}
-            </div>
+            <ProjectList projects={projects} />
         </main>
-    )
+    );
 } 
