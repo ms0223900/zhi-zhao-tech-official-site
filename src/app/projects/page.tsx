@@ -56,16 +56,6 @@ async function asyncGetProjects(): Promise<Project[]> {
     return data.projects.map(ProjectVoConverter.toVo);
 }
 
-// export async function getStaticProps() {
-//     const projects = await asyncGetProjects(); // 獲取 API 資料
-
-//     return {
-//         props: {
-//             projects,
-//         },
-//     };
-// }
-
 export default async function ProjectsPage() {
     const projects = await asyncGetProjects();
     console.log(projects);
