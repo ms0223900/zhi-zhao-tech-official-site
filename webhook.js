@@ -38,7 +38,7 @@ app.post('/build-frontend-webhook', validateWebhook, async (req, res) => {
 
     try {
         // 執行重建命令
-        exec('git pull && docker-compose up frontend --build --no-cache -d', {
+        exec('git pull && docker-compose build --no-cache && docker-compose up -d', {
             shell: true
         }, (error, stdout, stderr) => {
             if (error) {
