@@ -3,7 +3,7 @@ import { gql, useQuery } from '@apollo/client';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:1337/graphql';
+const API_URL = (process.env.NEXT_PUBLIC_API_URL + '/graphql') || 'http://localhost:1337/graphql';
 const S3_BUCKET_URL = process.env.NEXT_PUBLIC_S3_BUCKET_URL || '';
 const S3_CLOUDFRONT_URL = process.env.NEXT_PUBLIC_S3_CLOUDFRONT_URL || '';
 

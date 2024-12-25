@@ -3,8 +3,9 @@ import { Project } from "@/types/Project";
 import { ApolloClient, gql, InMemoryCache } from "@apollo/client";
 
 const API_URL =
-    process.env.NEXT_PUBLIC_API_URL ||
+    (process.env.NEXT_PUBLIC_SERVER_API_URL + '/graphql') ||
     'http://localhost:1337/graphql';
+console.log("SERVER_API_URL", process.env.NEXT_PUBLIC_SERVER_API_URL);
 
 const client = new ApolloClient({
     uri: API_URL,
@@ -35,10 +36,11 @@ const ProjectVoConverter = {
 async function asyncGetProjects(): Promise<Project[]> {
 
     // TODO: 實作 API 串接
-    const { data } = await client.query<{
-        projects: ProjectDto[];
-    }>({
-        query: gql`
+    try {
+        const { data } = await client.query<{
+            projects: ProjectDto[];
+        }>({
+            query: gql`
             query GetProjects {
                 projects {
                     documentId
@@ -51,9 +53,14 @@ async function asyncGetProjects(): Promise<Project[]> {
                 }
             }
         `,
-    });
+            fetchPolicy: 'no-cache',
+        });
 
-    return data.projects.map(ProjectVoConverter.toVo);
+        return data.projects.map(ProjectVoConverter.toVo);
+    } catch (error) {
+        console.error("Error fetching projects:", error);
+        return [];
+    }
 }
 
 export default async function ProjectsPage() {
