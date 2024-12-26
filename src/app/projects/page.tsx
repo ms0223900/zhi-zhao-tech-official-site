@@ -5,7 +5,6 @@ import { ApolloClient, gql, InMemoryCache } from "@apollo/client";
 const API_URL =
     (process.env.NEXT_PUBLIC_SERVER_API_URL + '/graphql') ||
     'http://localhost:1337/graphql';
-console.log("SERVER_API_URL", process.env.NEXT_PUBLIC_SERVER_API_URL);
 
 const client = new ApolloClient({
     uri: API_URL,
@@ -65,7 +64,6 @@ async function asyncGetProjects(): Promise<Project[]> {
 
 export default async function ProjectsPage() {
     const projects = await asyncGetProjects();
-    console.log(projects);
 
     return (
         <main className="container mx-auto px-4 py-8">
