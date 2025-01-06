@@ -41,7 +41,9 @@ async function asyncGetProjects(): Promise<Project[]> {
         }>({
             query: gql`
             query GetProjects {
-                projects {
+                projects(pagination: {
+                    limit: -1
+                }) {
                     documentId
                     title
                     description
