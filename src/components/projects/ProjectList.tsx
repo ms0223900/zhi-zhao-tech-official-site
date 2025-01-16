@@ -11,12 +11,21 @@ const ITEMS_PER_PAGE = 4;
 
 const ProjectList = ({ projects }: ProjectListProps) => {
     const [currentPage, setCurrentPage] = useState(1);
+    const [selectedGenre, setSelectedGenre] = useState('All');
+
+    const handleGenreChange = (genre: string) => {
+        setSelectedGenre(genre);
+    };
+
+    const filteredProjects = selectedGenre === 'All' ?
+        projects :
+        projects.filter(project => project.related_project_genre.title === selectedGenre);
 
     // Calculate pagination
     const indexOfLastProject = currentPage * ITEMS_PER_PAGE;
     const indexOfFirstProject = indexOfLastProject - ITEMS_PER_PAGE;
-    const currentProjects = projects.slice(indexOfFirstProject, indexOfLastProject);
-    const totalPages = Math.ceil(projects.length / ITEMS_PER_PAGE);
+    const currentProjects = filteredProjects.slice(indexOfFirstProject, indexOfLastProject);
+    const totalPages = Math.ceil(filteredProjects.length / ITEMS_PER_PAGE);
 
     const handlePageChange = (pageNumber: number) => {
         setCurrentPage(pageNumber);
@@ -24,6 +33,19 @@ const ProjectList = ({ projects }: ProjectListProps) => {
 
     return (
         <div className="space-y-8">
+            {/* // genre drop down selector */}
+            <div className="flex justify-center gap-2">
+                <select onChange={(e) => handleGenreChange(e.target.value)}>
+                    <option>
+                        All
+                    </option>
+                    {projects.map((project) => (
+                        <option key={project.id} value={project.related_project_genre.title}>
+                            {project.related_project_genre.title}
+                        </option>
+                    ))}
+                </select>
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {currentProjects.map((project) => (
                     <div key={project.id} className="bg-white shadow-md rounded-md overflow-hidden">
