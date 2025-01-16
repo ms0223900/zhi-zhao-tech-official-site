@@ -27,16 +27,16 @@ const ProjectList = ({ projects }: ProjectListProps) => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {currentProjects.map((project) => (
                     <div key={project.id} className="bg-white shadow-md rounded-md overflow-hidden">
-                        {project.image && (
-                            <div className="h-48 relative">
+                        {project.image.map((image) => (
+                            <div key={image.url} className="h-48 relative">
                                 <Image
-                                    src={project.image}
+                                    src={image.url}
                                     alt={project.title}
                                     fill
                                     className="object-cover"
                                 />
                             </div>
-                        )}
+                        ))}
                         <div className="p-4">
                             <h3 className="text-lg font-semibold text-black">{project.title}</h3>
                             <p className="text-sm text-gray-600 mt-2">{project.description}</p>

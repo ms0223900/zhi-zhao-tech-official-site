@@ -3,7 +3,7 @@ import { Project } from "@/types/Project";
 import { ApolloClient, gql, InMemoryCache } from "@apollo/client";
 
 const API_URL =
-    (process.env.NEXT_PUBLIC_SERVER_API_URL + '/graphql') ||
+    // (process.env.NEXT_PUBLIC_SERVER_API_URL + '/graphql') ||
     'http://localhost:1337/graphql';
 
 const client = new ApolloClient({
@@ -17,8 +17,16 @@ type ProjectDto = {
     description: string;
     image: {
         url: string;
-    };
+    }[];
     createdAt: string;
+    projectGenre: {
+        documentId: string;
+        title: string;
+    };
+    related_project_genre: {
+        documentId: string;
+        title: string;
+    };
 };
 
 const ProjectVoConverter = {
@@ -27,7 +35,9 @@ const ProjectVoConverter = {
             id: projectDto.documentId,
             title: projectDto.title,
             description: projectDto.description,
-            image: projectDto.image.url,
+            image: projectDto.image.map((_img) => ({ url: _img.url })),
+            related_project_genre: projectDto.related_project_genre,
+            createdAt: projectDto.createdAt,
         };
     }
 };
@@ -41,19 +51,22 @@ async function asyncGetProjects(): Promise<Project[]> {
         }>({
             query: gql`
             query GetProjects {
-                projects(pagination: {
-                    limit: -1
-                }) {
+                projects {
                     documentId
                     title
                     description
                     image {
                         url
                     }
-                    createdAt
+                    projectGenre
+                    related_project_genre {
+                        documentId
+                        title
+                        }
+                        createdAt
+                    }
                 }
-            }
-        `,
+            `,
             fetchPolicy: 'no-cache',
         });
 

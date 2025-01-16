@@ -2,5 +2,12 @@ export interface Project {
     id: string
     title: string
     description: string
-    image: string
+    image: {
+        url: string
+    }[]
+    related_project_genre: {
+        documentId: string
+        title: string
+    }
+    createdAt: string
 }
