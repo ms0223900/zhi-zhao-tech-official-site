@@ -1,6 +1,7 @@
 'use client';
 import { Project } from "@/types/Project";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 
 interface ProjectListProps {
@@ -48,7 +49,7 @@ const ProjectList = ({ projects }: ProjectListProps) => {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {currentProjects.map((project) => (
-                    <div key={project.id} className="bg-white shadow-md rounded-md overflow-hidden">
+                    <Link key={project.id} href={`/projects/${project.id}`} className="bg-white shadow-md rounded-md overflow-hidden">
                         {project.image.map((image) => (
                             <div key={image.url} className="h-48 relative">
                                 <Image
@@ -63,7 +64,7 @@ const ProjectList = ({ projects }: ProjectListProps) => {
                             <h3 className="text-lg font-semibold text-black">{project.title}</h3>
                             <p className="text-sm text-gray-600 mt-2">{project.description}</p>
                         </div>
-                    </div>
+                    </Link>
                 ))}
             </div>
 

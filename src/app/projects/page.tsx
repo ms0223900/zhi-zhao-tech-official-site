@@ -6,12 +6,12 @@ const API_URL =
     // (process.env.NEXT_PUBLIC_SERVER_API_URL + '/graphql') ||
     'http://localhost:1337/graphql';
 
-const client = new ApolloClient({
+export const client = new ApolloClient({
     uri: API_URL,
     cache: new InMemoryCache(),
 });
 
-type ProjectDto = {
+export type ProjectDto = {
     documentId: string;
     title: string;
     description: string;
@@ -27,9 +27,11 @@ type ProjectDto = {
         documentId: string;
         title: string;
     };
+    from: string | null;
+    until: string | null;
 };
 
-const ProjectVoConverter = {
+export const ProjectVoConverter = {
     toVo: (projectDto: ProjectDto) => {
         return {
             id: projectDto.documentId,
@@ -38,6 +40,8 @@ const ProjectVoConverter = {
             image: projectDto.image.map((_img) => ({ url: _img.url })),
             related_project_genre: projectDto.related_project_genre,
             createdAt: projectDto.createdAt,
+            from: projectDto.from,
+            until: projectDto.until,
         };
     }
 };

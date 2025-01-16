@@ -10,4 +10,6 @@ export interface Project {
         title: string
     }
     createdAt: string
+    from: string | null
+    until: string | null
 }
