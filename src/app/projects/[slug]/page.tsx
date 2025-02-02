@@ -5,9 +5,9 @@ import { client, ProjectDto, ProjectVoConverter } from '../page'
 import { gql } from '@apollo/client'
 
 interface ProjectDetailProps {
-    params: {
+    params: Promise<{
         slug: string
-    }
+    }>
 }
 
 async function asyncGetProject(id: string): Promise<Project> {
