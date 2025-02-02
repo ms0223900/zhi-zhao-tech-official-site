@@ -72,14 +72,44 @@ async function asyncGetProjectIds(): Promise<string[]> {
     }
 }
 
-// async function getRelatedProjects(): Promise<Project[]> {
-//     // TODO: 實作 API 串接
-//     return [] as Project[]
-// }
+async function getRelatedProjects(projectId: string, genreId: string): Promise<Project[]> {
+    // TODO: 實作 API 串接
+    try {
+        const { data } = await client.query<{
+            projects: ProjectDto[];
+        }>({
+            query: gql`
+            query GetRelatedProjects($filter: ProjectFiltersInput) {
+                projects(filters: $filter) {
+                    documentId
+                    title
+                    image {
+                        url
+                    }
+                }
+            }
+            `,
+            fetchPolicy: 'no-cache',
+            variables: {
+                filters: {
+                    related_project_genre: {
+                        contains: genreId
+                    }
+                }
+            }
+        });
+
+        return data.projects.map((project) => ProjectVoConverter.toVo(project));
+    } catch (error) {
+        console.error("Error fetching projects:", error);
+        return [] as Project[];
+    }
+}
 
 export default async function ProjectDetail({ params }: ProjectDetailProps) {
-    const project = await asyncGetProject(params.slug)
-    // const relatedProjects = await getRelatedProjects(project.related_project_genre.documentId)
+    const { slug } = await params
+    const project = await asyncGetProject(slug)
+    const relatedProjects = await getRelatedProjects(slug, project.related_project_genre.documentId)
 
     return (
         <div className="container mx-auto px-4 py-8">
@@ -136,7 +166,7 @@ export default async function ProjectDetail({ params }: ProjectDetailProps) {
             </div>
 
             {/* Related Projects */}
-            {/* <div>
+            <div>
                 <h3 className="text-2xl mb-6">相關案例</h3>
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                     {relatedProjects.map((related) => (
@@ -162,7 +192,7 @@ export default async function ProjectDetail({ params }: ProjectDetailProps) {
                         </Link>
                     ))}
                 </div>
-            </div> */}
+            </div>
         </div>
     )
 }
