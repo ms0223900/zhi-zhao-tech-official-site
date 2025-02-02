@@ -11,7 +11,6 @@ interface ProjectDetailProps {
 }
 
 async function asyncGetProject(id: string): Promise<Project> {
-    // TODO: 實作 API 串接
     try {
         const { data } = await client.query<{
             project: ProjectDto;
@@ -48,9 +47,7 @@ async function asyncGetProject(id: string): Promise<Project> {
     }
 }
 
-// get project ids
 async function asyncGetProjectIds(): Promise<string[]> {
-    // TODO: 實作 API 串接
     try {
         const { data } = await client.query<{
             projects: ProjectDto[];
@@ -73,14 +70,13 @@ async function asyncGetProjectIds(): Promise<string[]> {
 }
 
 async function getRelatedProjects(projectId: string, genreId: string): Promise<Project[]> {
-    // TODO: 實作 API 串接
     try {
         const { data } = await client.query<{
             projects: ProjectDto[];
         }>({
             query: gql`
-            query GetRelatedProjects($filter: ProjectFiltersInput) {
-                projects(filters: $filter) {
+            query GetRelatedProjects($filters: ProjectFiltersInput) {
+                projects(filters: $filters) {
                     documentId
                     title
                     image {
@@ -92,8 +88,13 @@ async function getRelatedProjects(projectId: string, genreId: string): Promise<P
             fetchPolicy: 'no-cache',
             variables: {
                 filters: {
+                    documentId: {
+                        notContains: projectId
+                    },
                     related_project_genre: {
-                        contains: genreId
+                        documentId: {
+                            contains: genreId
+                        }
                     }
                 }
             }
@@ -110,6 +111,7 @@ export default async function ProjectDetail({ params }: ProjectDetailProps) {
     const { slug } = await params
     const project = await asyncGetProject(slug)
     const relatedProjects = await getRelatedProjects(slug, project.related_project_genre.documentId)
+    console.log(relatedProjects);
 
     return (
         <div className="container mx-auto px-4 py-8">
