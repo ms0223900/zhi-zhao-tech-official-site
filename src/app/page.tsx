@@ -30,6 +30,31 @@ export default function Home() {
       textColor: "text-blue-600",
     },
   ];
+
+  const services = [
+    {
+      title: "卓越服務",
+      description: "領先技術創新",
+      detailDescription: "內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容",
+      image: "/images/service1.jpg",
+      bgColor: "bg-orange-100",
+    },
+    {
+      title: "技術實力",
+      description: "完整整合服務",
+      detailDescription: "內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容",
+      image: "/images/service1.jpg",
+      bgColor: "bg-orange-100",
+    },
+    {
+      title: "務實可靠",
+      description: "務實可靠執行",
+      detailDescription: "內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容",
+      image: "/images/service1.jpg",
+      bgColor: "bg-orange-100",
+    },
+  ];
+
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
@@ -84,27 +109,16 @@ export default function Home() {
                 <span>→</span>
               </button>
             </div>
-            <ServiceCard
-              title="卓越服務"
-              description="領先技術創新"
-              detailDescription="內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容"
-              image="/images/service1.jpg"
-              bgColor="bg-orange-100"
-            />
-            <ServiceCard
-              title="技術實力"
-              description="完整整合服務"
-              detailDescription="內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容"
-              image="/images/service2.jpg"
-              bgColor="bg-blue-100"
-            />
-            <ServiceCard
-              title="務實可靠"
-              description="務實可靠執行"
-              detailDescription="內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容"
-              image="/images/service3.jpg"
-              bgColor="bg-gray-100"
-            />
+            {services.map((item, index) => (
+              <ServiceCard
+                key={index}
+                title={item.title}
+                description={item.description}
+                detailDescription={item.detailDescription}
+                image={item.image}
+                bgColor={item.bgColor}
+              />
+            ))}
           </div>
         </div>
       </section>
