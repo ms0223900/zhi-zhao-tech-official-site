@@ -42,14 +42,14 @@ export default function Home() {
     {
       title: "技術實力",
       description: "完整整合服務",
-      detailDescription: "內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容",
+      detailDescription: "內容內容內容內容內容內容內容內容內容",
       image: "/images/service1.jpg",
       bgColor: "bg-orange-100",
     },
     {
       title: "務實可靠",
       description: "務實可靠執行",
-      detailDescription: "內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容",
+      detailDescription: "內容內容內容內容內",
       image: "/images/service1.jpg",
       bgColor: "bg-orange-100",
     },
@@ -156,24 +156,24 @@ interface ServiceCardProps {
 
 function ServiceCard({ title, description, detailDescription, image, bgColor }: ServiceCardProps) {
   return (
-    <div className="relative group overflow-hidden rounded-lg">
+    <div className="relative group overflow-hidden rounded-lg h-[300px]">
       <Image
         src={image}
         alt={title}
         width={300}
         height={400}
-        className="w-full h-[300px] object-cover"
+        className="w-full h-[300px] object-cover absolute inset-0"
       />
-      <div className="absolute inset-0 flex flex-col justify-end p-6 bg-gradient-to-t from-black/70 to-transparent">
-        <h3 className="text-white text-xl font-bold">{title}</h3>
-        <p className="text-white/80">{description}</p>
-      </div>
-      {/* hovered and move from bottom to top */}
-      <div className={`absolute inset-0 bg-black/50 group-hover:opacity-100 transition-opacity duration-300 ${bgColor}`} >
-        <p>
-          {detailDescription}
-        </p>
-
+      <div className="relative h-full flex flex-col justify-end">
+        <div className=" flex flex-col justify-end p-6 bg-gradient-to-t from-black/70 to-transparent">
+          <h3 className="text-white text-xl font-bold">{title}</h3>
+          <p className="text-white/80">{description}</p>
+        </div>
+        <div >
+          <div className={`group-hover:mb-0 -mb-[100%] transition-top duration-300 ease-in-out ${bgColor} h-full p-6`}>
+            <p className="text-sm">{detailDescription}</p>
+          </div>
+        </div>
       </div>
     </div>
   );
