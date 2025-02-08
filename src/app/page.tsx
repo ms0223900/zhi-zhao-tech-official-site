@@ -7,6 +7,29 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
+  const news = [
+    {
+      category: "EVENT",
+      content: "內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容",
+      date: "2025-01-05",
+      bgColor: "bg-yellow-100",
+      textColor: "text-yellow-600",
+    },
+    {
+      category: "NEWS",
+      content: "內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容",
+      date: "2025-01-06",
+      bgColor: "bg-orange-100",
+      textColor: "text-orange-600",
+    },
+    {
+      category: "OTHER",
+      content: "內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容",
+      date: "2025-01-07",
+      bgColor: "bg-blue-100",
+      textColor: "text-blue-600",
+    },
+  ];
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
@@ -31,27 +54,16 @@ export default function Home() {
         <div className="container mx-auto px-8">
           <h2 className="text-center text-3xl font-bold mb-12">最新消息</h2>
           <div className="grid grid-cols-3 gap-8">
-            <NewsCard
-              category="EVENT"
-              content="內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容"
-              date="2025-01-05"
-              bgColor="bg-yellow-100"
-              textColor="text-yellow-600"
-            />
-            <NewsCard
-              category="NEWS"
-              content="內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容"
-              date="2025-01-06"
-              bgColor="bg-orange-100"
-              textColor="text-orange-600"
-            />
-            <NewsCard
-              category="OTHER"
-              content="內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容"
-              date="2025-01-07"
-              bgColor="bg-blue-100"
-              textColor="text-blue-600"
-            />
+            {news.map((item, index) => (
+              <NewsCard
+                key={index}
+                category={item.category}
+                content={item.content}
+                date={item.date}
+                bgColor={item.bgColor}
+                textColor={item.textColor}
+              />
+            ))}
           </div>
           <div className="text-right mt-4">
             <button className="text-gray-600 hover:text-gray-800">閱讀更多</button>
