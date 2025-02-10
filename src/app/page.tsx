@@ -12,22 +12,22 @@ export default function Home() {
       category: "EVENT",
       content: "內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容",
       date: "2025-01-05",
-      bgColor: "bg-yellow-100",
-      textColor: "text-yellow-600",
+      bgColor: "bg-yellow-400",
+      textColor: "text-white",
     },
     {
       category: "NEWS",
       content: "內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容",
       date: "2025-01-06",
-      bgColor: "bg-orange-100",
-      textColor: "text-orange-600",
+      bgColor: "bg-orange-500",
+      textColor: "text-white",
     },
     {
       category: "OTHER",
       content: "內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容",
       date: "2025-01-07",
-      bgColor: "bg-blue-100",
-      textColor: "text-blue-600",
+      bgColor: "bg-sky-400",
+      textColor: "text-white",
     },
   ];
 
@@ -136,8 +136,8 @@ interface NewsCardProps {
 
 function NewsCard({ category, content, date, bgColor, textColor }: NewsCardProps) {
   return (
-    <div className="bg-white p-6 rounded-lg shadow-sm">
-      <span className={`${bgColor} ${textColor} text-sm font-medium px-3 py-1 rounded-full`}>
+    <div className="bg-white p-6 rounded-md shadow-sm">
+      <span className={`${bgColor} ${textColor} text-sm font-medium px-3 py-1 rounded-md`}>
         {category}
       </span>
       <p className="mt-4 text-gray-600 line-clamp-3">{content}</p>
