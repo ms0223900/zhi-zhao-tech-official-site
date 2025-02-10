@@ -104,9 +104,8 @@ export default function Home() {
             <div className="space-y-4">
               <h3 className="text-xl font-bold">製造和供應鏈服務</h3>
               <p className="text-gray-600">內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容</p>
-              <button className="flex items-center space-x-2 text-orange-600 hover:text-orange-700">
+              <button className="flex items-center space-x-2 text-black hover:text-orange-700 rounded-full bg-[#E57B42]/50 px-6 py-1.5 border border-2 border-orange-500">
                 <span>了解更多</span>
-                <span>→</span>
               </button>
             </div>
             {services.map((item, index) => (
