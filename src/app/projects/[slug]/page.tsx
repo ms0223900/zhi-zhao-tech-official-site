@@ -1,7 +1,8 @@
 import { Project } from '@/types/Project'
 import Image from 'next/image'
 import Link from 'next/link'
-import { client, ProjectDto, ProjectVoConverter } from '../page'
+import { ProjectDto, ProjectVoConverter } from '../page'
+import { client } from "@/gql/client"
 import { gql } from '@apollo/client'
 
 interface ProjectDetailProps {
