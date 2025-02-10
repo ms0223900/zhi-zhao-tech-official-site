@@ -3,10 +3,6 @@ import { client } from "@/gql/client";
 import { Project } from "@/types/Project";
 import { gql } from "@apollo/client";
 
-export const API_URL =
-    // (process.env.NEXT_PUBLIC_SERVER_API_URL + '/graphql') ||
-    'http://localhost:1337/graphql';
-
 export type ProjectDto = {
     documentId: string;
     title: string;
