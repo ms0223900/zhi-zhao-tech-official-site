@@ -1,7 +1,8 @@
 import { Project } from '@/types/Project'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ProjectDto, ProjectVoConverter } from '../page'
+import { ProjectVoConverter } from "../ProjectDto"
+import { ProjectDto } from "../ProjectDto"
 import { client } from "@/gql/client"
 import { gql } from '@apollo/client'
 
