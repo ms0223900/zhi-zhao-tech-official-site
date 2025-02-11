@@ -112,7 +112,7 @@ async function getRelatedProjects(projectId: string, genreId: string): Promise<P
 export default async function ProjectDetail({ params }: ProjectDetailProps) {
     const { slug } = await params
     const project = await asyncGetProject(slug)
-    const relatedProjects = await getRelatedProjects(slug, project.related_project_genre.documentId)
+    const relatedProjects = project.related_project_genre ? await getRelatedProjects(slug, project.related_project_genre.documentId) : []
     console.log(relatedProjects);
 
     return (
@@ -164,7 +164,7 @@ export default async function ProjectDetail({ params }: ProjectDetailProps) {
                     )}
                     <div>
                         <h3 className="text-lg font-medium mb-2">承攬系統：</h3>
-                        <p>{project.related_project_genre.title}</p>
+                        <p>{project.related_project_genre?.title}</p>
                     </div>
                 </div>
             </div>

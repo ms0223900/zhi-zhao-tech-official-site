@@ -20,7 +20,7 @@ const ProjectList = ({ projects }: ProjectListProps) => {
 
     const filteredProjects = selectedGenre === 'All' ?
         projects :
-        projects.filter(project => project.related_project_genre.title === selectedGenre);
+        projects.filter(project => project.related_project_genre?.title === selectedGenre);
 
     // Calculate pagination
     const indexOfLastProject = currentPage * ITEMS_PER_PAGE;
@@ -41,8 +41,8 @@ const ProjectList = ({ projects }: ProjectListProps) => {
                         All
                     </option>
                     {projects.map((project) => (
-                        <option key={project.id} value={project.related_project_genre.title}>
-                            {project.related_project_genre.title}
+                        <option key={project.id} value={project.related_project_genre?.title || ''}>
+                            {project.related_project_genre?.title || ''}
                         </option>
                     ))}
                 </select>

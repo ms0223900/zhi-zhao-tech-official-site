@@ -8,7 +8,7 @@ export interface Project {
     related_project_genre: {
         documentId: string
         title: string
-    }
+    } | null
     createdAt: string
     from: string | null
     until: string | null
