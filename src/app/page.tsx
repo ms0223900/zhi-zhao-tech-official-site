@@ -121,7 +121,75 @@ export default function Home() {
           </div>
         </div>
       </section>
+      {/* Service Categories Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-8">
+          <h2 className="text-center text-3xl font-bold mb-12">六大服務範圍</h2>
+          <div className="grid grid-cols-3 gap-8">
+            <ServiceFlipCardItem
+              title="駭客防禦工程"
+              subtitle="資安服務為先"
+              icon={
+                <div className="w-16 h-16 bg-gray-200 rounded-full mb-4 flex items-center justify-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-gray-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                  </svg>
+                </div>
+              }
+              backContent="提供全方位的資安防護解決方案，保護您的系統免受威脅"
+            />
+            <ServiceFlipCardItem
+              title="營運管理工程師"
+              subtitle="系統維運"
+              icon={
+                <div className="w-16 h-16 bg-gray-200 rounded-full mb-4 flex items-center justify-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-gray-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+                  </svg>
+                </div>
+              }
+              backContent="專業的系統維運服務，確保您的系統穩定運行"
+            />
+            <ServiceFlipCardItem
+              title="服務建置工程師"
+              subtitle="系統建置"
+              icon={
+                <div className="w-16 h-16 bg-gray-200 rounded-full mb-4 flex items-center justify-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-gray-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                  </svg>
+                </div>
+              }
+              backContent="專業的系統建置服務，打造符合您需求的解決方案"
+            />
+            <ServiceFlipCardItem
+              title="服務速通數據應用能力"
+              subtitle="數據分析"
+              icon={
+                <div className="w-16 h-16 bg-gray-200 rounded-full mb-4 flex items-center justify-center"></div>
+              }
+              backContent="專業的數據分析服務，提供精確的數據分析報告"
+            />
+          </div>
+        </div>
+      </section>
+
     </main>
+  );
+}
+
+function ServiceFlipCardItem({ title, subtitle, icon, backContent }: { title: string, subtitle: string, icon: React.ReactNode, backContent: string }) {
+  return (
+    <div className="flip-card">
+      <div className="flip-card-inner">
+        <div className="flip-card-front flex flex-col items-center justify-center">
+          {icon}
+          <h2>{title}</h2>
+          <p>{subtitle}</p>
+        </div>
+        <div className="flip-card-back py-2.5 px-5">{backContent}</div>
+      </div>
+    </div>
   );
 }
 
