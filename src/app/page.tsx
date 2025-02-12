@@ -1,10 +1,19 @@
 import { Metadata } from "next";
 import Image from "next/image";
+import React from "react";
 
 export const metadata: Metadata = {
   title: "智兆科技 | Zhi Zhao Tech",
   description: "智兆科技官方網站",
 };
+
+const IconPlaceholder = () => (
+  <div className="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center">
+    <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-gray-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+    </svg>
+  </div>
+);
 
 export default function Home() {
   const news = [
@@ -55,6 +64,29 @@ export default function Home() {
     },
   ];
 
+  const serviceCardDataList = [
+    {
+      title: "駭客防禦工程",
+      subtitle: "資安服務為先",
+      icon: <IconPlaceholder />,
+    },
+    {
+      title: "營運管理工程師",
+      subtitle: "系統維運",
+      icon: <IconPlaceholder />,
+    },
+    {
+      title: "服務建置工程師",
+      subtitle: "系統建置",
+      icon: <IconPlaceholder />,
+    },
+    {
+      title: "服務速通數據應用能力",
+      subtitle: "數據分析",
+      icon: <IconPlaceholder />,
+    },
+  ];
+
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
@@ -78,7 +110,7 @@ export default function Home() {
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-8">
           <h2 className="text-center text-3xl font-bold mb-12">最新消息</h2>
-          <div className="grid grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {news.map((item, index) => (
               <NewsCard
                 key={index}
@@ -100,7 +132,7 @@ export default function Home() {
       <section className="py-16">
         <div className="container mx-auto px-8">
           <h2 className="text-center text-3xl font-bold mb-4">業界領航，攜手共創輝煌</h2>
-          <div className="grid grid-cols-4 gap-8 mt-12">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mt-12">
             <div className="space-y-4">
               <h3 className="text-xl font-bold">製造和供應鏈服務</h3>
               <p className="text-gray-600">內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容</p>
@@ -125,60 +157,35 @@ export default function Home() {
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-8">
           <h2 className="text-center text-3xl font-bold mb-12">六大服務範圍</h2>
-          <div className="grid grid-cols-3 gap-8">
-            <ServiceFlipCardItem
-              title="駭客防禦工程"
-              subtitle="資安服務為先"
-              icon={
-                <div className="w-16 h-16 bg-gray-200 rounded-full mb-4 flex items-center justify-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-gray-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                  </svg>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {serviceCardDataList.map((item, index) => (
+              <React.Fragment key={index}>
+                <div className="md:hidden">
+                  <ServiceMobileCardItem
+                    key={index}
+                    title={item.title}
+                    subtitle={item.subtitle}
+                    icon={item.icon}
+                  />
                 </div>
-              }
-              backContent="提供全方位的資安防護解決方案，保護您的系統免受威脅"
-            />
-            <ServiceFlipCardItem
-              title="營運管理工程師"
-              subtitle="系統維運"
-              icon={
-                <div className="w-16 h-16 bg-gray-200 rounded-full mb-4 flex items-center justify-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-gray-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
-                  </svg>
+                <div className="hidden md:block">
+                  <ServiceFlipCardItem
+                    key={index}
+                    title={item.title}
+                    subtitle={item.subtitle}
+                    icon={item.icon}
+                  />
                 </div>
-              }
-              backContent="專業的系統維運服務，確保您的系統穩定運行"
-            />
-            <ServiceFlipCardItem
-              title="服務建置工程師"
-              subtitle="系統建置"
-              icon={
-                <div className="w-16 h-16 bg-gray-200 rounded-full mb-4 flex items-center justify-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-gray-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                  </svg>
-                </div>
-              }
-              backContent="專業的系統建置服務，打造符合您需求的解決方案"
-            />
-            <ServiceFlipCardItem
-              title="服務速通數據應用能力"
-              subtitle="數據分析"
-              icon={
-                <div className="w-16 h-16 bg-gray-200 rounded-full mb-4 flex items-center justify-center"></div>
-              }
-              backContent="專業的數據分析服務，提供精確的數據分析報告"
-            />
+              </React.Fragment>
+            ))}
           </div>
         </div>
       </section>
-
     </main>
   );
 }
 
-function ServiceFlipCardItem({ title, subtitle, icon, backContent }: { title: string, subtitle: string, icon: React.ReactNode, backContent: string }) {
+function ServiceFlipCardItem({ title, subtitle, icon }: { title: string, subtitle: string, icon: React.ReactNode }) {
   return (
     <div className="flip-card">
       <div className="flip-card-inner">
@@ -187,7 +194,23 @@ function ServiceFlipCardItem({ title, subtitle, icon, backContent }: { title: st
           <h2>{title}</h2>
           <p>{subtitle}</p>
         </div>
-        <div className="flip-card-back py-2.5 px-5">{backContent}</div>
+        <div className="flip-card-back py-2.5 px-5">{subtitle}</div>
+      </div>
+    </div>
+  );
+}
+
+// ServiceMobileCardItem
+function ServiceMobileCardItem({ title, subtitle, icon }: { title: string, subtitle: string, icon: React.ReactNode }) {
+  return (
+    <div className="bg-white p-6 rounded-md shadow-sm flex items-center text-center gap-4">
+      <div className="text-orange-500 w-16 h-16 flex items-center justify-center">
+        {icon}
+      </div>
+      <div className="w-[3px] h-[64px] bg-black" />
+      <div className="flex flex-col items-center text-center w-full">
+        <h3 className="font-bold text-xl">{title}</h3>
+        <p className="text-gray-600 text-sm">{subtitle}</p>
       </div>
     </div>
   );
