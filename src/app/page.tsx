@@ -87,6 +87,25 @@ export default function Home() {
     },
   ];
 
+  const routeDirectingDataList = [
+    {
+      title: "聯絡我們",
+      image: "/images/route1.jpg",
+    },
+    {
+      title: "解決方案",
+      image: "/images/route2.jpg",
+    },
+    {
+      title: "文件下載專區",
+      image: "/images/route3.jpg",
+    },
+    {
+      title: "服務據點查詢",
+      image: "/images/route4.jpg",
+    },
+  ];
+
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
@@ -185,37 +204,15 @@ export default function Home() {
       <section className="py-16">
         <div className="container mx-auto px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-0">
-            <div className="relative group cursor-pointer">
-              <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-all duration-300"></div>
-              <img src="/images/route1.jpg" alt="聯絡我們" className="w-full h-48 object-cover" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-white text-xl font-bold">聯絡我們</span>
+            {routeDirectingDataList.map((item, index) => (
+              <div key={index} className="relative group cursor-pointer">
+                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-all duration-300"></div>
+                <img src={item.image} alt={item.title} className="w-full h-48 object-cover" />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <span className="text-white text-xl font-bold">{item.title}</span>
+                </div>
               </div>
-            </div>
-
-            <div className="relative group cursor-pointer">
-              <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-all duration-300"></div>
-              <img src="/images/route2.jpg" alt="解決方案" className="w-full h-48 object-cover" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-white text-xl font-bold">解決方案</span>
-              </div>
-            </div>
-
-            <div className="relative group cursor-pointer">
-              <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-all duration-300"></div>
-              <img src="/images/route3.jpg" alt="文件下載專區" className="w-full h-48 object-cover" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-white text-xl font-bold">文件下載專區</span>
-              </div>
-            </div>
-
-            <div className="relative group cursor-pointer">
-              <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-all duration-300"></div>
-              <img src="/images/route4.jpg" alt="服務據點查詢" className="w-full h-48 object-cover" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-white text-xl font-bold">服務據點查詢</span>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
