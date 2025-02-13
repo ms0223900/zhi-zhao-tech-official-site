@@ -87,7 +87,7 @@ export default function Home() {
     },
   ];
 
-  const routeDirectingDataList = [
+  const linkCardDataList = [
     {
       title: "聯絡我們",
       image: "/images/route1.jpg",
@@ -204,7 +204,7 @@ export default function Home() {
       <section className="py-16">
         <div className="container mx-auto px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-0">
-            {routeDirectingDataList.map((item, index) => (
+            {linkCardDataList.map((item, index) => (
               <div key={index} className="relative group cursor-pointer">
                 <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-all duration-300"></div>
                 <img src={item.image} alt={item.title} className="w-full h-48 object-cover" />
