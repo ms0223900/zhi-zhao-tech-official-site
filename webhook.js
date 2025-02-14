@@ -32,13 +32,20 @@ const validateWebhook = (req, res, next) => {
     // next();
 };
 
+// refactor exec commands
+const commands = [
+    'git pull',
+    'docker-compose build --no-cache',
+    'docker-compose up -d'
+]
+
 // Webhook endpoint
 app.post('/build-frontend-webhook', validateWebhook, async (req, res) => {
     console.log('Received rebuild request:', new Date().toISOString());
 
     try {
         // 執行重建命令
-        exec('git pull && docker-compose build --no-cache && docker-compose up -d', {
+        exec(commands.join(' && '), {
             shell: true
         }, (error, stdout, stderr) => {
             if (error) {
