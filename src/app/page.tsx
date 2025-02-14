@@ -101,7 +101,7 @@ export default function Home() {
       image: "/images/route3.jpg",
     },
     {
-      title: "服務據點查詢",
+      title: "隱私權政策",
       image: "/images/route4.jpg",
     },
   ];
@@ -201,13 +201,17 @@ export default function Home() {
         </div>
       </section>
       {/* Route Directing Section */}
-      <section className="py-16">
-        <div className="container mx-auto px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-0">
+      <section>
+        <div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-0 ">
             {linkCardDataList.map((item, index) => (
-              <div key={index} className="relative group cursor-pointer">
+              <div key={index} className="relative group cursor-pointer rounded-md md:rounded-none overflow-hidden">
                 <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-all duration-300"></div>
-                <img src={item.image} alt={item.title} className="w-full h-48 object-cover" />
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="w-full md:h-auto h-[23vw] object-cover aspect-[38/23]"
+                />
                 <div className="absolute inset-0 flex items-center justify-center">
                   <span className="text-white text-xl font-bold">{item.title}</span>
                 </div>
