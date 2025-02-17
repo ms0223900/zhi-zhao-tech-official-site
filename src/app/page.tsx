@@ -181,7 +181,7 @@ export default function Home() {
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-8">
           <h2 className="text-center text-3xl font-bold mb-12">六大服務範圍</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="flex flex-wrap justify-center max-w-[635px] mx-auto md:grid md:grid-cols-3 md:gap-8 md:items-center md:justify-items-center">
             {serviceCardDataList.map((item, index) => (
               <React.Fragment key={index}>
                 <div className="md:hidden">
@@ -234,12 +234,14 @@ interface ServiceCardItemProps {
 
 function ServiceFlipCardItem({ title, subtitle, detailDescription, icon }: ServiceCardItemProps) {
   return (
-    <div className="flip-card">
+    <div className="flip-card w-[185px] h-[178px]">
       <div className="flip-card-inner">
-        <div className="flip-card-front flex flex-col items-center justify-center">
-          {icon}
-          <h2>{title}</h2>
-          <p>{subtitle}</p>
+        <div className="flip-card-front flex flex-col items-center justify-center border border-[#282423] rounded-lg bg-gradient-to-r from-white to-gray-300 p-6">
+          <div className="text-orange-500 w-16 h-16 flex items-center justify-center">
+            {icon}
+          </div>
+          <h2 className="font-bold text-xl mt-4">{title}</h2>
+          <p className="text-gray-600 mt-2">{subtitle}</p>
         </div>
         <div className="flip-card-back py-2.5 px-5">{detailDescription}</div>
       </div>
