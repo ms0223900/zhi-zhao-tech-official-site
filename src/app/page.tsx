@@ -65,26 +65,30 @@ export default function Home() {
     },
   ];
 
-  const serviceCardDataList = [
+  const serviceCardDataList: ServiceCardItemProps[] = [
     {
       title: "駭客防禦工程",
       subtitle: "資安服務為先",
       icon: <IconPlaceholder />,
+      detailDescription: "內容內容內容內容內容內容內容內容內容內容內容內容內容內容",
     },
     {
       title: "營運管理工程師",
       subtitle: "系統維運",
       icon: <IconPlaceholder />,
+      detailDescription: "內容內容內容內容內容內容內容內容內容內容內容內容內容內容",
     },
     {
       title: "服務建置工程師",
       subtitle: "系統建置",
       icon: <IconPlaceholder />,
+      detailDescription: "內容內容內容內容內容內容內容內容內容內容內容內容內容內容",
     },
     {
       title: "服務速通數據應用能力",
       subtitle: "數據分析",
       icon: <IconPlaceholder />,
+      detailDescription: "內容內容內容內容內容內容內容內容內容內容內容內容內容內容",
     },
   ];
 
@@ -183,17 +187,13 @@ export default function Home() {
                 <div className="md:hidden">
                   <ServiceMobileCardItem
                     key={index}
-                    title={item.title}
-                    subtitle={item.subtitle}
-                    icon={item.icon}
+                    {...item}
                   />
                 </div>
                 <div className="hidden md:block">
                   <ServiceFlipCardItem
                     key={index}
-                    title={item.title}
-                    subtitle={item.subtitle}
-                    icon={item.icon}
+                    {...item}
                   />
                 </div>
               </React.Fragment>
@@ -225,7 +225,14 @@ export default function Home() {
   );
 }
 
-function ServiceFlipCardItem({ title, subtitle, icon }: { title: string, subtitle: string, icon: React.ReactNode }) {
+interface ServiceCardItemProps {
+  title: string;
+  subtitle: string;
+  detailDescription: string;
+  icon: React.ReactNode;
+}
+
+function ServiceFlipCardItem({ title, subtitle, detailDescription, icon }: ServiceCardItemProps) {
   return (
     <div className="flip-card">
       <div className="flip-card-inner">
@@ -234,14 +241,14 @@ function ServiceFlipCardItem({ title, subtitle, icon }: { title: string, subtitl
           <h2>{title}</h2>
           <p>{subtitle}</p>
         </div>
-        <div className="flip-card-back py-2.5 px-5">{subtitle}</div>
+        <div className="flip-card-back py-2.5 px-5">{detailDescription}</div>
       </div>
     </div>
   );
 }
 
 // ServiceMobileCardItem
-function ServiceMobileCardItem({ title, subtitle, icon }: { title: string, subtitle: string, icon: React.ReactNode }) {
+function ServiceMobileCardItem({ title, subtitle, detailDescription, icon }: ServiceCardItemProps) {
   return (
     <div className="bg-white p-6 rounded-md shadow-sm flex items-center text-center gap-4">
       <div className="text-orange-500 w-16 h-16 flex items-center justify-center">
@@ -249,8 +256,8 @@ function ServiceMobileCardItem({ title, subtitle, icon }: { title: string, subti
       </div>
       <div className="w-[3px] h-[64px] bg-black" />
       <div className="flex flex-col items-center text-center w-full">
-        <h3 className="font-bold text-xl">{title}</h3>
-        <p className="text-gray-600 text-sm">{subtitle}</p>
+        <h3 className="font-bold text-xl">{title + " " + subtitle}</h3>
+        <p className="text-gray-600 text-sm">{detailDescription}</p>
       </div>
     </div>
   );
