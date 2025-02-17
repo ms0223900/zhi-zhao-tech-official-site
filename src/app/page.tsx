@@ -178,7 +178,7 @@ export default function Home() {
         </div>
       </section>
       {/* Service Categories Section */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 theme-gradient-blue">
         <div className="container mx-auto px-8">
           <h2 className="text-center text-3xl font-bold mb-12">六大服務範圍</h2>
           <div className="flex flex-wrap justify-center max-w-[635px] mx-auto md:grid md:grid-cols-3 md:gap-8 md:items-center md:justify-items-center">
