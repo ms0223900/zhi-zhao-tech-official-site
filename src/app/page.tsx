@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { Metadata } from "next";
 import Image from "next/image";
 import React from "react";
@@ -90,7 +91,7 @@ export default function Home() {
   const linkCardDataList = [
     {
       title: "聯絡我們",
-      image: "/images/route1.jpg",
+      image: "/images/home-route-direct_contact-us.jpg",
     },
     {
       title: "解決方案",
