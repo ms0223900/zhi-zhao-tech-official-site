@@ -174,11 +174,11 @@ export default async function Home() {
       {/* Services Section */}
       <section className="py-16">
         <div className="container mx-auto px-8 max-w-[958px]">
-          <h2 className="text-center text-3xl font-bold mb-4">業界領航，攜手共創輝煌</h2>
+          <h2 className="text-center text-2xl md:text-3xl font-bold mb-4">業界領航，攜手共創輝煌</h2>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mt-12">
-            <div className="space-y-4">
+            <div className="flex flex-col items-center justify-center space-y-4">
               <h3 className="text-xl font-bold">製造和供應鏈服務</h3>
-              <p className="text-gray-600">內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容</p>
+              <p className="text-center md:text-left text-gray-600">內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容</p>
               <button className="flex items-center space-x-2 text-black hover:text-orange-700 rounded-full bg-[#E57B42]/50 px-6 py-1.5 border border-2 border-orange-500">
                 <span>了解更多</span>
               </button>
@@ -199,7 +199,7 @@ export default async function Home() {
       {/* Service Categories Section */}
       <section className="py-16 theme-gradient-blue">
         <div className="container mx-auto px-8">
-          <h2 className="text-center text-3xl font-bold mb-12">六大服務範圍</h2>
+          <h2 className="text-center text-3xl font-bold mb-12">六大服務宗旨</h2>
           <div className="flex flex-wrap justify-center max-w-[635px] mx-auto md:grid md:grid-cols-3 gap-6 md:gap-8 md:items-center md:justify-items-center">
             {serviceCardDataList.map((item, index) => (
               <React.Fragment key={index}>
