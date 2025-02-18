@@ -142,7 +142,7 @@ export default async function Home() {
       {/* Hero Section */}
       <section className="relative h-[600px]">
         <CarouselBanner />
-        <div className="absolute left-0 bottom-0 container mx-auto px-8 flex flex-col justify-center">
+        <div className="absolute left-[92px] bottom-[65px] mx-auto flex flex-col justify-center">
           <h1 className="text-white text-5xl font-bold mb-4">智兆科技</h1>
           <p className="text-white text-xl mb-2">專業 快速 負責</p>
           <p className="text-white text-xl">認真 細心 誠信</p>

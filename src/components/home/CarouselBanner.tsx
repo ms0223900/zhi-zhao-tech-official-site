@@ -18,8 +18,10 @@ function CustomArrow({ direction, onClick }: { direction: "prev" | "next"; onCli
     return (
         <button
             onClick={onClick}
-            className={`absolute top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-black/50 hover:bg-black/70 transition-colors ${direction === "prev" ? "left-4" : "right-4"
-                }`}
+            className="w-10 h-10 absolute bottom-[100px] z-10 rounded-full border-2 border-white bg-transparent hover:bg-white/70 transition-colors text-white text-2xl"
+            style={{
+                right: direction === "prev" ? "100px" : "50px",
+            }}
         >
             {Icon}
         </button>
