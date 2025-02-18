@@ -1,6 +1,6 @@
-/* eslint-disable @next/next/no-img-element */
 import { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 export const metadata: Metadata = {
@@ -8,16 +8,19 @@ export const metadata: Metadata = {
   description: "智兆科技官方網站",
 };
 
-const IconPlaceholder = () => (
-  <div className="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center">
-    <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-gray-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-      <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-    </svg>
-  </div>
-);
-
-export default function Home() {
-  const news = [
+const asyncGetNews = async () => {
+  // const { data } = await client.query({
+  //   query: gql`
+  //     query GetNews {
+  //       news {
+  //         id
+  //         title
+  //       }
+  //     }
+  //   `,
+  // });
+  // return data.news;
+  return [
     {
       category: "EVENT",
       content: "內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容",
@@ -40,89 +43,97 @@ export default function Home() {
       textColor: "text-white",
     },
   ];
+};
 
-  const services = [
-    {
-      title: "卓越服務",
-      description: "領先技術創新",
-      detailDescription: "內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容",
-      image: "/images/home-service-1.jpg",
-      bgColor: "bg-orange-100",
-    },
-    {
-      title: "技術實力",
-      description: "完整整合服務",
-      detailDescription: "內容內容內容內容內容內容內容內容內容",
-      image: "/images/home-service-2.jpg",
-      bgColor: "bg-orange-100",
-    },
-    {
-      title: "務實可靠",
-      description: "務實可靠執行",
-      detailDescription: "內容內容內容內容內",
-      image: "/images/home-service-3.jpg",
-      bgColor: "bg-orange-100",
-    },
-  ];
+const services = [
+  {
+    title: "卓越服務",
+    description: "領先技術創新",
+    detailDescription: "內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容",
+    image: "/images/home-service-1.jpg",
+    bgColor: "bg-orange-100",
+  },
+  {
+    title: "技術實力",
+    description: "完整整合服務",
+    detailDescription: "內容內容內容內容內容內容內容內容內容",
+    image: "/images/home-service-2.jpg",
+    bgColor: "bg-orange-100",
+  },
+  {
+    title: "務實可靠",
+    description: "務實可靠執行",
+    detailDescription: "內容內容內容內容內",
+    image: "/images/home-service-3.jpg",
+    bgColor: "bg-orange-100",
+  },
+];
 
-  const serviceCardDataList: ServiceCardItemProps[] = [
-    {
-      title: "最優質",
-      subtitle: "施工管理",
-      icon: <IconPlaceholder />,
-      detailDescription: "內容內容內容內容內容內容內容內容內容內容內容內容內容內容",
-    },
-    {
-      title: "最優質",
-      subtitle: "施工管理",
-      icon: <IconPlaceholder />,
-      detailDescription: "內容內容內容內容內容內容內容內容內容內容內容內容內容內容",
-    },
-    {
-      title: "最嚴謹",
-      subtitle: "工安管理",
-      icon: <IconPlaceholder />,
-      detailDescription: "內容內容內容內容內容內容內容內容內容內容內容內容內容內容",
-    },
-    {
-      title: "最快速",
-      subtitle: "動員庫存能力",
-      icon: <IconPlaceholder />,
-      detailDescription: "內容內容內容內容內容內容內容內容內容內容內容內容內容內容",
-    },
-    {
-      title: "最快速",
-      subtitle: "專業能力",
-      icon: <IconPlaceholder />,
-      detailDescription: "內容內容內容內容內容內容內容內容內容內容內容內容內容內容",
-    },
-    {
-      title: "最絕對",
-      subtitle: "工程服務管理",
-      icon: <IconPlaceholder />,
-      detailDescription: "內容內容內容內容內容內容內容內容內容內容內容內容內容內容",
-    },
-  ];
+const serviceCardDataList: ServiceCardItemProps[] = [
+  {
+    title: "最優質",
+    subtitle: "施工管理",
+    icon: <Image src="/images/icons/construction-icon.svg" alt="施工管理" width={103} height={95} />,
+    detailDescription: "以高品質工程和實用性為您服務",
+  },
+  {
+    title: "最優質",
+    subtitle: "施工管理",
+    icon: <Image src="/images/icons/construction-icon.svg" alt="施工管理" width={103} height={95} />,
+    detailDescription: "內容內容內容內容內容內容內容內容內容內容內容內容內容內容",
+  },
+  {
+    title: "最嚴謹",
+    subtitle: "工安管理",
+    icon: <Image src="/images/icons/safety-management-icon.svg" alt="工安管理" width={103} height={95} />,
+    detailDescription: "內容內容內容內容內容內容內容內容內容內容內容內容內容內容",
+  },
+  {
+    title: "最快速",
+    subtitle: "動員庫存能力",
+    icon: <Image src="/images/icons/shift-fast-icon.svg" alt="動員庫存能力" width={103} height={95} />,
+    detailDescription: "內容內容內容內容內容內容內容內容內容內容內容內容內容內容",
+  },
+  {
+    title: "最快速",
+    subtitle: "專業能力",
+    icon: <Image src="/images/icons/professional-ability-icon.svg" alt="專業能力" width={103} height={95} />,
+    detailDescription: "內容內容內容內容內容內容內容內容內容內容內容內容內容內容",
+  },
+  {
+    title: "最絕對",
+    subtitle: "工程服務管理",
+    icon: <Image src="/images/icons/engineering-service-management-icon.svg" alt="工程服務管理" width={103} height={95} />,
+    detailDescription: "內容內容內容內容內容內容內容內容內容內容內容內容內容內容",
+  },
+];
 
-  const linkCardDataList = [
-    {
-      title: "聯絡我們",
-      image: "/images/home-route-direct_contact-us.jpg",
-    },
-    {
-      title: "解決方案",
-      image: "/images/home-route-direct_contact-us.jpg",
-    },
-    {
-      title: "文件下載專區",
-      image: "/images/home-route-direct_contact-us.jpg",
-    },
-    {
-      title: "隱私權政策",
-      image: "/images/home-route-direct_contact-us.jpg",
-    },
-  ];
+const linkCardDataList = [
+  {
+    title: "聯絡我們",
+    image: "/images/home-route-direct_contact-us.jpg",
+    link: "/contact",
+  },
+  {
+    title: "解決方案",
+    image: "/images/home-route-direct_contact-us.jpg",
+    link: "/solutions",
+  },
+  {
+    title: "文件下載專區",
+    image: "/images/home-route-direct_contact-us.jpg",
+    link: "/downloads",
+  },
+  {
+    title: "隱私權政策",
+    image: "/images/home-route-direct_contact-us.jpg",
+    link: "/privacy",
+  },
+];
 
+
+export default async function Home() {
+  const news = await asyncGetNews();
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
@@ -193,7 +204,7 @@ export default function Home() {
       <section className="py-16 theme-gradient-blue">
         <div className="container mx-auto px-8">
           <h2 className="text-center text-3xl font-bold mb-12">六大服務範圍</h2>
-          <div className="flex flex-wrap justify-center max-w-[635px] mx-auto md:grid md:grid-cols-3 md:gap-8 md:items-center md:justify-items-center">
+          <div className="flex flex-wrap justify-center max-w-[635px] mx-auto md:grid md:grid-cols-3 gap-6 md:gap-8 md:items-center md:justify-items-center">
             {serviceCardDataList.map((item, index) => (
               <React.Fragment key={index}>
                 <div className="md:hidden">
@@ -218,17 +229,19 @@ export default function Home() {
         <div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-0 ">
             {linkCardDataList.map((item, index) => (
-              <div key={index} className="relative group cursor-pointer rounded-md md:rounded-none overflow-hidden">
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-all duration-300"></div>
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="w-full md:h-auto h-[23vw] object-cover aspect-[38/23]"
-                />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="text-white text-xl font-bold">{item.title}</span>
+              <Link key={index} href={item.link}>
+                <div className="relative group cursor-pointer rounded-md md:rounded-none overflow-hidden">
+                  <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-all duration-300"></div>
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="w-full md:h-auto h-[23vw] object-cover aspect-[38/23]"
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <span className="text-white text-xl font-bold">{item.title}</span>
+                  </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
@@ -264,13 +277,13 @@ function ServiceFlipCardItem({ title, subtitle, detailDescription, icon }: Servi
 // ServiceMobileCardItem
 function ServiceMobileCardItem({ title, subtitle, detailDescription, icon }: ServiceCardItemProps) {
   return (
-    <div className="bg-white p-6 rounded-md shadow-sm flex items-center text-center gap-4">
-      <div className="text-orange-500 w-16 h-16 flex items-center justify-center">
+    <div className="bg-white py-5 px-9 rounded-md shadow-sm flex items-center text-center gap-4">
+      <div className="text-orange-500 w-12 h-16 flex items-center justify-center">
         {icon}
       </div>
-      <div className="w-[3px] h-[64px] bg-black" />
+      <div className="w-[3px] h-[40px] bg-black" />
       <div className="flex flex-col items-center text-center w-full">
-        <h3 className="font-bold text-xl">{title + " " + subtitle}</h3>
+        <h3 className="font-bold text-xl">{title + subtitle}</h3>
         <p className="text-gray-600 text-sm">{detailDescription}</p>
       </div>
     </div>
