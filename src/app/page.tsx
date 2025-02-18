@@ -79,35 +79,29 @@ const serviceCardDataList: ServiceCardItemProps[] = [
     detailDescription: "以高品質工程和實用性為您服務",
   },
   {
-    title: "最優質",
-    subtitle: "施工管理",
-    iconSrc: "/images/icons/construction-icon.svg",
-    detailDescription: "內容內容內容內容內容內容內容內容內容內容內容內容內容內容",
-  },
-  {
     title: "最嚴謹",
     subtitle: "工安管理",
     iconSrc: "/images/icons/safety-management-icon.svg",
-    detailDescription: "內容內容內容內容內容內容內容內容內容內容內容內容內容內容",
+    detailDescription: "實做工安第一、工地6S環境維護與整潔",
   },
   {
     title: "最快速",
     subtitle: "動員庫存能力",
     iconSrc: "/images/icons/shift-fast-icon.svg",
-    detailDescription: "內容內容內容內容內容內容內容內容內容內容內容內容內容內容",
+    detailDescription: "駐廠人員皆有機電系統、空調無塵室系統、製程系統等管理專長服務團隊...",
   },
   {
-    title: "最快速",
+    title: "最絕對",
     subtitle: "專業能力",
     iconSrc: "/images/icons/professional-ability-icon.svg",
-    detailDescription: "內容內容內容內容內容內容內容內容內容內容內容內容內容內容",
+    detailDescription: "最絕對的專業能力,建立在專業、快速、負責、認真、細心、誠信 六大原則上",
   },
   {
     title: "最絕對",
     subtitle: "工程服務管理",
     iconSrc: "/images/icons/engineering-service-management-icon.svg",
-    detailDescription: "內容內容內容內容內容內容內容內容內容內容內容內容內容內容",
-  },
+    detailDescription: "秉持著高規格的理念來執行每件工程",
+  }
 ];
 
 const linkCardDataList = [
@@ -175,10 +169,10 @@ export default async function Home() {
       <section className="py-16">
         <div className="container mx-auto px-8 max-w-[958px]">
           <h2 className="text-center text-2xl md:text-3xl font-bold mb-4">業界領航，攜手共創輝煌</h2>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mt-12">
-            <div className="flex flex-col items-center justify-center space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-[280px,repeat(3,1fr)] gap-4 mt-12">
+            <div className="flex flex-col items-center md:items-start justify-center space-y-4 md:space-y-6">
               <h3 className="text-xl font-bold">製造和供應鏈服務</h3>
-              <p className="text-center md:text-left text-gray-600">內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容</p>
+              <p className="text-center md:text-left text-gray-600 leading-[206%]">我們以創新技術為核心，專注於為客戶創造卓越價值。憑藉領先的技術實力與穩健可靠的運行模式，我們致力成為您值得信賴的合作夥伴，攜手共創雙贏的未來！</p>
               <button className="flex items-center space-x-2 text-black hover:text-orange-700 rounded-full bg-[#E57B42]/50 px-6 py-1.5 border border-2 border-orange-500">
                 <span>了解更多</span>
               </button>
@@ -273,13 +267,13 @@ function ServiceFlipCardItem({ title, subtitle, detailDescription, iconSrc }: Se
 // ServiceMobileCardItem
 function ServiceMobileCardItem({ title, subtitle, detailDescription, iconSrc }: ServiceCardItemProps) {
   return (
-    <div className="py-5 px-9 rounded-md shadow-sm flex items-center text-center gap-4 bg-gradient-to-r from-white to-gray-300 border border-[1px] border-[#282423]">
-      <div className="text-orange-500 w-12 h-16 flex items-center justify-center">
-        <img className="object-contain" src={iconSrc} alt={title} />
+    <div className="py-4 px-7 rounded-md shadow-sm flex items-center text-center gap-4 bg-gradient-to-r from-white to-gray-300 border border-[1px] border-[#282423]">
+      <div className="text-orange-500 h-[60px] flex items-center justify-center">
+        <img className="h-full" src={iconSrc} alt={title} />
       </div>
       <div className="w-[3px] h-[40px] bg-black" />
       <div className="flex flex-col items-center text-center w-full">
-        <h3 className="font-bold text-xl">{title + subtitle}</h3>
+        <h3 className="font-bold text-lg">{title + subtitle}</h3>
         <p className="text-gray-600 text-sm">{detailDescription}</p>
       </div>
     </div>
