@@ -75,37 +75,37 @@ const serviceCardDataList: ServiceCardItemProps[] = [
   {
     title: "最優質",
     subtitle: "施工管理",
-    icon: <Image src="/images/icons/construction-icon.svg" alt="施工管理" width={103} height={95} />,
+    iconSrc: "/images/icons/construction-icon.svg",
     detailDescription: "以高品質工程和實用性為您服務",
   },
   {
     title: "最優質",
     subtitle: "施工管理",
-    icon: <Image src="/images/icons/construction-icon.svg" alt="施工管理" width={103} height={95} />,
+    iconSrc: "/images/icons/construction-icon.svg",
     detailDescription: "內容內容內容內容內容內容內容內容內容內容內容內容內容內容",
   },
   {
     title: "最嚴謹",
     subtitle: "工安管理",
-    icon: <Image src="/images/icons/safety-management-icon.svg" alt="工安管理" width={103} height={95} />,
+    iconSrc: "/images/icons/safety-management-icon.svg",
     detailDescription: "內容內容內容內容內容內容內容內容內容內容內容內容內容內容",
   },
   {
     title: "最快速",
     subtitle: "動員庫存能力",
-    icon: <Image src="/images/icons/shift-fast-icon.svg" alt="動員庫存能力" width={103} height={95} />,
+    iconSrc: "/images/icons/shift-fast-icon.svg",
     detailDescription: "內容內容內容內容內容內容內容內容內容內容內容內容內容內容",
   },
   {
     title: "最快速",
     subtitle: "專業能力",
-    icon: <Image src="/images/icons/professional-ability-icon.svg" alt="專業能力" width={103} height={95} />,
+    iconSrc: "/images/icons/professional-ability-icon.svg",
     detailDescription: "內容內容內容內容內容內容內容內容內容內容內容內容內容內容",
   },
   {
     title: "最絕對",
     subtitle: "工程服務管理",
-    icon: <Image src="/images/icons/engineering-service-management-icon.svg" alt="工程服務管理" width={103} height={95} />,
+    iconSrc: "/images/icons/engineering-service-management-icon.svg",
     detailDescription: "內容內容內容內容內容內容內容內容內容內容內容內容內容內容",
   },
 ];
@@ -250,32 +250,32 @@ interface ServiceCardItemProps {
   title: string;
   subtitle: string;
   detailDescription: string;
-  icon: React.ReactNode;
+  iconSrc: string;
 }
 
-function ServiceFlipCardItem({ title, subtitle, detailDescription, icon }: ServiceCardItemProps) {
+function ServiceFlipCardItem({ title, subtitle, detailDescription, iconSrc }: ServiceCardItemProps) {
   return (
     <div className="flip-card w-[185px] h-[178px]">
       <div className="flip-card-inner">
         <div className="flip-card-front flex flex-col items-center justify-center border border-[#282423] rounded-lg bg-gradient-to-r from-white to-gray-300 p-6">
-          <div className="text-orange-500 w-16 h-16 flex items-center justify-center">
-            {icon}
+          <div className="text-orange-500 w-auto h-16 flex items-center justify-center">
+            <img className="h-full" src={iconSrc} alt={title} />
           </div>
           <h2 className="font-bold text-xl mt-4">{title}</h2>
           <p className="text-gray-600 mt-2">{subtitle}</p>
         </div>
-        <div className="flip-card-back py-2.5 px-5">{detailDescription}</div>
+        <div className="flip-card-back flex flex-col items-center justify-center bg-[#4A515D] rounded-lg py-2.5 px-5">{detailDescription}</div>
       </div>
     </div>
   );
 }
 
 // ServiceMobileCardItem
-function ServiceMobileCardItem({ title, subtitle, detailDescription, icon }: ServiceCardItemProps) {
+function ServiceMobileCardItem({ title, subtitle, detailDescription, iconSrc }: ServiceCardItemProps) {
   return (
     <div className="py-5 px-9 rounded-md shadow-sm flex items-center text-center gap-4 bg-gradient-to-r from-white to-gray-300 border border-[1px] border-[#282423]">
       <div className="text-orange-500 w-12 h-16 flex items-center justify-center">
-        {icon}
+        <img className="object-contain" src={iconSrc} alt={title} />
       </div>
       <div className="w-[3px] h-[40px] bg-black" />
       <div className="flex flex-col items-center text-center w-full">
