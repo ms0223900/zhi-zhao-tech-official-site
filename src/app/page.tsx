@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -134,6 +135,7 @@ const linkCardDataList = [
 
 export default async function Home() {
   const news = await asyncGetNews();
+
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
