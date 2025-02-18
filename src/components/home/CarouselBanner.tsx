@@ -12,7 +12,7 @@ const carouselBannerImages = [
     "/images/home-banner.jpg",
 ];
 
-// 客製化箭頭元件
+// TODO, 微調樣式
 function CustomArrow({ direction, onClick }: { direction: "prev" | "next"; onClick?: () => void }) {
     const Icon = direction === "prev" ? "<" : ">";
     return (

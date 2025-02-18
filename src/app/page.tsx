@@ -273,7 +273,7 @@ function ServiceFlipCardItem({ title, subtitle, detailDescription, icon }: Servi
 // ServiceMobileCardItem
 function ServiceMobileCardItem({ title, subtitle, detailDescription, icon }: ServiceCardItemProps) {
   return (
-    <div className="bg-white py-5 px-9 rounded-md shadow-sm flex items-center text-center gap-4">
+    <div className="py-5 px-9 rounded-md shadow-sm flex items-center text-center gap-4 bg-gradient-to-r from-white to-gray-300 border border-[1px] border-[#282423]">
       <div className="text-orange-500 w-12 h-16 flex items-center justify-center">
         {icon}
       </div>
