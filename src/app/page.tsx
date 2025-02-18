@@ -73,6 +73,12 @@ export default function Home() {
       detailDescription: "內容內容內容內容內容內容內容內容內容內容內容內容內容內容",
     },
     {
+      title: "最優質",
+      subtitle: "施工管理",
+      icon: <IconPlaceholder />,
+      detailDescription: "內容內容內容內容內容內容內容內容內容內容內容內容內容內容",
+    },
+    {
       title: "最嚴謹",
       subtitle: "工安管理",
       icon: <IconPlaceholder />,
@@ -81,6 +87,12 @@ export default function Home() {
     {
       title: "最快速",
       subtitle: "動員庫存能力",
+      icon: <IconPlaceholder />,
+      detailDescription: "內容內容內容內容內容內容內容內容內容內容內容內容內容內容",
+    },
+    {
+      title: "最快速",
+      subtitle: "專業能力",
       icon: <IconPlaceholder />,
       detailDescription: "內容內容內容內容內容內容內容內容內容內容內容內容內容內容",
     },
