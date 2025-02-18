@@ -67,26 +67,26 @@ export default function Home() {
 
   const serviceCardDataList: ServiceCardItemProps[] = [
     {
-      title: "駭客防禦工程",
-      subtitle: "資安服務為先",
+      title: "最優質",
+      subtitle: "施工管理",
       icon: <IconPlaceholder />,
       detailDescription: "內容內容內容內容內容內容內容內容內容內容內容內容內容內容",
     },
     {
-      title: "營運管理工程師",
-      subtitle: "系統維運",
+      title: "最嚴謹",
+      subtitle: "工安管理",
       icon: <IconPlaceholder />,
       detailDescription: "內容內容內容內容內容內容內容內容內容內容內容內容內容內容",
     },
     {
-      title: "服務建置工程師",
-      subtitle: "系統建置",
+      title: "最快速",
+      subtitle: "動員庫存能力",
       icon: <IconPlaceholder />,
       detailDescription: "內容內容內容內容內容內容內容內容內容內容內容內容內容內容",
     },
     {
-      title: "服務速通數據應用能力",
-      subtitle: "數據分析",
+      title: "最絕對",
+      subtitle: "工程服務管理",
       icon: <IconPlaceholder />,
       detailDescription: "內容內容內容內容內容內容內容內容內容內容內容內容內容內容",
     },
@@ -132,7 +132,7 @@ export default function Home() {
 
       {/* News Section */}
       <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-8">
+        <div className="container mx-auto px-8 max-w-[958px]">
           <h2 className="text-center text-3xl font-bold mb-12">最新消息</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {news.map((item, index) => (
@@ -154,7 +154,7 @@ export default function Home() {
 
       {/* Services Section */}
       <section className="py-16">
-        <div className="container mx-auto px-8">
+        <div className="container mx-auto px-8 max-w-[958px]">
           <h2 className="text-center text-3xl font-bold mb-4">業界領航，攜手共創輝煌</h2>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mt-12">
             <div className="space-y-4">
