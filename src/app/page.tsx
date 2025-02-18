@@ -53,7 +53,7 @@ const services = [
     description: "領先技術創新",
     detailDescription: "內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容",
     image: "/images/home-service-1.jpg",
-    bgColor: "bg-orange-100",
+    bgColor: "bg-[#E57B42]",
   },
   {
     title: "技術實力",
@@ -72,6 +72,12 @@ const services = [
 ];
 
 const serviceCardDataList: ServiceCardItemProps[] = [
+  {
+    title: "最優質",
+    subtitle: "施工管理",
+    iconSrc: "/images/icons/construction-icon.svg",
+    detailDescription: "以高品質工程和實用性為您服務",
+  },
   {
     title: "最優質",
     subtitle: "施工管理",
@@ -319,13 +325,13 @@ function ServiceCard({ title, description, detailDescription, image, bgColor }: 
         className="w-full h-[300px] object-cover absolute inset-0"
       />
       <div className="relative h-full flex flex-col justify-end">
-        <div className=" flex flex-col justify-end p-6 bg-gradient-to-t from-black/70 to-transparent">
-          <h3 className="text-white text-xl font-bold">{title}</h3>
+        <div className="flex flex-col justify-end items-center gap-2 p-6 bg-gradient-to-t from-black/90 to-transparent">
+          <h3 className="text-white text-2xl font-bold">{title}</h3>
           <p className="text-white/80">{description}</p>
         </div>
         <div >
           <div className={`group-hover:mb-0 -mb-[100%] transition-top duration-300 ease-in-out ${bgColor} h-full p-6`}>
-            <p className="text-sm">{detailDescription}</p>
+            <p className="text-sm text-white">{detailDescription}</p>
           </div>
         </div>
       </div>
