@@ -59,15 +59,15 @@ const services = [
     title: "技術實力",
     description: "完整整合服務",
     detailDescription: "內容內容內容內容內容內容內容內容內容",
-    image: "/images/home-service-2.jpg",
-    bgColor: "bg-orange-100",
+    image: "/images/home-service-1.jpg",
+    bgColor: "bg-[#E57B42]",
   },
   {
     title: "務實可靠",
     description: "務實可靠執行",
     detailDescription: "內容內容內容內容內",
-    image: "/images/home-service-3.jpg",
-    bgColor: "bg-orange-100",
+    image: "/images/home-service-1.jpg",
+    bgColor: "bg-[#E57B42]",
   },
 ];
 
@@ -330,7 +330,7 @@ function ServiceCard({ title, description, detailDescription, image, bgColor }: 
           <p className="text-white/80">{description}</p>
         </div>
         <div >
-          <div className={`group-hover:mb-0 -mb-[100%] transition-top duration-300 ease-in-out ${bgColor} h-full p-6`}>
+          <div className={`md:group-hover:mb-0 md:-mb-[100%] transition-top duration-300 ease-in-out ${bgColor} h-full p-6`}>
             <p className="text-sm text-white">{detailDescription}</p>
           </div>
         </div>
