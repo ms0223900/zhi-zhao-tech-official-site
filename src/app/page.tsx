@@ -99,15 +99,15 @@ export default function Home() {
     },
     {
       title: "解決方案",
-      image: "/images/route2.jpg",
+      image: "/images/home-route-direct_contact-us.jpg",
     },
     {
       title: "文件下載專區",
-      image: "/images/route3.jpg",
+      image: "/images/home-route-direct_contact-us.jpg",
     },
     {
       title: "隱私權政策",
-      image: "/images/route4.jpg",
+      image: "/images/home-route-direct_contact-us.jpg",
     },
   ];
 
