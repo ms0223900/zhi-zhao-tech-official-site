@@ -18,7 +18,7 @@ function CustomArrow({ direction, onClick }: { direction: "prev" | "next"; onCli
     return (
         <button
             onClick={onClick}
-            className="w-10 h-10 absolute bottom-[100px] z-10 rounded-full border-2 border-white bg-transparent hover:bg-white/70 transition-colors text-white text-2xl"
+            className="md:block hidden w-10 h-10 absolute bottom-[100px] z-10 rounded-full border-2 border-white bg-transparent hover:bg-white/70 transition-colors text-white text-2xl"
             style={{
                 right: direction === "prev" ? "100px" : "50px",
             }}
