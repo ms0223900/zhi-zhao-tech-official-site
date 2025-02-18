@@ -3,6 +3,7 @@ import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { CarouselBanner } from "../components/home/CarouselBanner";
 
 export const metadata: Metadata = {
   title: "智兆科技 | Zhi Zhao Tech",
@@ -250,16 +251,6 @@ export default async function Home() {
         </div>
       </section>
     </main>
-  );
-}
-
-function CarouselBanner() {
-  return (
-    <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-transparent">
-      <div className="container mx-auto px-8 h-full flex flex-col justify-center">
-        <img src="/images/home-banner-carousel-1.jpg" alt="Carousel Banner" className="w-full h-full object-cover" />
-      </div>
-    </div>
   );
 }
 
