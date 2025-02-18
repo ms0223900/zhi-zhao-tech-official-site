@@ -146,6 +146,7 @@ export default async function Home() {
           fill
           className="object-cover brightness-75"
         />
+        <CarouselBanner />
         <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-transparent">
           <div className="container mx-auto px-8 h-full flex flex-col justify-center">
             <h1 className="text-white text-5xl font-bold mb-4">智兆科技</h1>
@@ -249,6 +250,16 @@ export default async function Home() {
         </div>
       </section>
     </main>
+  );
+}
+
+function CarouselBanner() {
+  return (
+    <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-transparent">
+      <div className="container mx-auto px-8 h-full flex flex-col justify-center">
+        <img src="/images/home-banner-carousel-1.jpg" alt="Carousel Banner" className="w-full h-full object-cover" />
+      </div>
+    </div>
   );
 }
 
