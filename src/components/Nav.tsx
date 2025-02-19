@@ -4,8 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 const navLinks = [
-    { href: "/", label: "首頁" },
-    { href: "/services", label: "服務項目" },
+    { href: "/about", label: "關於智兆" },
     { href: "/solutions", label: "解決方案" },
     { href: "/projects", label: "工程實績" },
     { href: "/news", label: "最新消息" },
