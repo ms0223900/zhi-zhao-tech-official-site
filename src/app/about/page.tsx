@@ -19,11 +19,10 @@ function BannerSection() {
         <section className="relative h-[400px]">
             <div className="absolute inset-0">
                 <img
-                    src="/images/about-banner.jpg"
+                    src="/images/about-us-banner.jpg"
                     alt="關於智兆"
                     className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-black/50" />
             </div>
             <div className="relative h-full flex flex-col items-center justify-center text-center">
                 <h1 className="text-white text-5xl font-bold mb-4">關於智兆</h1>
