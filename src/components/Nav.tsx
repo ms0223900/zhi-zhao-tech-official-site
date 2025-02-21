@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 'use client'
 
 import Link from "next/link";
@@ -25,7 +26,7 @@ const Nav = () => {
                     {/* Logo 區域 */}
                     <div className="flex-shrink-0">
                         <Link href="/" className="text-xl font-bold">
-                            Logo
+                            <img src="/images/zhi-zhao-logo.svg" alt="智兆科技" className="w-[110px] h-24" />
                         </Link>
                     </div>
 
