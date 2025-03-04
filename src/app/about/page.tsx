@@ -12,6 +12,7 @@ export default function About() {
             <BannerSection />
             <WelcomeSection />
             <CoreValuesSection />
+            <CompanyAdvantagesSection />
         </div>
     );
 }
@@ -95,5 +96,89 @@ function CoreValuesSection() {
                 </div>
             </div>
         </section>
+    );
+}
+
+function CompanyAdvantagesSection() {
+    const advantages = [
+        {
+            title: "完整服務鏈",
+            description: "涵蓋設計、施工、維護的全方位服務",
+            image: "/images/advantage-service-chain.jpg",
+            bgColor: "bg-[#E57B42]",
+        },
+        {
+            title: "嚴謹施工管理",
+            description: "高標準品質控管",
+            image: "/images/advantage-construction.jpg",
+            bgColor: "bg-[#E57B42]",
+        },
+        {
+            title: "快速應變能力",
+            description: "靈活解決各種挑戰",
+            image: "/images/advantage-adaptability.jpg",
+            bgColor: "bg-[#E57B42]",
+        },
+        {
+            title: "創新與永續發展",
+            description: "持續技術創新",
+            image: "/images/advantage-innovation.jpg",
+            bgColor: "bg-[#E57B42]",
+        },
+    ];
+
+    return (
+        <section className="py-16 theme-gradient-blue">
+            <div className="container mx-auto px-8 max-w-[958px]">
+                <h2 className="text-center text-3xl font-bold mb-12">智兆科技優勢</h2>
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+                    {advantages.map((item, index) => (
+                        <AdvantageCard
+                            key={index}
+                            title={item.title}
+                            description={item.description}
+                            image={item.image}
+                            bgColor={item.bgColor}
+                        />
+                    ))}
+                </div>
+                <div className="mt-12 text-center">
+                    <p className="text-gray-700 max-w-2xl mx-auto">
+                        智兆科技堅信，透過專業的技術、細緻的管理與客戶至上的理念，
+                        我們能為各產業提供最佳的系統工程解決方案，
+                        成為業界的領導者與客戶的最佳夥伴。
+                    </p>
+                </div>
+            </div>
+        </section>
+    );
+}
+
+interface AdvantageCardProps {
+    title: string;
+    description: string;
+    image: string;
+    bgColor: string;
+}
+
+function AdvantageCard({ title, description, image, bgColor }: AdvantageCardProps) {
+    return (
+        <div className="relative group overflow-hidden rounded-lg h-[300px]">
+            <img
+                src={image}
+                alt={title}
+                className="w-full h-[300px] object-cover absolute inset-0"
+            />
+            <div className="relative h-full flex flex-col justify-end">
+                <div className="flex flex-col justify-end items-center gap-2 p-6 bg-gradient-to-t from-black/90 to-transparent">
+                    <h3 className="text-white text-2xl font-bold">{title}</h3>
+                </div>
+                <div>
+                    <div className={`md:group-hover:mb-0 md:-mb-[100%] transition-all duration-300 ease-in-out ${bgColor} h-full p-6`}>
+                        <p className="text-sm text-white">{description}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     );
 }
