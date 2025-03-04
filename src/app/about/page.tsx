@@ -65,10 +65,10 @@ function WelcomeSection() {
 
 function CoreValuesSection() {
     const coreValues = [
-        { icon: "/images/icon-passion.svg", title: "熱忱" },
-        { icon: "/images/icon-professional.svg", title: "專業" },
-        { icon: "/images/icon-team.svg", title: "團隊" },
-        { icon: "/images/icon-trust.svg", title: "誠信" },
+        { icon: "/images/icons/icon-passion.svg", title: "熱忱" },
+        { icon: "/images/icons/icon-passion.svg", title: "專業" },
+        { icon: "/images/icons/icon-passion.svg", title: "團隊" },
+        { icon: "/images/icons/icon-passion.svg", title: "誠信" },
     ];
 
     return (
@@ -79,9 +79,9 @@ function CoreValuesSection() {
                     <div className="flex flex-wrap justify-center gap-8">
                         {coreValues.map((value, index) => (
                             <div key={index} className="flex flex-col items-center">
-                                <div className="bg-gray-100 rounded-full p-6 w-28 h-28 flex items-center justify-center mb-4">
+                                <div className="bg-gray-100 rounded-full p-6  flex items-center justify-center">
                                     {/* Placeholder for icon */}
-                                    <img src={value.icon} alt={value.title} className="w-16 h-16" />
+                                    <img src={value.icon} alt={value.title} className="w-[50px] h-[50px]" />
                                 </div>
                                 <span className="text-xl font-medium">{value.title}</span>
                             </div>
