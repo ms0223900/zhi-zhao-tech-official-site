@@ -110,19 +110,19 @@ function CompanyAdvantagesSection() {
         {
             title: "嚴謹施工管理",
             description: "高標準品質控管",
-            image: "/images/advantage-construction.jpg",
+            image: "/images/advantage-service-chain.jpg",
             bgColor: "bg-[#E57B42]",
         },
         {
             title: "快速應變能力",
             description: "靈活解決各種挑戰",
-            image: "/images/advantage-adaptability.jpg",
+            image: "/images/advantage-service-chain.jpg",
             bgColor: "bg-[#E57B42]",
         },
         {
             title: "創新與永續發展",
             description: "持續技術創新",
-            image: "/images/advantage-innovation.jpg",
+            image: "/images/advantage-service-chain.jpg",
             bgColor: "bg-[#E57B42]",
         },
     ];
