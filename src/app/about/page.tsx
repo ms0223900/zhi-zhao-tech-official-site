@@ -11,6 +11,7 @@ export default function About() {
         <div className="min-h-screen">
             <BannerSection />
             <WelcomeSection />
+            <CoreValuesSection />
         </div>
     );
 }
@@ -55,6 +56,42 @@ function WelcomeSection() {
                             <img src="/images/welcome-person-right.png" alt="歡迎來到智兆科技" className="w-full h-full object-contain" />
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
+    );
+}
+
+function CoreValuesSection() {
+    const coreValues = [
+        { icon: "/images/icon-passion.svg", title: "熱忱" },
+        { icon: "/images/icon-professional.svg", title: "專業" },
+        { icon: "/images/icon-team.svg", title: "團隊" },
+        { icon: "/images/icon-trust.svg", title: "誠信" },
+    ];
+
+    return (
+        <section className="px-4">
+            <div className="container mx-auto max-w-[958px]">
+                <div className="shadow-lg rounded-lg p-8 bg-white">
+
+                    <div className="flex flex-wrap justify-center gap-8">
+                        {coreValues.map((value, index) => (
+                            <div key={index} className="flex flex-col items-center">
+                                <div className="bg-gray-100 rounded-full p-6 w-28 h-28 flex items-center justify-center mb-4">
+                                    {/* Placeholder for icon */}
+                                    <img src={value.icon} alt={value.title} className="w-16 h-16" />
+                                </div>
+                                <span className="text-xl font-medium">{value.title}</span>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+                <div className="mt-12 rounded-lg border border-2 border-[#95DDFF] p-8 bg-gradient-to-br from-[#FFFFFF] to-[#95DDFF20]">
+                    <h3 className="text-2xl text-[#2196F3] font-bold text-left mb-6">智兆科技四大核心價值</h3>
+                    <p className="text-gray-600 leading-relaxed">
+                        智兆科技以「熱誠、專業、團隊、誠信」為核心價值，結合豐富的技術實力和豐富的產業經驗，成功打造了多個高端項目，包括日月光半導體、聯一化工、旭智潔、台達科技、海洋生技、偉茂科技及多家國內科技企業的工程建設。
+                    </p>
                 </div>
             </div>
         </section>
