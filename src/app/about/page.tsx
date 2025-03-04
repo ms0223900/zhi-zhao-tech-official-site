@@ -171,7 +171,7 @@ function AdvantageCard({ title, description, image, bgColor }: AdvantageCardProp
             />
             <div className="relative h-full flex flex-col justify-end">
                 <div className="flex flex-col justify-end items-center gap-2 p-6 bg-gradient-to-t from-black/90 to-transparent">
-                    <h3 className="text-white text-2xl font-bold">{title}</h3>
+                    <h3 className="text-white text-h3 font-bold">{title}</h3>
                 </div>
                 <div>
                     <div className={`md:group-hover:mb-0 md:-mb-[100%] transition-all duration-300 ease-in-out ${bgColor} h-full p-6`}>

@@ -12,6 +12,19 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      fontFamily: {
+        sans: ['Inter', 'sans-serif'],
+      },
+      fontSize: {
+        'display-1': ['40px', { lineHeight: 'auto', fontWeight: '600' }],
+        'display-2': ['35px', { lineHeight: 'auto', fontWeight: '600' }],
+        'h1': ['25px', { lineHeight: 'auto', fontWeight: '600' }],
+        'h2': ['25px', { lineHeight: 'auto', fontWeight: '500' }],
+        'h3': ['20px', { lineHeight: 'auto', fontWeight: '500' }],
+        'h4': ['18px', { lineHeight: 'auto', fontWeight: '400' }],
+        'h5': ['16px', { lineHeight: 'auto', fontWeight: '400' }],
+        'h6': ['14px', { lineHeight: 'auto', fontWeight: '400' }],
+      },
       keyframes: {
         'slide-in-right': {
           '0%': { transform: 'translateX(100%)' },
