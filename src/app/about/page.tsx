@@ -226,22 +226,27 @@ function CompanyHistorySection() {
                     <p className="text-gray-600">Enterprise History</p>
                 </div>
 
-                <div className="relative mt-20">
+                <div className="relative mt-20 w-[92%]">
                     {/* Timeline line */}
-                    <div className="absolute left-0 right-0 h-1 bg-gray-200 top-[100%]"></div>
+                    <div className="absolute left-0 right-0 h-1 bg-gray-200 top-[100%] w-[108%]"></div>
 
                     {/* Timeline items */}
                     <div className="relative flex justify-between">
                         {historyItems.map((item, index) => (
-                            <div key={index} className="relative flex flex-col items-start justify-end">
+                            <div key={index} className={`relative flex flex-col items-start justify-end ${index % 2 === 0 ? '' : 'translate-y-[100%]'}`}>
                                 {/* Circle */}
-                                <div className={`${item.color} rounded-full w-24 h-24 flex items-center justify-center translate-y-[40px]`}>
+                                <div className={`
+                                    ${item.color} rounded-full w-24 h-24 flex items-center justify-center 
+                                    ${index % 2 === 0 ? 'translate-y-[10px]' : 'order-last -translate-y-[10px]'}
+                                `}>
                                     <div className="text-black text-2xl">{item.year}</div>
-                                    <div className={`absolute bottom-2 w-3 h-3 rounded-full ${item.dotColor}`} />
+                                    <div className={`absolute ${index % 2 === 0 ? 'bottom-2' : 'top-2'} w-3 h-3 rounded-full ${item.dotColor}`} />
                                 </div>
 
-                                {/* Content */}
-                                <div className={`relative left-[47px] mt-8 flex flex-col border-l-[1px] border-[#A6A4A4] pl-8 items-start`}>
+                                <div className={`
+                                    relative ${index % 2 === 0 ? 'left-[47px] border-l-[1px]' : 'left-[47px] border-l-[1px]'} 
+                                    border-[#A6A4A4] py-2 pl-8 flex flex-col items-start
+                                `}>
                                     {item.items.map((text, idx) => (
                                         <div key={idx} className="text-gray-700 mb-1">{text}</div>
                                     ))}
