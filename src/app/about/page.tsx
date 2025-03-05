@@ -13,6 +13,7 @@ export default function About() {
             <WelcomeSection />
             <CoreValuesSection />
             <CompanyAdvantagesSection />
+            <CompanyHistorySection />
         </div>
     );
 }
@@ -180,5 +181,74 @@ function AdvantageCard({ title, description, image, bgColor }: AdvantageCardProp
                 </div>
             </div>
         </div>
+    );
+}
+
+function CompanyHistorySection() {
+    const historyItems = [
+        {
+            year: "2012",
+            color: "bg-[#55B9F2]",
+            items: ["無塵室工程", "空調工程", "維修保養"]
+        },
+        {
+            year: "2015",
+            color: "bg-[#E9C81D]",
+            items: ["低壓配電", "製程配管", "土木裝修"]
+        },
+        {
+            year: "2017",
+            color: "bg-[#E57B42]",
+            items: ["防鏽塗裝", "氣體管路工程"]
+        },
+        {
+            year: "2020",
+            color: "bg-[#E9C81D]",
+            items: ["室內設計", "純水工程", "環保工程"]
+        },
+        {
+            year: "2024",
+            color: "bg-[#55B9F2]",
+            items: ["節能方案", "公司創櫃", "BIM系統"]
+        }
+    ];
+
+    return (
+        <section className="py-16 bg-white">
+            <div className="container mx-auto px-8 max-w-[958px]">
+                <div className="text-center mb-12">
+                    <h2 className="text-3xl font-bold mb-2">企業沿革</h2>
+                    <p className="text-gray-600">Enterprise History</p>
+                </div>
+
+                <div className="relative mt-20">
+                    {/* Timeline line */}
+                    <div className="absolute left-0 right-0 h-1 bg-gray-200 top-[100%]"></div>
+
+                    {/* Timeline items */}
+                    <div className="relative flex justify-between">
+                        {historyItems.map((item, index) => (
+                            <div key={index} className="relative flex flex-col items-start justify-end">
+                                {/* Circle */}
+                                <div className={`${item.color} rounded-full w-24 h-24 flex items-center justify-center z-10 relative`}>
+                                    <div className="text-black text-2xl">{item.year}</div>
+                                    <div className="absolute -bottom-2 w-3 h-3 rounded-full bg-white border-4 border-[#55B9F2]"></div>
+                                </div>
+
+                                {/* Content */}
+                                <div className={`relative left-[46px] mt-8 flex flex-col border-l-2 border-gray-200 pl-8 items-start`}>
+                                    {item.items.map((text, idx) => (
+                                        <div key={idx} className="text-gray-700 mb-1">{text}</div>
+                                    ))}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Arrow at the end */}
+                    <div className="absolute right-0 top-1/2 transform -translate-y-1/2 w-0 h-0 border-t-8 border-b-8 border-l-12 border-t-transparent border-b-transparent border-l-gray-200"></div>
+                </div>
+            </div>
+        </section>
     );
 }
