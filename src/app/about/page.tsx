@@ -16,6 +16,7 @@ export default function About() {
             <CompanyHistorySection />
             <ProfessionalLicensesSection />
             <FutureGoalsSection />
+            <EnergyManagementSolutionSection />
         </div>
     );
 }
@@ -341,6 +342,44 @@ function FutureGoalsSection() {
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
+    );
+}
+
+function EnergyManagementSolutionSection() {
+    return (
+        <section className="relative py-16 bg-white bg-gradient-to-r to-[#BBE4FF] from-[#FFFFFF]">
+            <div className="container mx-auto max-w-[958px]">
+                <div className="text-center mb-12">
+                    <h2 className="text-4xl font-bold mb-2">能源管理解決方案</h2>
+                    <p className="text-gray-600">Energy Management Solution</p>
+                </div>
+                <div>
+                    <div className="relative flex w-full">
+                        <div className="relative flex z-10">
+                            <img src="/images/energy-circle.png" alt="能源管理解決方案" />
+                            <p className="text-h3 text-center font-bold absolute top-[46%] left-[38%]">能耗管理系統
+                                <br />
+                                (IEMS)</p>
+                            <p className="text-h3 absolute top-[19%] left-[15%]">能耗視覺化</p>
+                            <p className="text-h3 text-center absolute top-[23%] right-[17%]">能源統計<br />分析</p>
+                            <p className="text-h3 text-center absolute top-[72%] right-[22%]">節能績效<br />分析</p>
+                            <p className="text-h3 text-center absolute top-[62%] left-[13%]">能耗報表<br />異常警報</p>
+
+                        </div>
+                        <div className="relative w-[430px] z-1 md:block hidden">
+                            <img className="absolute w-[430px]" src="/images/energy-tree.svg" alt="能源管理解決方案" />
+                            <img className="absolute bottom-[40px] w-[314px]" src="/images/energy-plug.svg" alt="能源管理解決方案" />
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+            <div className="absolute w-[170px] right-0 bottom-0 md:hidden">
+                <img className="absolute bottom-0 w-full" src="/images/energy-tree.svg" alt="能源管理解決方案" />
             </div>
         </section>
     );
