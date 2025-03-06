@@ -326,16 +326,16 @@ function FutureGoalsSection() {
                         {goals.map((goal, index) => (
                             <div
                                 key={index}
-                                className={`rounded-full border-2 py-4 px-8 text-center ${index === 0 ? 'border-[#2196F3] text-[#2196F3]' :
-                                    index === 1 ? 'border-[#E57B42] text-[#E57B42]' :
-                                        'border-[#E9C81D] text-[#E9C81D]'
+                                className={`rounded-full border-2 py-4 px-8 text-left ${index === 0 ? 'border-[#2196F3] text-black' :
+                                    index === 1 ? 'border-[#E57B42]' :
+                                        'border-[#E9C81D]'
                                     }`}
                             >
                                 <p className="text-xl font-medium">{goal.number}. {goal.text}</p>
                             </div>
                         ))}
 
-                        <div className="mt-8 text-center text-gray-700">
+                        <div className="mt-8 text-left text-gray-700">
                             <p>與智兆合作夥伴共同實習節能</p>
                             <p>管理方案</p>
                         </div>
