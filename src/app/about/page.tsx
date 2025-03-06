@@ -313,7 +313,7 @@ function FutureGoalsSection() {
                 <div className="flex flex-col md:flex-row gap-8 items-center">
                     <div className="relative md:w-1/2">
                         <div className="rounded-lg overflow-hidden">
-                            <div className="absolute inset-0 bg-gradient-to-b from-[#2196F3]/30 to-[#0D47A1]/40 z-0 rounded-lg translate-x-[-20px] translate-y-[20px]"></div>
+                            <div className="absolute inset-0 bg-gradient-to-bl from-[#25B4F8] to-[#25B4F8]/100 z-0 rounded-lg translate-x-[-20px] translate-y-[20px] opacity-70"></div>
                             <img
                                 src="/images/company-goals.jpg"
                                 alt="智兆科技未來目標"
