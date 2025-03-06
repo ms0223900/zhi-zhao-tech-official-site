@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { Metadata } from "next";
+import RelatedIndustriesSection from "@/components/about/RelatedIndustriesSection";
 
 export const metadata: Metadata = {
     title: "About",
@@ -17,6 +18,7 @@ export default function About() {
             <ProfessionalLicensesSection />
             <FutureGoalsSection />
             <EnergyManagementSolutionSection />
+            <RelatedIndustriesSection />
         </div>
     );
 }
