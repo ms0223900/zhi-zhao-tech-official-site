@@ -14,6 +14,7 @@ export default function About() {
             <CoreValuesSection />
             <CompanyAdvantagesSection />
             <CompanyHistorySection />
+            <ProfessionalLicensesSection />
         </div>
     );
 }
@@ -219,7 +220,7 @@ function CompanyHistorySection() {
     ];
 
     return (
-        <section className="py-16 bg-white">
+        <section className="py-16 pb-[220px] bg-white">
             <div className="container mx-auto px-8 max-w-[958px]">
                 <div className="text-center mb-12">
                     <h2 className="text-3xl font-bold mb-2">企業沿革</h2>
@@ -257,6 +258,36 @@ function CompanyHistorySection() {
 
                     {/* Arrow at the end */}
                     <div className="absolute right-0 top-1/2 transform -translate-y-1/2 w-0 h-0 border-t-8 border-b-8 border-l-12 border-t-transparent border-b-transparent border-l-gray-200"></div>
+                </div>
+            </div>
+        </section>
+    );
+}
+
+function ProfessionalLicensesSection() {
+    const licenses = [
+        "急救人員", "有機溶劑作業主管", "搪士支撐作業主管主管", "高空作業車操作人員",
+        "缺氧作業主管", "粉塵作業主管", "屋頂作業主管", "特定化學物質作業主管",
+        "吊掛作業人員", "營造業甲種業務主管", "露天開挖作業主管", "防火管理人"
+    ];
+
+    return (
+        <section className="py-16 bg-[#BBE4FF]">
+            <div className="container mx-auto px-8 max-w-[958px]">
+                <div className="flex flex-col md:flex-row">
+                    <div className="bg-white rounded-lg p-8 md:w-1/4 mb-6 md:mb-0 md:mr-8">
+                        <h2 className="text-3xl font-bold mb-2">專業<br />技術證照</h2>
+                        <p className="text-gray-600">Professional license</p>
+                    </div>
+                    <div className="md:w-3/4">
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                            {licenses.map((license, index) => (
+                                <div key={index} className="bg-transparent py-2">
+                                    <p className="text-gray-800">{license}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
