@@ -15,6 +15,7 @@ export default function About() {
             <CompanyAdvantagesSection />
             <CompanyHistorySection />
             <ProfessionalLicensesSection />
+            <FutureGoalsSection />
         </div>
     );
 }
@@ -286,6 +287,57 @@ function ProfessionalLicensesSection() {
                                     <p className="text-gray-800">{license}</p>
                                 </div>
                             ))}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+}
+
+function FutureGoalsSection() {
+    const goals = [
+        { number: "1", text: "公司創櫃" },
+        { number: "2", text: "廠務系統委託代操作維護" },
+        { number: "3", text: "新技術、新工法研發創新" },
+    ];
+
+    return (
+        <section className="py-16 bg-white">
+            <div className="container mx-auto px-8 max-w-[958px]">
+                <div className="text-center mb-12">
+                    <h2 className="text-4xl font-bold mb-2">未來目標</h2>
+                    <p className="text-gray-600">Goals</p>
+                </div>
+
+                <div className="flex flex-col md:flex-row gap-8 items-center">
+                    <div className="relative md:w-1/2">
+                        <div className="rounded-lg overflow-hidden">
+                            <div className="absolute inset-0 bg-gradient-to-b from-[#2196F3]/30 to-[#0D47A1]/40 z-0 rounded-lg translate-x-[-20px] translate-y-[20px]"></div>
+                            <img
+                                src="/images/company-goals.jpg"
+                                alt="智兆科技未來目標"
+                                className="w-full h-auto relative z-10"
+                            />
+                        </div>
+                    </div>
+
+                    <div className="md:w-1/2 space-y-6">
+                        {goals.map((goal, index) => (
+                            <div
+                                key={index}
+                                className={`rounded-full border-2 py-4 px-8 text-center ${index === 0 ? 'border-[#2196F3] text-[#2196F3]' :
+                                    index === 1 ? 'border-[#E57B42] text-[#E57B42]' :
+                                        'border-[#E9C81D] text-[#E9C81D]'
+                                    }`}
+                            >
+                                <p className="text-xl font-medium">{goal.number}. {goal.text}</p>
+                            </div>
+                        ))}
+
+                        <div className="mt-8 text-center text-gray-700">
+                            <p>與智兆合作夥伴共同實習節能</p>
+                            <p>管理方案</p>
                         </div>
                     </div>
                 </div>
