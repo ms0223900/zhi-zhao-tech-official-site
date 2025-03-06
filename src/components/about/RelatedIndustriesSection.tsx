@@ -35,21 +35,17 @@ function RelatedIndustriesSection() {
     };
 
     return (
-        <section className="relative bg-white" style={{
-            backgroundImage: "url('/images/engineer-control-panel.jpg')",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-        }}>
+        <section className="relative bg-white md:bg-[url('/images/engineer-control-panel.jpg')] bg-cover bg-center bg-no-repeat">
             <div className="container mx-auto max-w-[958px]">
+
 
                 <div className="flex flex-col md:flex-row justify-end">
                     {/* Right side with collapsible industry sections */}
-                    <div className="md:w-4/5" style={{
-                        backgroundSize: "cover",
-                        backgroundImage: "url('/images/about-bottom-section-right-card-bg.svg')",
-                    }}>
-                        <div className="space-y-4 pl-[100px] pr-[40px] py-[70px]">
+                    <div className="md:w-4/5 w-full md:bg-[url('/images/about-bottom-section-right-card-bg.svg')] bg-cover bg-center bg-no-repeat">
+                        <div className="space-y-4 pl-[40px] md:pl-[100px] pr-[40px] py-[70px]">
+                            <div className="text-center mb-12 md:hidden">
+                                <h2 className="text-4xl font-bold mb-2">工程實績</h2>
+                            </div>
                             {industries.map((industry) => (
                                 <div key={industry.id} className="border-b border-gray-200">
                                     <button
