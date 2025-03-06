@@ -274,15 +274,15 @@ function ProfessionalLicensesSection() {
     return (
         <section className="py-16 bg-[#BBE4FF]">
             <div className="container mx-auto px-8 max-w-[958px]">
-                <div className="flex flex-col md:flex-row">
-                    <div className="bg-white rounded-lg p-8 md:w-1/4 mb-6 md:mb-0 md:mr-8">
+                <div className="flex flex-col items-start md:flex-row">
+                    <div className="bg-white rounded-lg p-4 md:w-1/4 md:mb-0 md:mr-8">
                         <h2 className="text-3xl font-bold mb-2">專業<br />技術證照</h2>
                         <p className="text-gray-600">Professional license</p>
                     </div>
                     <div className="md:w-3/4">
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div className="flex flex-wrap gap-x-6 gap-y-1">
                             {licenses.map((license, index) => (
-                                <div key={index} className="bg-transparent py-2">
+                                <div key={index} className="bg-transparent py-2 text-h4">
                                     <p className="text-gray-800">{license}</p>
                                 </div>
                             ))}
