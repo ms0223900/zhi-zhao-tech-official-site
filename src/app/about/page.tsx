@@ -111,24 +111,28 @@ function CompanyAdvantagesSection() {
         {
             title: "完整服務鏈",
             description: "涵蓋設計、施工、維護的全方位服務",
+            mobileDescription: "涵蓋設計、施工、維護的全方位服務",
             image: "/images/advantage-service-chain.jpg",
             bgColor: "bg-[#E57B42]",
         },
         {
             title: "嚴謹施工管理",
             description: "ISO-45001認證，確保施工過程的品質與安全",
+            mobileDescription: "ISO-45001認證\n確保施工過程的品質與安全",
             image: "/images/advantage-service-chain.jpg",
             bgColor: "bg-[#55BBF9]",
         },
         {
             title: "快速應變能力",
             description: "與多家本地協力廠商合作，實現即時應變與高效交付",
+            mobileDescription: "與多家本地協力廠商合作\n實現即時應變與高效交付",
             image: "/images/advantage-service-chain.jpg",
             bgColor: "bg-[#EACA00]",
         },
         {
             title: "創新與永續發展",
             description: "不斷研發新技術、新工法，並積極推動節能減碳方案，踐行ESG理念",
+            mobileDescription: "不斷研發新技術、新工法\n並積極推動節能減碳方案，踐行ESG理念",
             image: "/images/advantage-service-chain.jpg",
             bgColor: "bg-[#55BBF9]",
         },
@@ -144,7 +148,7 @@ function CompanyAdvantagesSection() {
                             <div className="md:hidden">
                                 <MobileAdvantageCard
                                     title={item.title}
-                                    description={item.description}
+                                    description={item.mobileDescription}
                                     bgColor={item.bgColor}
                                 />
                             </div>
@@ -208,7 +212,7 @@ function MobileAdvantageCard({ title, description, bgColor }: Omit<AdvantageCard
             <div className={`${bgColor} p-1 px-4 rounded-full`}>
                 <h3 className="text-white text-h3 font-bold">{title}</h3>
             </div>
-            <p className="text-md">{description}</p>
+            <p className="text-md text-center whitespace-pre-line">{description}</p>
         </div>
     );
 }
