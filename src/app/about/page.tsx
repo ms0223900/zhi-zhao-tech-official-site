@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { Metadata } from "next";
 import RelatedIndustriesSection from "@/components/about/RelatedIndustriesSection";
+import React from "react";
 
 export const metadata: Metadata = {
     title: "About",
@@ -78,18 +79,18 @@ function CoreValuesSection() {
     ];
 
     return (
-        <section className="px-4 md:mt-0 -mt-[70px]">
+        <section className="px-4 py-4 md:mt-0 -mt-[70px]">
             <div className="container mx-auto max-w-[958px]">
                 <div className="shadow-lg rounded-lg p-8 bg-white">
 
-                    <div className="flex flex-wrap justify-center gap-8">
+                    <div className="flex flex-wrap justify-center md:gap-8 gap-4 gap-x-8">
                         {coreValues.map((value, index) => (
                             <div key={index} className="flex flex-col items-center">
                                 <div className="bg-gray-100 rounded-full p-6  flex items-center justify-center">
                                     {/* Placeholder for icon */}
                                     <img src={value.icon} alt={value.title} className="w-[50px] h-[50px]" />
                                 </div>
-                                <span className="text-xl font-medium">{value.title}</span>
+                                <span className="text-xl font-medium pt-2">{value.title}</span>
                             </div>
                         ))}
                     </div>
@@ -115,21 +116,21 @@ function CompanyAdvantagesSection() {
         },
         {
             title: "嚴謹施工管理",
-            description: "高標準品質控管",
+            description: "ISO-45001認證，確保施工過程的品質與安全",
             image: "/images/advantage-service-chain.jpg",
-            bgColor: "bg-[#E57B42]",
+            bgColor: "bg-[#55BBF9]",
         },
         {
             title: "快速應變能力",
-            description: "靈活解決各種挑戰",
+            description: "與多家本地協力廠商合作，實現即時應變與高效交付",
             image: "/images/advantage-service-chain.jpg",
-            bgColor: "bg-[#E57B42]",
+            bgColor: "bg-[#EACA00]",
         },
         {
             title: "創新與永續發展",
-            description: "持續技術創新",
+            description: "不斷研發新技術、新工法，並積極推動節能減碳方案，踐行ESG理念",
             image: "/images/advantage-service-chain.jpg",
-            bgColor: "bg-[#E57B42]",
+            bgColor: "bg-[#55BBF9]",
         },
     ];
 
@@ -139,13 +140,24 @@ function CompanyAdvantagesSection() {
                 <h2 className="text-center text-3xl font-bold mb-12">智兆科技優勢</h2>
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                     {advantages.map((item, index) => (
-                        <AdvantageCard
-                            key={index}
-                            title={item.title}
-                            description={item.description}
-                            image={item.image}
-                            bgColor={item.bgColor}
-                        />
+                        <React.Fragment key={index}>
+                            <div className="md:hidden">
+                                <MobileAdvantageCard
+                                    title={item.title}
+                                    description={item.description}
+                                    bgColor={item.bgColor}
+                                />
+                            </div>
+                            <div className="hidden md:block">
+                                <AdvantageCard
+                                    key={index}
+                                    title={item.title}
+                                    description={item.description}
+                                    image={item.image}
+                                    bgColor={item.bgColor}
+                                />
+                            </div>
+                        </React.Fragment>
                     ))}
                 </div>
                 <div className="mt-12 text-center bg-white border border-[#95DDFF] shadow-xl p-6 rounded-lg">
@@ -167,7 +179,7 @@ interface AdvantageCardProps {
     bgColor: string;
 }
 
-function AdvantageCard({ title, description, image, bgColor }: AdvantageCardProps) {
+function AdvantageCard({ title, description, image }: AdvantageCardProps) {
     return (
         <div className="relative group overflow-hidden rounded-lg h-[300px]">
             <img
@@ -180,11 +192,23 @@ function AdvantageCard({ title, description, image, bgColor }: AdvantageCardProp
                     <h3 className="text-white text-h3 font-bold">{title}</h3>
                 </div>
                 <div>
-                    <div className={`md:group-hover:mb-0 md:-mb-[100%] transition-all duration-300 ease-in-out ${bgColor} h-full p-6`}>
+                    <div className={`md:group-hover:mb-0 md:-mb-[100%] transition-all duration-300 ease-in-out bg-[#E57B42] h-full p-6`}>
                         <p className="text-sm text-white">{description}</p>
                     </div>
                 </div>
             </div>
+        </div>
+    );
+}
+
+// mobile advantage card
+function MobileAdvantageCard({ title, description, bgColor }: Omit<AdvantageCardProps, 'image'>) {
+    return (
+        <div className="relative h-full flex flex-col justify-center items-center gap-4">
+            <div className={`${bgColor} p-1 px-4 rounded-full`}>
+                <h3 className="text-white text-h3 font-bold">{title}</h3>
+            </div>
+            <p className="text-md">{description}</p>
         </div>
     );
 }
