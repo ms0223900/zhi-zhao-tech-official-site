@@ -126,21 +126,21 @@ function CompanyAdvantagesSection() {
             title: "嚴謹施工管理",
             description: "ISO-45001認證，確保施工過程的品質與安全",
             mobileDescription: "ISO-45001認證\n確保施工過程的品質與安全",
-            image: "/images/advantage-service-chain.jpg",
+            image: "/images/advantage-service-chain-02.jpg",
             bgColor: "bg-[#55BBF9]",
         },
         {
             title: "快速應變能力",
             description: "與多家本地協力廠商合作，實現即時應變與高效交付",
             mobileDescription: "與多家本地協力廠商合作\n實現即時應變與高效交付",
-            image: "/images/advantage-service-chain.jpg",
+            image: "/images/advantage-service-chain-03.jpg",
             bgColor: "bg-[#EACA00]",
         },
         {
             title: "創新與永續發展",
             description: "不斷研發新技術、新工法，並積極推動節能減碳方案，踐行ESG理念",
             mobileDescription: "不斷研發新技術、新工法\n並積極推動節能減碳方案，踐行ESG理念",
-            image: "/images/advantage-service-chain.jpg",
+            image: "/images/advantage-service-chain-04.jpg",
             bgColor: "bg-[#55BBF9]",
         },
     ];
@@ -265,7 +265,7 @@ const historyItems = [
 
 function CompanyHistorySection() {
     return (
-        <section className="py-16 pb-[220px] bg-white">
+        <section className="py-[56px] pb-[260px] bg-white">
             <div className="container mx-auto px-8 max-w-[958px]">
                 <div className="text-center mb-12">
                     <h2 className="text-3xl font-bold mb-2">企業沿革</h2>
@@ -494,15 +494,15 @@ function EnergyManagementSolutionSection() {
                 </div>
                 <div>
                     <div className="relative flex w-full">
-                        <div className="relative flex z-10">
+                        <div className="relative flex z-10 md:text-h3">
                             <img src="/images/energy-circle.png" alt="能源管理解決方案" />
-                            <p className="text-h3 text-center font-bold absolute top-[46%] left-[38%]">能耗管理系統
+                            <p className="text-center font-bold absolute top-[46%] left-[38%]">能耗管理系統
                                 <br />
                                 (IEMS)</p>
-                            <p className="text-h3 absolute top-[19%] left-[15%]">能耗視覺化</p>
-                            <p className="text-h3 text-center absolute top-[23%] right-[17%]">能源統計<br />分析</p>
-                            <p className="text-h3 text-center absolute top-[72%] right-[22%]">節能績效<br />分析</p>
-                            <p className="text-h3 text-center absolute top-[62%] left-[13%]">能耗報表<br />異常警報</p>
+                            <p className="absolute top-[19%] left-[15%]">能耗視覺化</p>
+                            <p className="text-center absolute top-[23%] right-[17%]">能源統計<br />分析</p>
+                            <p className="text-center absolute top-[72%] right-[22%]">節能績效<br />分析</p>
+                            <p className="text-center absolute top-[62%] left-[13%]">能耗報表<br />異常警報</p>
 
                         </div>
                         <div className="relative w-[430px] z-1 md:block hidden">
