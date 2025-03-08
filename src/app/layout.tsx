@@ -58,10 +58,10 @@ const section2NavLinks = [
 
 function Footer() {
   return (
-    <footer className="bg-[#0A85D1] text-white py-4">
+    <footer className="bg-gradient-to-r from-[#55BBF9] to-[#FFFFFF] py-4">
       <div className="container mx-auto px-4">
         <div className="flex flex-wrap justify-between items-center">
-          <div className="w-full flex items-center space-x-8 px-12 py-10 border-b border-white">
+          <div className="w-full flex items-center space-x-8 px-12 py-10 border-b-[1px] border-[#373C3F]">
             {navLinks.map((link) => (
               <Link href={link.href} className="text-h6 hover:underline" key={link.href}>{link.label}</Link>
             ))}
