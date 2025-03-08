@@ -15,12 +15,14 @@ export default function About() {
             <WelcomeSection />
             <CoreValuesSection />
             <CompanyAdvantagesSection />
-            <div className="md:hidden">
-                <MobileCompanyHistorySection />
-            </div>
-            <div className="hidden md:block">
-                <CompanyHistorySection />
-            </div>
+            <React.Fragment>
+                <div className="md:hidden">
+                    <MobileCompanyHistorySection />
+                </div>
+                <div className="hidden md:block">
+                    <CompanyHistorySection />
+                </div>
+            </React.Fragment>
             <ProfessionalLicensesSection />
             <FutureGoalsSection />
             <EnergyManagementSolutionSection />
@@ -469,9 +471,11 @@ function FutureGoalsSection() {
                             </div>
                         ))}
 
-                        <div className="mt-8 text-left text-gray-700">
-                            <p>與智兆合作夥伴共同實習節能</p>
-                            <p>管理方案</p>
+                        <div className="flex flex-col items-center gap-2 mt-8 text-left text-gray-700">
+                            <div>
+                                <p>與智兆合作夥伴共同實習節能</p>
+                                <p>管理方案</p>
+                            </div>
                         </div>
                     </div>
                 </div>
