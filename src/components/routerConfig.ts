@@ -1,4 +1,4 @@
-const navLinks = {
+const routerConfig = {
     about: {
         label: "關於智兆",
         href: "/about",
@@ -33,4 +33,4 @@ const navLinks = {
     }
 }
 
-export default navLinks;
+export default routerConfig;

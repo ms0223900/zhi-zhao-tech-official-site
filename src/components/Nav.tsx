@@ -3,16 +3,17 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import routerConfig from "./routerConfig";
 
 const navLinks = [
-    { href: "/about", label: "關於智兆" },
-    { href: "/solutions", label: "解決方案" },
-    { href: "/projects", label: "工程實績" },
-    { href: "/news", label: "最新消息" },
-    { href: "/esg", label: "ESG" },
-    { href: "/careers", label: "人才專區" },
-    { href: "/contact", label: "聯絡我們" },
-    { href: "/downloads", label: "下載專區 :)" },
+    routerConfig.about,
+    routerConfig.solutions,
+    routerConfig.projects,
+    routerConfig.news,
+    routerConfig.esg,
+    routerConfig.careers,
+    routerConfig.contact,
+    routerConfig.downloads,
 ];
 
 const Nav = () => {
