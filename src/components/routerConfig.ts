@@ -3,6 +3,11 @@ const routerConfig = {
         label: "關於智兆",
         href: "/about",
     },
+    // 服務項目
+    services: {
+        label: "服務項目",
+        href: "/services",
+    },
     solutions: {
         label: "解決方案",
         href: "/solutions",

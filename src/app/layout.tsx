@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Nav from "@/components/Nav";
+import routerConfig from "@/components/routerConfig";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -37,19 +38,25 @@ export default function RootLayout({
   );
 }
 
+const navLinks = [
+  routerConfig.contact,
+  routerConfig.services,
+  routerConfig.solutions,
+  routerConfig.projects,
+  routerConfig.news,
+  routerConfig.esg,
+  routerConfig.careers,
+]
+
 function Footer() {
   return (
     <footer className="bg-[#0A85D1] text-white py-4">
       <div className="container mx-auto px-4">
         <div className="flex flex-wrap justify-between items-center">
           <div className="flex items-center space-x-8">
-            <a href="#" className="text-sm hover:underline">聯絡我們</a>
-            <a href="#" className="text-sm hover:underline">服務項目</a>
-            <a href="#" className="text-sm hover:underline">相關方案</a>
-            <a href="#" className="text-sm hover:underline">工程實績</a>
-            <a href="#" className="text-sm hover:underline">最新消息</a>
-            <a href="#" className="text-sm hover:underline">ESG</a>
-            <a href="#" className="text-sm hover:underline">人才專區</a>
+            {navLinks.map((link) => (
+              <a href={link.href} className="text-sm hover:underline" key={link.href}>{link.label}</a>
+            ))}
           </div>
 
           <div className="flex items-center space-x-2">
