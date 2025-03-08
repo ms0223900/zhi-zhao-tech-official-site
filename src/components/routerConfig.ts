@@ -35,6 +35,10 @@ const routerConfig = {
     downloads: {
         label: "下載專區 :)",
         href: "/downloads",
+    },
+    privacyPolicy: {
+        label: "隱私權政策",
+        href: "/privacy-policy",
     }
 }
 
