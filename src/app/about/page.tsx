@@ -15,7 +15,12 @@ export default function About() {
             <WelcomeSection />
             <CoreValuesSection />
             <CompanyAdvantagesSection />
-            <CompanyHistorySection />
+            <div className="md:hidden">
+                <MobileCompanyHistorySection />
+            </div>
+            <div className="hidden md:block">
+                <CompanyHistorySection />
+            </div>
             <ProfessionalLicensesSection />
             <FutureGoalsSection />
             <EnergyManagementSolutionSection />
@@ -110,8 +115,8 @@ function CompanyAdvantagesSection() {
     const advantages = [
         {
             title: "完整服務鏈",
-            description: "涵蓋設計、施工、維護的全方位服務",
-            mobileDescription: "涵蓋設計、施工、維護的全方位服務",
+            description: "涵蓋設計、施工、維護的全方服務",
+            mobileDescription: "涵蓋設計、施工、維護的全方服務",
             image: "/images/advantage-service-chain.jpg",
             bgColor: "bg-[#E57B42]",
         },
@@ -217,40 +222,41 @@ function MobileAdvantageCard({ title, description, bgColor }: Omit<AdvantageCard
     );
 }
 
-function CompanyHistorySection() {
-    const historyItems = [
-        {
-            year: "2012",
-            color: "bg-[#55B9F2]",
-            dotColor: "bg-[#088DDE]",
-            items: ["無塵室工程", "空調工程", "維修保養"]
-        },
-        {
-            year: "2015",
-            color: "bg-[#E9C81D]",
-            dotColor: "bg-[#088DDE]",
-            items: ["低壓配電", "製程配管", "土木裝修"]
-        },
-        {
-            year: "2017",
-            color: "bg-[#E57B42]",
-            dotColor: "bg-[#088DDE]",
-            items: ["防鏽塗裝", "氣體管路工程"]
-        },
-        {
-            year: "2020",
-            color: "bg-[#E9C81D]",
-            dotColor: "bg-[#088DDE]",
-            items: ["室內設計", "純水工程", "環保工程"]
-        },
-        {
-            year: "2024",
-            color: "bg-[#55B9F2]",
-            dotColor: "bg-[#088DDE]",
-            items: ["節能方案", "公司創櫃", "BIM系統"]
-        }
-    ];
+const historyItems = [
+    {
+        year: "2012",
+        color: "bg-[#55B9F2]",
+        dotColor: "bg-[#088DDE]",
+        items: ["無塵室工程", "空調工程", "維修保養"]
+    },
+    {
+        year: "2015",
+        color: "bg-[#E9C81D]",
+        dotColor: "bg-[#088DDE]",
+        items: ["低壓配電", "製程配管", "土木裝修"]
+    },
+    {
+        year: "2017",
+        color: "bg-[#E57B42]",
+        dotColor: "bg-[#088DDE]",
+        items: ["防鏽塗裝", "氣體管路工程"]
+    },
+    {
+        year: "2020",
+        color: "bg-[#E9C81D]",
+        dotColor: "bg-[#088DDE]",
+        items: ["室內設計", "純水工程", "環保工程"]
+    },
+    {
+        year: "2024",
+        color: "bg-[#55B9F2]",
+        dotColor: "bg-[#088DDE]",
+        items: ["節能方案", "公司創櫃", "BIM系統"]
+    }
+];
 
+
+function CompanyHistorySection() {
     return (
         <section className="py-16 pb-[220px] bg-white">
             <div className="container mx-auto px-8 max-w-[958px]">
@@ -294,6 +300,11 @@ function CompanyHistorySection() {
             </div>
         </section>
     );
+}
+
+// mobile company history section
+function MobileCompanyHistorySection() {
+    return (<></>)
 }
 
 function ProfessionalLicensesSection() {
