@@ -307,7 +307,6 @@ function CompanyHistorySection() {
     );
 }
 
-// mobile company history section
 function MobileCompanyHistorySection() {
     const leftItems = historyItems.filter((item, index) => index % 2 === 0);
     const rightItems = historyItems.filter((item, index) => index % 2 === 1);
