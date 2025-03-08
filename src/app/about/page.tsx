@@ -304,7 +304,84 @@ function CompanyHistorySection() {
 
 // mobile company history section
 function MobileCompanyHistorySection() {
-    return (<></>)
+    const leftItems = historyItems.filter((item, index) => index % 2 === 0);
+    const rightItems = historyItems.filter((item, index) => index % 2 === 1);
+
+    return (
+        <section className="py-16 bg-white">
+            <div className="container mx-auto px-4 max-w-[958px]">
+                <div className="text-center mb-12">
+                    <h2 className="text-3xl font-bold mb-2">企業沿革</h2>
+                    <p className="text-gray-600">Enterprise History</p>
+                </div>
+
+                <div className="relative mt-8">
+                    {/* 中央垂直線 */}
+                    <div className="absolute left-1/2 top-0 bottom-0 w-[1px] bg-gray-300 transform -translate-x-1/2"></div>
+
+                    {/* 時間軸項目 */}
+                    <div className="relative flex justify-between gap-12">
+                        <div className="flex flex-col gap-12 w-[55%]">
+                            {leftItems.map((item, index) => (
+                                <div
+                                    key={index}
+                                    className="relative ml-[40px]"
+                                >
+                                    {/* 年份圓圈 */}
+                                    <div className={`
+                                    absolute z-0 top-0 -left-[40px] transform -translate-y-1/2
+                                    ${item.color} rounded-full w-[80px] h-[80px] flex items-center justify-center z-10
+                                `}>
+                                        <div className="text-black text-xl font-bold">{item.year}</div>
+                                    </div>
+
+                                    {/* // top border  */}
+                                    <div className="relative z-10 w-full h-[1px] z-0 top-0 transform -translate-y-1/2 bg-gray-300">
+                                        <div className={`absolute left-0 -translate-x-1/2 
+                                        top-1/2 -translate-y-1/2 w-2 h-2 rounded-full ${item.dotColor}`}
+                                        />
+                                    </div>
+                                    <div className="h-12" />
+                                    {/* 內容區塊 */}
+                                    <div className="relative z-10 flex flex-col items-end w-full">
+                                        {item.items.map((text, idx) => (
+                                            <div key={idx} className="text-gray-700 mb-1">{text}</div>
+                                        ))}
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                        <div className="flex flex-col gap-12 w-[45%]">
+                            {rightItems.map((item, index) => (
+                                <div
+                                    key={index}
+                                    className={`relative flex mb-12 ${index % 2 === 0 ? 'justify-start' : 'justify-end'}`}
+                                >
+                                    {/* 年份圓圈 */}
+                                    <div className={`
+                                    absolute left-1/2 transform -translate-x-1/2
+                                    ${item.color} rounded-full w-16 h-16 flex items-center justify-center z-10
+                                `}>
+                                        <div className="text-black text-xl font-bold">{item.year}</div>
+                                        <div className={`absolute ${index % 2 === 0 ? 'right-0 translate-x-1/2' : 'left-0 -translate-x-1/2'} 
+                                        top-1/2 -translate-y-1/2 w-2 h-2 rounded-full ${item.dotColor}`}
+                                        />
+                                    </div>
+
+                                    {/* 內容區塊 */}
+                                    <div className="flex flex-col items-start">
+                                        {item.items.map((text, idx) => (
+                                            <div key={idx} className="text-gray-700 mb-1">{text}</div>
+                                        ))}
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
 }
 
 function ProfessionalLicensesSection() {
