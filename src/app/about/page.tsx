@@ -226,30 +226,35 @@ const historyItems = [
     {
         year: "2012",
         color: "bg-[#55B9F2]",
+        borderColor: "border-[#55B9F2]",
         dotColor: "bg-[#088DDE]",
         items: ["無塵室工程", "空調工程", "維修保養"]
     },
     {
         year: "2015",
         color: "bg-[#E9C81D]",
+        borderColor: "border-[#E9C81D]",
         dotColor: "bg-[#088DDE]",
         items: ["低壓配電", "製程配管", "土木裝修"]
     },
     {
         year: "2017",
         color: "bg-[#E57B42]",
+        borderColor: "border-[#E57B42]",
         dotColor: "bg-[#088DDE]",
         items: ["防鏽塗裝", "氣體管路工程"]
     },
     {
         year: "2020",
         color: "bg-[#E9C81D]",
+        borderColor: "border-[#E9C81D]",
         dotColor: "bg-[#088DDE]",
         items: ["室內設計", "純水工程", "環保工程"]
     },
     {
         year: "2024",
         color: "bg-[#55B9F2]",
+        borderColor: "border-[#55B9F2]",
         dotColor: "bg-[#088DDE]",
         items: ["節能方案", "公司創櫃", "BIM系統"]
     }
@@ -317,10 +322,10 @@ function MobileCompanyHistorySection() {
 
                 <div className="relative mt-8">
                     {/* 中央垂直線 */}
-                    <div className="absolute left-1/2 top-0 bottom-0 w-[1px] bg-gray-300 transform -translate-x-1/2"></div>
+                    <div className="absolute left-[55%] top-0 bottom-0 w-[1px] bg-gray-300 transform -translate-x-1/2"></div>
 
                     {/* 時間軸項目 */}
-                    <div className="relative flex justify-between gap-12">
+                    <div className="relative flex justify-between">
                         <div className="flex flex-col gap-12 w-[55%]">
                             {leftItems.map((item, index) => (
                                 <div
@@ -332,7 +337,9 @@ function MobileCompanyHistorySection() {
                                     absolute z-0 top-0 -left-[40px] transform -translate-y-1/2
                                     ${item.color} rounded-full w-[80px] h-[80px] flex items-center justify-center z-10
                                 `}>
-                                        <div className="text-black text-xl font-bold">{item.year}</div>
+                                        <div className="-translate-y-4 text-black text-md">{item.year}</div>
+                                        {/* circle background with offset circle */}
+                                        <div className={`absolute w-full h-full bg-transparent w-[120%] h-[120%] rounded-full border-[1px] ${item.borderColor}`} />
                                     </div>
 
                                     {/* // top border  */}
@@ -341,9 +348,9 @@ function MobileCompanyHistorySection() {
                                         top-1/2 -translate-y-1/2 w-2 h-2 rounded-full ${item.dotColor}`}
                                         />
                                     </div>
-                                    <div className="h-12" />
+                                    <div className="h-8" />
                                     {/* 內容區塊 */}
-                                    <div className="relative z-10 flex flex-col items-end w-full">
+                                    <div className="relative z-10 flex flex-col items-end w-full pr-4">
                                         {item.items.map((text, idx) => (
                                             <div key={idx} className="text-gray-700 mb-1">{text}</div>
                                         ))}
