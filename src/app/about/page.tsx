@@ -330,12 +330,12 @@ function MobileCompanyHistorySection() {
                             {leftItems.map((item, index) => (
                                 <div
                                     key={index}
-                                    className="relative ml-[40px]"
+                                    className="relative ml-[36px]"
                                 >
                                     {/* 年份圓圈 */}
                                     <div className={`
-                                    absolute z-0 top-0 -left-[40px] transform -translate-y-1/2
-                                    ${item.color} rounded-full w-[80px] h-[80px] flex items-center justify-center z-10
+                                    absolute z-0 top-0 -left-[36px] transform -translate-y-1/2
+                                    ${item.color} rounded-full w-[72px] h-[72px] flex items-center justify-center z-10
                                 `}>
                                         <div className="-translate-y-4 text-black text-md">{item.year}</div>
                                         {/* circle background with offset circle */}
@@ -362,12 +362,12 @@ function MobileCompanyHistorySection() {
                             {rightItems.map((item, index) => (
                                 <div
                                     key={index}
-                                    className="relative mr-[40px]"
+                                    className="relative mr-[36px]"
                                 >
                                     {/* 年份圓圈 */}
                                     <div className={`
-                                    absolute z-0 top-0 -right-[40px] transform -translate-y-1/2
-                                    ${item.color} rounded-full w-[80px] h-[80px] flex items-center justify-center z-10
+                                    absolute z-0 top-0 -right-[36px] transform -translate-y-1/2
+                                    ${item.color} rounded-full w-[72px] h-[72px] flex items-center justify-center z-10
                                 `}>
                                         <div className="-translate-y-4 text-black text-md">{item.year}</div>
                                         {/* circle background with offset circle */}
