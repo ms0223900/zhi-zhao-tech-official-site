@@ -199,7 +199,7 @@ function AdvantageCard({ title, description, image }: AdvantageCardProps) {
                 className="w-full h-[300px] object-cover absolute inset-0"
             />
             <div className="relative h-full flex flex-col justify-end">
-                <div className="flex flex-col justify-end items-center gap-2 p-6 bg-gradient-to-t from-black/90 via-black/60 to-transparent">
+                <div className="flex flex-col justify-end items-center gap-2 p-6 py-10 pb-6 bg-gradient-to-t from-black/90 via-black/80 to-transparent">
                     <h3 className="text-white text-h3 font-bold">{title}</h3>
                 </div>
                 <div>
