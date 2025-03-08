@@ -322,11 +322,11 @@ function MobileCompanyHistorySection() {
 
                 <div className="relative mt-8">
                     {/* 中央垂直線 */}
-                    <div className="absolute left-[55%] top-0 bottom-0 w-[1px] bg-gray-300 transform -translate-x-1/2"></div>
+                    <div className="absolute left-[50%] -top-[40px] bottom-0 w-[1px] bg-gray-300 transform -translate-x-1/2"></div>
 
                     {/* 時間軸項目 */}
                     <div className="relative flex justify-between">
-                        <div className="flex flex-col gap-12 w-[55%]">
+                        <div className="flex flex-col gap-12 w-[50%]">
                             {leftItems.map((item, index) => (
                                 <div
                                     key={index}
@@ -358,7 +358,7 @@ function MobileCompanyHistorySection() {
                                 </div>
                             ))}
                         </div>
-                        <div className="flex flex-col gap-12 w-[45%]">
+                        <div className="flex flex-col gap-12 w-[50%] translate-y-[90px]">
                             {rightItems.map((item, index) => (
                                 <div
                                     key={index}
