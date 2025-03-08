@@ -42,7 +42,7 @@ function RelatedIndustriesSection() {
 
                 <div className="flex flex-col md:flex-row justify-end">
                     {/* Right side with collapsible industry sections */}
-                    <div className="md:w-4/5 w-full md:bg-[url('/images/about-bottom-section-right-card-bg.svg')] bg-cover bg-center bg-no-repeat">
+                    <div className="md:w-4/5 w-full md:bg-[url('/images/about-bottom-section-right-card-bg.svg')] bg-cover bg-left bg-center bg-no-repeat">
                         <div className="space-y-4 pl-[40px] md:pl-[100px] pr-[40px] py-[70px]">
                             <div className="text-center mb-12 md:hidden">
                                 <h2 className="text-4xl font-bold mb-2">工程實績</h2>
