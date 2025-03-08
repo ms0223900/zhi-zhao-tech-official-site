@@ -362,21 +362,27 @@ function MobileCompanyHistorySection() {
                             {rightItems.map((item, index) => (
                                 <div
                                     key={index}
-                                    className={`relative flex mb-12 ${index % 2 === 0 ? 'justify-start' : 'justify-end'}`}
+                                    className="relative mr-[40px]"
                                 >
                                     {/* 年份圓圈 */}
                                     <div className={`
-                                    absolute left-1/2 transform -translate-x-1/2
-                                    ${item.color} rounded-full w-16 h-16 flex items-center justify-center z-10
+                                    absolute z-0 top-0 -right-[40px] transform -translate-y-1/2
+                                    ${item.color} rounded-full w-[80px] h-[80px] flex items-center justify-center z-10
                                 `}>
-                                        <div className="text-black text-xl font-bold">{item.year}</div>
-                                        <div className={`absolute ${index % 2 === 0 ? 'right-0 translate-x-1/2' : 'left-0 -translate-x-1/2'} 
+                                        <div className="-translate-y-4 text-black text-md">{item.year}</div>
+                                        {/* circle background with offset circle */}
+                                        <div className={`absolute w-full h-full bg-transparent w-[120%] h-[120%] rounded-full border-[1px] ${item.borderColor}`} />
+                                    </div>
+
+                                    {/* // top border  */}
+                                    <div className="relative z-10 w-full h-[1px] z-0 top-0 transform -translate-y-1/2 bg-gray-300">
+                                        <div className={`absolute right-0 translate-x-1/2 
                                         top-1/2 -translate-y-1/2 w-2 h-2 rounded-full ${item.dotColor}`}
                                         />
                                     </div>
-
+                                    <div className="h-8" />
                                     {/* 內容區塊 */}
-                                    <div className="flex flex-col items-start">
+                                    <div className="relative z-10 flex flex-col items-start w-full pl-4">
                                         {item.items.map((text, idx) => (
                                             <div key={idx} className="text-gray-700 mb-1">{text}</div>
                                         ))}
