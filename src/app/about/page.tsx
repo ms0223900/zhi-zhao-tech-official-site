@@ -320,7 +320,7 @@ function MobileCompanyHistorySection() {
                     <p className="text-gray-600">Enterprise History</p>
                 </div>
 
-                <div className="relative mt-8">
+                <div className="relative mt-8 px-8">
                     {/* 中央垂直線 */}
                     <div className="absolute left-[50%] -top-[40px] bottom-0 w-[1px] bg-gray-300 transform -translate-x-1/2"></div>
 
