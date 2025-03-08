@@ -234,21 +234,21 @@ const historyItems = [
         year: "2015",
         color: "bg-[#E9C81D]",
         borderColor: "border-[#E9C81D]",
-        dotColor: "bg-[#088DDE]",
+        dotColor: "bg-[#857200]",
         items: ["低壓配電", "製程配管", "土木裝修"]
     },
     {
         year: "2017",
         color: "bg-[#E57B42]",
         borderColor: "border-[#E57B42]",
-        dotColor: "bg-[#088DDE]",
+        dotColor: "bg-[#D75F1E]",
         items: ["防鏽塗裝", "氣體管路工程"]
     },
     {
         year: "2020",
         color: "bg-[#E9C81D]",
         borderColor: "border-[#E9C81D]",
-        dotColor: "bg-[#088DDE]",
+        dotColor: "bg-[#857200]",
         items: ["室內設計", "純水工程", "環保工程"]
     },
     {
@@ -285,14 +285,15 @@ function CompanyHistorySection() {
                                 `}>
                                     <div className="text-black text-2xl">{item.year}</div>
                                     <div className={`absolute ${index % 2 === 0 ? 'bottom-2' : 'top-2'} w-3 h-3 rounded-full ${item.dotColor}`} />
+                                    <div className={`absolute w-full h-full bg-transparent w-[116%] h-[116%] rounded-full border-[1px] ${item.borderColor}`} />
                                 </div>
 
                                 <div className={`
                                     relative ${index % 2 === 0 ? 'left-[47px] border-l-[1px]' : 'left-[47px] border-l-[1px]'} 
-                                    border-[#A6A4A4] py-2 pl-8 flex flex-col items-start
+                                    border-[#A6A4A4] py-4 pl-8 flex flex-col items-start gap-1
                                 `}>
                                     {item.items.map((text, idx) => (
-                                        <div key={idx} className="text-gray-700 mb-1">{text}</div>
+                                        <div key={idx} className="text-gray-700">{text}</div>
                                     ))}
                                 </div>
                             </div>
