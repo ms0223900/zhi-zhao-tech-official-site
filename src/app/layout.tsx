@@ -36,7 +36,12 @@ export default function RootLayout({
       >
         <Nav />
         {children}
-        <Footer />
+        <div className="hidden md:block">
+          <FooterPC />
+        </div>
+        <div className="block md:hidden">
+          <FooterMobile />
+        </div>
       </body>
     </html>
   );
@@ -58,9 +63,29 @@ const section2NavLinks = [
   routerConfig.privacyPolicy,
 ]
 
-const mailTo = `mailto:${ZHI_ZHAO_EMAIL}`;
+const iconConfigs: {
+  link: string;
+  iconSrc: string;
+  alt: string;
+}[] = [
+    {
+      link: "https://www.facebook.com/zhi-zhao.com",
+      iconSrc: "/images/icons/fb-icon.svg",
+      alt: "Facebook",
+    },
+    {
+      link: `mailto:${ZHI_ZHAO_EMAIL}`,
+      iconSrc: "/images/icons/email-icon.svg",
+      alt: "Email",
+    },
+    {
+      link: "https://www.facebook.com/zhi-zhao.com",
+      iconSrc: "/images/icons/fb-icon.svg",
+      alt: "Facebook",
+    },
+  ]
 
-function Footer() {
+function FooterPC() {
   return (
     <footer className="bg-gradient-to-r from-[#55BBF9] to-[#FFFFFF] py-4">
       <div className="container mx-auto px-4">
@@ -70,15 +95,11 @@ function Footer() {
               <Link href={link.href} className="text-h6 hover:underline" key={link.href}>{link.label}</Link>
             ))}
             <div className="flex items-center space-x-2">
-              <a href="#" aria-label="Facebook" className="w-6 h-6 flex items-center justify-center rounded-full">
-                <img src="/images/icons/fb-icon.svg" alt="Facebook" className="w-6 h-6" />
-              </a>
-              <a href={mailTo} aria-label="Email" className="w-6 h-6 flex items-center justify-center bg-gray-500 rounded-full">
-                <img src="/images/icons/email-icon.svg" alt="Email" className="w-6 h-6" />
-              </a>
-              <a href="#" aria-label="YouTube" className="w-6 h-6 flex items-center justify-center bg-gray-500 rounded-full">
-                <img src="/images/icons/line-icon.svg" alt="Line" className="w-6 h-6" />
-              </a>
+              {iconConfigs.map((icon) => (
+                <a href={icon.link} aria-label={icon.alt} className="w-6 h-6 flex items-center justify-center rounded-full" key={icon.link}>
+                  <img src={icon.iconSrc} alt={icon.alt} className="w-6 h-6" />
+                </a>
+              ))}
             </div>
           </div>
         </div>
@@ -94,6 +115,51 @@ function Footer() {
               <p className="text-sm">Copyright 2025 © 智兆科技企業有限公司 All rights reserved</p>
             </div>
           </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+function FooterMobile() {
+  return (
+    <footer className="bg-gradient-to-r from-[#55BBF9] to-[#FFFFFF] py-10">
+      <div className="container mx-auto px-4">
+        <div className="flex flex-col items-center">
+
+
+          <div className="flex justify-center space-x-4 mb-4">
+            {section2NavLinks.map((link, index) => (
+              <div key={link.href} className="flex items-center">
+                {index > 0 && <div className="w-px h-4 bg-gray-400 mr-4" />}
+                <Link href={link.href} className="text-sm hover:underline">
+                  {link.label}
+                </Link>
+              </div>
+            ))}
+          </div>
+
+          <div className="flex justify-center items-center space-x-4 mb-4">
+            <div>
+              <img src="/images/zhi-zhao-logo-black-with-text.svg" alt="智兆科技" className="w-[150px]" />
+            </div>
+            <div className="flex items-center gap-3">
+              {iconConfigs.map((icon) => (
+                <a
+                  href={icon.link}
+                  aria-label={icon.alt}
+                  className="w-[30px] flex items-center justify-center"
+                  key={icon.link}
+                >
+                  <img src={icon.iconSrc} alt={icon.alt} />
+                </a>
+              ))}
+            </div>
+          </div>
+
+          <p className="text-xs text-center mt-2">
+            Copyright 2025 © 智兆科技企業有限公司 All rights reserved.
+          </p>
         </div>
       </div>
     </footer>

@@ -33,7 +33,7 @@ const routerConfig = {
         href: "/contact",
     },
     downloads: {
-        label: "下載專區 :)",
+        label: "文件下載專區",
         href: "/downloads",
     },
     privacyPolicy: {
