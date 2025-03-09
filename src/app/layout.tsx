@@ -79,9 +79,9 @@ const iconConfigs: {
       alt: "Email",
     },
     {
-      link: "https://www.facebook.com/zhi-zhao.com",
-      iconSrc: "/images/icons/fb-icon.svg",
-      alt: "Facebook",
+      link: "https://line.me/R/ti/p/%40zhi-zhao",
+      iconSrc: "/images/icons/line-icon.svg",
+      alt: "Line",
     },
   ]
 
