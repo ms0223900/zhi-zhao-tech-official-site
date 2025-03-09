@@ -6,6 +6,8 @@ import Nav from "@/components/Nav";
 import routerConfig from "@/components/routerConfig";
 import Link from "next/link";
 
+const ZHI_ZHAO_EMAIL = "info@zhi-zhao.com";
+
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -56,6 +58,8 @@ const section2NavLinks = [
   routerConfig.privacyPolicy,
 ]
 
+const mailTo = `mailto:${ZHI_ZHAO_EMAIL}`;
+
 function Footer() {
   return (
     <footer className="bg-gradient-to-r from-[#55BBF9] to-[#FFFFFF] py-4">
@@ -66,11 +70,14 @@ function Footer() {
               <Link href={link.href} className="text-h6 hover:underline" key={link.href}>{link.label}</Link>
             ))}
             <div className="flex items-center space-x-2">
-              <a href="#" aria-label="Facebook" className="w-6 h-6 flex items-center justify-center bg-gray-500 rounded-full">
-                {/* // fb icon  */}
+              <a href="#" aria-label="Facebook" className="w-6 h-6 flex items-center justify-center rounded-full">
+                <img src="/images/icons/fb-icon.svg" alt="Facebook" className="w-6 h-6" />
+              </a>
+              <a href={mailTo} aria-label="Email" className="w-6 h-6 flex items-center justify-center bg-gray-500 rounded-full">
+                <img src="/images/icons/email-icon.svg" alt="Email" className="w-6 h-6" />
               </a>
               <a href="#" aria-label="YouTube" className="w-6 h-6 flex items-center justify-center bg-gray-500 rounded-full">
-                {/* // line icon  */}
+                <img src="/images/icons/line-icon.svg" alt="Line" className="w-6 h-6" />
               </a>
             </div>
           </div>
