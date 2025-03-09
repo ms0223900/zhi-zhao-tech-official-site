@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
 import { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { CarouselBanner } from "../components/home/CarouselBanner";
@@ -51,33 +50,27 @@ const services = [
   {
     title: "卓越服務",
     description: "領先技術創新",
-    detailDescription: "內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容",
-    image: "/images/home-service-1.jpg",
+    detailDescription: "‧精密建築資訊建模 (BIM)\n‧系統化規劃與執行\n‧卓越的工程數據整合",
+    image: "/images/home-service-01.jpg",
     bgColor: "bg-[#E57B42]",
   },
   {
     title: "技術實力",
     description: "完整整合服務",
-    detailDescription: "內容內容內容內容內容內容內容內容內容",
-    image: "/images/home-service-1.jpg",
+    detailDescription: "‧無塵室與空調工程設計\n‧製程管路與環保工程\n‧項目施工管理與後續維護",
+    image: "/images/home-service-02.jpg",
     bgColor: "bg-[#E57B42]",
   },
   {
     title: "務實可靠",
     description: "務實可靠執行",
-    detailDescription: "內容內容內容內容內",
-    image: "/images/home-service-1.jpg",
+    detailDescription: "‧嚴格工安管理與巡檢\n‧緊急調度與即時反應\n‧客製化服務，全方位配合",
+    image: "/images/home-service-03.jpg",
     bgColor: "bg-[#E57B42]",
   },
 ];
 
 const serviceCardDataList: ServiceCardItemProps[] = [
-  {
-    title: "最優質",
-    subtitle: "施工管理",
-    iconSrc: "/images/icons/construction-icon.svg",
-    detailDescription: "以高品質工程和實用性為您服務",
-  },
   {
     title: "最優質",
     subtitle: "施工管理",
@@ -92,9 +85,9 @@ const serviceCardDataList: ServiceCardItemProps[] = [
   },
   {
     title: "最快速",
-    subtitle: "動員庫存能力",
+    subtitle: "動員應變能力",
     iconSrc: "/images/icons/shift-fast-icon.svg",
-    detailDescription: "駐廠人員皆有機電系統、空調無塵室系統、製程系統等管理專長服務團隊...",
+    detailDescription: "駐廠人員皆有機電系統、空調無塵室系統、製程系統等管理專長服務團隊",
   },
   {
     title: "最絕對",
@@ -107,6 +100,12 @@ const serviceCardDataList: ServiceCardItemProps[] = [
     subtitle: "工程服務管理",
     iconSrc: "/images/icons/engineering-service-management-icon.svg",
     detailDescription: "秉持著高規格的理念來執行每件工程",
+  },
+  {
+    title: "最實在",
+    subtitle: "價格與服務",
+    iconSrc: "/images/icons/price-service-icon.svg",
+    detailDescription: "以高品質工程和實用性為您服務",
   }
 ];
 
@@ -203,7 +202,7 @@ export default async function Home() {
           <div className="flex flex-wrap justify-center max-w-[635px] mx-auto md:grid md:grid-cols-3 gap-6 md:gap-8 md:items-center md:justify-items-center">
             {serviceCardDataList.map((item, index) => (
               <React.Fragment key={index}>
-                <div className="md:hidden">
+                <div className="md:hidden w-full">
                   <ServiceMobileCardItem
                     key={index}
                     {...item}
@@ -317,12 +316,13 @@ interface ServiceCardProps {
 function ServiceCard({ title, description, detailDescription, image, bgColor }: ServiceCardProps) {
   return (
     <div className="relative group overflow-hidden rounded-lg h-[300px]">
-      <Image
+      <img
         src={image}
         alt={title}
-        width={300}
-        height={400}
-        className="w-full h-[300px] object-cover absolute inset-0"
+        className="h-[300px] absolute left-0"
+        style={{
+          maxWidth: "max-content"
+        }}
       />
       <div className="relative h-full flex flex-col justify-end">
         <div className="flex flex-col justify-end items-center gap-2 p-6 bg-gradient-to-t from-black/90 to-transparent">
@@ -331,7 +331,7 @@ function ServiceCard({ title, description, detailDescription, image, bgColor }: 
         </div>
         <div >
           <div className={`md:group-hover:mb-0 md:-mb-[100%] transition-top duration-300 ease-in-out ${bgColor} h-full p-6`}>
-            <p className="text-sm text-white">{detailDescription}</p>
+            <p className="text-h6 text-white whitespace-pre-line">{detailDescription}</p>
           </div>
         </div>
       </div>
