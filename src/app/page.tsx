@@ -117,17 +117,17 @@ const linkCardDataList = [
   },
   {
     title: "解決方案",
-    image: "/images/home-route-direct_contact-us.jpg",
+    image: "/images/home-route-direct_solution.jpg",
     link: "/solutions",
   },
   {
     title: "文件下載專區",
-    image: "/images/home-route-direct_contact-us.jpg",
+    image: "/images/home-route-direct_download.jpg",
     link: "/downloads",
   },
   {
     title: "隱私權政策",
-    image: "/images/home-route-direct_contact-us.jpg",
+    image: "/images/home-route-direct_privacy.jpg",
     link: "/privacy",
   },
 ];
@@ -222,7 +222,7 @@ export default async function Home() {
       {/* Route Directing Section */}
       <section>
         <div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-0 ">
+          <div className="p-4 md:p-0 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-0 ">
             {linkCardDataList.map((item, index) => (
               <Link key={index} href={item.link}>
                 <div className="relative group cursor-pointer rounded-md md:rounded-none overflow-hidden">
@@ -233,7 +233,7 @@ export default async function Home() {
                     className="w-full md:h-auto h-[23vw] object-cover aspect-[38/23]"
                   />
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-white text-xl font-bold">{item.title}</span>
+                    <span className="text-white text-h6 md:text-xl font-bold">{item.title}</span>
                   </div>
                 </div>
               </Link>
