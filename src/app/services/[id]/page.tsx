@@ -2,7 +2,12 @@ import { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
-const services = {
+const services: Record<string, {
+    title: string
+    subtitle: string
+    content: string
+    image: string
+}> = {
     'clean-room': {
         title: '無塵室工程',
         subtitle: '提供全方位無塵室設計、建造與維護服務',
