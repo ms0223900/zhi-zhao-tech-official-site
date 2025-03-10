@@ -1,9 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
+"use client";
 import routerConfig from "../routerConfig";
 import Link from "next/link";
 
 const ZHI_ZHAO_EMAIL = "info@zhi-zhao.com";
-
 
 const Footer = () => {
     return (
@@ -14,6 +14,7 @@ const Footer = () => {
             <div className="block md:hidden">
                 <FooterMobile />
             </div>
+            <PinnedButtons />
         </>
     )
 }
@@ -68,6 +69,7 @@ const iconConfigs: IconConfig[] = [
 ]
 
 const pcIconConfigs = iconConfigs.filter((icon) => icon.key !== "email");
+const mobileIconConfigs = iconConfigs;
 
 function FooterPC() {
     return (
@@ -128,7 +130,7 @@ function FooterMobile() {
                             <img src="/images/zhi-zhao-logo-black-with-text.svg" alt="智兆科技" className="w-[150px]" />
                         </div>
                         <div className="flex items-center gap-3">
-                            {iconConfigs.map((icon) => (
+                            {mobileIconConfigs.map((icon) => (
                                 <a
                                     href={icon.link}
                                     aria-label={icon.alt}
@@ -147,6 +149,29 @@ function FooterMobile() {
                 </div>
             </div>
         </footer>
+    );
+}
+
+
+function PinnedButtons() {
+    return (
+        <div className="fixed z-10 bottom-[140px] md:bottom-8 right-5 md:right-8 flex flex-col gap-4">
+            <button
+                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                className="md:w-12 md:h-12 w-8 h-8 rounded-full bg-white shadow-lg flex items-center justify-center hover:bg-gray-100 transition-colors"
+                aria-label="Scroll to top"
+            >
+                <img src="/images/icons/arrow-up.svg" alt="Scroll to top" className="w-full h-full" />
+            </button>
+
+            <a
+                href="mailto:contact@example.com"
+                className="hidden md:flex w-12 h-12 bg-white rounded-full shadow-lg items-center justify-center hover:bg-gray-100 transition-colors"
+                aria-label="Send email"
+            >
+                <img src={EMAIL_ICON.iconSrc} alt={EMAIL_ICON.alt} className="w-full h-full" />
+            </a>
+        </div>
     );
 }
 
