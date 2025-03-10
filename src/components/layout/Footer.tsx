@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import routerConfig from "../routerConfig";
 import Link from "next/link";
 
@@ -33,26 +34,32 @@ const section2NavLinks = [
 ]
 
 const iconConfigs: {
+    key: string;
     link: string;
     iconSrc: string;
     alt: string;
 }[] = [
         {
+            key: "fb",
             link: "https://www.facebook.com/zhi-zhao.com",
             iconSrc: "/images/icons/fb-icon.svg",
             alt: "Facebook",
         },
         {
+            key: "email",
             link: `mailto:${ZHI_ZHAO_EMAIL}`,
             iconSrc: "/images/icons/email-icon.svg",
             alt: "Email",
         },
         {
+            key: "line",
             link: "https://line.me/R/ti/p/%40zhi-zhao",
             iconSrc: "/images/icons/line-icon.svg",
             alt: "Line",
         },
     ]
+
+const pcIconConfigs = iconConfigs.filter((icon) => icon.key !== "email");
 
 function FooterPC() {
     return (
@@ -64,7 +71,7 @@ function FooterPC() {
                             <Link href={link.href} className="text-h6 hover:underline" key={link.href}>{link.label}</Link>
                         ))}
                         <div className="flex items-center space-x-2">
-                            {iconConfigs.map((icon) => (
+                            {pcIconConfigs.map((icon) => (
                                 <a href={icon.link} aria-label={icon.alt} className="w-6 h-6 flex items-center justify-center rounded-full" key={icon.link}>
                                     <img src={icon.iconSrc} alt={icon.alt} className="w-6 h-6" />
                                 </a>
