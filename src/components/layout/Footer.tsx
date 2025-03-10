@@ -33,31 +33,39 @@ const section2NavLinks = [
     routerConfig.privacyPolicy,
 ]
 
-const iconConfigs: {
+interface IconConfig {
     key: string;
     link: string;
     iconSrc: string;
     alt: string;
-}[] = [
-        {
-            key: "fb",
-            link: "https://www.facebook.com/zhi-zhao.com",
-            iconSrc: "/images/icons/fb-icon.svg",
-            alt: "Facebook",
-        },
-        {
-            key: "email",
-            link: `mailto:${ZHI_ZHAO_EMAIL}`,
-            iconSrc: "/images/icons/email-icon.svg",
-            alt: "Email",
-        },
-        {
-            key: "line",
-            link: "https://line.me/R/ti/p/%40zhi-zhao",
-            iconSrc: "/images/icons/line-icon.svg",
-            alt: "Line",
-        },
-    ]
+}
+
+const FB_ICON = {
+    key: "fb",
+    link: "https://www.facebook.com/zhi-zhao.com",
+    iconSrc: "/images/icons/fb-icon.svg",
+    alt: "Facebook",
+}
+
+const EMAIL_ICON = {
+    key: "email",
+    link: `mailto:${ZHI_ZHAO_EMAIL}`,
+    iconSrc: "/images/icons/email-icon.svg",
+    alt: "Email",
+}
+
+const LINE_ICON = {
+    key: "line",
+    link: "https://line.me/R/ti/p/%40zhi-zhao",
+    iconSrc: "/images/icons/line-icon.svg",
+    alt: "Line",
+}
+
+const iconConfigs: IconConfig[] = [
+    FB_ICON,
+    EMAIL_ICON,
+    LINE_ICON,
+]
 
 const pcIconConfigs = iconConfigs.filter((icon) => icon.key !== "email");
 
