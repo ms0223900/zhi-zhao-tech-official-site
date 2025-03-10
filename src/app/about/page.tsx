@@ -59,16 +59,16 @@ function WelcomeSection() {
                         <p className="text-gray-600 leading-relaxed mb-4">智兆科技企業有限公司成立於2012年，專注於無塵室工程、空調工程、製程管路及系統工程的整體解決方案。我們致力於為半導體、光電、生技化學及其他高科技產業提供優質的工程服務，以滿足客戶對高規格、高效率、高安全性的需求。</p>
                     </div>
                     <div className="flex-1 relative md:block hidden">
-                        <div className="absolute top-[20px] right-[180px] bg-white rounded-lg p-2">
-                            <div className="text-[#2196F3] font-medium text-center mb-2">500+</div>
-                            <div className="text-gray-500 text-sm text-center">內容內容</div>
-                        </div>
-                        <div className="absolute top-[110px] right-[280px] bg-white rounded-lg p-2">
-                            <div className="text-[#2196F3] font-medium text-center">300+</div>
-                            <div className="text-gray-500 text-sm text-center">內容內容</div>
-                        </div>
                         <div className="absolute inset-0">
                             <img src="/images/welcome-person-right.png" alt="歡迎來到智兆科技" className="w-full h-full object-contain" />
+                        </div>
+                        <div className="absolute top-[20px] right-[180px] bg-white rounded-lg p-2">
+                            <div className="text-[#2196F3] text-h1 text-center mb-2">500+</div>
+                            <div className="text-gray-500 text-sm text-center">專業</div>
+                        </div>
+                        <div className="absolute w-[150px] top-[100px] right-[260px] bg-white rounded-lg p-2">
+                            <div className="text-[#2196F3] text-h1 text-center">300+</div>
+                            <div className="text-gray-500 text-sm text-center">熱忱</div>
                         </div>
                     </div>
                 </div>
