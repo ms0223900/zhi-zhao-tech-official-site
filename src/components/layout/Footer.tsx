@@ -152,7 +152,6 @@ function FooterMobile() {
     );
 }
 
-
 function PinnedButtons() {
     return (
         <div className="fixed z-10 bottom-[140px] md:bottom-8 right-5 md:right-8 flex flex-col gap-4">
