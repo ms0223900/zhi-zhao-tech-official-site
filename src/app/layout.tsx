@@ -36,12 +36,7 @@ export default function RootLayout({
       >
         <Nav />
         {children}
-        <div className="hidden md:block">
-          <FooterPC />
-        </div>
-        <div className="block md:hidden">
-          <FooterMobile />
-        </div>
+        <Footer />
       </body>
     </html>
   );
@@ -56,6 +51,19 @@ const navLinks = [
   routerConfig.esg,
   routerConfig.careers,
 ]
+
+const Footer = () => {
+  return (
+    <>
+      <div className="hidden md:block">
+        <FooterPC />
+      </div>
+      <div className="block md:hidden">
+        <FooterMobile />
+      </div>
+    </>
+  )
+}
 
 const section2NavLinks = [
   routerConfig.contact,
