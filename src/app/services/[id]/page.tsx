@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
 const services = {
@@ -77,6 +78,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     }
 }
 
+export async function generateStaticParams() {
+    return Object.keys(services).map((id) => ({ id }))
+}
+
 export default function ServicePage({ params }: Props) {
     const service = services[params.id as keyof typeof services]
 
@@ -86,6 +91,11 @@ export default function ServicePage({ params }: Props) {
 
     return (
         <div className="container mx-auto px-4 py-16">
+            {/* 上一頁 */}
+            <Link href="/services" className="inline-block mb-4">
+                上一頁
+            </Link>
+
             <div className="max-w-4xl mx-auto">
                 <h1 className="text-4xl font-bold mb-4">{service.title}</h1>
                 <p className="text-xl text-gray-600 mb-8">{service.subtitle}</p>
