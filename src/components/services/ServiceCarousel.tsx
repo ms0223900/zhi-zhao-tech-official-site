@@ -39,7 +39,8 @@ export default function ServiceCarousel({ serviceImageList }: Props) {
         slidesToShow: 3,
         slidesToScroll: 1,
         focusOnSelect: true,
-        centerPadding: '10px',
+        // centerPadding: '10px',
+        // centerMode: true,
         // variableWidth: true
         // arrows: true,
     }
@@ -53,9 +54,10 @@ export default function ServiceCarousel({ serviceImageList }: Props) {
                     {...mainSliderSettings}
                     asNavFor={nav2}
                     afterChange={(currentSlide: number) => setCurrentSlide(currentSlide)}
+                    className="gap-slider"
                 >
                     {serviceImageList.map((image, index) => (
-                        <div key={index} className="aspect-w-16 aspect-h-9">
+                        <div key={index} className="aspect-w-16 aspect-h-9 px-2">
                             <img
                                 src={image}
                                 alt={`服務圖片 ${index + 1}`}
@@ -73,12 +75,13 @@ export default function ServiceCarousel({ serviceImageList }: Props) {
                     {...thumbnailSliderSettings}
                     asNavFor={nav1}
                     afterChange={(currentSlide: number) => setCurrentSlide(currentSlide)}
+                    className="gap-slider"
                 >
                     {serviceImageList.map((image, index) => (
                         <div
                             key={index}
-                            className={`cursor-pointer transition-all duration-300 ${currentSlide === index
-                                ? 'opacity-100 border-2 border-blue-500'
+                            className={`cursor-pointer transition-all duration-300 px-1 ${currentSlide === index
+                                ? 'opacity-100'
                                 : 'opacity-70'
                                 }`}
                         >
