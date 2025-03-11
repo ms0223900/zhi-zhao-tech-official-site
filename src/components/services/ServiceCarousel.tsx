@@ -21,19 +21,18 @@ export default function ServiceCarousel({ serviceImageList }: Props) {
         speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1,
-        autoplay: false,
-        beforeChange: (_: number, next: number) => setCurrentSlide(next),
     }
 
     // 縮略圖輪播設定
     const thumbnailSliderSettings: Settings = {
         dots: false,
         speed: 500,
+        infinite: true,
         slidesToShow: 3,
         slidesToScroll: 1,
         focusOnSelect: true,
         centerPadding: '10px',
-        variableWidth: true,
+        // variableWidth: true
         // arrows: true,
     }
 
@@ -56,7 +55,7 @@ export default function ServiceCarousel({ serviceImageList }: Props) {
 
             {/* 縮略圖導航 */}
             <div className="mt-2">
-                <Slider ref={thumbnailSliderRef} {...thumbnailSliderSettings} asNavFor={mainSliderRef.current as Slider}>
+                <Slider ref={thumbnailSliderRef} {...thumbnailSliderSettings} asNavFor={mainSliderRef.current as Slider} afterChange={(currentSlide: number) => setCurrentSlide(currentSlide)}>
                     {serviceImageList.map((image, index) => (
                         <div
                             key={index}
@@ -64,12 +63,11 @@ export default function ServiceCarousel({ serviceImageList }: Props) {
                                 ? 'opacity-100 border-2 border-blue-500'
                                 : 'opacity-70'
                                 }`}
-                        // onClick={() => setCurrentSlide(index)}
                         >
                             <img
                                 src={image}
                                 alt={`縮略圖 ${index + 1}`}
-                                className="w-24 h-16 object-cover rounded"
+                                className="w-full object-cover rounded"
                             />
                         </div>
                     ))}
