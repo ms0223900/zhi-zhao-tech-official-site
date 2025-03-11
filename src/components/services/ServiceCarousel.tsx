@@ -1,6 +1,6 @@
 "use client"
 /* eslint-disable @next/next/no-img-element */
-import { useRef, useState } from "react"
+import { useRef, useState, useEffect } from "react"
 import Slider, { Settings } from "react-slick"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
@@ -13,6 +13,14 @@ export default function ServiceCarousel({ serviceImageList }: Props) {
     const mainSliderRef = useRef<Slider>(null)
     const thumbnailSliderRef = useRef<Slider>(null)
     const [currentSlide, setCurrentSlide] = useState(0)
+    const [nav1, setNav1] = useState<Slider | undefined>(undefined)
+    const [nav2, setNav2] = useState<Slider | undefined>(undefined)
+
+    // 設置 slider 連接
+    useEffect(() => {
+        setNav1(mainSliderRef.current || undefined)
+        setNav2(thumbnailSliderRef.current || undefined)
+    }, [])
 
     // 主要輪播設定
     const mainSliderSettings: Settings = {
@@ -40,7 +48,12 @@ export default function ServiceCarousel({ serviceImageList }: Props) {
         <div className="relative">
             {/* 主要輪播 */}
             <div className="mb-4">
-                <Slider ref={mainSliderRef} {...mainSliderSettings} asNavFor={thumbnailSliderRef.current as Slider}>
+                <Slider
+                    ref={mainSliderRef}
+                    {...mainSliderSettings}
+                    asNavFor={nav2}
+                    afterChange={(currentSlide: number) => setCurrentSlide(currentSlide)}
+                >
                     {serviceImageList.map((image, index) => (
                         <div key={index} className="aspect-w-16 aspect-h-9">
                             <img
@@ -55,7 +68,12 @@ export default function ServiceCarousel({ serviceImageList }: Props) {
 
             {/* 縮略圖導航 */}
             <div className="mt-2">
-                <Slider ref={thumbnailSliderRef} {...thumbnailSliderSettings} asNavFor={mainSliderRef.current as Slider} afterChange={(currentSlide: number) => setCurrentSlide(currentSlide)}>
+                <Slider
+                    ref={thumbnailSliderRef}
+                    {...thumbnailSliderSettings}
+                    asNavFor={nav1}
+                    afterChange={(currentSlide: number) => setCurrentSlide(currentSlide)}
+                >
                     {serviceImageList.map((image, index) => (
                         <div
                             key={index}
