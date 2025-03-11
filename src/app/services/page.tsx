@@ -22,6 +22,12 @@ const serviceList = [
 ]
 
 export default function ServicesPage() {
+    const getArrowColor = (index: number): string => {
+        if (index < 2) return "#1E88E5";
+        if (index < 5) return "#E57B42";
+        return "#EACA00";
+    };
+
     return (
         <div className="container mx-auto px-4 py-16">
             <h1 className="text-4xl font-bold text-center mb-12">服務項目</h1>
@@ -49,13 +55,7 @@ export default function ServicesPage() {
                                 <p className="text-[#9D9D9D]">{service.subtitle}</p>
                             </div>
                             <div>
-                                <ArrowRight width={22} fill={
-                                    i < 2 ? "#1E88E5" : (
-                                        i < 5 ? "#E57B42" : (
-                                            "#EACA00"
-                                        )
-                                    )
-                                } />
+                                <ArrowRight width={22} fill={getArrowColor(i)} />
                             </div>
                         </div>
                     </Link>
