@@ -20,21 +20,15 @@ export default function ServiceCarousel({ serviceImageList }: Props) {
     return (
         <Slider {...sliderSettings}>
             {/* Replace these with your actual images */}
-            <div className="aspect-w-16 aspect-h-9">
-                <img
-                    src={serviceImageList[0]}
-                    alt={serviceImageList[0]}
-                    className="w-full h-full object-cover rounded-lg"
-                />
-            </div>
-            <div className="aspect-w-16 aspect-h-9">
-                <img
-                    src={serviceImageList[1]}
-                    alt={`${serviceImageList[1]} 2`}
-                    className="w-full h-full object-cover rounded-lg"
-                />
-            </div>
-            {/* Add more slides as needed */}
+            {serviceImageList.map((image, index) => (
+                <div key={index} className="aspect-w-16 aspect-h-9">
+                    <img
+                        src={image}
+                        alt={image}
+                        className="w-full h-full object-cover rounded-lg"
+                    />
+                </div>
+            ))}
         </Slider>
     )
 }

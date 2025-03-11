@@ -72,8 +72,6 @@ export default function ServicePage({ params }: Props) {
                         </div>
                     </div>
                 </div>
-
-                {/* Right Carousel */}
                 <div className="lg:pl-8">
                     <ServiceCarousel serviceImageList={service.imageList} />
                 </div>
