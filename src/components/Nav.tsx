@@ -7,13 +7,12 @@ import routerConfig from "./routerConfig";
 
 const navLinks = [
     routerConfig.about,
+    routerConfig.services,
     routerConfig.solutions,
     routerConfig.projects,
     routerConfig.news,
     routerConfig.esg,
     routerConfig.careers,
-    routerConfig.contact,
-    routerConfig.downloads,
 ];
 
 const Nav = () => {
