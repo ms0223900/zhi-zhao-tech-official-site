@@ -1,7 +1,7 @@
 "use client"
 /* eslint-disable @next/next/no-img-element */
-import { useState } from "react"
-import Slider from "react-slick"
+import { useRef, useState } from "react"
+import Slider, { Settings } from "react-slick"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 
@@ -10,10 +10,12 @@ type Props = {
 }
 
 export default function ServiceCarousel({ serviceImageList }: Props) {
+    const mainSliderRef = useRef<Slider>(null)
+    const thumbnailSliderRef = useRef<Slider>(null)
     const [currentSlide, setCurrentSlide] = useState(0)
 
     // 主要輪播設定
-    const mainSliderSettings = {
+    const mainSliderSettings: Settings = {
         dots: false,
         infinite: true,
         speed: 500,
@@ -24,23 +26,22 @@ export default function ServiceCarousel({ serviceImageList }: Props) {
     }
 
     // 縮略圖輪播設定
-    const thumbnailSliderSettings = {
+    const thumbnailSliderSettings: Settings = {
         dots: false,
-        infinite: true,
         speed: 500,
-        slidesToShow: serviceImageList.length,
+        slidesToShow: 3,
         slidesToScroll: 1,
         focusOnSelect: true,
-        centerMode: true,
-        centerPadding: '0px',
-        arrows: true,
+        centerPadding: '10px',
+        variableWidth: true,
+        // arrows: true,
     }
 
     return (
         <div className="relative">
             {/* 主要輪播 */}
             <div className="mb-4">
-                <Slider {...mainSliderSettings}>
+                <Slider ref={mainSliderRef} {...mainSliderSettings} asNavFor={thumbnailSliderRef.current as Slider}>
                     {serviceImageList.map((image, index) => (
                         <div key={index} className="aspect-w-16 aspect-h-9">
                             <img
@@ -55,7 +56,7 @@ export default function ServiceCarousel({ serviceImageList }: Props) {
 
             {/* 縮略圖導航 */}
             <div className="mt-2">
-                <Slider {...thumbnailSliderSettings} onSwipe={() => { }}>
+                <Slider ref={thumbnailSliderRef} {...thumbnailSliderSettings} asNavFor={mainSliderRef.current as Slider}>
                     {serviceImageList.map((image, index) => (
                         <div
                             key={index}
@@ -63,7 +64,7 @@ export default function ServiceCarousel({ serviceImageList }: Props) {
                                 ? 'opacity-100 border-2 border-blue-500'
                                 : 'opacity-70'
                                 }`}
-                            onClick={() => setCurrentSlide(index)}
+                        // onClick={() => setCurrentSlide(index)}
                         >
                             <img
                                 src={image}
