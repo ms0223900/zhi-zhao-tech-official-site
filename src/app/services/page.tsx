@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 const serviceList = [
     services['clean-room'],
-    services['painting'],
+    services['fire-engineering'],
     services['mechanical-electrical'],
     services['process-piping'],
     services['hvac'],
