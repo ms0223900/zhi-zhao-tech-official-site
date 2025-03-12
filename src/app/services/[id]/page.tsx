@@ -8,12 +8,13 @@ import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import ServiceCarousel from '@/components/services/ServiceCarousel'
 
-type Props = {
-    params: { id: string }
+interface Props {
+    params: Promise<{ id: string }>;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-    const service = services[params.id as keyof typeof services]
+    const { id } = await params
+    const service = services[id as keyof typeof services]
 
     if (!service) {
         return {
@@ -31,8 +32,9 @@ export async function generateStaticParams() {
     return Object.keys(services).map((id) => ({ id }))
 }
 
-export default function ServicePage({ params }: Props) {
-    const service = services[params.id as keyof typeof services]
+export default async function ServicePage({ params }: Props) {
+    const { id } = await params
+    const service = services[id as keyof typeof services]
 
     if (!service) {
         notFound()
