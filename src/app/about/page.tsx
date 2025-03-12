@@ -2,6 +2,7 @@
 import { Metadata } from "next";
 import RelatedIndustriesSection from "@/components/about/RelatedIndustriesSection";
 import React from "react";
+import Banner from "@/components/common/Banner";
 
 export const metadata: Metadata = {
     title: "About",
@@ -32,21 +33,12 @@ export default function About() {
 }
 
 function BannerSection() {
+    const title = "關於智兆"
+    const subtitle = "About Us"
+    const imageSrc = "/images/about-us-banner.jpg"
     return (
-        <section className="relative h-[400px]">
-            <div className="absolute inset-0">
-                <img
-                    src="/images/about-us-banner.jpg"
-                    alt="關於智兆"
-                    className="w-full h-full object-cover"
-                />
-            </div>
-            <div className="relative h-full flex flex-col items-center justify-center text-center">
-                <h1 className="text-white text-5xl font-bold mb-4">關於智兆</h1>
-                <p className="text-white text-xl">About Us</p>
-            </div>
-        </section>
-    );
+        <Banner title={title} subtitle={subtitle} imageSrc={imageSrc} />
+    )
 }
 
 function WelcomeSection() {
