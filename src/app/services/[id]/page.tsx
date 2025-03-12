@@ -39,7 +39,7 @@ export default function ServicePage({ params }: Props) {
     }
 
     return (
-        <div className="container mx-auto px-4 py-16">
+        <div className="container mx-auto px-4 py-16 max-w-[960px]">
             {/* Back button */}
             <Link
                 href="/services"
@@ -51,18 +51,18 @@ export default function ServicePage({ params }: Props) {
                 回上一頁
             </Link>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-[48px]">
+            <div className="grid grid-cols-1 lg:grid-cols-2">
                 {/* Left Content */}
-                <div className="flex flex-col items-center justify-end gap-6">
+                <div className="flex flex-col items-stretch justify-end gap-[48px]">
                     <div className="flex flex-col gap-2 items-center justify-center">
-                        <h1 className="text-4xl font-bold">{service.title}</h1>
-                        <p className="text-xl text-gray-600">{service.subtitle}</p>
+                        <h1 className="text-4xl font-bold text-[#044E7B]">{service.title}</h1>
+                        <p className="text-xl text-gray-400">{service.subtitle}</p>
                     </div>
 
-                    <div className="border-2 border-gray-200 rounded-lg p-6">
-                        <div className="prose prose-lg max-w-none">
-                            {service.content.split('\n\n').map((paragraph, index) => (
-                                <p key={index} className="mb-4">
+                    <div className="border-2 border-[#C5ECFF] rounded-lg p-8 min-h-[170px]">
+                        <div className="prose prose-lg max-w-none leading-[2] text-center">
+                            {service.content.split('，').map((paragraph, index) => (
+                                <p key={index}>
                                     {paragraph.split('\n').map((line, lineIndex) => (
                                         <span key={lineIndex}>
                                             {line}
