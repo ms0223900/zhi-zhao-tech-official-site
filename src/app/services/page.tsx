@@ -52,7 +52,7 @@ export default function ServicesPage() {
                                 <h3 className="text-xl font-semibold group-hover:text-blue-600 transition-colors">
                                     {service.title}
                                 </h3>
-                                <p className="text-[#9D9D9D]">{service.subtitle}</p>
+                                <p className="text-[#9D9D9D] pb-2">{service.subtitle}</p>
                             </div>
                             <div>
                                 <ArrowRight width={22} fill={getArrowColor(i)} />
