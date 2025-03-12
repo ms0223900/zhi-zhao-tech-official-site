@@ -51,11 +51,13 @@ export default function ServicePage({ params }: Props) {
                 回上一頁
             </Link>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-[48px]">
                 {/* Left Content */}
-                <div className="space-y-6">
-                    <h1 className="text-4xl font-bold">{service.title}</h1>
-                    <p className="text-xl text-gray-600">{service.subtitle}</p>
+                <div className="flex flex-col items-center justify-end gap-6">
+                    <div className="flex flex-col gap-2 items-center justify-center">
+                        <h1 className="text-4xl font-bold">{service.title}</h1>
+                        <p className="text-xl text-gray-600">{service.subtitle}</p>
+                    </div>
 
                     <div className="border-2 border-gray-200 rounded-lg p-6">
                         <div className="prose prose-lg max-w-none">
