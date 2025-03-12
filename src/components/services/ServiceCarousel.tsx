@@ -2,6 +2,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { useRef, useState, useEffect } from "react"
 import Slider, { Settings } from "react-slick"
+import ArrowUpIcon from "/public/images/icons/arrow-up.svg"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 
@@ -71,7 +72,7 @@ export default function ServiceCarousel({ serviceImageList }: Props) {
                     {...thumbnailSliderSettings}
                     asNavFor={nav1}
                     afterChange={(currentSlide: number) => setCurrentSlide(currentSlide)}
-                    className="gap-slider"
+                    className="gap-slider text-[0px]"
                 >
                     {serviceImageList.map((image, index) => (
                         <div
@@ -91,14 +92,15 @@ export default function ServiceCarousel({ serviceImageList }: Props) {
                 </Slider>
 
                 {/* 左右箭頭按鈕 */}
-                <button
-                    className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 w-8 h-8 flex items-center justify-center bg-white rounded-full shadow-md hover:bg-gray-100 transition-colors"
-                    onClick={() => thumbnailSliderRef.current?.slickPrev()}
-                >
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-                    </svg>
-                </button>
+                <div className="absolute left-1 top-0 bottom-0 m-auto h-full  w-[60px] flex items-center justify-center bg-white/50 hover:bg-gray-100 transition-colors">
+                    <button
+                        className="w-full h-full flex items-center justify-center"
+                        onClick={() => thumbnailSliderRef.current?.slickPrev()}
+                    >
+                        <ArrowUpIcon width={24} height={24} />
+                    </button>
+                </div>
+
                 <button
                     className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 w-8 h-8 flex items-center justify-center bg-white rounded-full shadow-md hover:bg-gray-100 transition-colors"
                     onClick={() => thumbnailSliderRef.current?.slickNext()}
