@@ -2,7 +2,8 @@
 /* eslint-disable @next/next/no-img-element */
 import { useRef, useState, useEffect } from "react"
 import Slider, { Settings } from "react-slick"
-import ArrowUpIcon from "/public/images/icons/arrow-up.svg"
+import ArrowLeftIcon from "/public/images/icons/arrow-left.svg"
+import ArrowRightIcon from "/public/images/icons/arrow-right.svg"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 
@@ -54,11 +55,11 @@ export default function ServiceCarousel({ serviceImageList }: Props) {
                     className="gap-slider"
                 >
                     {serviceImageList.map((image, index) => (
-                        <div key={index} className="aspect-w-16 aspect-h-9 px-2">
+                        <div key={index} className="aspect-w-16 aspect-h-9 px-1">
                             <img
                                 src={image}
                                 alt={`服務圖片 ${index + 1}`}
-                                className="w-full h-full object-cover rounded-lg"
+                                className="w-full h-full object-cover rounded-lg shadow-md"
                             />
                         </div>
                     ))}
@@ -85,30 +86,30 @@ export default function ServiceCarousel({ serviceImageList }: Props) {
                             <img
                                 src={image}
                                 alt={`縮略圖 ${index + 1}`}
-                                className="w-full object-cover rounded"
+                                className="w-full object-cover rounded shadow-md"
                             />
                         </div>
                     ))}
                 </Slider>
 
                 {/* 左右箭頭按鈕 */}
-                <div className="absolute left-1 top-0 bottom-0 m-auto h-full  w-[60px] flex items-center justify-center bg-white/50 hover:bg-gray-100 transition-colors">
+                <div className="absolute left-0 top-0 bottom-0 m-auto h-full  w-[50px] flex items-center justify-center bg-white/50 transition-colors">
                     <button
                         className="w-full h-full flex items-center justify-center"
                         onClick={() => thumbnailSliderRef.current?.slickPrev()}
                     >
-                        <ArrowUpIcon width={24} height={24} />
+                        <ArrowLeftIcon width={12} />
                     </button>
                 </div>
 
-                <button
-                    className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 w-8 h-8 flex items-center justify-center bg-white rounded-full shadow-md hover:bg-gray-100 transition-colors"
-                    onClick={() => thumbnailSliderRef.current?.slickNext()}
-                >
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                    </svg>
-                </button>
+                <div className="absolute right-0 top-0 bottom-0 m-auto h-full  w-[50px] flex items-center justify-center bg-white/50 transition-colors">
+                    <button
+                        className="w-full h-full flex items-center justify-center"
+                        onClick={() => thumbnailSliderRef.current?.slickNext()}
+                    >
+                        <ArrowRightIcon width={12} />
+                    </button>
+                </div>
             </div>
         </div>
     )
