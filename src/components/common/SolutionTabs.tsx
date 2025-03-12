@@ -13,25 +13,6 @@ interface TabProps {
 function Tab({ label, href, isActive = false, onClick }: TabProps) {
     return (
         <div className="relative group shadow-lg md:min-w-[420px] w-[44%]">
-            {href ? (
-                <Link
-                    href={href}
-                    className={`block px-12 py-8 text-center transition-colors duration-300 ${isActive ? 'text-orange-500' : 'text-black hover:text-orange-500'
-                        }`}
-                    onClick={onClick}
-                >
-                    <span className="text-xl font-medium">{label}</span>
-                </Link>
-            ) : (
-                <button
-                    className={`w-full px-12 py-8 text-center transition-colors duration-300 ${isActive ? 'text-orange-500' : 'text-black hover:text-orange-500'
-                        }`}
-                    onClick={onClick}
-                >
-                    <span className="text-xl font-medium">{label}</span>
-                </button>
-            )}
-
             {/* Top border with hover effect */}
             <div className={`absolute top-2 left-2 w-0 h-0 border-4 border-transparent transform ${isActive ? 'opacity-100 w-[calc(100%-16px)] h-[calc(100%-16px)] border-t-orange-500 border-r-orange-500' : 'group-hover:opacity-100 group-hover:w-[calc(100%-16px)] group-hover:h-[calc(100%-16px)] group-hover:border-t-orange-500 group-hover:border-r-orange-500'} duration-500 ease-in-out`} style={{
                 transition: "height 0.2s ease-out 0.2s, width 0.2s ease-out"
@@ -41,6 +22,28 @@ function Tab({ label, href, isActive = false, onClick }: TabProps) {
             <div className={`absolute bottom-2 left-2 w-0 h-0 border-4 border-transparent transform ${isActive ? 'opacity-100 w-[calc(100%-16px)] h-[calc(100%-16px)] border-b-orange-500 border-l-orange-500' : 'group-hover:opacity-100 group-hover:w-[calc(100%-16px)] group-hover:h-[calc(100%-16px)] group-hover:border-b-orange-500 group-hover:border-l-orange-500'} duration-500 ease-in-out`} style={{
                 transition: "height 0.2s ease-out 0.2s, width 0.2s ease-out"
             }}></div>
+            <div className='relative z-10'>
+
+                {href ? (
+                    <Link
+                        href={href}
+                        className={`block px-12 py-8 text-center transition-colors duration-300 ${isActive ? 'text-orange-500' : 'text-black hover:text-orange-500'
+                            }`}
+                        onClick={onClick}
+                    >
+                        <span className="text-xl font-medium">{label}</span>
+                    </Link>
+                ) : (
+                    <button
+                        className={`w-full px-12 py-8 text-center transition-colors duration-300 ${isActive ? 'text-orange-500' : 'text-black hover:text-orange-500'
+                            }`}
+                        onClick={onClick}
+                    >
+                        <span className="text-xl font-medium">{label}</span>
+                    </button>
+                )}
+
+            </div>
         </div>
     );
 }

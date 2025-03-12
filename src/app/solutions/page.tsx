@@ -10,7 +10,7 @@ export default function SolutionsPage() {
     return (
         <main className="min-h-screen">
             <BannerSection />
-            <div className="container mx-auto px-4 py-8">
+            <div className="container mx-auto px-4 py-8 max-w-[960px]">
                 <TabsSection />
                 <SolutionContent />
             </div>
