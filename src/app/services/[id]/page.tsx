@@ -75,7 +75,7 @@ export default async function ServicePage({ params }: Props) {
                 </div>
                 {/* Right Content */}
                 <div className="lg:pl-8">
-                    <ServiceCarousel serviceImageList={service.imageList} />
+                    <ServiceCarousel imageList={service.imageList} />
                 </div>
             </div>
         </div>

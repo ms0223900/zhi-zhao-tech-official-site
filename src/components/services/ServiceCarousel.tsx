@@ -8,10 +8,10 @@ import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 
 type Props = {
-    serviceImageList: string[]
+    imageList: string[]
 }
 
-export default function ServiceCarousel({ serviceImageList }: Props) {
+export default function ServiceCarousel({ imageList, }: Props) {
     const mainSliderRef = useRef<Slider>(null)
     const thumbnailSliderRef = useRef<Slider>(null)
     const [currentSlide, setCurrentSlide] = useState(0)
@@ -54,11 +54,11 @@ export default function ServiceCarousel({ serviceImageList }: Props) {
                     afterChange={(currentSlide: number) => setCurrentSlide(currentSlide)}
                     className="gap-slider"
                 >
-                    {serviceImageList.map((image, index) => (
+                    {imageList.map((image, index) => (
                         <div key={index} className="aspect-w-16 aspect-h-9 px-1">
                             <img
                                 src={image}
-                                alt={`服務圖片 ${index + 1}`}
+                                alt={`圖片 ${index + 1}`}
                                 className="w-full h-full object-cover rounded-lg shadow-md"
                             />
                         </div>
@@ -75,7 +75,7 @@ export default function ServiceCarousel({ serviceImageList }: Props) {
                     afterChange={(currentSlide: number) => setCurrentSlide(currentSlide)}
                     className="gap-slider text-[0px]"
                 >
-                    {serviceImageList.map((image, index) => (
+                    {imageList.map((image, index) => (
                         <div
                             key={index}
                             className={`cursor-pointer transition-all duration-300 px-1 ${currentSlide === index
