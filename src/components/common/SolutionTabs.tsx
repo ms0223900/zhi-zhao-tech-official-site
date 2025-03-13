@@ -49,7 +49,7 @@ function Tab({ label, href, isActive = false, onClick }: TabProps) {
 }
 
 interface SolutionTabsProps {
-    tabs: { label: string; href?: string }[];
+    tabs: { key: string; label: string; href?: string }[];
     activeTab?: string;
     onTabChange?: (label: string) => void;
 }
@@ -92,7 +92,7 @@ export default function SolutionTabs({ tabs, activeTab, onTabChange }: SolutionT
                     label={tab.label}
                     href={tab.href}
                     isActive={tab.label === (activeTab || activeTabState)}
-                    onClick={() => handleTabClick(tab.label)}
+                    onClick={() => handleTabClick(tab.key)}
                 />
             ))}
         </div>

@@ -6,7 +6,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
-import ServiceCarousel from '@/components/services/ServiceCarousel'
+import ServiceCarousel from '@/components/common/CarouselWithNavList'
 
 interface Props {
     params: Promise<{ id: string }>;
