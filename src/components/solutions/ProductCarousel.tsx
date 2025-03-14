@@ -2,7 +2,7 @@
 "use client"
 
 import React from "react";
-import Slider from "react-slick";
+import Slider, { Settings } from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -35,7 +35,9 @@ type ProductCarouselProps = {
 }
 
 export function ProductCarousel({ productImageList }: ProductCarouselProps) {
-    const settings = {
+    const [currentSlide, setCurrentSlide] = React.useState(0);
+
+    const settings: Settings = {
         dots: true,
         infinite: true,
         speed: 500,
@@ -46,6 +48,13 @@ export function ProductCarousel({ productImageList }: ProductCarouselProps) {
         nextArrow: <CustomArrow direction="next" />,
         prevArrow: <CustomArrow direction="prev" />,
         dotsClass: "slick-dots !bottom-4",
+        customPaging: (index: number) => (
+            <div
+                className={`w-2 h-2 rounded-full ${index === currentSlide ? 'bg-[#044E7B]' : 'bg-[#D9D9D9]'
+                    } hover:bg-[#D9D9D9]/80 transition-colors cursor-pointer`}
+            />
+        ),
+        beforeChange: (current, next) => setCurrentSlide(next),
     };
 
     return (
