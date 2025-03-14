@@ -12,7 +12,7 @@ interface TabProps {
 
 function Tab({ label, href, isActive = false, onClick }: TabProps) {
     return (
-        <div className="relative group shadow-lg md:min-w-[420px] w-[44%]">
+        <div className="relative group shadow-lg md:min-w-[420px] md:w-[44%] w-full bg-[#F0F2F6] md:bg-white">
             {/* Top border with hover effect */}
             <div className={`absolute top-2 left-2 w-0 h-0 border-4 border-transparent transform ${isActive ? 'opacity-100 w-[calc(100%-16px)] h-[calc(100%-16px)] border-t-orange-500 border-r-orange-500' : 'group-hover:opacity-100 group-hover:w-[calc(100%-16px)] group-hover:h-[calc(100%-16px)] group-hover:border-t-orange-500 group-hover:border-r-orange-500'} duration-500 ease-in-out`} style={{
                 transition: "height 0.2s ease-out 0.2s, width 0.2s ease-out"
