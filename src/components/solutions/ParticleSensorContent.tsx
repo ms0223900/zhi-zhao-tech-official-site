@@ -4,6 +4,7 @@ import RwdComponent from '../common/RwdComponent';
 import ServiceCarousel from '../common/CarouselWithNavList';
 import MainContentContainer from '../common/MainContentContainer';
 import ProductAdvantageCard from './ProductAdvantageCard';
+import SectionTitle from './SectionTitle';
 
 const particleSensorProductImageList = [
     "/images/particle-sensor/product-1.jpg",
@@ -56,12 +57,12 @@ const productAdvantageList = [
 
 export function ParticleSensorContent() {
     return (
-        <div className="container">
+        <div className="">
             <RwdComponent
                 mobileComponent={<h2 className="text-2xl font-bold mb-4 text-center">Particle Sensor</h2>}
                 desktopComponent={<></>}
             />
-            <section className="flex flex-col md:flex-row gap-8 mb-6 md:items-end">
+            <section className="container flex flex-col md:flex-row gap-8 mb-6 md:items-end">
                 <div className="w-full md:w-[450px] order-2 md:order-1 md:px-6">
                     <RwdComponent
                         mobileComponent={<></>}
@@ -90,9 +91,9 @@ export function ParticleSensorContent() {
                     />
                 </div>
             </section>
-            <section>
-                <h2 className="text-h2 font-bold mb-[80px] text-center">產品優勢</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <section className="bg-white">
+                <SectionTitle title="產品優勢" />
+                <div className="container grid grid-cols-1 md:grid-cols-2 gap-4 py-6">
                     {productAdvantageList.map((item, index) => (
                         <ProductAdvantageCard
                             key={index}
