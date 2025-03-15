@@ -61,7 +61,7 @@ export default async function ServicePage({ params }: Props) {
                 }
                 desktopComponent={<div />}
             />
-            <div className="grid grid-cols-1 lg:grid-cols-2">
+            <div className="grid grid-cols-1 md:grid-cols-2">
                 {/* Left Content */}
 
                 <div className="flex flex-col items-stretch justify-end gap-[48px] order-2 md:order-1">
@@ -89,7 +89,7 @@ export default async function ServicePage({ params }: Props) {
                     </div>
                 </div>
                 {/* Right Content */}
-                <div className="lg:pl-8 order-1 md:order-2">
+                <div className="md:pl-8 order-1 md:order-2">
                     <ServiceCarousel imageList={service.imageList} />
                 </div>
             </div>
