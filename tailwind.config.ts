@@ -11,6 +11,7 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        "primary-blue": "#088DDE",
         'blue-500': '#55BBF9', // 新增自定義藍色
       },
       fontFamily: {
