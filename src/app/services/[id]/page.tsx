@@ -8,6 +8,7 @@ import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import ServiceCarousel from '@/components/common/CarouselWithNavList'
 import RwdComponent from '@/components/common/RwdComponent'
+import MainContentContainer from '@/components/common/MainContentContainer'
 
 interface Props {
     params: Promise<{ id: string }>;
@@ -65,7 +66,7 @@ export default async function ServicePage({ params }: Props) {
                         desktopComponent={<TitleSubtitle title={service.title} subtitle={service.subtitle} />}
                     />
 
-                    <div className="border-2 border-[#C5ECFF] rounded-lg p-8 min-h-[170px] bg-gradient-to-br from-[#FFFFFF] to-[#F8FDFF] shadow-[3.12px_9.37px_21.85px_rgba(0,0,0,0.06)]">
+                    <MainContentContainer>
                         <div className="prose prose-lg max-w-none leading-[2] text-center">
                             {service.content.split('，').map((paragraph, index) => (
                                 <p key={index}>
@@ -78,7 +79,7 @@ export default async function ServicePage({ params }: Props) {
                                 </p>
                             ))}
                         </div>
-                    </div>
+                    </MainContentContainer>
                 </div>
                 {/* Right Content */}
                 <div className="md:pl-8 order-1 md:order-2">
