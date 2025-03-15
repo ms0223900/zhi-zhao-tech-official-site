@@ -60,3 +60,7 @@ body {
 .theme-gradient-blue {
   @apply bg-gradient-to-r from-[#FFFFFF] to-[#55BBF9]/30;
 }
+
+.container {
+  @apply max-w-[960px] mx-auto;
+}
