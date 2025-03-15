@@ -1,36 +1,17 @@
-"use client"
 
-import Banner from "@/components/common/Banner"
-import SolutionTabs from "@/components/common/SolutionTabs"
-import { MachineVisionContent } from "@/components/solutions/MachineVisionContent"
-import { ParticleSensorContent } from "@/components/solutions/ParticleSensorContent"
-import { useState } from "react"
+import Banner from "@/components/common/Banner";
+import MainSection from "@/components/solutions/MainSection"
 
-// export const metadata = {
-//     title: '解決方案',
-//     description: '我們的解決方案',
-// }
-
-const solutionTabs = [
-    { key: "particleSensor", label: "Particle Sensor", href: "#particle-sensor" },
-    { key: "machineVision", label: "機器視覺", href: "#machine-vision" },
-]
+export const metadata = {
+    title: '解決方案',
+    description: '我們的解決方案',
+}
 
 export default function SolutionsPage() {
-    const [activeTab, setActiveTab] = useState("particleSensor")
     return (
         <main className="min-h-screen">
             <BannerSection />
-            <div className="container mx-auto px-4 py-8 max-w-[960px]">
-                <div className="mb-12">
-                    <SolutionTabs activeTab={activeTab} onTabChange={setActiveTab} tabs={solutionTabs} />
-                </div>
-                {activeTab === 'particleSensor' ? (
-                    <ParticleSensorContent />
-                ) : (
-                    <MachineVisionContent />
-                )}
-            </div>
+            <MainSection />
         </main>
     )
 }
