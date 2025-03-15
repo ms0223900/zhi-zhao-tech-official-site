@@ -18,7 +18,6 @@ export default function ServiceCarousel({ imageList, }: Props) {
     const [nav1, setNav1] = useState<Slider | undefined>(undefined)
     const [nav2, setNav2] = useState<Slider | undefined>(undefined)
 
-    // 設置 slider 連接
     useEffect(() => {
         setNav1(mainSliderRef.current || undefined)
         setNav2(thumbnailSliderRef.current || undefined)
