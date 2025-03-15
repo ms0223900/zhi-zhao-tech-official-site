@@ -237,3 +237,84 @@ const nextConfig = {
 - Use React Testing Library
 
 Remember: Prioritize clarity and maintainability while delivering robust, accessible, and performant solutions aligned with the latest React 19, Next.js 15, and Vercel AI SDK features and best practices.
+
+{
+  "projectContext": {
+    "framework": "Next.js 15 (App Router)",
+    "styling": "Tailwind CSS with Shadcn UI",
+    "stateManagement": "React 19 built-in state",
+    "typeSystem": "TypeScript"
+  },
+  "codingStandards": {
+    "general": {
+      "useFunctionalComponents": true,
+      "earlyReturns": true,
+      "typeSafety": "strict"
+    },
+    "namingConventions": {
+      "components": "PascalCase",
+      "variables": "camelCase",
+      "directories": "kebab-case",
+      "eventHandlers": "handle[EventName]"
+    },
+    "componentStructure": [
+      "exports",
+      "subcomponents",
+      "helpers",
+      "types"
+    ]
+  },
+  "reactNextjsRules": {
+    "serverComponents": true,
+    "dataFetching": {
+      "defaultCache": "force-cache",
+      "fetchCache": "default-cache"
+    },
+    "stateManagement": {
+      "useActionState": true,
+      "minimizeClientState": true
+    }
+  },
+  "tailwindConfig": {
+    "colors": {
+      "primary": ["#088DDE", "#044E7B"],
+      "customBlue": "#55BBF9"
+    },
+    "typography": {
+      "fontFamily": "Inter",
+      "headings": {
+        "h1": ["25px", "600"],
+        "h2": ["25px", "500"],
+        "h3": ["20px", "500"]
+      }
+    },
+    "animations": {
+      "slideInRight": "slide-in-right 0.3s ease-out",
+      "fadeIn": "fade-in 0.2s ease-out"
+    }
+  },
+  "componentRules": {
+    "carousel": {
+      "library": "react-slick",
+      "navigation": {
+        "arrows": true,
+        "dots": true
+      },
+      "responsive": true
+    },
+    "layout": {
+      "mobileFirst": true,
+      "responsiveBreakpoints": true
+    }
+  },
+  "testing": {
+    "unitTests": true,
+    "integrationTests": true,
+    "accessibility": "WCAG 2.1"
+  },
+  "documentation": {
+    "componentComments": true,
+    "typeDefinitions": true,
+    "readmeFiles": true
+  }
+}
