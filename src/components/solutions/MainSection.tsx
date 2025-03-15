@@ -13,7 +13,7 @@ const solutionTabs = [
 const MainSection = () => {
     const [activeTab, setActiveTab] = useState("particleSensor")
 
-    return <div className="container mx-auto px-4 py-8 max-w-[960px]">
+    return <div className="container mx-auto px-4 md:px-0 py-8 max-w-[960px]">
         <div className="mb-12">
             <SolutionTabs activeTab={activeTab} onTabChange={setActiveTab} tabs={solutionTabs} />
         </div>

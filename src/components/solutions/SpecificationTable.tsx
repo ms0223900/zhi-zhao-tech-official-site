@@ -28,10 +28,10 @@ export function SpecificationTable({
                     <tbody className="divide-y divide-gray-200 bg-white">
                         {specifications.map((spec, index) => (
                             <tr key={index}>
-                                <td className="whitespace-nowrap py-3 px-4 text-sm font-medium text-gray-900 bg-gray-50 w-1/3">
+                                <td className="whitespace-nowrap py-2 px-2 text-sm font-medium text-gray-900 bg-gray-50 w-1/3">
                                     {spec.label}
                                 </td>
-                                <td className="whitespace-pre-line py-3 px-4 text-sm text-gray-500">
+                                <td className="whitespace-pre-line py-1 px-2 text-sm text-gray-500">
                                     {Array.isArray(spec.value)
                                         ? spec.value.map((item, i) => (
                                             <div key={i} className={i > 0 ? 'mt-2' : ''}>{item}</div>
