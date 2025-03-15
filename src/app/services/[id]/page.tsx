@@ -67,7 +67,7 @@ export default async function ServicePage({ params }: Props) {
                         desktopComponent={<TitleSubtitle title={service.title} subtitle={service.subtitle} />}
                     />
 
-                    <div className="border-2 border-[#C5ECFF] rounded-lg p-8 min-h-[170px]">
+                    <div className="border-2 border-[#C5ECFF] rounded-lg p-8 min-h-[170px] bg-gradient-to-br from-[#FFFFFF] to-[#F8FDFF] shadow-[3.12px_9.37px_21.85px_rgba(0,0,0,0.06)]">
                         <div className="prose prose-lg max-w-none leading-[2] text-center">
                             {service.content.split('，').map((paragraph, index) => (
                                 <p key={index}>
