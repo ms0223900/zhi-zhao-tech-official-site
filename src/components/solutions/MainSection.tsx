@@ -4,6 +4,7 @@ import { useState } from "react"
 import { ParticleSensorContent } from "./ParticleSensorContent"
 import SolutionTabs from "../common/SolutionTabs"
 import { MachineVisionContent } from "./MachineVisionContent"
+import { cn } from "@/utils/cn"
 
 const solutionTabs = [
     { key: "particleSensor", label: "Particle Sensor", href: "#particle-sensor" },
@@ -15,7 +16,7 @@ const MainSection = () => {
 
     return (
         <div>
-            <h2 className="text-center text-h1 text-[#044E7B] pt-[30px] pb-6 font-bold mb-4 border-b border-[#044E7B] max-w-[732px] mx-auto">智能系統應用</h2>
+            <SectionTitle className="text-h1 text-[#044E7B]" title="智能系統應用" />
             <div className="py-11 max-w-[960px] mx-auto">
                 <SolutionTabs onTabChange={setActiveTab} tabs={solutionTabs} />
             </div>
@@ -26,6 +27,12 @@ const MainSection = () => {
                     <MachineVisionContent />
                 )}
             </div></div>
+    )
+}
+
+function SectionTitle({ title, className }: { title: string, className?: string }) {
+    return (
+        <h2 className={cn("text-center text-h1 text-[#044E7B] pt-[30px] pb-6 font-bold mb-4 border-b border-[#044E7B] max-w-[732px] mx-auto", className)}>{title}</h2>
     )
 }
 
