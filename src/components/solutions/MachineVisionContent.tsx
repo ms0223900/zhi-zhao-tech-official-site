@@ -38,17 +38,22 @@ export function MachineVisionContent() {
     return (
         <div>
             <h2 className="text-2xl font-bold mb-4">Machine Vision Solution</h2>
-            <RwdComponent
-                mobileComponent={<ProductCarousel productImageList={machineVisionProductImageList} />}
-                desktopComponent={<ServiceCarousel imageList={machineVisionProductImageList} />}
-            />
 
-            <div className="mt-8 mb-6">
-                <h3 className="text-xl font-semibold mb-4">相機技術規格</h3>
-                <SpecificationTable
-                    specifications={cameraSpecifications}
-                    className="shadow-sm"
-                />
+
+            <div className="flex flex-col md:flex-row gap-8 mb-6">
+                <div className="w-full md:w-1/2">
+                    <h3 className="text-xl font-semibold mb-4">相機技術規格</h3>
+                    <SpecificationTable
+                        specifications={cameraSpecifications}
+                        className="shadow-sm"
+                    />
+                </div>
+                <div className="w-full md:w-1/2">
+                    <RwdComponent
+                        mobileComponent={<ProductCarousel productImageList={machineVisionProductImageList} />}
+                        desktopComponent={<ServiceCarousel imageList={machineVisionProductImageList} />}
+                    />
+                </div>
             </div>
 
             <p className="text-gray-600 mt-6">
