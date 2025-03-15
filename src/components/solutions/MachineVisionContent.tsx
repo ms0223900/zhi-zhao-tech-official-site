@@ -37,18 +37,17 @@ const cameraSpecifications: SpecificationItem[] = [
 export function MachineVisionContent() {
     return (
         <div>
-            <h2 className="text-2xl font-bold mb-4">Machine Vision Solution</h2>
-
+            <h2 className="text-2xl font-bold mb-4">機器視覺解決方案</h2>
 
             <div className="flex flex-col md:flex-row gap-8 mb-6">
-                <div className="w-full md:w-1/2">
-                    <h3 className="text-xl font-semibold mb-4">相機技術規格</h3>
+                <div className="w-full md:w-[420px] flex flex-col items-center gap-6">
+                    <h1 className="text-center text-h1 text-[#044E7B] font-bold mb-4">機器視覺</h1>
                     <SpecificationTable
                         specifications={cameraSpecifications}
                         className="shadow-sm"
                     />
                 </div>
-                <div className="w-full md:w-1/2">
+                <div className="w-full md:w-[540px]">
                     <RwdComponent
                         mobileComponent={<ProductCarousel productImageList={machineVisionProductImageList} />}
                         desktopComponent={<ServiceCarousel imageList={machineVisionProductImageList} />}

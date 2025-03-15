@@ -7,6 +7,7 @@ import { notFound } from 'next/navigation'
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import ServiceCarousel from '@/components/common/CarouselWithNavList'
+import RwdComponent from '@/components/common/RwdComponent'
 
 interface Props {
     params: Promise<{ id: string }>;
@@ -49,14 +50,28 @@ export default async function ServicePage({ params }: Props) {
             >
                 回上一頁
             </Link>
-
+            <RwdComponent
+                mobileComponent={
+                    <div className='pb-9'>
+                        <div className="flex flex-col gap-2 items-center justify-center">
+                            <h1 className="text-4xl font-bold text-[#044E7B]">{service.title}</h1>
+                            <p className="text-xl text-gray-400">{service.subtitle}</p>
+                        </div>
+                    </div>
+                }
+                desktopComponent={<div />}
+            />
             <div className="grid grid-cols-1 lg:grid-cols-2">
                 {/* Left Content */}
-                <div className="flex flex-col items-stretch justify-end gap-[48px]">
-                    <div className="flex flex-col gap-2 items-center justify-center">
-                        <h1 className="text-4xl font-bold text-[#044E7B]">{service.title}</h1>
-                        <p className="text-xl text-gray-400">{service.subtitle}</p>
-                    </div>
+
+                <div className="flex flex-col items-stretch justify-end gap-[48px] order-2 md:order-1">
+                    <RwdComponent
+                        mobileComponent={<div />}
+                        desktopComponent={<div className="flex flex-col gap-2 items-center justify-center">
+                            <h1 className="text-4xl font-bold text-[#044E7B]">{service.title}</h1>
+                            <p className="text-xl text-gray-400">{service.subtitle}</p>
+                        </div>}
+                    />
 
                     <div className="border-2 border-[#C5ECFF] rounded-lg p-8 min-h-[170px]">
                         <div className="prose prose-lg max-w-none leading-[2] text-center">
@@ -74,7 +89,7 @@ export default async function ServicePage({ params }: Props) {
                     </div>
                 </div>
                 {/* Right Content */}
-                <div className="lg:pl-8">
+                <div className="lg:pl-8 order-1 md:order-2">
                     <ServiceCarousel imageList={service.imageList} />
                 </div>
             </div>
