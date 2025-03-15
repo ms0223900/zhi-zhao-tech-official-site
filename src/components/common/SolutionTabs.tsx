@@ -57,21 +57,15 @@ interface SolutionTabsProps {
 export default function SolutionTabs({ tabs, activeTab, onTabChange }: SolutionTabsProps) {
     const [activeTabState, setActiveTabState] = useState(activeTab || tabs[0]?.key);
 
-    // Update active tab based on hash in URL
     useEffect(() => {
         if (activeTab) {
             setActiveTabState(activeTab);
         }
-        if (onTabChange) {
-            onTabChange(activeTabState);
-        }
-    }, [activeTabState, onTabChange, activeTab]);
+    }, [activeTab]);
 
     const handleTabClick = (label: string) => {
         setActiveTabState(label);
-        if (onTabChange) {
-            onTabChange(label);
-        }
+        onTabChange?.(label);
     };
 
     return (
