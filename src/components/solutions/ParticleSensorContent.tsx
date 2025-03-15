@@ -11,6 +11,49 @@ const particleSensorProductImageList = [
     "/images/particle-sensor/product-3.jpg",
 ]
 
+const productAdvantageList = [
+    {
+        title: "實時監控",
+        detailDescription: "實時記錄資料，反查問題更便利，異常當下立即反應，防範更即時。",
+        iconSrc: "/images/machine-vision/product-advantage-1.svg"
+    },
+    {
+        title: "體積小",
+        detailDescription: "體積優勢適用不同場合及各類型設備。",
+        iconSrc: "/images/machine-vision/product-advantage-2.svg"
+    },
+    {
+        title: "無線傳輸",
+        detailDescription: "數據藉由WiFi回傳伺服器，省去手動佈線。",
+        iconSrc: "/images/machine-vision/product-advantage-3.svg"
+    },
+    {
+        title: "客製化",
+        detailDescription: "依據客戶不同製程要求，撰寫相對應辨識程式。",
+        iconSrc: "/images/machine-vision/product-advantage-4.svg"
+    },
+    {
+        title: "鏡頭可選",
+        detailDescription: "預設搭載具夜視鏡頭，依據客戶需求可更換高速攝像鏡頭、廣角鏡頭......",
+        iconSrc: "/images/machine-vision/product-advantage-5.svg"
+    },
+    {
+        title: "封閉式作業系統",
+        detailDescription: "所有影像只儲存在工廠伺服器，數據資料不外流。",
+        iconSrc: "/images/machine-vision/product-advantage-6.svg"
+    },
+    {
+        title: "無盲點",
+        detailDescription: "搭配支架可呈現720度無盲點監控。",
+        iconSrc: "/images/machine-vision/product-advantage-7.svg"
+    },
+    {
+        title: "關鍵製程AI協助判定",
+        detailDescription: "避免後端製程不良引發內/外部失效成本。",
+        iconSrc: "/images/machine-vision/product-advantage-8.svg"
+    }
+]
+
 export function ParticleSensorContent() {
     return (
         <div className="container">
@@ -50,48 +93,7 @@ export function ParticleSensorContent() {
             <section>
                 <h2 className="text-h2 font-bold mb-[80px] text-center">產品優勢</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {[
-                        {
-                            title: "電動監控",
-                            detailDescription: "實時監測數據，啟動自動警示判斷，可進行下位控制器，預警參考值。",
-                            iconSrc: "/images/icons/electric-monitor.svg"
-                        },
-                        {
-                            title: "體積小",
-                            detailDescription: "使用微型感測元件組合及各項整合器。",
-                            iconSrc: "/images/icons/small-size.svg"
-                        },
-                        {
-                            title: "無線傳輸",
-                            detailDescription: "整建無線WiFi傳輸技術，完全手持操作。",
-                            iconSrc: "/images/icons/wireless.svg"
-                        },
-                        {
-                            title: "客製化",
-                            detailDescription: "依據客戶不同製程需求，規劃可行解決方案。",
-                            iconSrc: "/images/icons/customize.svg"
-                        },
-                        {
-                            title: "經濟可靠",
-                            detailDescription: "前期整備費用低廉，維護成本更低內建故障警報檢測。",
-                            iconSrc: "/images/icons/economic.svg"
-                        },
-                        {
-                            title: "封閉式作業系統",
-                            detailDescription: "採用專屬化設備在工作環境中進行資料分析。",
-                            iconSrc: "/images/icons/closed-system.svg"
-                        },
-                        {
-                            title: "無污點",
-                            detailDescription: "感測裝置可達到9.2公尺精確量點距。",
-                            iconSrc: "/images/icons/no-pollution.svg"
-                        },
-                        {
-                            title: "簡易型AI位點判定",
-                            detailDescription: "針對海綿製作不良引發內外部失效成率。",
-                            iconSrc: "/images/icons/ai-detection.svg"
-                        }
-                    ].map((item, index) => (
+                    {productAdvantageList.map((item, index) => (
                         <ProductAdvantageCard
                             key={index}
                             title={item.title}
