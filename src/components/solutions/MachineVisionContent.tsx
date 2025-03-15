@@ -55,12 +55,6 @@ export function MachineVisionContent() {
                     />
                 </div>
             </div>
-
-            <p className="text-gray-600 mt-6">
-                我們的機器視覺解決方案採用高性能相機，提供卓越的圖像質量和處理能力。
-                這些相機適用於各種工業檢測、識別和測量應用，能在各種光線條件下提供穩定可靠的性能。
-                {/* Add more content here */}
-            </p>
         </div>
     );
 } 
