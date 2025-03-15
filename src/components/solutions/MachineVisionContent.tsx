@@ -37,7 +37,7 @@ const cameraSpecifications: SpecificationItem[] = [
 
 export function MachineVisionContent() {
     return (
-        <div>
+        <div className="container">
             <h2 className="text-2xl font-bold mb-4">機器視覺</h2>
 
             <div className="flex flex-col gap-10">
