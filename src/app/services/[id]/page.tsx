@@ -53,10 +53,7 @@ export default async function ServicePage({ params }: Props) {
             <RwdComponent
                 mobileComponent={
                     <div className='pb-9'>
-                        <div className="flex flex-col gap-2 items-center justify-center">
-                            <h1 className="text-4xl font-bold text-[#044E7B]">{service.title}</h1>
-                            <p className="text-xl text-gray-400">{service.subtitle}</p>
-                        </div>
+                        <TitleSubtitle title={service.title} subtitle={service.subtitle} />
                     </div>
                 }
                 desktopComponent={<div />}
@@ -67,10 +64,7 @@ export default async function ServicePage({ params }: Props) {
                 <div className="flex flex-col items-stretch justify-end gap-[48px] order-2 md:order-1">
                     <RwdComponent
                         mobileComponent={<div />}
-                        desktopComponent={<div className="flex flex-col gap-2 items-center justify-center">
-                            <h1 className="text-4xl font-bold text-[#044E7B]">{service.title}</h1>
-                            <p className="text-xl text-gray-400">{service.subtitle}</p>
-                        </div>}
+                        desktopComponent={<TitleSubtitle title={service.title} subtitle={service.subtitle} />}
                     />
 
                     <div className="border-2 border-[#C5ECFF] rounded-lg p-8 min-h-[170px]">
@@ -95,4 +89,13 @@ export default async function ServicePage({ params }: Props) {
             </div>
         </div>
     )
-} 
+}
+
+function TitleSubtitle({ title, subtitle }: { title: string, subtitle: string }) {
+    return (
+        <div className="flex flex-col gap-2 items-center justify-center">
+            <h1 className="text-4xl font-bold text-[#044E7B]">{title}</h1>
+            <p className="text-xl text-gray-400">{subtitle}</p>
+        </div>
+    )
+}
