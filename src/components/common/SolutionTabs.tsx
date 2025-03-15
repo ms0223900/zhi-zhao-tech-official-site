@@ -69,7 +69,7 @@ export default function SolutionTabs({ tabs, activeTab, onTabChange }: SolutionT
     };
 
     return (
-        <div className="flex flex-wrap justify-center gap-[48px]">
+        <div className="flex flex-wrap justify-center gap-[48px] px-4 md:px-0">
             {tabs.map((tab) => (
                 <Tab
                     key={tab.label}
