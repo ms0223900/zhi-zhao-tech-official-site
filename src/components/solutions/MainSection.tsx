@@ -16,7 +16,7 @@ const MainSection = () => {
 
     return (
         <div>
-            <SectionTitle className="text-h1 text-[#044E7B]" title="智能系統應用" />
+            <SectionTitle className="text-[#044E7B]" title="智能系統應用" />
             <div className="py-11 max-w-[960px] mx-auto">
                 <SolutionTabs onTabChange={setActiveTab} tabs={solutionTabs} />
             </div>
@@ -32,7 +32,7 @@ const MainSection = () => {
 
 function SectionTitle({ title, className }: { title: string, className?: string }) {
     return (
-        <h2 className={cn("text-center text-h1 text-[#044E7B] pt-[30px] pb-6 font-bold mb-4 border-b border-[#044E7B] max-w-[732px] mx-auto", className)}>{title}</h2>
+        <h2 className={cn("text-center text-h1 pt-[30px] pb-6 font-bold mb-4 border-b border-[#044E7B] max-w-[732px] mx-auto", className)}>{title}</h2>
     )
 }
 
