@@ -59,8 +59,6 @@ export default async function ServicePage({ params }: Props) {
                 desktopComponent={<div />}
             />
             <div className="grid grid-cols-1 md:grid-cols-2">
-                {/* Left Content */}
-
                 <div className="flex flex-col items-stretch justify-end gap-[48px] order-2 md:order-1">
                     <RwdComponent
                         mobileComponent={<div />}
