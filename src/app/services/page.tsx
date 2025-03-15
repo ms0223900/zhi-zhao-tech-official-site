@@ -33,34 +33,58 @@ export default function ServicesPage() {
             <h1 className="text-4xl font-bold text-center mb-12">服務項目</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-[958px] mx-auto">
                 {serviceList.map((service, i) => (
-                    <Link
+                    <ServiceCard
                         key={service.id}
-                        href={`/services/${service.id}`}
-                        className="group block bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
-                    >
-                        <div className="aspect-w-16 aspect-h-14 bg-gray-100 h-[230px] overflow-hidden">
-                            <Image
-                                src={service.imageList[0]}
-                                alt={service.title}
-                                width={268}
-                                height={230}
-                                className="w-full h-full min-h-[230px] object-cover rounded-md"
-                            />
-                        </div>
-                        <div className="p-4 py-3 flex justify-between items-center">
-                            <div>
-                                <h3 className="text-xl font-semibold group-hover:text-blue-600 transition-colors">
-                                    {service.title}
-                                </h3>
-                                <p className="text-[#9D9D9D] pb-2">{service.subtitle}</p>
-                            </div>
-                            <div>
-                                <ArrowRight width={22} fill={getArrowColor(i)} />
-                            </div>
-                        </div>
-                    </Link>
+                        arrowColor={getArrowColor(i)}
+                        link={`/services/${service.id}`}
+                        image={service.imageList[0]}
+                        title={service.title}
+                        subtitle={service.subtitle}
+                    />
                 ))}
             </div>
         </div>
     )
-} 
+}
+
+function ServiceCard({
+    arrowColor = "#1E88E5",
+    link,
+    image,
+    title,
+    subtitle,
+}: {
+    arrowColor: string,
+    link: string,
+    image: string,
+    title: string,
+    subtitle: string,
+}) {
+    return (
+        <Link
+            href={link}
+            className="group block bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+        >
+            <div className="aspect-w-16 aspect-h-14 bg-gray-100 h-[230px] overflow-hidden">
+                <Image
+                    src={image}
+                    alt={title}
+                    width={268}
+                    height={230}
+                    className="w-full h-full min-h-[230px] object-cover rounded-md"
+                />
+            </div>
+            <div className="p-4 py-3 flex justify-between items-center">
+                <div>
+                    <h3 className="text-xl font-semibold group-hover:text-blue-600 transition-colors">
+                        {title}
+                    </h3>
+                    <p className="text-[#9D9D9D] pb-2">{subtitle}</p>
+                </div>
+                <div>
+                    <ArrowRight width={22} fill={arrowColor} />
+                </div>
+            </div>
+        </Link>
+    )
+}
