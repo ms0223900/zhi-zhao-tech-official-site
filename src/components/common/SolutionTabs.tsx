@@ -55,27 +55,17 @@ interface SolutionTabsProps {
 }
 
 export default function SolutionTabs({ tabs, activeTab, onTabChange }: SolutionTabsProps) {
-    const [activeTabState, setActiveTabState] = useState(activeTab || tabs[0]?.label);
+    const [activeTabState, setActiveTabState] = useState(activeTab || tabs[0]?.key);
 
     // Update active tab based on hash in URL
     useEffect(() => {
-        const handleHashChange = () => {
-            const hash = window.location.hash;
-            if (hash) {
-                const matchingTab = tabs.find(tab => tab.href === hash);
-                if (matchingTab) {
-                    setActiveTabState(matchingTab.label);
-                    if (onTabChange) {
-                        onTabChange(matchingTab.label);
-                    }
-                }
-            }
-        };
-
-        handleHashChange(); // Check on initial load
-        window.addEventListener('hashchange', handleHashChange);
-        return () => window.removeEventListener('hashchange', handleHashChange);
-    }, [tabs, onTabChange]);
+        if (activeTab) {
+            setActiveTabState(activeTab);
+        }
+        if (onTabChange) {
+            onTabChange(activeTabState);
+        }
+    }, [activeTabState, onTabChange, activeTab]);
 
     const handleTabClick = (label: string) => {
         setActiveTabState(label);
@@ -91,7 +81,7 @@ export default function SolutionTabs({ tabs, activeTab, onTabChange }: SolutionT
                     key={tab.label}
                     label={tab.label}
                     href={tab.href}
-                    isActive={tab.label === (activeTab || activeTabState)}
+                    isActive={tab.key === activeTabState}
                     onClick={() => handleTabClick(tab.key)}
                 />
             ))}
