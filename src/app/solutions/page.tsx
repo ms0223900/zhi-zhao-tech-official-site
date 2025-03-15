@@ -4,7 +4,7 @@ import MainSection from "@/components/solutions/MainSection"
 
 export const metadata = {
     title: '解決方案',
-    description: '我們的解決方案',
+    description: '智兆的解決方案',
 }
 
 export default function SolutionsPage() {
