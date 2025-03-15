@@ -3,6 +3,7 @@ import { ProductCarousel } from './ProductCarousel';
 import RwdComponent from '../common/RwdComponent';
 import ServiceCarousel from '../common/CarouselWithNavList';
 import { SpecificationTable, SpecificationItem } from './SpecificationTable';
+import MainContentContainer from '../common/MainContentContainer';
 
 const machineVisionProductImageList = [
     "/images/machine-vision/machine-vision-1.jpg",
@@ -39,20 +40,44 @@ export function MachineVisionContent() {
         <div>
             <h2 className="text-2xl font-bold mb-4">機器視覺</h2>
 
-            <div className="flex flex-col md:flex-row gap-8 mb-6">
-                <div className="w-full md:w-[420px] flex flex-col items-center gap-6">
-                    <h1 className="text-center text-h1 text-[#044E7B] font-bold mb-4">機器視覺</h1>
-                    <SpecificationTable
-                        specifications={cameraSpecifications}
-                        className="shadow-sm"
-                    />
-                </div>
-                <div className="w-full md:w-[540px]">
-                    <RwdComponent
-                        mobileComponent={<ProductCarousel productImageList={machineVisionProductImageList} />}
-                        desktopComponent={<ServiceCarousel imageList={machineVisionProductImageList} />}
-                    />
-                </div>
+            <div className="flex flex-col gap-10">
+                <section className="flex flex-col md:flex-row gap-8 mb-6">
+                    <div className="w-full md:w-[420px] flex flex-col items-center gap-6">
+                        <h1 className="text-center text-h1 text-[#044E7B] font-bold mb-4">機器視覺</h1>
+                        <SpecificationTable
+                            specifications={cameraSpecifications}
+                            className="shadow-sm"
+                        />
+                    </div>
+                    <div className="w-full md:w-[540px]">
+                        <RwdComponent
+                            mobileComponent={<ProductCarousel productImageList={machineVisionProductImageList} />}
+                            desktopComponent={<ServiceCarousel imageList={machineVisionProductImageList} />}
+                        />
+                    </div>
+                </section>
+
+                <section>
+                    <h2 className="text-2xl font-bold mb-4 text-center">適用範圍</h2>
+                    <MainContentContainer className="py-6">
+                        <RwdComponent
+                            mobileComponent={<p className="whitespace-pre-line text-left md:px-[92px] leading-8 text-h4">
+                                {` a. 判讀工廠基礎設施數值：讀取畫面來判定指針型或數字型液壓、氣壓計……等， 將圖型轉換為文字，24小時監視數值是否位於安全範圍內。
+
+b. 監視設備重要參數，如電壓、電流值是否穩定輸出，可將影像轉換為文字，24小 時監視數值是否位於作業範圍內。
+
+c. 監視關鍵製程或人員作業是否按SOP執行，比對機器或人員實際作業影像與標準流程是否一致。
+                    `}
+                            </p>}
+                            desktopComponent={<p className="whitespace-pre-line text-left md:px-[92px] leading-8 text-h4">
+                                {` a. 判讀工廠基礎設施數值：讀取畫面來判定指針型或數字型液壓、氣壓計……等， 將圖型轉換為文字，24小時監視數值是否位於安全範圍內。
+b. 監視設備重要參數，如電壓、電流值是否穩定輸出，可將影像轉換為文字，24小 時監視數值是否位於作業範圍內。
+c. 監視關鍵製程或人員作業是否按SOP執行，比對機器或人員實際作業影像與標準流程是否一致。
+                    `}
+                            </p>}
+                        />
+                    </MainContentContainer>
+                </section>
             </div>
         </div>
     );
