@@ -19,7 +19,10 @@ export function ParticleSensorContent() {
             />
             <div className="flex flex-col md:flex-row gap-8 mb-6 md:items-end">
                 <div className="w-full md:w-[450px] order-2 md:order-1 md:px-6">
-                    <h2 className="text-h2 font-bold mb-[80px] text-center">Particle Sensor</h2>
+                    <RwdComponent
+                        mobileComponent={<></>}
+                        desktopComponent={<h2 className="text-h2 font-bold mb-[80px] text-center">Particle Sensor</h2>}
+                    />
                     <RwdComponent
                         mobileComponent={<></>}
                         desktopComponent={<h3 className="text-h3 font-bold pb-6 text-center">粉塵溫濕度感測器 量測範圍</h3>}

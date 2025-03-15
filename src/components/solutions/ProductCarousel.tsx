@@ -59,13 +59,13 @@ export function ProductCarousel({ productImageList }: ProductCarouselProps) {
 
     return (
         <div className="relative">
-            <Slider {...settings} className="w-full aspect-[16/9]">
+            <Slider {...settings} className="w-full rounded-md">
                 {productImageList.map((image, index) => (
-                    <div key={index} className="relative aspect-[16/9]">
+                    <div key={index} className="relative aspect-[4/3]">
                         <img
                             src={image}
                             alt={`Product Image ${index + 1}`}
-                            className="w-full h-full object-cover"
+                            className="w-full h-full object-cover rounded-md"
                         />
                     </div>
                 ))}
