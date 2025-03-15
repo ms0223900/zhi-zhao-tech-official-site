@@ -13,9 +13,12 @@ const particleSensorProductImageList = [
 export function ParticleSensorContent() {
     return (
         <div className="container">
-            <h2 className="text-2xl font-bold mb-4">Particle Sensor Solution</h2>
+            <RwdComponent
+                mobileComponent={<h2 className="text-2xl font-bold mb-4 text-center">Particle Sensor</h2>}
+                desktopComponent={<></>}
+            />
             <div className="flex flex-col md:flex-row gap-8 mb-6 ">
-                <div className="w-full md:w-[420px] order-2 md:order-1">
+                <div className="w-full md:w-[450px] order-2 md:order-1 md:px-6">
                     <MainContentContainer className="md:text-center text-left">
                         <RwdComponent
                             mobileComponent={<h3 className="text-h3 font-bold pb-8 text-primary-blue">粉塵溫濕度感測器 量測範圍</h3>}
@@ -28,7 +31,7 @@ export function ParticleSensorContent() {
                         </p>
                     </MainContentContainer>
                 </div>
-                <div className="w-full md:w-[540px] md:order-2 order-1">
+                <div className="w-full md:w-[480px] md:order-2 order-1">
                     <RwdComponent
                         mobileComponent={<ProductCarousel productImageList={particleSensorProductImageList} />}
                         desktopComponent={<ServiceCarousel imageList={particleSensorProductImageList} />}

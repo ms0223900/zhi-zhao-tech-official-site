@@ -54,7 +54,7 @@ export default function ServiceCarousel({ imageList, }: Props) {
                     className="gap-slider"
                 >
                     {imageList.map((image, index) => (
-                        <div key={index} className="aspect-w-16 aspect-h-9 px-1">
+                        <div key={index} className="aspect-video px-1">
                             <img
                                 src={image}
                                 alt={`圖片 ${index + 1}`}
