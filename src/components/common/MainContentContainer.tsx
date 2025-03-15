@@ -1,4 +1,4 @@
-import { cn } from "../../../utils/cn";
+import { cn } from "@/utils/cn";
 
 const MainContentContainer = ({ className, children }: { className?: string, children: React.ReactNode }) => {
     return (
