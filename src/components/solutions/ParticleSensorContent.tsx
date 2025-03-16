@@ -56,14 +56,14 @@ function LinkSection() {
     return (
         <div className="container flex md:flex-row flex-col gap-[30px] justify-center py-[75px]">
             <LinkCard
-                link="https://www.google.com"
-                image="/images/particle-sensor/product-1.jpg"
+                link="https://www.google.com" // TODO: 改成實際連結
+                image="/images/particle-sensor/particle-sensor-console.jpg"
                 title="中控台畫面圖"
                 subtitle="廠房"
             />
             <LinkCard
-                link="https://www.google.com"
-                image="/images/particle-sensor/product-1.jpg"
+                link="https://www.google.com" // TODO: 改成實際連結
+                image="/images/particle-sensor/particle-sensor-system-structure.jpg"
                 title="系統架構圖"
                 subtitle="廠房"
             />
