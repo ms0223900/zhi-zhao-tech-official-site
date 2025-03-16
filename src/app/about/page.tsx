@@ -72,9 +72,9 @@ function WelcomeSection() {
 function CoreValuesSection() {
     const coreValues = [
         { icon: "/images/icons/icon-passion.svg", title: "熱忱" },
-        { icon: "/images/icons/icon-passion.svg", title: "專業" },
-        { icon: "/images/icons/icon-passion.svg", title: "團隊" },
-        { icon: "/images/icons/icon-passion.svg", title: "誠信" },
+        { icon: "/images/icons/icon-professional.svg", title: "專業" },
+        { icon: "/images/icons/icon-team.svg", title: "團隊" },
+        { icon: "/images/icons/icon-honest.svg", title: "誠信" },
     ];
 
     return (
