@@ -195,7 +195,7 @@ function ActualCaseItem({ title, description }: { title: string, description: Re
 }
 function ActualCaseSection() {
     return (
-        <section className="bg-gray-50 -mx-4 md:mx-0 px-4 py-12">
+        <section className="md:mx-0 px-4 py-12">
             <SectionTitle title="實際應用案例" />
 
             <div className="container grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
