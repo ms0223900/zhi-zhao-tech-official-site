@@ -1,15 +1,18 @@
 import Link from "next/link";
 import Image from "next/image";
 import ArrowRight from "/public/images/icons/icon-long-arrow-right.svg";
+import { cn } from "@/utils/cn";
 
 function LinkCard({
     arrowColor = "#1E88E5",
+    imageWrapperClassName,
     link,
     image,
     title,
     subtitle,
 }: {
     arrowColor?: string,
+    imageWrapperClassName?: string,
     link: string,
     image: string,
     title: string,
@@ -20,7 +23,7 @@ function LinkCard({
             href={link}
             className="w-full group block bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
         >
-            <div className="aspect-w-16 aspect-h-14 bg-gray-100 h-[230px] overflow-hidden">
+            <div className={cn("aspect-w-16 aspect-h-14 bg-gray-100 h-[230px] overflow-hidden", imageWrapperClassName)}>
                 <Image
                     src={image}
                     alt={title}

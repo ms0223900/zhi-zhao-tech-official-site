@@ -44,7 +44,7 @@ export default async function ProjectsPage() {
     const projects = await asyncGetProjects();
 
     return (
-        <main className="container mx-auto px-4 py-8">
+        <main className="container mx-auto px-4 py-8 min-h-screen">
             <h1 className="text-3xl font-bold mb-6">工程實績</h1>
             <ProjectList projects={projects} />
         </main>

@@ -51,6 +51,7 @@ const ProjectList = ({ projects }: ProjectListProps) => {
                 {currentProjects.map((project) => (
                     <LinkCard
                         key={project.id}
+                        imageWrapperClassName="aspect-[1.818] h-auto"
                         link={`/projects/${project.id}`}
                         title={project.title}
                         subtitle={project.subtitle}
