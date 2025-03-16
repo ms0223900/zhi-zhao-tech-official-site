@@ -1,5 +1,6 @@
 'use client';
 import { Project } from "@/types/Project";
+import replaceS3UrlWithCloudFront from "@/utils/replaceS3UrlWithCloudFront";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -53,7 +54,7 @@ const ProjectList = ({ projects }: ProjectListProps) => {
                         {project.image.map((image) => (
                             <div key={image.url} className="h-48 relative">
                                 <Image
-                                    src={image.url}
+                                    src={replaceS3UrlWithCloudFront(image.url)}
                                     alt={project.title}
                                     fill
                                     className="object-cover"
