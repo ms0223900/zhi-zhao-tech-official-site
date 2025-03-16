@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React from 'react';
 import { ProductCarousel } from './ProductCarousel';
 import RwdComponent from '../common/RwdComponent';
@@ -91,6 +92,7 @@ export function ParticleSensorContent() {
                     />
                 </div>
             </section>
+
             <section className="bg-white -mx-4 md:mx-0 px-4">
                 <SectionTitle title="產品優勢" />
                 <div className="container grid grid-cols-1 md:grid-cols-2 gap-4 py-6 ">
@@ -103,6 +105,55 @@ export function ParticleSensorContent() {
                             iconSrc={item.iconSrc}
                         />
                     ))}
+                </div>
+            </section>
+
+            <section>
+                <div className="container">
+                    <SectionTitle title="實際案例分享" />
+                    <div className="flex flex-col gap-7 items-center">
+                        <RwdComponent
+                            mobileComponent={<></>}
+                            desktopComponent={<h2 className="text-h2 font-regular text-center">適用範圍</h2>}
+                        />
+                        <button className="bg-transparent border-2 border border-blue-300 rounded-full py-2 px-[80px] text-center">
+                            {"IQC進料檢驗"}
+                        </button>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div className="w-full md:w-[50%] w-full">
+                                <img src="/images/particle-sensor/iqc-case.jpg" alt="IQC進料檢驗" className="w-full rounded-md" />
+                            </div>
+                            <div className="flex flex-col md:w-[50%] w-full justify-center">
+                                <div className="rounded-md p-6">
+                                    <MainContentContainer>
+                                        <ul className="space-y-2">
+                                            <h4> 高速攝影辨識： </h4>
+                                            <li className="flex items-start">
+                                                <span className="mr-2">•</span>
+                                                <span>組裝時間計算 流程管制</span>
+                                            </li>
+                                            <li className="flex items-start">
+                                                <span className="mr-2">•</span>
+                                                <span>人員管控</span>
+                                            </li>
+                                            <li className="flex items-start">
+                                                <span className="mr-2">•</span>
+                                                <span>開關步驟檢測</span>
+                                            </li>
+                                            <li className="flex items-start">
+                                                <span className="mr-2">•</span>
+                                                <span>圖像轉文字 → 匯入excel → 生成管制圖</span>
+                                            </li>
+                                            <li className="flex items-start">
+                                                <span className="mr-2">•</span>
+                                                <span>組裝元件檢測</span>
+                                            </li>
+                                        </ul>
+                                    </MainContentContainer>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
         </div>
