@@ -2,13 +2,13 @@
 
 import { services } from '@/components/services/data'
 import { Metadata } from 'next'
-import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import ServiceCarousel from '@/components/common/CarouselWithNavList'
 import RwdComponent from '@/components/common/RwdComponent'
 import MainContentContainer from '@/components/common/MainContentContainer'
+import BackButton from '@/components/common/BackButton'
 
 interface Props {
     params: Promise<{ id: string }>;
@@ -45,12 +45,7 @@ export default async function ServicePage({ params }: Props) {
     return (
         <div className="container mx-auto px-4 py-16 max-w-[960px]">
             {/* Back button */}
-            <Link
-                href="/services"
-                className="inline-flex items-center px-6 py-2 mb-8 rounded-full bg-blue-500 transition-colors"
-            >
-                回上一頁
-            </Link>
+            <BackButton />
             <RwdComponent
                 mobileComponent={
                     <div className='pb-9'>
