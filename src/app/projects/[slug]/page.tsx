@@ -12,6 +12,26 @@ interface ProjectDetailProps {
     }>
 }
 
+/**
+ * 將 S3 Bucket URL 替換為 CloudFront URL
+ * @param url - 原始圖片URL
+ * @returns 替換後的圖片URL
+ */
+function replaceS3UrlWithCloudFront(url: string): string {
+    if (!url) return url;
+
+    const s3BucketUrl = process.env.NEXT_PUBLIC_S3_BUCKET_URL;
+    const cloudFrontUrl = process.env.NEXT_PUBLIC_S3_CLOUDFRONT_URL;
+
+    if (!s3BucketUrl || !cloudFrontUrl) {
+        console.warn('Missing S3 or CloudFront URL in environment variables');
+        return url;
+    }
+
+    return url.replace(s3BucketUrl, cloudFrontUrl);
+}
+
+
 async function asyncGetProject(id: string): Promise<Project> {
     try {
         const { data } = await client.query<{
@@ -133,12 +153,12 @@ export default async function ProjectDetail({ params }: ProjectDetailProps) {
             </div>
 
             {/* Main Content Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+            <div className="grid grid-cols-1 md:grid-cols-[40%_60%] gap-3 mb-16">
                 {/* Project Image */}
-                <div className="bg-gray-200 aspect-square relative">
+                <div className="bg-gray-200 aspect-[3/2] rounded-lg overflow-hidden relative">
                     {project.image?.[0] && (
                         <Image
-                            src={project.image[0].url}
+                            src={replaceS3UrlWithCloudFront(project.image[0].url)}
                             alt={project.title}
                             fill
                             className="object-cover"
@@ -147,24 +167,24 @@ export default async function ProjectDetail({ params }: ProjectDetailProps) {
                 </div>
 
                 {/* Project Details */}
-                <div className="space-y-6">
-                    <div>
-                        <h3 className="text-lg font-medium mb-2">工程地址：</h3>
-                        <p>{project.description}</p>
+                <div className="bg-[#fffef0] border border-[#e6e6c8] rounded-lg p-6 space-y-4">
+                    <div className="flex items-center">
+                        <span className="text-lg lr-1">工程地址：</span>
+                        <span className="text-gray-700">{project.description}</span>
                     </div>
-                    <div>
-                        <h3 className="text-lg font-medium mb-2">工程簡述：</h3>
-                        <p>{project.description}</p>
+                    <div className="flex items-center">
+                        <span className="text-lg lr-1">工程簡述：</span>
+                        <span className="text-gray-700">{project.description}</span>
                     </div>
                     {project.from && project.until && (
-                        <div>
-                            <h3 className="text-lg font-medium mb-2">工程期間：</h3>
-                            <p>{project.from} ~ {project.until}</p>
+                        <div className="flex items-center">
+                            <span className="text-lg lr-1">工程期間：</span>
+                            <span className="text-gray-700">{project.from} ~ {project.until}</span>
                         </div>
                     )}
-                    <div>
-                        <h3 className="text-lg font-medium mb-2">承攬系統：</h3>
-                        <p>{project.related_project_genre?.title}</p>
+                    <div className="flex items-center">
+                        <span className="text-lg lr-1">承攬系統：</span>
+                        <span className="text-gray-700">{project.related_project_genre?.title}</span>
                     </div>
                 </div>
             </div>
