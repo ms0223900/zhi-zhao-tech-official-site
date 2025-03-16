@@ -1,12 +1,12 @@
 import { Project } from '@/types/Project'
 import Image from 'next/image'
-import Link from 'next/link'
 import { ProjectVoConverter } from "../ProjectDto"
 import { ProjectDto } from "../ProjectDto"
 import { client } from "@/gql/client"
 import { gql } from '@apollo/client'
 import replaceS3UrlWithCloudFront from '@/utils/replaceS3UrlWithCloudFront'
 import LinkCard from '@/components/common/LinkCard'
+import BackButton from '@/components/common/BackButton'
 
 interface ProjectDetailProps {
     params: Promise<{
@@ -123,12 +123,7 @@ export default async function ProjectDetail({ params }: ProjectDetailProps) {
         <div className="theme-gradient-blue min-h-screen">
             <div className="container mx-auto px-4 py-8 ">
                 {/* Back Button */}
-                <Link
-                    href="/projects"
-                    className="inline-flex items-center mb-8 text-gray-600 hover:text-gray-900"
-                >
-                    ← 回上一頁
-                </Link>
+                <BackButton />
 
                 {/* Title Section */}
                 <div className="mb-12 text-center">
