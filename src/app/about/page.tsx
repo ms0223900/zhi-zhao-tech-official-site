@@ -429,10 +429,7 @@ function FutureGoalsSection() {
     return (
         <section className="py-16 bg-white">
             <div className="container mx-auto px-8 max-w-[958px]">
-                <div className="text-center mb-12">
-                    <h2 className="text-4xl font-bold mb-2">未來目標</h2>
-                    <p className="text-gray-600">Goals</p>
-                </div>
+                <TitleWithEngSubtitle title="未來目標" subtitle="Goals" />
 
                 <div className="flex flex-col md:flex-row gap-8 items-center">
                     <div className="relative md:w-1/2">
@@ -476,10 +473,8 @@ function EnergyManagementSolutionSection() {
     return (
         <section className="relative py-16 bg-white bg-gradient-to-r to-[#BBE4FF] from-[#FFFFFF]">
             <div className="container mx-auto max-w-[958px]">
-                <div className="text-center mb-12">
-                    <h2 className="text-4xl font-bold mb-2">能源管理解決方案</h2>
-                    <p className="text-gray-600">Energy Management Solution</p>
-                </div>
+                <TitleWithEngSubtitle title="能源管理解決方案" subtitle="Energy Management Solutions" />
+
                 <div>
                     <div className="relative flex w-full">
                         <div className="relative flex z-10 md:text-h3">
