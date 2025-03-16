@@ -26,7 +26,7 @@ export default {
         'h3': ['20px', { lineHeight: 'auto', fontWeight: '500' }],
         'h4': ['18px', { lineHeight: 'auto', fontWeight: '400' }],
         'h5': ['16px', { lineHeight: 'auto', fontWeight: '400' }],
-        'h6': ['14px', { lineHeight: 'auto', fontWeight: '400' }],
+        'h6': ['14px', { letterSpacing: '0.12rem', lineHeight: 'auto', fontWeight: '400' }],
       },
       keyframes: {
         'slide-in-right': {
