@@ -205,23 +205,23 @@ function ActualCaseSection() {
             </div>
 
             <div className="container mt-8">
-                <div className="grid grid-cols-1 md:grid-cols-2">
-                    <div className="flex flex-col gap-3 items-center">
-                        <button className="bg-transparent border-2 border border-blue-300 rounded-full py-2 px-[80px] text-center">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="flex flex-col gap-4 items-center">
+                        <button className="bg-transparent border-2 border border-blue-300 rounded-full py-2 md:px-[80px] px-[60px] text-center">
                             {"ESP03：T3固晶機內櫃"}
                         </button>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-                            <img src="/images/particle-sensor/ESP02-T3-appearance.jpg" alt="ESP02：T3印刷機內" className="w-full h-auto" />
-                            <img src="/images/particle-sensor/ESP02-T3-appearance.jpg" alt="ESP02：T3印刷機內" className="w-full h-auto" />
+                        <div className="grid grid-cols-2 gap-4 mb-8">
+                            <img src="/images/particle-sensor/ESP03-1.jpg" alt="ESP02：T3印刷機內" className="w-full h-auto" />
+                            <img src="/images/particle-sensor/ESP03-2.jpg" alt="ESP02：T3印刷機內" className="w-full h-auto" />
                         </div>
                     </div>
-                    <div className="flex flex-col gap-3 items-center">
-                        <button className="bg-transparent border-2 border border-blue-300 rounded-full py-2 px-[80px] text-center">
+                    <div className="flex flex-col gap-4 items-center">
+                        <button className="bg-transparent border-2 border border-blue-300 rounded-full py-2 md:px-[80px] px-[60px] text-center">
                             {"ESP02：T3印刷機內"}
                         </button>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                            <img src="/images/particle-sensor/ESP02-T3-appearance.jpg" alt="ESP02：T3印刷機內" className="w-full h-auto" />
-                            <img src="/images/particle-sensor/ESP02-T3-appearance.jpg" alt="ESP02：T3印刷機內" className="w-full h-auto" />
+                        <div className="grid grid-cols-2 gap-4 mb-8">
+                            <img src="/images/particle-sensor/ESP02-1.jpg" alt="ESP02：T3印刷機內" className="w-full h-auto" />
+                            <img src="/images/particle-sensor/ESP02-2.jpg" alt="ESP02：T3印刷機內" className="w-full h-auto" />
                         </div>
                     </div>
                 </div>
