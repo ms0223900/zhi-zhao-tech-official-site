@@ -4,6 +4,7 @@ import Link from "next/link";
 import React from "react";
 import { CarouselBanner } from "../components/home/CarouselBanner";
 import RwdComponent from "@/components/common/RwdComponent";
+import TitleWithEngSubtitle from "@/components/common/TitleWithEngSubtitle";
 
 export const metadata: Metadata = {
   title: "智兆科技 | Zhi Zhao Tech",
@@ -133,15 +134,6 @@ const linkCardDataList = [
   },
 ];
 
-function TitleWithEngSubtitle({ title, subtitle }: { title: string, subtitle: string }) {
-  return (
-    <div className="flex flex-col items-center justify-center gap-1 mb-12">
-      <h2 className="text-center text-h2 font-bold ">{title}</h2>
-      <span className="text-h6 text-[#A6A4A4]">{subtitle}</span>
-    </div>
-  )
-}
-
 export default async function Home() {
   const news = await asyncGetNews();
 
@@ -207,7 +199,7 @@ export default async function Home() {
       {/* Service Categories Section */}
       <section className="py-16 theme-gradient-blue">
         <div className="container mx-auto px-8">
-          <h2 className="text-center text-3xl font-bold mb-12">六大服務宗旨</h2>
+          <TitleWithEngSubtitle title="六大服務宗旨" subtitle="Purpose" />
           <div className="flex flex-wrap justify-center max-w-[635px] mx-auto md:grid md:grid-cols-3 gap-6 md:gap-8 md:items-center md:justify-items-center">
             {serviceCardDataList.map((item, index) => (
               <RwdComponent
