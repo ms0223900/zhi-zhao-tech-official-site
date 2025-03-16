@@ -9,7 +9,7 @@ function LinkCard({
     title,
     subtitle,
 }: {
-    arrowColor: string,
+    arrowColor?: string,
     link: string,
     image: string,
     title: string,
@@ -18,7 +18,7 @@ function LinkCard({
     return (
         <Link
             href={link}
-            className="group block bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+            className="w-full group block bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
         >
             <div className="aspect-w-16 aspect-h-14 bg-gray-100 h-[230px] overflow-hidden">
                 <Image

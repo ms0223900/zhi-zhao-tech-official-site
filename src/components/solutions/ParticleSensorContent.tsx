@@ -4,6 +4,7 @@ import { ProductCarousel } from './ProductCarousel';
 import RwdComponent from '../common/RwdComponent';
 import ServiceCarousel from '../common/CarouselWithNavList';
 import MainContentContainer from '../common/MainContentContainer';
+import LinkCard from '../common/LinkCard';
 
 const particleSensorProductImageList = [
     "/images/particle-sensor/product-1.jpg",
@@ -46,6 +47,26 @@ export function ParticleSensorContent() {
                     />
                 </div>
             </section>
+            <LinkSection />
         </div>
     );
-} 
+}
+
+function LinkSection() {
+    return (
+        <div className="container flex md:flex-row flex-col gap-[30px] justify-center py-[75px]">
+            <LinkCard
+                link="https://www.google.com"
+                image="/images/particle-sensor/product-1.jpg"
+                title="中控台畫面圖"
+                subtitle="廠房"
+            />
+            <LinkCard
+                link="https://www.google.com"
+                image="/images/particle-sensor/product-1.jpg"
+                title="系統架構圖"
+                subtitle="廠房"
+            />
+        </div>
+    )
+}
