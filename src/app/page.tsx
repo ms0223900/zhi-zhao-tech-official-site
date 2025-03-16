@@ -150,7 +150,7 @@ export default async function Home() {
       </section>
 
       {/* News Section */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 theme-gradient-blue">
         <div className="container mx-auto px-8 max-w-[958px]">
           <h2 className="text-center text-3xl font-bold mb-12">最新消息</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -287,7 +287,7 @@ interface NewsCardProps {
 
 function NewsCard({ category, content, date, bgColor, textColor }: NewsCardProps) {
   return (
-    <div className="bg-white p-6 rounded-md shadow-sm">
+    <div className="p-6">
       <span className={`${bgColor} ${textColor} text-sm font-medium px-3 py-1 rounded-md`}>
         {category}
       </span>
