@@ -16,6 +16,7 @@ async function asyncGetProjects(): Promise<Project[]> {
                 projects {
                     documentId
                     title
+                    subtitle
                     description
                     image {
                         url
