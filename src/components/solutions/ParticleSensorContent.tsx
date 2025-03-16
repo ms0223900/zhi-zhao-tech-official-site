@@ -51,6 +51,7 @@ export function ParticleSensorContent() {
             </section>
             <LinkSection />
             <ProductAdvantageSection />
+            <ActualCaseSection />
         </div>
     );
 }
@@ -125,4 +126,83 @@ function ProductAdvantageSection() {
             </div>
         </section>
     )
+}
+
+// actual case section
+const actualCaseList = [
+    {
+        title: "工廠簡介",
+        description: <>
+            中國Mini LED、COB封裝技術的龍頭企業，<br />
+            全球員工人數超過1000人。
+        </>,
+    },
+    {
+        title: "導入過程",
+        description: <>
+            隨插隨用，方便安裝，在金屬機殼屏蔽條件下，<br />
+            WiFi訊息仍可連接AP，順利上傳環境數值。
+        </>,
+    },
+    {
+        title: "試用背景",
+        description: <>
+            現有的手持式粒子計數器為人工定時定點測試，<br />
+            人工記錄數據，人工監控有無異常，<br />
+            無法做到動態測試，即時監控及異常自動警報，<br />
+            為實現此功能有選用一款粒子計數器(PTH Sensor)進行試用，<br />
+            以提高潔淨車間粒子監測的準確性和及時性，和滿足新客戶/新產品對潔淨車間的需求。
+        </>,
+    },
+    {
+        title: "試用總結",
+        description: <ul className="text-gray-700 space-y-2">
+            <li className="flex items-start">
+                <span className="font-medium mr-2">1.</span>
+                <span>無需人員維護及手動量測</span>
+            </li>
+            <li className="flex items-start">
+                <span className="font-medium mr-2">2.</span>
+                <span>測量數據即時且真實</span>
+            </li>
+            <li className="flex items-start">
+                <span className="font-medium mr-2">3.</span>
+                <span>WiFi訊號達50公尺幅射半徑，且能穿透機台金屬屏蔽</span>
+            </li>
+            <li className="flex items-start">
+                <span className="font-medium mr-2">4.</span>
+                <span>監測頁面可結合現有電子廣告看板，執行走動目視管理</span>
+            </li>
+            <li className="flex items-start">
+                <span className="font-medium mr-2">5.</span>
+                <span>得出環境數值與現有量測儀器比較之下無顯著差異</span>
+            </li>
+        </ul>
+    }
+]
+
+function ActualCaseItem({ title, description }: { title: string, description: React.ReactNode }) {
+    return (
+        <div className="bg-white rounded-lg p-6">
+            <h3 className="text-lg font-bold mb-4 text-primary-blue flex items-center">
+                <span className="mr-2 text-xl">::</span> {title}
+            </h3>
+            <p className="text-gray-700">
+                {description}
+            </p>
+        </div>
+    )
+}
+function ActualCaseSection() {
+    return (
+        <section className="bg-gray-50 -mx-4 md:mx-0 px-4 py-12">
+            <SectionTitle title="實際應用案例" />
+
+            <div className="container grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+                {actualCaseList.map((item, index) => (
+                    <ActualCaseItem key={index} title={item.title} description={item.description} />
+                ))}
+            </div>
+        </section>
+    );
 }
