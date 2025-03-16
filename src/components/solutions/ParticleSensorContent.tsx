@@ -203,6 +203,37 @@ function ActualCaseSection() {
                     <ActualCaseItem key={index} title={item.title} description={item.description} />
                 ))}
             </div>
+
+            <div className="container mt-8">
+                <div className="grid grid-cols-1 md:grid-cols-2">
+                    <div className="flex flex-col gap-3 items-center">
+                        <button className="bg-transparent border-2 border border-blue-300 rounded-full py-2 px-[80px] text-center">
+                            {"ESP03：T3固晶機內櫃"}
+                        </button>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                            <img src="/images/particle-sensor/ESP02-T3-appearance.jpg" alt="ESP02：T3印刷機內" className="w-full h-auto" />
+                            <img src="/images/particle-sensor/ESP02-T3-appearance.jpg" alt="ESP02：T3印刷機內" className="w-full h-auto" />
+                        </div>
+                    </div>
+                    <div className="flex flex-col gap-3 items-center">
+                        <button className="bg-transparent border-2 border border-blue-300 rounded-full py-2 px-[80px] text-center">
+                            {"ESP02：T3印刷機內"}
+                        </button>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                            <img src="/images/particle-sensor/ESP02-T3-appearance.jpg" alt="ESP02：T3印刷機內" className="w-full h-auto" />
+                            <img src="/images/particle-sensor/ESP02-T3-appearance.jpg" alt="ESP02：T3印刷機內" className="w-full h-auto" />
+                        </div>
+                    </div>
+                </div>
+
+                <MainContentContainer className="py-6 md:max-w-[700px] mx-auto">
+                    <p className="text-gray-700 leading-7">
+                        通過本次使用，我們對粒子計數器(PT+ Sensor)有了更深入的了解，比粒子計數器具有自動測量、全程監測、掌握操作變數、預了解子計數功能以外，附帶的溫溼度功能能夠適度提供環境溫濕度監測的數據，讓控管更加可靠且大幅上傳材料產量/成品/半成品等，可再性更穩定、QC為一段行政附公差。
+                    </p>
+                </MainContentContainer>
+            </div>
         </section>
     );
 }
+
+
