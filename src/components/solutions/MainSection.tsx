@@ -20,7 +20,7 @@ const MainSection = () => {
             <div className="py-11 max-w-[960px] mx-auto">
                 <SolutionTabs onTabChange={setActiveTab} tabs={solutionTabs} />
             </div>
-            <div className="mx-auto px-4 md:px-0 py-8">
+            <div className="mx-auto px-6 md:px-0 py-8">
                 {activeTab === 'particleSensor' ? (
                     <ParticleSensorContent />
                 ) : (
