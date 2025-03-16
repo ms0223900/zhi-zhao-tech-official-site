@@ -183,8 +183,8 @@ const actualCaseList = [
 
 function ActualCaseItem({ title, description }: { title: string, description: React.ReactNode }) {
     return (
-        <div className="bg-white rounded-lg p-6">
-            <h3 className="text-lg font-bold mb-4 text-primary-blue flex items-center">
+        <div className="rounded-lg">
+            <h3 className="text-lg font-bold pb-3 text-primary-blue flex items-center">
                 <span className="mr-2 text-xl">::</span> {title}
             </h3>
             <p className="text-gray-700">
