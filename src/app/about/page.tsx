@@ -3,6 +3,7 @@ import { Metadata } from "next";
 import RelatedIndustriesSection from "@/components/about/RelatedIndustriesSection";
 import React from "react";
 import Banner from "@/components/common/Banner";
+import TitleWithEngSubtitle from "@/components/common/TitleWithEngSubtitle";
 
 export const metadata: Metadata = {
     title: "About",
@@ -259,10 +260,7 @@ function CompanyHistorySection() {
     return (
         <section className="py-[56px] pb-[260px] bg-white">
             <div className="container mx-auto px-8 max-w-[958px]">
-                <div className="text-center mb-12">
-                    <h2 className="text-3xl font-bold mb-2">企業沿革</h2>
-                    <p className="text-gray-600">Enterprise History</p>
-                </div>
+                <TitleWithEngSubtitle title="企業沿革" subtitle="Enterprise History" />
 
                 <div className="relative mt-20 w-[92%]">
                     {/* Timeline line */}
@@ -309,10 +307,8 @@ function MobileCompanyHistorySection() {
     return (
         <section className="py-16 bg-white">
             <div className="container mx-auto px-4 max-w-[958px]">
-                <div className="text-center mb-12">
-                    <h2 className="text-3xl font-bold mb-2">企業沿革</h2>
-                    <p className="text-gray-600">Enterprise History</p>
-                </div>
+                <TitleWithEngSubtitle title="企業沿革" subtitle="Enterprise History" />
+                <div className="h-1" />
 
                 <div className="relative mt-8 px-8">
                     {/* 中央垂直線 */}
