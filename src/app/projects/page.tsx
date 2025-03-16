@@ -41,6 +41,7 @@ async function asyncGetProjects(): Promise<Project[]> {
 }
 
 export default async function ProjectsPage() {
+    // TODO: 看要不要改成 CSR
     const projects = await asyncGetProjects();
 
     return (
