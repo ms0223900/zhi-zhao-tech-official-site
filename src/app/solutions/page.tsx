@@ -9,7 +9,7 @@ export const metadata = {
 
 export default function SolutionsPage() {
     return (
-        <main className="min-h-screen theme-gradient-blue">
+        <main className="min-h-screen md:theme-gradient-blue">
             <BannerSection />
             <MainSection />
         </main>
