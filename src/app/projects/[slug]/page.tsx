@@ -120,72 +120,74 @@ export default async function ProjectDetail({ params }: ProjectDetailProps) {
     console.log(relatedProjects);
 
     return (
-        <div className="container mx-auto px-4 py-8">
-            {/* Back Button */}
-            <Link
-                href="/projects"
-                className="inline-flex items-center mb-8 text-gray-600 hover:text-gray-900"
-            >
-                ← 回上一頁
-            </Link>
+        <div className="theme-gradient-blue min-h-screen">
+            <div className="container mx-auto px-4 py-8 ">
+                {/* Back Button */}
+                <Link
+                    href="/projects"
+                    className="inline-flex items-center mb-8 text-gray-600 hover:text-gray-900"
+                >
+                    ← 回上一頁
+                </Link>
 
-            {/* Title Section */}
-            <div className="mb-12 text-center">
-                <h1 className="text-4xl mb-2">工程案例</h1>
-                <p className="text-gray-500">Case</p>
-                <h2 className="text-2xl mt-4">{project.title} - {project.subtitle}</h2>
-            </div>
-
-            {/* Main Content Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-[40%_60%] gap-3 mb-16">
-                {/* Project Image */}
-                <div className="bg-gray-200 aspect-[3/2] rounded-lg overflow-hidden relative">
-                    {project.image?.[0] && (
-                        <Image
-                            src={replaceS3UrlWithCloudFront(project.image[0].url)}
-                            alt={project.title}
-                            fill
-                            className="object-cover"
-                        />
-                    )}
+                {/* Title Section */}
+                <div className="mb-12 text-center">
+                    <h1 className="text-4xl mb-2">工程案例</h1>
+                    <p className="text-gray-500">Case</p>
+                    <h2 className="text-2xl mt-4">{project.title} - {project.subtitle}</h2>
                 </div>
 
-                {/* Project Details */}
-                <div className="bg-[#fffef0] border border-[#e6e6c8] rounded-lg p-6 space-y-4">
-                    <div className="flex items-center">
-                        <span className="text-lg lr-1">工程地址：</span>
-                        <span className="text-gray-700">{project.description}</span>
+                {/* Main Content Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-[40%_60%] gap-3 mb-16">
+                    {/* Project Image */}
+                    <div className="bg-gray-200 aspect-[3/2] rounded-lg overflow-hidden relative">
+                        {project.image?.[0] && (
+                            <Image
+                                src={replaceS3UrlWithCloudFront(project.image[0].url)}
+                                alt={project.title}
+                                fill
+                                className="object-cover"
+                            />
+                        )}
                     </div>
-                    <div className="flex items-center">
-                        <span className="text-lg lr-1">工程簡述：</span>
-                        <span className="text-gray-700">{project.description}</span>
-                    </div>
-                    {project.from && project.until && (
+
+                    {/* Project Details */}
+                    <div className="bg-[#fffef0] border border-[#e6e6c8] rounded-lg p-6 space-y-4">
                         <div className="flex items-center">
-                            <span className="text-lg lr-1">工程期間：</span>
-                            <span className="text-gray-700">{project.from} ~ {project.until}</span>
+                            <span className="text-lg lr-1">工程地址：</span>
+                            <span className="text-gray-700">{project.description}</span>
                         </div>
-                    )}
-                    <div className="flex items-center">
-                        <span className="text-lg lr-1">承攬系統：</span>
-                        <span className="text-gray-700">{project.related_project_genre?.title}</span>
+                        <div className="flex items-center">
+                            <span className="text-lg lr-1">工程簡述：</span>
+                            <span className="text-gray-700">{project.description}</span>
+                        </div>
+                        {project.from && project.until && (
+                            <div className="flex items-center">
+                                <span className="text-lg lr-1">工程期間：</span>
+                                <span className="text-gray-700">{project.from} ~ {project.until}</span>
+                            </div>
+                        )}
+                        <div className="flex items-center">
+                            <span className="text-lg lr-1">承攬系統：</span>
+                            <span className="text-gray-700">{project.related_project_genre?.title}</span>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            {/* Related Projects */}
-            <div>
-                <h3 className="text-2xl mb-6">相關案例</h3>
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                    {relatedProjects.map((related) => (
-                        <LinkCard
-                            key={related.id}
-                            link={`/projects/${related.id}`}
-                            title={related.title}
-                            subtitle={related.subtitle}
-                            image={related.image[0]?.url ? replaceS3UrlWithCloudFront(related.image[0].url) : ''}
-                        />
-                    ))}
+                {/* Related Projects */}
+                <div>
+                    <h3 className="text-2xl mb-6">相關案例</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                        {relatedProjects.map((related) => (
+                            <LinkCard
+                                key={related.id}
+                                link={`/projects/${related.id}`}
+                                title={related.title}
+                                subtitle={related.subtitle}
+                                image={related.image[0]?.url ? replaceS3UrlWithCloudFront(related.image[0].url) : ''}
+                            />
+                        ))}
+                    </div>
                 </div>
             </div>
         </div>
