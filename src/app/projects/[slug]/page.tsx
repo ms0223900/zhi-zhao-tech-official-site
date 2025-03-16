@@ -6,6 +6,7 @@ import { ProjectDto } from "../ProjectDto"
 import { client } from "@/gql/client"
 import { gql } from '@apollo/client'
 import replaceS3UrlWithCloudFront from '@/utils/replaceS3UrlWithCloudFront'
+import LinkCard from '@/components/common/LinkCard'
 
 interface ProjectDetailProps {
     params: Promise<{
@@ -23,6 +24,7 @@ async function asyncGetProject(id: string): Promise<Project> {
   project(documentId: $documentId) {
     documentId
     title
+    subtitle
     description
     image {
       url
@@ -82,6 +84,7 @@ async function getRelatedProjects(projectId: string, genreId: string): Promise<P
                 projects(filters: $filters) {
                     documentId
                     title
+                    subtitle
                     image {
                         url
                     }
@@ -130,7 +133,7 @@ export default async function ProjectDetail({ params }: ProjectDetailProps) {
             <div className="mb-12 text-center">
                 <h1 className="text-4xl mb-2">工程案例</h1>
                 <p className="text-gray-500">Case</p>
-                <h2 className="text-2xl mt-4">{project.title}</h2>
+                <h2 className="text-2xl mt-4">{project.title} - {project.subtitle}</h2>
             </div>
 
             {/* Main Content Grid */}
@@ -175,26 +178,13 @@ export default async function ProjectDetail({ params }: ProjectDetailProps) {
                 <h3 className="text-2xl mb-6">相關案例</h3>
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                     {relatedProjects.map((related) => (
-                        <Link
+                        <LinkCard
                             key={related.id}
-                            href={`/projects/${related.id}`}
-                            className="group"
-                        >
-                            <div className="bg-gray-200 aspect-square relative mb-2">
-                                {related.image?.[0] && (
-                                    <Image
-                                        src={related.image[0].url}
-                                        alt={related.title}
-                                        fill
-                                        className="object-cover"
-                                    />
-                                )}
-                            </div>
-                            <p className="text-center">{related.title}</p>
-                            <div className="flex justify-end">
-                                <span className="text-gray-400">→</span>
-                            </div>
-                        </Link>
+                            link={`/projects/${related.id}`}
+                            title={related.title}
+                            subtitle={related.subtitle}
+                            image={related.image[0]?.url ? replaceS3UrlWithCloudFront(related.image[0].url) : ''}
+                        />
                     ))}
                 </div>
             </div>

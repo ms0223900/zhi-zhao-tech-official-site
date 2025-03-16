@@ -53,7 +53,7 @@ const ProjectList = ({ projects }: ProjectListProps) => {
                         key={project.id}
                         link={`/projects/${project.id}`}
                         title={project.title}
-                        subtitle={project.description}
+                        subtitle={project.subtitle}
                         image={project.image[0]?.url ? replaceS3UrlWithCloudFront(project.image[0].url) : ''} />
                 ))}
             </div>
