@@ -91,9 +91,9 @@ export function ParticleSensorContent() {
                     />
                 </div>
             </section>
-            <section className="bg-white">
+            <section className="bg-white -mx-4 md:mx-0 px-4">
                 <SectionTitle title="產品優勢" />
-                <div className="container grid grid-cols-1 md:grid-cols-2 gap-4 py-6">
+                <div className="container grid grid-cols-1 md:grid-cols-2 gap-4 py-6 ">
                     {productAdvantageList.map((item, index) => (
                         <ProductAdvantageCard
                             key={index}
