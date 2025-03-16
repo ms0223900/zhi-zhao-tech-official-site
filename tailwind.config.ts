@@ -22,7 +22,7 @@ export default {
         'display-1': ['40px', { lineHeight: 'auto', fontWeight: '600' }],
         'display-2': ['35px', { lineHeight: 'auto', fontWeight: '600' }],
         'h1': ['25px', { lineHeight: 'auto', fontWeight: '600' }],
-        'h2': ['25px', { lineHeight: 'auto', fontWeight: '500' }],
+        'h2': ['25px', { letterSpacing: '0.12rem', lineHeight: 'auto', fontWeight: '500' }],
         'h3': ['20px', { lineHeight: 'auto', fontWeight: '500' }],
         'h4': ['18px', { lineHeight: 'auto', fontWeight: '400' }],
         'h5': ['16px', { lineHeight: 'auto', fontWeight: '400' }],

@@ -152,7 +152,10 @@ export default async function Home() {
       {/* News Section */}
       <section className="py-16 theme-gradient-blue">
         <div className="container mx-auto px-8 max-w-[958px]">
-          <h2 className="text-center text-3xl font-bold mb-12">最新消息</h2>
+          <div className="flex flex-col items-center justify-center gap-1 mb-12">
+            <h2 className="text-center text-h2 font-bold ">最新消息</h2>
+            <span className="text-h6 text-[#A6A4A4]">News</span>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {news.map((item, index) => (
               <NewsCard
