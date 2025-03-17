@@ -121,9 +121,6 @@ const ProjectList = ({ projects }: ProjectListProps) => {
     );
 };
 
-// ProjectListContainer 
-// data from graphql
-// react query
 const queryClient = new QueryClient();
 
 const ProjectListContainer = () => {

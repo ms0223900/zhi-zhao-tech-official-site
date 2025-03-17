@@ -7,6 +7,7 @@ import { gql } from '@apollo/client'
 import replaceS3UrlWithCloudFront from '@/utils/replaceS3UrlWithCloudFront'
 import LinkCard from '@/components/common/LinkCard'
 import BackButton from '@/components/common/BackButton'
+import { Metadata } from 'next'
 
 interface ProjectDetailProps {
     params: Promise<{
@@ -189,8 +190,20 @@ export default async function ProjectDetail({ params }: ProjectDetailProps) {
     )
 }
 
-
 export async function generateStaticParams() {
     const projectIds = await asyncGetProjectIds()
     return projectIds.map((id) => ({ slug: id }))
+}
+
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+    const project = await asyncGetProject(params.slug);
+
+    return {
+        title: `工程案例 | ${project.title} - ${project.subtitle}`,
+        // You can add more metadata fields here if needed
+        // description: project.description,
+        // openGraph: {
+        //   images: [project.image?.[0]?.url || ''],
+        // },
+    };
 }

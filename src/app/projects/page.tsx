@@ -1,44 +1,10 @@
-import ProjectList from "@/components/projects/ProjectList";
-import { client } from "@/gql/client";
-import { Project } from "@/types/Project";
-import { gql } from "@apollo/client";
-import { ProjectDto, ProjectVoConverter } from "./ProjectDto";
 import ProjectListContainer from "@/components/projects/ProjectList";
+import { Metadata } from "next";
 
-async function asyncGetProjects(): Promise<Project[]> {
-
-    // TODO: 實作 API 串接
-    try {
-        const { data } = await client.query<{
-            projects: ProjectDto[];
-        }>({
-            query: gql`
-            query GetProjects {
-                projects {
-                    documentId
-                    title
-                    subtitle
-                    description
-                    image {
-                        url
-                    }
-                    projectGenre
-                    related_project_genre {
-                        documentId
-                        title
-                        }
-                        createdAt
-                    }
-                }
-            `,
-            fetchPolicy: 'no-cache',
-        });
-
-        return data.projects.map(ProjectVoConverter.toVo);
-    } catch (error) {
-        console.error("Error fetching projects:", error);
-        return [];
-    }
+// meta
+export const metadata: Metadata = {
+    title: "工程實績",
+    description: "工程實績",
 }
 
 export default async function ProjectsPage() {
