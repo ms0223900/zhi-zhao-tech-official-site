@@ -3,6 +3,7 @@ import { client } from "@/gql/client";
 import { Project } from "@/types/Project";
 import { gql } from "@apollo/client";
 import { ProjectDto, ProjectVoConverter } from "./ProjectDto";
+import ProjectListContainer from "@/components/projects/ProjectList";
 
 async function asyncGetProjects(): Promise<Project[]> {
 
@@ -42,12 +43,12 @@ async function asyncGetProjects(): Promise<Project[]> {
 
 export default async function ProjectsPage() {
     // TODO: 看要不要改成 CSR
-    const projects = await asyncGetProjects();
+    // const projects = await asyncGetProjects();
 
     return (
         <main className="container mx-auto px-4 py-8 min-h-screen">
             <h1 className="text-3xl font-bold mb-6">工程實績</h1>
-            <ProjectList projects={projects} />
+            <ProjectListContainer />
         </main>
     );
 } 

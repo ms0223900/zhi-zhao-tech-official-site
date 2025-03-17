@@ -3,6 +3,49 @@ import { Project } from "@/types/Project";
 import replaceS3UrlWithCloudFront from "@/utils/replaceS3UrlWithCloudFront";
 import { useState } from "react";
 import LinkCard from "../common/LinkCard";
+import { QueryClient, useQuery } from "@tanstack/react-query";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { ProjectDto, ProjectVoConverter } from "@/app/projects/ProjectDto";
+import { client } from "@/gql/client";
+import { gql } from "@apollo/client";
+
+
+async function asyncGetProjects(): Promise<Project[]> {
+
+    // TODO: 實作 API 串接
+    try {
+        const { data } = await client.query<{
+            projects: ProjectDto[];
+        }>({
+            query: gql`
+            query GetProjects {
+                projects {
+                    documentId
+                    title
+                    subtitle
+                    description
+                    image {
+                        url
+                    }
+                    projectGenre
+                    related_project_genre {
+                        documentId
+                        title
+                        }
+                        createdAt
+                    }
+                }
+            `,
+            fetchPolicy: 'no-cache',
+        });
+
+        return data.projects.map(ProjectVoConverter.toVo);
+    } catch (error) {
+        console.error("Error fetching projects:", error);
+        return [];
+    }
+}
+
 
 interface ProjectListProps {
     projects: Project[]
@@ -78,4 +121,35 @@ const ProjectList = ({ projects }: ProjectListProps) => {
     );
 };
 
-export default ProjectList
+// ProjectListContainer 
+// data from graphql
+// react query
+const queryClient = new QueryClient();
+
+const ProjectListContainer = () => {
+    const { data, isLoading, error } = useQuery({
+        queryKey: ['projects'],
+        queryFn: () => asyncGetProjects(),
+    });
+
+    return (
+        <>
+            {isLoading && (
+                <div className="flex justify-center items-center min-h-[200px]">
+                    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-600"></div>
+                    <span className="ml-4 text-gray-600">載入中...</span>
+                </div>
+            )}
+            {error && <div>Error: {error.message}</div>}
+            {data && <ProjectList projects={data} />}
+        </>
+    )
+}
+
+const ProjectListContainerWithQueryClient = () => (
+    <QueryClientProvider client={queryClient}>
+        <ProjectListContainer />
+    </QueryClientProvider>
+);
+
+export default ProjectListContainerWithQueryClient;
