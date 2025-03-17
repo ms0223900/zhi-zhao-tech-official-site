@@ -9,3 +9,11 @@ export const client = new ApolloClient({
     cache: new InMemoryCache(),
 });
 
+
+const CSR_API_URL = (process.env.NEXT_PUBLIC_API_URL + '/graphql') || 'http://localhost:1337/graphql';
+
+export const csrClient = new ApolloClient({
+    uri: CSR_API_URL,
+    cache: new InMemoryCache(),
+});
+

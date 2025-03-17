@@ -1,9 +1,8 @@
 'use client'
+import { csrClient } from '@/gql/client';
 import { gql, useQuery } from '@apollo/client';
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import { ApolloProvider } from '@apollo/client';
 
-
-const API_URL = (process.env.NEXT_PUBLIC_API_URL + '/graphql') || 'http://localhost:1337/graphql';
 const S3_BUCKET_URL = process.env.NEXT_PUBLIC_S3_BUCKET_URL || '';
 const S3_CLOUDFRONT_URL = process.env.NEXT_PUBLIC_S3_CLOUDFRONT_URL || '';
 
@@ -62,13 +61,8 @@ function Downloads() {
 }
 
 export default function App() {
-    const client = new ApolloClient({
-        uri: API_URL,
-        cache: new InMemoryCache(),
-    });
-
     return (
-        <ApolloProvider client={client}>
+        <ApolloProvider client={csrClient}>
             <Downloads />
         </ApolloProvider>
     );

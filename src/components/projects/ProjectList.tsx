@@ -6,7 +6,7 @@ import LinkCard from "../common/LinkCard";
 import { QueryClient, useQuery } from "@tanstack/react-query";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { ProjectDto, ProjectVoConverter } from "@/app/projects/ProjectDto";
-import { client } from "@/gql/client";
+import { csrClient } from "@/gql/client";
 import { gql } from "@apollo/client";
 
 
@@ -14,7 +14,7 @@ async function asyncGetProjects(): Promise<Project[]> {
 
     // TODO: 實作 API 串接
     try {
-        const { data } = await client.query<{
+        const { data } = await csrClient.query<{
             projects: ProjectDto[];
         }>({
             query: gql`
