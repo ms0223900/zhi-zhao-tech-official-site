@@ -195,8 +195,9 @@ export async function generateStaticParams() {
     return projectIds.map((id) => ({ slug: id }))
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-    const project = await asyncGetProject(params.slug);
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+    const { slug } = await params;
+    const project = await asyncGetProject(slug);
 
     return {
         title: `工程案例 | ${project.title} - ${project.subtitle}`,
