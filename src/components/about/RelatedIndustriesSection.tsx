@@ -10,51 +10,51 @@ function RelatedIndustriesSection() {
             id: "semiconductor",
             name: "半導體 產業",
             companies: [
-                { name: "ASE GROUP 日月光集團", logo: "/images/companies/ase.png" },
-                { name: "FUJIFILM 台灣富士電子材料股份有限公司", logo: "/images/companies/fujifilm.png" },
-                { name: "PSA 華新科技", logo: "/images/companies/psa.png" },
-                { name: "MTC 美亞半導體設備股份有限公司", logo: "/images/companies/mtc.png" },
-                { name: "NANMAT 南茂科技", logo: "/images/companies/nanmat.png" },
-                { name: "TANAKA 台灣田中金屬礦業股份有限公司", logo: "/images/companies/tanaka.png" },
-                { name: "WISN", logo: "/images/companies/wisn.png" },
-                { name: "ChipMOS 南茂科技", logo: "/images/companies/chipmos.png" },
-                { name: "NXP", logo: "/images/companies/nxp.png" },
+                { name: "ASE GROUP 日月光集團", logo: "/images/companies/semiconductor/ase.png" },
+                { name: "FUJIFILM 台灣富士電子材料股份有限公司", logo: "/images/companies/semiconductor/fujifilm.png" },
+                { name: "PSA 華新科技", logo: "/images/companies/semiconductor/psa.png" },
+                { name: "MTC 美亞半導體設備股份有限公司", logo: "/images/companies/semiconductor/mtc.png" },
+                { name: "NANMAT 南茂科技", logo: "/images/companies/semiconductor/nanmat.png" },
+                { name: "TANAKA 台灣田中金屬礦業股份有限公司", logo: "/images/companies/semiconductor/tanaka.png" },
+                { name: "WISN", logo: "/images/companies/semiconductor/wisn.png" },
+                { name: "ChipMOS 南茂科技", logo: "/images/companies/semiconductor/chipmos.png" },
+                { name: "NXP", logo: "/images/companies/semiconductor/nxp.png" },
             ]
         },
         {
             id: "biotech",
             name: "生技化學 產業",
             companies: [
-                { name: "長興材料", logo: "/images/companies/eternal.jpg" },
-                { name: "勝一化工", logo: "/images/companies/shiny_chemical.jpg" },
-                { name: "潤勝化學", logo: "/images/companies/eshine.jpg" },
-                { name: "醫強科技", logo: "/images/companies/estrong.png" },
-                { name: "藥華製藥", logo: "/images/companies/pharma_essentia.png" },
+                { name: "長興材料", logo: "/images/companies/biotech/eternal.jpg" },
+                { name: "勝一化工", logo: "/images/companies/biotech/shiny_chemical.jpg" },
+                { name: "潤勝化學", logo: "/images/companies/biotech/eshine.jpg" },
+                { name: "醫強科技", logo: "/images/companies/biotech/estrong.png" },
+                { name: "藥華製藥", logo: "/images/companies/biotech/pharma_essentia.png" },
             ]
         },
         {
             id: "electronics",
             name: "電子零組件 產業",
             companies: [
-                { name: "台虹科技", logo: "/images/companies/taiflex.png" },
-                { name: "新揚科技", logo: "/images/companies/xinyang.webp" },
+                { name: "台虹科技", logo: "/images/companies/electronics/taiflex.png" },
+                { name: "新揚科技", logo: "/images/companies/electronics/xinyang.webp" },
             ]
         },
         {
             id: "optoelectronics",
             name: "光電 產業",
             companies: [
-                { name: "元晶太陽能", logo: "/images/companies/tsec.png" },
-                { name: "台灣日東", logo: "/images/companies/taiwan_nitto.png" },
-                { name: "光寶科技", logo: "/images/companies/liteon.png" },
-                { name: "住華科技股份有限公司", logo: "/images/companies/sumika.png" },
-                { name: "愷威電子", logo: "/images/companies/kway.png" },
-                { name: "瀚宇彩晶", logo: "/images/companies/hannstar.png" },
+                { name: "元晶太陽能", logo: "/images/companies/optoelectronics/yuanjing.png" },
+                { name: "台灣日東", logo: "/images/companies/optoelectronics/taiwan_nitto.png" },
+                { name: "光寶科技", logo: "/images/companies/optoelectronics/liteon.png" },
+                { name: "住華科技股份有限公司", logo: "/images/companies/optoelectronics/sumika.png" },
+                { name: "愷威電子", logo: "/images/companies/optoelectronics/kway.png" },
+                { name: "瀚宇彩晶", logo: "/images/companies/optoelectronics/hannstar.png" },
             ]
         },
         {
             id: "othertech", name: "其他科技 產業", companies: [
-                { name: "動力安全", logo: "/images/companies/dynasafe.png" },
+                { name: "動力安全", logo: "/images/companies/othertech/dynasafe.png" },
             ]
         },
     ];
