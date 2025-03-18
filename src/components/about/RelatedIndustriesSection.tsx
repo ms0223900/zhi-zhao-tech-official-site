@@ -13,12 +13,10 @@ function RelatedIndustriesSection() {
                 { name: "ASE GROUP 日月光集團", logo: "/images/companies/semiconductor/ase.png" },
                 { name: "FUJIFILM 台灣富士電子材料股份有限公司", logo: "/images/companies/semiconductor/fujifilm.png" },
                 { name: "PSA 華新科技", logo: "/images/companies/semiconductor/psa.png" },
-                { name: "MTC 美亞半導體設備股份有限公司", logo: "/images/companies/semiconductor/mtc.png" },
-                { name: "NANMAT 南茂科技", logo: "/images/companies/semiconductor/nanmat.png" },
-                { name: "TANAKA 台灣田中金屬礦業股份有限公司", logo: "/images/companies/semiconductor/tanaka.png" },
-                { name: "WISN", logo: "/images/companies/semiconductor/wisn.png" },
-                { name: "ChipMOS 南茂科技", logo: "/images/companies/semiconductor/chipmos.png" },
-                { name: "NXP", logo: "/images/companies/semiconductor/nxp.png" },
+                { name: "NANMAT 南茂科技", logo: "/images/companies/semiconductor/nanmat.jpg" },
+                { name: "TANAKA 台灣田中金屬礦業股份有限公司", logo: "/images/companies/semiconductor/tanaka.jpg" },
+                { name: "MIC", logo: "/images/companies/semiconductor/mic.png" },
+                { name: "NXP", logo: "/images/companies/semiconductor/nxp.jpg" },
             ]
         },
         {
@@ -44,17 +42,17 @@ function RelatedIndustriesSection() {
             id: "optoelectronics",
             name: "光電 產業",
             companies: [
-                { name: "元晶太陽能", logo: "/images/companies/optoelectronics/yuanjing.png" },
+                { name: "元晶太陽能", logo: "/images/companies/optoelectronics/tsec.png" },
                 { name: "台灣日東", logo: "/images/companies/optoelectronics/taiwan_nitto.png" },
-                { name: "光寶科技", logo: "/images/companies/optoelectronics/liteon.png" },
-                { name: "住華科技股份有限公司", logo: "/images/companies/optoelectronics/sumika.png" },
-                { name: "愷威電子", logo: "/images/companies/optoelectronics/kway.png" },
-                { name: "瀚宇彩晶", logo: "/images/companies/optoelectronics/hannstar.png" },
+                { name: "光寶科技", logo: "/images/companies/optoelectronics/liteon.jpg" },
+                { name: "住華科技股份有限公司", logo: "/images/companies/optoelectronics/sumika.jpg" },
+                { name: "愷威電子", logo: "/images/companies/optoelectronics/kway.jpg" },
+                { name: "瀚宇彩晶", logo: "/images/companies/optoelectronics/hannstar.jpg" },
             ]
         },
         {
             id: "othertech", name: "其他科技 產業", companies: [
-                { name: "動力安全", logo: "/images/companies/othertech/dynasafe.png" },
+                { name: "動力安全", logo: "/images/companies/othertech/dynasafe.jpg" },
             ]
         },
     ];
@@ -97,7 +95,7 @@ function RelatedIndustriesSection() {
                                     </button>
 
                                     {expandedIndustry === industry.id && industry.companies.length > 0 && (
-                                        <div className="py-4 grid grid-cols-3 gap-4">
+                                        <div className="py-4 flex flex-wrap gap-4">
                                             {industry.companies.map((company, idx) => (
                                                 <div key={idx} className="flex flex-col items-center">
                                                     <img
@@ -105,7 +103,6 @@ function RelatedIndustriesSection() {
                                                         alt={company.name}
                                                         className="h-12 object-contain"
                                                     />
-                                                    <span className="text-xs text-center mt-2">{company.name}</span>
                                                 </div>
                                             ))}
                                         </div>
