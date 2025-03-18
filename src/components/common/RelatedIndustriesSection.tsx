@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import { useState } from "react";
-import RwdComponent from "../common/RwdComponent";
+import RwdComponent from "./RwdComponent";
 
 function RelatedIndustriesSection() {
     const [expandedIndustry, setExpandedIndustry] = useState<string | null>("semiconductor");
