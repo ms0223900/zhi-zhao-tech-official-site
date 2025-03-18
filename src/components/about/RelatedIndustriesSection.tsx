@@ -5,7 +5,7 @@ import { useState } from "react";
 function RelatedIndustriesSection() {
     const [expandedIndustry, setExpandedIndustry] = useState<string | null>("semiconductor");
 
-    const industries = [
+    const industries: { id: string, name: string, companies: { name: string, logo: string }[] }[] = [
         {
             id: "semiconductor",
             name: "半導體 產業",
@@ -21,10 +21,42 @@ function RelatedIndustriesSection() {
                 { name: "NXP", logo: "/images/companies/nxp.png" },
             ]
         },
-        { id: "biotech", name: "生技化學 產業", companies: [] },
-        { id: "electronics", name: "電子零組件 產業", companies: [] },
-        { id: "optoelectronics", name: "光電 產業", companies: [] },
-        { id: "othertech", name: "其他科技 產業", companies: [] },
+        {
+            id: "biotech",
+            name: "生技化學 產業",
+            companies: [
+                { name: "長興材料", logo: "/images/companies/eternal.jpg" },
+                { name: "勝一化工", logo: "/images/companies/shiny_chemical.jpg" },
+                { name: "潤勝化學", logo: "/images/companies/eshine.jpg" },
+                { name: "醫強科技", logo: "/images/companies/estrong.png" },
+                { name: "藥華製藥", logo: "/images/companies/pharma_essentia.png" },
+            ]
+        },
+        {
+            id: "electronics",
+            name: "電子零組件 產業",
+            companies: [
+                { name: "台虹科技", logo: "/images/companies/taiflex.png" },
+                { name: "新揚科技", logo: "/images/companies/xinyang.webp" },
+            ]
+        },
+        {
+            id: "optoelectronics",
+            name: "光電 產業",
+            companies: [
+                { name: "元晶太陽能", logo: "/images/companies/tsec.png" },
+                { name: "台灣日東", logo: "/images/companies/taiwan_nitto.png" },
+                { name: "光寶科技", logo: "/images/companies/liteon.png" },
+                { name: "住華科技股份有限公司", logo: "/images/companies/sumika.png" },
+                { name: "愷威電子", logo: "/images/companies/kway.png" },
+                { name: "瀚宇彩晶", logo: "/images/companies/hannstar.png" },
+            ]
+        },
+        {
+            id: "othertech", name: "其他科技 產業", companies: [
+                { name: "動力安全", logo: "/images/companies/dynasafe.png" },
+            ]
+        },
     ];
 
     const toggleIndustry = (industryId: string) => {
