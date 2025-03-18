@@ -66,13 +66,16 @@ function RelatedIndustriesSection() {
     };
 
     return (
-        <section className="relative bg-white md:bg-[url('/images/engineer-control-panel.jpg')] bg-cover bg-center bg-no-repeat">
-            <div className="container mx-auto max-w-[958px]">
+        <section className="relative bg-white bg-cover bg-center bg-no-repeat">
+            <div className="relative container mx-auto max-w-[958px] flex justify-end">
+                <div className="absolute z-1 top-0 left-0 h-full w-[42%] -mr-[70px]">
+                    <img src="/images/companies/engineer-control-panel.jpg" alt="engineer-control-panel" className="w-full h-full object-cover" />
+                </div>
 
 
-                <div className="flex flex-col md:flex-row justify-end">
+                <div className="relative z-10 flex flex-col md:flex-row justify-end w-2/3">
                     {/* Right side with collapsible industry sections */}
-                    <div className="md:w-4/5 w-full md:bg-[url('/images/about-bottom-section-right-card-bg.svg')] bg-cover bg-left bg-center bg-no-repeat">
+                    <div className="w-full md:bg-[url('/images/about-bottom-section-right-card-bg.svg')] bg-cover bg-left bg-center bg-no-repeat">
                         <div className="space-y-4 pl-[40px] md:pl-[100px] pr-[40px] py-[70px]">
                             <div className="text-center mb-12 md:hidden">
                                 <h2 className="text-4xl font-bold mb-2">工程實績</h2>
