@@ -119,7 +119,7 @@ const linkCardDataList = [
   },
   {
     title: "解決方案",
-    image: "/images/home-route-direct_solution.jpg",
+    image: "/images/home/home-route-direct_solution.jpg",
     link: "/solutions",
   },
   {
