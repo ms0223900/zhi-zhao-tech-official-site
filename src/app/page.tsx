@@ -114,7 +114,7 @@ const serviceCardDataList: ServiceCardItemProps[] = [
 const linkCardDataList = [
   {
     title: "聯絡我們",
-    image: "/images/home-route-direct_contact-us.jpg",
+    image: "/images/home/home-route-direct_contact-us.jpg",
     link: "/contact",
   },
   {
@@ -124,12 +124,12 @@ const linkCardDataList = [
   },
   {
     title: "文件下載專區",
-    image: "/images/home-route-direct_download.jpg",
+    image: "/images/home/home-route-direct_download.jpg",
     link: "/downloads",
   },
   {
     title: "隱私權政策",
-    image: "/images/home-route-direct_privacy.jpg",
+    image: "/images/home/home-route-direct_privacy.jpg",
     link: "/privacy",
   },
 ];
