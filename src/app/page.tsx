@@ -53,21 +53,21 @@ const services = [
     title: "卓越服務",
     description: "領先技術創新",
     detailDescription: "‧精密建築資訊建模 (BIM)\n‧系統化規劃與執行\n‧卓越的工程數據整合",
-    image: "/images/home-service-01.jpg",
+    image: "/images/home/home-service-01.jpg",
     bgColor: "bg-[#E57B42]",
   },
   {
     title: "技術實力",
     description: "完整整合服務",
     detailDescription: "‧無塵室與空調工程設計\n‧製程管路與環保工程\n‧項目施工管理與後續維護",
-    image: "/images/home-service-02.jpg",
+    image: "/images/home/home-service-02.jpg",
     bgColor: "bg-[#E57B42]",
   },
   {
     title: "務實可靠",
     description: "務實可靠執行",
     detailDescription: "‧嚴格工安管理與巡檢\n‧緊急調度與即時反應\n‧客製化服務，全方位配合",
-    image: "/images/home-service-03.jpg",
+    image: "/images/home/home-service-03.jpg",
     bgColor: "bg-[#E57B42]",
   },
 ];
@@ -306,11 +306,11 @@ interface ServiceCardProps {
 
 function ServiceCard({ title, description, detailDescription, image, bgColor }: ServiceCardProps) {
   return (
-    <div className="relative group overflow-hidden rounded-lg h-[300px]">
+    <div className="relative group overflow-hidden rounded-lg h-[300px] flex justify-center items-center">
       <img
         src={image}
         alt={title}
-        className="h-[300px] absolute left-0"
+        className="h-[300px] absolute"
         style={{
           maxWidth: "max-content"
         }}
