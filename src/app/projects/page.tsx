@@ -1,3 +1,5 @@
+import RelatedIndustriesSection from "@/components/common/RelatedIndustriesSection";
+import TitleWithEngSubtitle from "@/components/common/TitleWithEngSubtitle";
 import ProjectListContainer from "@/components/projects/ProjectList";
 import { Metadata } from "next";
 
@@ -12,9 +14,16 @@ export default async function ProjectsPage() {
     // const projects = await asyncGetProjects();
 
     return (
-        <main className="container mx-auto px-4 py-8 min-h-screen">
-            <h1 className="text-3xl font-bold mb-6">工程實績</h1>
-            <ProjectListContainer />
+        <main className="mx-auto px-4 ">
+            <section className="theme-gradient-blue">
+                <div className="container mx-auto py-8">
+                    <ProjectListContainer />
+                </div>
+            </section>
+            <section className="container mx-auto pt-8">
+                <TitleWithEngSubtitle title="工程實績" subtitle="Related Projects" />
+                <RelatedIndustriesSection />
+            </section>
         </main>
     );
 } 
