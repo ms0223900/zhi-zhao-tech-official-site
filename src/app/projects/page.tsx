@@ -10,9 +10,6 @@ export const metadata: Metadata = {
 }
 
 export default async function ProjectsPage() {
-    // TODO: 看要不要改成 CSR
-    // const projects = await asyncGetProjects();
-
     return (
         <main className="mx-auto px-4 ">
             <section className="theme-gradient-blue">
