@@ -16,10 +16,10 @@ export default function ESGPage() {
             <ESGSection />
             <EnvironmentSection />
             <ImageCarousel />
+            <EnvironmentSection />
         </main>
     )
 }
-
 
 const Banner = () => {
     return (
