@@ -1,5 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import RwdComponent from "@/components/common/RwdComponent"
+import EnvironmentSection from "@/components/esg/EnvironmentSection"
+import ESGSection from "@/components/esg/ESGSection"
+import ImageCarousel from "@/components/esg/ImageCarousel"
 
 export const metadata = {
     title: 'ESG',
@@ -9,14 +12,15 @@ export const metadata = {
 export default function ESGPage() {
     return (
         <main className="mx-auto">
-            {/* 靜態圖文內容區域 */}
             <Banner />
+            <ESGSection />
+            <EnvironmentSection />
+            <ImageCarousel />
         </main>
     )
 }
 
 
-// custom banner
 const Banner = () => {
     return (
         <section className="max-w-[1440px] mx-auto relative h-0 pt-[60%] overflow-hidden">
