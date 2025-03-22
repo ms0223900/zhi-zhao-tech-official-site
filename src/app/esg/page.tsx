@@ -25,15 +25,7 @@ const Banner = () => {
                     mobileComponent={<img src="/images/esg/esg-banner-mobile.png" alt="ESG" className="w-full h-full object-cover" />}
                     desktopComponent={<img src="/images/esg/esg-banner-desktop.png" alt="ESG" className="max-w-[130%] xl:max-w-[100%] translate-y-[-30%] translate-x-[-50px] xl:translate-x-0" />}
                 />
-                <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-gray-100 text-h2 font-bold text-lg xl:text-xl whitespace-pre-line">
-                    <div>
-                        <div className="absolute top-[20%] left-[28%] xl:top-[140px] xl:left-[25%]">公司治理</div>
-                        <div className="absolute top-[39%] left-[49%] xl:top-[260px] xl:left-[40%]">
-                            {`企業社會\n責任`}
-                        </div>
-                        <div className="absolute top-[61%] left-[29%] xl:top-[410px] xl:left-[26%]">環境保護</div>
-                    </div>
-                </div>
+
             </div>
 
         </section>
