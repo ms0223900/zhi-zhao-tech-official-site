@@ -12,7 +12,7 @@ export const metadata = {
 
 export default function ESGPage() {
     return (
-        <main className="mx-auto">
+        <main className="mx-auto theme-gradient-blue">
             <Banner />
             <ESGSection />
             <div className="flex flex-col gap-10">
