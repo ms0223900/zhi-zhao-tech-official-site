@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client"
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Slider, { Settings } from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -35,7 +35,12 @@ type ProductCarouselProps = {
 }
 
 export function ProductCarousel({ productImageList }: ProductCarouselProps) {
+    const [mounted, setMounted] = useState(false)
     const [currentSlide, setCurrentSlide] = React.useState(0);
+
+    useEffect(() => {
+        setMounted(true)
+    }, [])
 
     const settings: Settings = {
         dots: true,
@@ -56,6 +61,8 @@ export function ProductCarousel({ productImageList }: ProductCarouselProps) {
         ),
         beforeChange: (current, next) => setCurrentSlide(next),
     };
+
+    if (!mounted) return null
 
     return (
         <div className="relative">

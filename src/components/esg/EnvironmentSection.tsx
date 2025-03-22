@@ -1,5 +1,10 @@
+"use client"
+
 import RwdComponent from "../common/RwdComponent";
 import { ProductCarousel } from "../solutions/ProductCarousel";
+import { esgECarouselItems } from './data';
+
+console.log(esgECarouselItems)
 
 export default function EnvironmentSection() {
     return (
@@ -25,7 +30,7 @@ export default function EnvironmentSection() {
                     {/* 右側圖片區塊 */}
                     <RwdComponent
                         desktopComponent={
-                            <div className="flex items-center justify-center md:w-[45%]">
+                            <div className="flex items-center justify-center w-full">
                                 <img
                                     src="/images/esg/esg-e/esg-e-cover.jpg"
                                     alt="太陽能發電"
@@ -33,18 +38,18 @@ export default function EnvironmentSection() {
                                 />
                             </div>
                         }
+                        desktopClassName="w-[45%]"
                         mobileComponent={
                             <ProductCarousel
                                 productImageList={[
                                     "/images/esg/esg-e/esg-e-cover.jpg",
-                                    "/images/esg/esg-e/esg-e-cover.jpg",
-                                    "/images/esg/esg-e/esg-e-cover.jpg",
-                                    "/images/esg/esg-e/esg-e-cover.jpg",
-                                    "/images/esg/esg-e/esg-e-cover.jpg",
-                                    "/images/esg/esg-e/esg-e-cover.jpg",
+                                    // "/images/esg/esg-e/esg-e-cover.jpg",
+                                    // "/images/esg/esg-e/esg-e-cover.jpg",
+                                    ...esgECarouselItems.map((item) => item.image)
                                 ]}
                             />
                         }
+                        mobileClassName="w-full"
                     />
                 </div>
             </div>
