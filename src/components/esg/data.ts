@@ -1,5 +1,11 @@
+export interface CarouselItem {
+    id: number
+    image: string
+    title: string
+}
 
-export const esgECarouselItems = [
+
+export const esgECarouselItems: CarouselItem[] = [
     {
         id: 1,
         image: '/images/esg/esg-e/carousel-images/esg-e-image-1.jpg',

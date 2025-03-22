@@ -4,9 +4,9 @@ import { useEffect, useState } from 'react'
 import Slider, { Settings } from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
-import { esgECarouselItems } from './data'
+import { CarouselItem } from './data'
 
-export default function ImageCarousel() {
+export default function ImageCarousel({ carouselItems }: { carouselItems: CarouselItem[] }) {
     const [mounted, setMounted] = useState(false)
     const [currentSlide, setCurrentSlide] = useState(0)
     useEffect(() => {
@@ -14,6 +14,7 @@ export default function ImageCarousel() {
     }, [])
 
     const settings: Settings = {
+        className: "max-h-[280px]",
         dots: true,
         dotsClass: "slick-dots !bottom-[-60px]",
         customPaging: (index: number) => (
@@ -56,10 +57,10 @@ export default function ImageCarousel() {
     }
 
     return (
-        <section className="max-w-[1440px] mx-auto py-12 px-4 md:px-8">
+        <section className="container py-12 px-4 md:px-8">
             {mounted && (
                 <Slider {...settings}>
-                    {esgECarouselItems.map((item) => (
+                    {carouselItems.map((item) => (
                         <div key={item.id} className="px-2">
                             <div className="flex flex-col items-center">
                                 <div className="h-[240px] w-full overflow-hidden">
