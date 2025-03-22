@@ -20,7 +20,7 @@ export default function EnvironmentSection() {
                     {/* 右側圖片區塊 */}
                     <div className="p-4 flex items-center justify-center">
                         <img
-                            src="/images/esg/solar-panels.jpg"
+                            src="/images/esg/esg-e/esg-e-cover.jpg"
                             alt="太陽能發電"
                             className="rounded-lg w-full h-auto max-h-[400px] object-cover"
                         />
