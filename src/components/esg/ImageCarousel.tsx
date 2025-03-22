@@ -7,7 +7,7 @@ import 'slick-carousel/slick/slick-theme.css'
 
 export default function ImageCarousel() {
     const [mounted, setMounted] = useState(false)
-
+    const [currentSlide, setCurrentSlide] = useState(0)
     useEffect(() => {
         setMounted(true)
     }, [])
@@ -42,6 +42,14 @@ export default function ImageCarousel() {
 
     const settings: Settings = {
         dots: true,
+        dotsClass: "slick-dots !bottom-[-60px]",
+        customPaging: (index: number) => (
+            <div
+                className={`mx-0 w-[14px] h-[14px] rounded-full ${index === currentSlide ? 'bg-blue-500' : 'bg-[#D9D9D9]'
+                    } hover:bg-[#D9D9D9]/80 transition-colors cursor-pointer`}
+            />
+        ),
+        beforeChange: (current, next) => setCurrentSlide(next),
         infinite: true,
         speed: 500,
         variableWidth: true,
