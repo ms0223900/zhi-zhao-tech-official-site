@@ -5,40 +5,41 @@ import Slider, { Settings } from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 
+
+export const esgECarouselItems = [
+    {
+        id: 1,
+        image: '/images/esg/esg-e/carousel-images/esg-e-image-1.jpg',
+        title: '太陽能契約'
+    },
+    {
+        id: 2,
+        image: '/images/esg/esg-e/carousel-images/esg-e-image-2.jpg',
+        title: '太陽能契約'
+    },
+    {
+        id: 3,
+        image: '/images/esg/esg-e/carousel-images/esg-e-image-3.jpg',
+        title: '太陽能契約'
+    },
+    {
+        id: 4,
+        image: '/images/esg/esg-e/carousel-images/esg-e-image-4.jpg',
+        title: '工程圖'
+    },
+    {
+        id: 5,
+        image: '/images/esg/esg-e/carousel-images/esg-e-image-5.jpg',
+        title: '工程圖'
+    },
+]
+
 export default function ImageCarousel() {
     const [mounted, setMounted] = useState(false)
     const [currentSlide, setCurrentSlide] = useState(0)
     useEffect(() => {
         setMounted(true)
     }, [])
-
-    const carouselItems = [
-        {
-            id: 1,
-            image: '/images/esg/esg-e/carousel-images/esg-e-image-1.jpg',
-            title: '太陽能契約'
-        },
-        {
-            id: 2,
-            image: '/images/esg/esg-e/carousel-images/esg-e-image-2.jpg',
-            title: '太陽能契約'
-        },
-        {
-            id: 3,
-            image: '/images/esg/esg-e/carousel-images/esg-e-image-3.jpg',
-            title: '太陽能契約'
-        },
-        {
-            id: 4,
-            image: '/images/esg/esg-e/carousel-images/esg-e-image-4.jpg',
-            title: '工程圖'
-        },
-        {
-            id: 5,
-            image: '/images/esg/esg-e/carousel-images/esg-e-image-5.jpg',
-            title: '工程圖'
-        },
-    ]
 
     const settings: Settings = {
         dots: true,
@@ -86,7 +87,7 @@ export default function ImageCarousel() {
         <section className="max-w-[1440px] mx-auto py-12 px-4 md:px-8">
             {mounted && (
                 <Slider {...settings}>
-                    {carouselItems.map((item) => (
+                    {esgECarouselItems.map((item) => (
                         <div key={item.id} className="px-2">
                             <div className="flex flex-col items-center">
                                 <div className="h-[240px] w-full overflow-hidden">
