@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import Slider from 'react-slick'
+import Slider, { Settings } from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 
@@ -16,12 +16,12 @@ export default function ImageCarousel() {
         {
             id: 1,
             image: '/images/esg/esg-e/carousel-images/esg-e-image-1.jpg',
-            title: '工程圖'
+            title: '太陽能契約'
         },
         {
             id: 2,
             image: '/images/esg/esg-e/carousel-images/esg-e-image-2.jpg',
-            title: '工程圖'
+            title: '太陽能契約'
         },
         {
             id: 3,
@@ -31,19 +31,20 @@ export default function ImageCarousel() {
         {
             id: 4,
             image: '/images/esg/esg-e/carousel-images/esg-e-image-4.jpg',
-            title: '太陽能契約'
+            title: '工程圖'
         },
         {
             id: 5,
             image: '/images/esg/esg-e/carousel-images/esg-e-image-5.jpg',
-            title: '太陽能契約'
+            title: '工程圖'
         },
     ]
 
-    const settings = {
+    const settings: Settings = {
         dots: true,
         infinite: true,
         speed: 500,
+        variableWidth: true,
         slidesToShow: 4,
         slidesToScroll: 1,
         autoplay: true,
@@ -80,7 +81,7 @@ export default function ImageCarousel() {
                     {carouselItems.map((item) => (
                         <div key={item.id} className="px-2">
                             <div className="flex flex-col items-center">
-                                <div className="h-[180px] w-full overflow-hidden">
+                                <div className="h-[240px] w-full overflow-hidden">
                                     <img
                                         src={item.image}
                                         alt={item.title}
