@@ -8,7 +8,7 @@ console.log(esgECarouselItems)
 
 export default function EnvironmentSection() {
     return (
-        <section className="container px-4 md:px-8">
+        <section id="environment" className="container px-4 md:px-8">
             <div className="border-2 border-blue-500 rounded-2xl overflow-hidden theme-gradient-blue">
                 <div className="flex flex-col md:flex-row gap-4 items-center px-2 md:px-12 py-10 md:py-6">
                     {/* 左側文字區塊 */}

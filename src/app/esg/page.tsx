@@ -3,7 +3,9 @@ import RwdComponent from "@/components/common/RwdComponent"
 import { esgECarouselItems } from "@/components/esg/data"
 import EnvironmentSection from "@/components/esg/EnvironmentSection"
 import ESGSection from "@/components/esg/ESGSection"
+import GovernanceSection from "@/components/esg/GovernanceSection"
 import ImageCarousel from "@/components/esg/ImageCarousel"
+import SocialSection from "@/components/esg/SocialSection"
 
 export const metadata = {
     title: 'ESG',
@@ -12,7 +14,7 @@ export const metadata = {
 
 export default function ESGPage() {
     return (
-        <main className="mx-auto theme-gradient-blue">
+        <main className="mx-auto theme-gradient-blue" style={{ scrollBehavior: 'smooth' }}>
             <Banner />
             <ESGSection />
             <div className="flex flex-col gap-10">
@@ -21,6 +23,8 @@ export default function ESGPage() {
                     desktopComponent={<ImageCarousel carouselItems={esgECarouselItems} />}
                     mobileComponent={<></>}
                 />
+                <SocialSection />
+                <GovernanceSection />
             </div>
         </main>
     )
