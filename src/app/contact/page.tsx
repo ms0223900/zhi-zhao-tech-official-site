@@ -144,10 +144,12 @@ const FormSection = () => {
         <section className="w-full">
             {isModalOpen && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50" onClick={() => setIsModalOpen(false)}>
-                    <div className="bg-white rounded-lg p-6 max-w-md w-full" onClick={(e) => e.stopPropagation()}>
-                        <img src="/images/icons/icon-contact-success.svg" alt="contact-success" className="w-full h-auto" />
+                    <div className="bg-white rounded-lg p-6 max-w-md w-full flex flex-col items-center gap-4" onClick={(e) => e.stopPropagation()}>
+                        <div className='max-w-[60px] mx-auto'>
+                            <img src="/images/icons/icon-contact-success.svg" alt="contact-success" className="w-full h-auto" />
+                        </div>
                         <div className="text-center">
-                            <h3 className="text-lg font-medium mb-4">已成功送出表單</h3>
+                            <h3 className="text-lg font-medium ">已成功送出表單</h3>
                             <p>專員將儘速聯繫您</p>
                         </div>
                     </div>
