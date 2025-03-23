@@ -129,7 +129,7 @@ export default function ContactPage() {
                             />
 
                             <div>
-                                <div className="flex flex-row items-center gap-1 pb-1">
+                                <div className="flex flex-row justify-between items-center gap-1 pb-1">
                                     <label htmlFor="location" className="block">所在地區</label>
                                     {errors.location && <p className="text-red-500 text-sm">{errors.location.message}</p>}
                                 </div>

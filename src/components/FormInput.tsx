@@ -24,7 +24,7 @@ export function FormInput<T extends FieldValues>({
 }: FormInputProps<T>) {
     return (
         <div className={className}>
-            <div className="flex flex-row items-center gap-1 pb-1">
+            <div className="flex flex-row justify-between items-center gap-1 pb-1">
                 <label htmlFor={id} className="block">
                     {label}
                 </label>
