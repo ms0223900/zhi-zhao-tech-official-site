@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { FormInput } from '@/components/FormInput'
+import Banner from '@/components/common/Banner'
 
 const formSchema = z.object({
     company: z.string().min(1, '請輸入公司/單位名稱'),
@@ -31,9 +32,9 @@ const locationOptions = [
 
 export default function ContactPage() {
     return (
-        <main className="container mx-auto px-4 py-8">
-            <h1 className="text-3xl font-bold mb-6">聯絡我們</h1>
-            <div className="w-full flex flex-col -center items-center gap-14">
+        <main className="px-4 py-8">
+            <Banner title="聯絡我們" subtitle="Contact Us" imageSrc="/images/contact-banner.jpg" />
+            <div className="container w-full flex flex-col -center items-center gap-14 py-14">
                 <FormSection />
                 <MapSection />
             </div>
