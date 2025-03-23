@@ -204,16 +204,18 @@ const FormSection = () => {
                     </div>
                     <div className="md:w-1/2 w-full flex flex-col gap-4 justify-between">
                         <div className="flex flex-col gap-4">
-                            <div className="flex flex-row justify-between items-center gap-1 pb-1">
-                                <label htmlFor="message" className="block">諮詢內容</label>
-                                {errors.message && <p className="text-red-500 text-sm">{errors.message.message}</p>}
+                            <div>
+                                <div className="flex flex-row justify-between items-center gap-1 pb-1">
+                                    <label htmlFor="message" className="block">諮詢內容</label>
+                                    {errors.message && <p className="text-red-500 text-sm">{errors.message.message}</p>}
+                                </div>
+                                <textarea
+                                    id="message"
+                                    rows={5}
+                                    className={`w-full p-2 border rounded-md ${errors.message ? 'border-red-500' : 'border-gray-300'}`}
+                                    {...register('message')}
+                                ></textarea>
                             </div>
-                            <textarea
-                                id="message"
-                                rows={5}
-                                className={`w-full p-2 border rounded-md ${errors.message ? 'border-red-500' : 'border-gray-300'}`}
-                                {...register('message')}
-                            ></textarea>
                             <div className="flex justify-center">
                                 <button
                                     type="submit"
