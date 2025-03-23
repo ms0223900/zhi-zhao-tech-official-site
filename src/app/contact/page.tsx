@@ -169,23 +169,28 @@ export default function ContactPage() {
                             />
 
                         </div>
-                        <div className="md:w-1/2 w-full">
-                            <label htmlFor="message" className="block mb-1">諮詢內容</label>
-                            <textarea
-                                id="message"
-                                rows={5}
-                                className={`w-full p-2 border rounded-md ${errors.message ? 'border-red-500' : 'border-gray-300'}`}
-                                {...register('message')}
-                            ></textarea>
-                            {errors.message && <p className="mt-1 text-red-500 text-sm">{errors.message.message}</p>}
-                            <div className="text-center">
+                        <div className="md:w-1/2 w-full flex flex-col gap-4">
+                            <div>
+                                <label htmlFor="message" className="block mb-1">諮詢內容</label>
+                                <textarea
+                                    id="message"
+                                    rows={5}
+                                    className={`w-full p-2 border rounded-md ${errors.message ? 'border-red-500' : 'border-gray-300'}`}
+                                    {...register('message')}
+                                ></textarea>
+                                {errors.message && <p className="mt-1 text-red-500 text-sm">{errors.message.message}</p>}
+                            </div>
+                            <div className="flex justify-center">
                                 <button
                                     type="submit"
                                     disabled={isSubmitting}
-                                    className="px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors disabled:opacity-50"
+                                    className="px-6 py-2 bg-blue-500 rounded-full hover:bg-blue-600 transition-colors disabled:opacity-50 font-medium text-h6"
                                 >
                                     {isSubmitting ? '提交中...' : '送出表單'}
                                 </button>
+                            </div>
+                            <div className="text-center">
+
                                 <div className="space-y-3 text-center">
                                     <p className="flex items-center justify-center">
                                         <span className="font-medium">營業時間：</span>
