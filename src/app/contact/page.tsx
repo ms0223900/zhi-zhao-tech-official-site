@@ -34,7 +34,47 @@ export default function ContactPage() {
         <main className="container mx-auto px-4 py-8">
             <h1 className="text-3xl font-bold mb-6">聯絡我們</h1>
             <FormSection />
+            <MapSection />
         </main>
+    )
+}
+
+const MapSection = () => {
+    return (
+        <section className="mb-10">
+            <div className="bg-white rounded-lg shadow-md overflow-hidden">
+                <div className="p-4 border-b">
+                    <h2 className="text-xl font-semibold">公司位置</h2>
+                </div>
+                <div className="p-4">
+                    <div className="flex flex-col md:flex-row gap-4">
+                        <div className="md:w-1/2">
+                            <div className="mb-3">
+                                <h3 className="font-medium text-lg mb-2">總部</h3>
+                                <p className="text-gray-700">825高雄市橋頭區橋都路98號</p>
+                                <p className="text-gray-700 mt-2">
+                                    <span className="font-medium">電話：</span>07-3642101
+                                </p>
+                            </div>
+                            <div>
+                                <h3 className="font-medium text-lg mb-2">台南分部</h3>
+                                <p className="text-gray-700">台南市新化區北勢里北勢11號</p>
+                            </div>
+                        </div>
+                        <div className="md:w-1/2 h-[300px]">
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d717.2317861203229!2d120.30110042295784!3d22.73314937695716!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346e71cbab5b83b5%3A0x8cca97be6fde522e!2z5pm65YWG56eR5oqA5LyB5qWt5pyJ6ZmQ5YWs5Y-4!5e0!3m2!1szh-TW!2stw!4v1742721586792!5m2!1szh-TW!2stw"
+                                width="100%"
+                                height="100%"
+                                style={{ border: 0 }}
+                                allowFullScreen
+                                loading="lazy"
+                                referrerPolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     )
 }
 
