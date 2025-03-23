@@ -40,22 +40,22 @@ export default function ContactPage() {
         formState: { errors },
     } = useForm<FormValues>({
         resolver: zodResolver(formSchema),
-        // defaultValues: {
-        //     company: '',
-        //     location: '',
-        //     name: '',
-        //     phone: '',
-        //     email: '',
-        //     message: '',
-        // },
         defaultValues: {
-            company: 'testCompany',
-            location: '台中市',
-            name: 'testName',
-            phone: 'testPhone',
-            email: 'testEmail@gmail.com',
-            message: 'testMessage',
+            company: '',
+            location: '',
+            name: '',
+            phone: '',
+            email: '',
+            message: '',
         },
+        // defaultValues: {
+        //     company: 'testCompany',
+        //     location: '台中市',
+        //     name: 'testName',
+        //     phone: 'testPhone',
+        //     email: 'testEmail@gmail.com',
+        //     message: 'testMessage',
+        // },
     })
 
     const onSubmit = async (data: FormValues) => {
@@ -188,26 +188,23 @@ export default function ContactPage() {
                     </form>
                 </div>
 
-                <div className="bg-gray-50 p-6 rounded-lg">
-                    <h2 className="text-xl font-semibold mb-4">聯絡資訊</h2>
-                    <div className="space-y-3">
-                        <p className="flex items-center">
-                            <span className="font-medium w-24">營業時間：</span>
-                            <span>8:00 - 17:00</span>
-                        </p>
-                        <p className="flex items-center">
-                            <span className="font-medium w-24">電話號碼：</span>
-                            <span>07-3642101</span>
-                        </p>
-                        <p className="flex items-center">
-                            <span className="font-medium w-24">FAX：</span>
-                            <span>07-3649490</span>
-                        </p>
-                        <p className="flex items-center">
-                            <span className="font-medium w-24">E-mail：</span>
-                            <span>taiwan53588280@gmail.com</span>
-                        </p>
-                    </div>
+                <div className="space-y-3 text-center">
+                    <p className="flex items-center justify-center">
+                        <span className="font-medium">營業時間：</span>
+                        <span>8:00 - 17:00</span>
+                    </p>
+                    <p className="flex items-center justify-center">
+                        <span className="font-medium">電話號碼：</span>
+                        <span>07-3642101</span>
+                    </p>
+                    <p className="flex items-center justify-center">
+                        <span className="font-medium">FAX：</span>
+                        <span>07-3649490</span>
+                    </p>
+                    <p className="flex items-center justify-center">
+                        <span className="font-medium">E-mail：</span>
+                        <span>taiwan53588280@gmail.com</span>
+                    </p>
                 </div>
             </div>
         </main>
