@@ -69,6 +69,7 @@ const MapSection = () => {
 const FormSection = () => {
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+    const [isModalOpen, setIsModalOpen] = useState(true)
 
     const {
         register,
@@ -129,7 +130,8 @@ const FormSection = () => {
             }
 
             setSubmitStatus('success')
-            reset() // 重置表單
+            setIsModalOpen(true)
+            reset()
         } catch (error) {
             console.error('提交表單時發生錯誤:', error)
             setSubmitStatus('error')
@@ -140,6 +142,23 @@ const FormSection = () => {
 
     return (
         <section className="w-full">
+            {isModalOpen && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50" onClick={() => setIsModalOpen(false)}>
+                    <div className="bg-white rounded-lg p-6 max-w-md w-full" onClick={(e) => e.stopPropagation()}>
+                        <div className="text-center">
+                            <h3 className="text-lg font-medium mb-4">已成功送出表單</h3>
+                            <p>專員將儘速聯繫您</p>
+                            <button
+                                onClick={() => setIsModalOpen(false)}
+                                className="mt-6 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
+                            >
+                                關閉
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
             <div>
                 {submitStatus === 'success' && (
                     <div className="mb-6 p-4 bg-green-50 text-green-700 rounded-md">
