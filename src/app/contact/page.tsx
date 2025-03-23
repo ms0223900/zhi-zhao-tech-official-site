@@ -105,7 +105,7 @@ export default function ContactPage() {
         <main className="container mx-auto px-4 py-8">
             <h1 className="text-3xl font-bold mb-6">聯絡我們</h1>
 
-            <div className="grid md:grid-cols-2 gap-8">
+            <div>
                 <div>
                     {submitStatus === 'success' && (
                         <div className="mb-6 p-4 bg-green-50 text-green-700 rounded-md">
@@ -119,53 +119,57 @@ export default function ContactPage() {
                         </div>
                     )}
 
-                    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-                        <FormInput
-                            id="company"
-                            label="公司/單位名稱"
-                            register={register}
-                            error={errors.company}
-                        />
+                    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col md:flex-row gap-4">
+                        <div className="md:w-1/2 w-full flex flex-col gap-4">
+                            <FormInput
+                                id="company"
+                                label="公司/單位名稱"
+                                register={register}
+                                error={errors.company}
+                            />
 
-                        <div>
-                            <label htmlFor="location" className="block mb-1">所在地區</label>
-                            <select
-                                id="location"
-                                className={`w-full p-2 border rounded-md ${errors.location ? 'border-red-500' : 'border-gray-300'}`}
-                                {...register('location')}
-                            >
-                                <option value="">請選擇</option>
-                                {locationOptions.map((location) => (
-                                    <option key={location} value={location}>{location}</option>
-                                ))}
-                            </select>
-                            {errors.location && <p className="mt-1 text-red-500 text-sm">{errors.location.message}</p>}
+                            <div>
+                                <div className="flex flex-row items-center gap-1 pb-1">
+                                    <label htmlFor="location" className="block">所在地區</label>
+                                    {errors.location && <p className="text-red-500 text-sm">{errors.location.message}</p>}
+                                </div>
+                                <select
+                                    id="location"
+                                    className={`w-full p-2 border rounded-md ${errors.location ? 'border-red-500' : 'border-gray-300'}`}
+                                    {...register('location')}
+                                >
+                                    <option value="">請選擇</option>
+                                    {locationOptions.map((location) => (
+                                        <option key={location} value={location}>{location}</option>
+                                    ))}
+                                </select>
+                            </div>
+
+                            <FormInput
+                                id="name"
+                                label="姓名"
+                                register={register}
+                                error={errors.name}
+                            />
+
+                            <FormInput
+                                id="phone"
+                                label="聯絡電話"
+                                type="tel"
+                                register={register}
+                                error={errors.phone}
+                            />
+
+                            <FormInput
+                                id="email"
+                                label="E-mail"
+                                type="email"
+                                register={register}
+                                error={errors.email}
+                            />
+
                         </div>
-
-                        <FormInput
-                            id="name"
-                            label="姓名"
-                            register={register}
-                            error={errors.name}
-                        />
-
-                        <FormInput
-                            id="phone"
-                            label="聯絡電話"
-                            type="tel"
-                            register={register}
-                            error={errors.phone}
-                        />
-
-                        <FormInput
-                            id="email"
-                            label="E-mail"
-                            type="email"
-                            register={register}
-                            error={errors.email}
-                        />
-
-                        <div>
+                        <div className="md:w-1/2 w-full">
                             <label htmlFor="message" className="block mb-1">諮詢內容</label>
                             <textarea
                                 id="message"
@@ -174,38 +178,39 @@ export default function ContactPage() {
                                 {...register('message')}
                             ></textarea>
                             {errors.message && <p className="mt-1 text-red-500 text-sm">{errors.message.message}</p>}
+                            <div className="text-center">
+                                <button
+                                    type="submit"
+                                    disabled={isSubmitting}
+                                    className="px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors disabled:opacity-50"
+                                >
+                                    {isSubmitting ? '提交中...' : '送出表單'}
+                                </button>
+                                <div className="space-y-3 text-center">
+                                    <p className="flex items-center justify-center">
+                                        <span className="font-medium">營業時間：</span>
+                                        <span>8:00 - 17:00</span>
+                                    </p>
+                                    <p className="flex items-center justify-center">
+                                        <span className="font-medium">電話號碼：</span>
+                                        <span>07-3642101</span>
+                                    </p>
+                                    <p className="flex items-center justify-center">
+                                        <span className="font-medium">FAX：</span>
+                                        <span>07-3649490</span>
+                                    </p>
+                                    <p className="flex items-center justify-center">
+                                        <span className="font-medium">E-mail：</span>
+                                        <span>taiwan53588280@gmail.com</span>
+                                    </p>
+                                </div>       </div>
                         </div>
 
-                        <div className="text-center">
-                            <button
-                                type="submit"
-                                disabled={isSubmitting}
-                                className="px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors disabled:opacity-50"
-                            >
-                                {isSubmitting ? '提交中...' : '送出表單'}
-                            </button>
-                        </div>
+
                     </form>
                 </div>
 
-                <div className="space-y-3 text-center">
-                    <p className="flex items-center justify-center">
-                        <span className="font-medium">營業時間：</span>
-                        <span>8:00 - 17:00</span>
-                    </p>
-                    <p className="flex items-center justify-center">
-                        <span className="font-medium">電話號碼：</span>
-                        <span>07-3642101</span>
-                    </p>
-                    <p className="flex items-center justify-center">
-                        <span className="font-medium">FAX：</span>
-                        <span>07-3649490</span>
-                    </p>
-                    <p className="flex items-center justify-center">
-                        <span className="font-medium">E-mail：</span>
-                        <span>taiwan53588280@gmail.com</span>
-                    </p>
-                </div>
+
             </div>
         </main>
     )

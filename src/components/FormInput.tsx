@@ -24,9 +24,12 @@ export function FormInput<T extends FieldValues>({
 }: FormInputProps<T>) {
     return (
         <div className={className}>
-            <label htmlFor={id} className="block mb-1">
-                {label}
-            </label>
+            <div className="flex flex-row items-center gap-1 pb-1">
+                <label htmlFor={id} className="block">
+                    {label}
+                </label>
+                {error && <p className="text-red-500 text-sm">{error.message}</p>}
+            </div>
             <input
                 id={id}
                 type={type}
@@ -35,7 +38,6 @@ export function FormInput<T extends FieldValues>({
                 {...register(id as Path<T>)}
                 placeholder={placeholder}
             />
-            {error && <p className="mt-1 text-red-500 text-sm">{error.message}</p>}
         </div>
     )
 } 
