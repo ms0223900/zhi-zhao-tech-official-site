@@ -30,6 +30,15 @@ const locationOptions = [
 ]
 
 export default function ContactPage() {
+    return (
+        <main className="container mx-auto px-4 py-8">
+            <h1 className="text-3xl font-bold mb-6">聯絡我們</h1>
+            <FormSection />
+        </main>
+    )
+}
+
+const FormSection = () => {
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
 
@@ -102,123 +111,115 @@ export default function ContactPage() {
     }
 
     return (
-        <main className="container mx-auto px-4 py-8">
-            <h1 className="text-3xl font-bold mb-6">聯絡我們</h1>
-
+        <section>
             <div>
-                <div>
-                    {submitStatus === 'success' && (
-                        <div className="mb-6 p-4 bg-green-50 text-green-700 rounded-md">
-                            感謝您的來信！我們已收到您的訊息，將盡快回覆您。
+                {submitStatus === 'success' && (
+                    <div className="mb-6 p-4 bg-green-50 text-green-700 rounded-md">
+                        感謝您的來信！我們已收到您的訊息，將盡快回覆您。
+                    </div>
+                )}
+
+                {submitStatus === 'error' && (
+                    <div className="mb-6 p-4 bg-red-50 text-red-700 rounded-md">
+                        抱歉，訊息發送失敗。請稍後再試或直接聯繫我們。
+                    </div>
+                )}
+
+                <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col md:flex-row gap-4">
+                    <div className="md:w-1/2 w-full flex flex-col gap-4">
+                        <FormInput
+                            id="company"
+                            label="公司/單位名稱"
+                            register={register}
+                            error={errors.company}
+                        />
+
+                        <div>
+                            <div className="flex flex-row justify-between items-center gap-1 pb-1">
+                                <label htmlFor="location" className="block">所在地區</label>
+                                {errors.location && <p className="text-red-500 text-sm">{errors.location.message}</p>}
+                            </div>
+                            <select
+                                id="location"
+                                className={`w-full p-2 border rounded-md ${errors.location ? 'border-red-500' : 'border-gray-300'}`}
+                                {...register('location')}
+                            >
+                                <option value="">請選擇</option>
+                                {locationOptions.map((location) => (
+                                    <option key={location} value={location}>{location}</option>
+                                ))}
+                            </select>
                         </div>
-                    )}
 
-                    {submitStatus === 'error' && (
-                        <div className="mb-6 p-4 bg-red-50 text-red-700 rounded-md">
-                            抱歉，訊息發送失敗。請稍後再試或直接聯繫我們。
-                        </div>
-                    )}
+                        <FormInput
+                            id="name"
+                            label="姓名"
+                            register={register}
+                            error={errors.name}
+                        />
 
-                    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col md:flex-row gap-4">
-                        <div className="md:w-1/2 w-full flex flex-col gap-4">
-                            <FormInput
-                                id="company"
-                                label="公司/單位名稱"
-                                register={register}
-                                error={errors.company}
-                            />
+                        <FormInput
+                            id="phone"
+                            label="聯絡電話"
+                            type="tel"
+                            register={register}
+                            error={errors.phone}
+                        />
 
-                            <div>
-                                <div className="flex flex-row justify-between items-center gap-1 pb-1">
-                                    <label htmlFor="location" className="block">所在地區</label>
-                                    {errors.location && <p className="text-red-500 text-sm">{errors.location.message}</p>}
-                                </div>
-                                <select
-                                    id="location"
-                                    className={`w-full p-2 border rounded-md ${errors.location ? 'border-red-500' : 'border-gray-300'}`}
-                                    {...register('location')}
+                        <FormInput
+                            id="email"
+                            label="E-mail"
+                            type="email"
+                            register={register}
+                            error={errors.email}
+                        />
+
+                    </div>
+                    <div className="md:w-1/2 w-full flex flex-col gap-4 justify-between">
+                        <div className="flex flex-col gap-4">
+                            <div className="flex flex-row justify-between items-center gap-1 pb-1">
+                                <label htmlFor="message" className="block">諮詢內容</label>
+                                {errors.message && <p className="text-red-500 text-sm">{errors.message.message}</p>}
+                            </div>
+                            <textarea
+                                id="message"
+                                rows={5}
+                                className={`w-full p-2 border rounded-md ${errors.message ? 'border-red-500' : 'border-gray-300'}`}
+                                {...register('message')}
+                            ></textarea>
+                            <div className="flex justify-center">
+                                <button
+                                    type="submit"
+                                    disabled={isSubmitting}
+                                    className="px-6 py-2 bg-blue-500 rounded-full hover:opacity-80 transition-colors disabled:opacity-50 font-medium text-h6"
                                 >
-                                    <option value="">請選擇</option>
-                                    {locationOptions.map((location) => (
-                                        <option key={location} value={location}>{location}</option>
-                                    ))}
-                                </select>
+                                    {isSubmitting ? '提交中...' : '送出表單'}
+                                </button>
                             </div>
-
-                            <FormInput
-                                id="name"
-                                label="姓名"
-                                register={register}
-                                error={errors.name}
-                            />
-
-                            <FormInput
-                                id="phone"
-                                label="聯絡電話"
-                                type="tel"
-                                register={register}
-                                error={errors.phone}
-                            />
-
-                            <FormInput
-                                id="email"
-                                label="E-mail"
-                                type="email"
-                                register={register}
-                                error={errors.email}
-                            />
-
-                        </div>
-                        <div className="md:w-1/2 w-full flex flex-col gap-4 justify-between">
-                            <div className="flex flex-col gap-4">
-                                <div className="flex flex-row justify-between items-center gap-1 pb-1">
-                                    <label htmlFor="message" className="block">諮詢內容</label>
-                                    {errors.message && <p className="text-red-500 text-sm">{errors.message.message}</p>}
-                                </div>
-                                <textarea
-                                    id="message"
-                                    rows={5}
-                                    className={`w-full p-2 border rounded-md ${errors.message ? 'border-red-500' : 'border-gray-300'}`}
-                                    {...register('message')}
-                                ></textarea>
-                                <div className="flex justify-center">
-                                    <button
-                                        type="submit"
-                                        disabled={isSubmitting}
-                                        className="px-6 py-2 bg-blue-500 rounded-full hover:opacity-80 transition-colors disabled:opacity-50 font-medium text-h6"
-                                    >
-                                        {isSubmitting ? '提交中...' : '送出表單'}
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div className="text-center">
-                                <div className="space-y-3 text-center">
-                                    <p className="flex items-center justify-center">
-                                        <span className="font-medium">營業時間：</span>
-                                        <span>8:00 - 17:00</span>
-                                    </p>
-                                    <p className="flex items-center justify-center">
-                                        <span className="font-medium">電話號碼：</span>
-                                        <span>07-3642101</span>
-                                    </p>
-                                    <p className="flex items-center justify-center">
-                                        <span className="font-medium">FAX：</span>
-                                        <span>07-3649490</span>
-                                    </p>
-                                    <p className="flex items-center justify-center">
-                                        <span className="font-medium">E-mail：</span>
-                                        <span>taiwan53588280@gmail.com</span>
-                                    </p>
-                                </div>       </div>
                         </div>
 
-
-                    </form>
-                </div>
-
-
+                        <div className="text-center">
+                            <div className="space-y-3 text-center">
+                                <p className="flex items-center justify-center">
+                                    <span className="font-medium">營業時間：</span>
+                                    <span>8:00 - 17:00</span>
+                                </p>
+                                <p className="flex items-center justify-center">
+                                    <span className="font-medium">電話號碼：</span>
+                                    <span>07-3642101</span>
+                                </p>
+                                <p className="flex items-center justify-center">
+                                    <span className="font-medium">FAX：</span>
+                                    <span>07-3649490</span>
+                                </p>
+                                <p className="flex items-center justify-center">
+                                    <span className="font-medium">E-mail：</span>
+                                    <span>taiwan53588280@gmail.com</span>
+                                </p>
+                            </div>       </div>
+                    </div>
+                </form>
             </div>
-        </main>
+        </section>
     )
-} 
+}
