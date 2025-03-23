@@ -31,7 +31,7 @@ const Nav = () => {
                     </div>
 
                     {/* Desktop Links */}
-                    <div className="hidden md:flex space-x-8">
+                    <div className="hidden md:flex items-center space-x-8">
                         {navLinks.map(link => (
                             <Link
                                 key={link.href}
@@ -41,6 +41,12 @@ const Nav = () => {
                                 {link.label}
                             </Link>
                         ))}
+                        <Link
+                            href={routerConfig.contact.href}
+                            className="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-primary-blue-dark transition-colors"
+                        >
+                            聯絡我們
+                        </Link>
                     </div>
 
                     {/* 漢堡選單按鈕 */}
