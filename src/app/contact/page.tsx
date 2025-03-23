@@ -145,15 +145,10 @@ const FormSection = () => {
             {isModalOpen && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50" onClick={() => setIsModalOpen(false)}>
                     <div className="bg-white rounded-lg p-6 max-w-md w-full" onClick={(e) => e.stopPropagation()}>
+                        <img src="/images/icons/icon-contact-success.svg" alt="contact-success" className="w-full h-auto" />
                         <div className="text-center">
                             <h3 className="text-lg font-medium mb-4">已成功送出表單</h3>
                             <p>專員將儘速聯繫您</p>
-                            <button
-                                onClick={() => setIsModalOpen(false)}
-                                className="mt-6 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
-                            >
-                                關閉
-                            </button>
                         </div>
                     </div>
                 </div>
