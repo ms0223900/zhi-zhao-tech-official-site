@@ -11,7 +11,7 @@ export default function SocialSection() {
                     <div className="w-full md:w-[65%] flex-shrink-0 flex flex-col md:flex-row justify-start items-center gap-4 md:gap-12">
                         <div className="flex flex-col items-center text-[#E57B42] ">
                             <h2 className="text-[60px] leading-none font-black mb-2">S</h2>
-                            <h3 className="text-h2 md:text-2xl font-medium">企業社會責任</h3>
+                            <h3 className="text-h2 md:text-2xl font-medium whitespace-nowrap">企業社會責任</h3>
                             <p className="text-h2 text-xl">Social</p>
                         </div>
 
