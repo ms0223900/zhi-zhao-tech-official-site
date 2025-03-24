@@ -31,6 +31,13 @@ export default function ESGPage() {
                     />}
                     mobileComponent={<></>}
                 />
+                <section id="requirements" className="container px-4 md:px-8">
+                    <div className="flex flex-col gap-4 items-center px-2 py-10">
+                        <h2 className="text-h2 leading-none font-black mb-2">工安需求</h2>
+                        <hr className="w-full border-t border-gray-400" />
+                        <p className="text-h2 text-xl max-w-[400px]">監工及工安人員依照規定每日工具箱宣導、工區巡檢及填寫工安日誌。</p>
+                    </div>
+                </section>
                 <GovernanceSection />
             </div>
         </main>
