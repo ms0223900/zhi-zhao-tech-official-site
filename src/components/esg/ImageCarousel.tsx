@@ -5,8 +5,18 @@ import Slider, { Settings } from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import { CarouselItem } from './data'
+import { cn } from '@/utils/cn'
 
-export default function ImageCarousel({ carouselItems }: { carouselItems: CarouselItem[] }) {
+interface ImageCarouselProps {
+    carouselItems: CarouselItem[]
+    dotActiveClassName?: string
+    dotClassName?: string
+}
+export default function ImageCarousel({
+    carouselItems,
+    dotActiveClassName = "bg-blue-500",
+    dotClassName = "bg-[#D9D9D9]"
+}: ImageCarouselProps) {
     const [mounted, setMounted] = useState(false)
     const [currentSlide, setCurrentSlide] = useState(0)
     useEffect(() => {
@@ -19,8 +29,11 @@ export default function ImageCarousel({ carouselItems }: { carouselItems: Carous
         dotsClass: "slick-dots !bottom-[-60px]",
         customPaging: (index: number) => (
             <div
-                className={`mx-0 w-[14px] h-[14px] rounded-full ${index === currentSlide ? 'bg-blue-500' : 'bg-[#D9D9D9]'
-                    } hover:bg-[#D9D9D9]/80 transition-colors cursor-pointer`}
+                className={cn(
+                    "mx-0 w-[14px] h-[14px] rounded-full transition-colors cursor-pointer",
+                    index === currentSlide ? dotActiveClassName : dotClassName,
+                    "hover:bg-[#D9D9D9]/80",
+                )}
             />
         ),
         beforeChange: (current, next) => setCurrentSlide(next),

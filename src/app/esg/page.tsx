@@ -25,7 +25,10 @@ export default function ESGPage() {
                 />
                 <SocialSection />
                 <RwdComponent
-                    desktopComponent={<ImageCarousel carouselItems={esgSCarouselItems} />}
+                    desktopComponent={<ImageCarousel
+                        carouselItems={esgSCarouselItems}
+                        dotActiveClassName="bg-[#E57B42]"
+                    />}
                     mobileComponent={<></>}
                 />
                 <GovernanceSection />
