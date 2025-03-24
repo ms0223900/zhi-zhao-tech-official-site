@@ -4,8 +4,6 @@ import RwdComponent from "../common/RwdComponent";
 import { ProductCarousel } from "../solutions/ProductCarousel";
 import { esgECarouselItems } from './data';
 
-console.log(esgECarouselItems)
-
 export default function EnvironmentSection() {
     return (
         <section id="environment" className="container px-4 md:px-8">
