@@ -20,6 +20,15 @@ type FormValues = z.infer<typeof formSchema>
 const strapiToken = process.env.NEXT_PUBLIC_STRAPI_TOKEN;
 const SEND_EMAIL_API_URL = process.env.NEXT_PUBLIC_API_URL + "/api/email/send";
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const TEST_DEFAULT_VALUES = {
+    company: 'testCompany',
+    location: '台中市',
+    name: 'testName',
+    phone: 'testPhone',
+    email: 'testEmail@gmail.com',
+    message: 'testMessage',
+}
 
 // 台灣地區選項
 const locationOptions = [
@@ -49,14 +58,7 @@ const FormSection = () => {
             email: '',
             message: '',
         },
-        // defaultValues: {
-        //     company: 'testCompany',
-        //     location: '台中市',
-        //     name: 'testName',
-        //     phone: 'testPhone',
-        //     email: 'testEmail@gmail.com',
-        //     message: 'testMessage',
-        // },
+        // defaultValues: TEST_DEFAULT_VALUES,
     })
 
     const onSubmit = async (data: FormValues) => {
