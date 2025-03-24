@@ -36,7 +36,7 @@ export default function ESGPage() {
                     <div className="flex flex-col gap-4 items-center px-2">
                         <h2 className="text-h2 leading-none font-black mb-2">工安需求</h2>
                         <hr className="w-full border-t border-gray-400" />
-                        <p className="text-h2 text-xl max-w-[420px] text-center">監工及工安人員依照規定每日工具箱宣導、工區巡檢及填寫工安日誌。</p>
+                        <p className="text-h4 text-xl max-w-[420px] text-center leading-[200%]">監工及工安人員依照規定每日工具箱宣導、工區巡檢及填寫工安日誌。</p>
                     </div>
                 </section>
                 <RwdComponent
@@ -46,6 +46,13 @@ export default function ESGPage() {
                     />}
                     mobileComponent={<></>}
                 />
+                <section id="requirements" className="container px-4 md:px-8">
+                    <div className="flex flex-col gap-4 items-center px-2">
+                        <h2 className="text-h2 leading-none font-black mb-2">ISO-45001執行</h2>
+                        <hr className="w-full border-t border-gray-400" />
+                        <p className="text-h4 text-xl max-w-[560px] text-center leading-[200%]">執行ISO-45001 程序,無塵室建置統包案,現場訪查輔導評鑑, 檢視智兆科技公司施工現場落實ISO-45001 程度。</p>
+                    </div>
+                </section>
             </div>
         </main>
     )
