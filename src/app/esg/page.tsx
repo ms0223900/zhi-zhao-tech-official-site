@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import RwdComponent from "@/components/common/RwdComponent"
-import { esgECarouselItems, esgSafetyCarouselItems, esgSCarouselItems } from "@/components/esg/data"
+import { esgECarouselItems, esgISO45001CarouselItems, esgSafetyCarouselItems, esgSCarouselItems } from "@/components/esg/data"
 import EnvironmentSection from "@/components/esg/EnvironmentSection"
 import ESGSection from "@/components/esg/ESGSection"
 import GovernanceSection from "@/components/esg/GovernanceSection"
@@ -38,6 +38,16 @@ export default function ESGPage() {
                         <hr className="w-full border-t border-gray-400" />
                         <p className="text-h4 text-xl max-w-[420px] text-center leading-[200%]">監工及工安人員依照規定每日工具箱宣導、工區巡檢及填寫工安日誌。</p>
                     </div>
+
+                    <RwdComponent
+                        desktopComponent={
+                            <ImageCarousel
+                                carouselItems={esgSafetyCarouselItems}
+                                dotActiveClassName="bg-[#eaca00]"
+                            />
+                        }
+                        mobileComponent={<></>}
+                    />
                 </section>
                 <section id="requirements" className="container px-4 md:px-8">
                     <div className="flex flex-col gap-4 items-center px-2">
@@ -48,8 +58,7 @@ export default function ESGPage() {
                     <RwdComponent
                         desktopComponent={
                             <ImageCarousel
-                                carouselItems={esgSafetyCarouselItems}
-                                dotActiveClassName="bg-[#eaca00]"
+                                carouselItems={esgISO45001CarouselItems}
                             />
                         }
                         mobileComponent={<></>}
