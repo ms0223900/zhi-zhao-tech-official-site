@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import RwdComponent from "@/components/common/RwdComponent"
-import { esgECarouselItems } from "@/components/esg/data"
+import { esgECarouselItems, esgSCarouselItems } from "@/components/esg/data"
 import EnvironmentSection from "@/components/esg/EnvironmentSection"
 import ESGSection from "@/components/esg/ESGSection"
 import GovernanceSection from "@/components/esg/GovernanceSection"
@@ -24,6 +24,10 @@ export default function ESGPage() {
                     mobileComponent={<></>}
                 />
                 <SocialSection />
+                <RwdComponent
+                    desktopComponent={<ImageCarousel carouselItems={esgSCarouselItems} />}
+                    mobileComponent={<></>}
+                />
                 <GovernanceSection />
             </div>
         </main>

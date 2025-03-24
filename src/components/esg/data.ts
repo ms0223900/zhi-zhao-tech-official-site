@@ -32,3 +32,36 @@ export const esgECarouselItems: CarouselItem[] = [
         title: '工程圖'
     },
 ]
+
+export const esgSCarouselItems: CarouselItem[] = [
+    {
+        id: 1,
+        image: '/images/esg/esg-s/carousel-images/esg-s-image-1.jpg',
+        title: '捐贈儀式'
+    },
+    {
+        id: 2,
+        image: '/images/esg/esg-s/carousel-images/esg-s-image-3.jpg',
+        title: '捐贈儀式'
+    },
+    {
+        id: 3,
+        image: '/images/esg/esg-s/carousel-images/esg-s-image-4.jpg',
+        title: '捐贈儀式'
+    },
+    {
+        id: 4,
+        image: '/images/esg/esg-s/carousel-images/esg-s-image-2.jpg',
+        title: '感謝狀'
+    },
+    {
+        id: 5,
+        image: '/images/esg/esg-s/carousel-images/esg-s-image-5.jpg',
+        title: '感謝狀'
+    },
+    {
+        id: 6,
+        image: '/images/esg/esg-s/carousel-images/esg-s-image-6.jpg',
+        title: '感謝狀'
+    }
+]
