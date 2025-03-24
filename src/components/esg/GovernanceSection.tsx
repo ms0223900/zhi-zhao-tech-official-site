@@ -16,7 +16,7 @@ export default function GovernanceSection() {
                         </div>
 
                         <div className="space-y-4 flex flex-col items-center md:items-start">
-                            {['透明合規', '風險管理'].map((item, index) => (
+                            {['技術提升', '工安管理', '內訓及外訓提倡'].map((item, index) => (
                                 <h4
                                     key={index}
                                     className="inline-block text-h2 text-xl font-medium border-b border-gray-400"
