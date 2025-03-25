@@ -110,12 +110,14 @@ export const esgSafetyCarouselItems: CarouselItem[] = [
 
 ]
 
+export const certificateItem: CarouselItem = {
+    id: 1,
+    image: '/images/esg/esg-iso45001/carousel-images/esg-iso45001-image-4.jpg',
+    title: '證書'
+}
+
 export const esgISO45001CarouselItems: CarouselItem[] = [
-    {
-        id: 1,
-        image: '/images/esg/esg-iso45001/carousel-images/esg-iso45001-image-4.jpg',
-        title: '證書'
-    },
+    certificateItem,
     {
         id: 2,
         image: '/images/esg/esg-iso45001/carousel-images/esg-iso45001-image-1.jpg',

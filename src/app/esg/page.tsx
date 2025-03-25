@@ -1,11 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
+import Image from "next/image"
 import RwdComponent from "@/components/common/RwdComponent"
-import { esgECarouselItems, esgISO45001CarouselItems, esgSafetyCarouselItems, esgSCarouselItems } from "@/components/esg/data"
+import { certificateItem, esgECarouselItems, esgISO45001CarouselItems, esgSafetyCarouselItems, esgSCarouselItems } from "@/components/esg/data"
 import EnvironmentSection from "@/components/esg/EnvironmentSection"
 import ESGSection from "@/components/esg/ESGSection"
 import GovernanceSection from "@/components/esg/GovernanceSection"
 import ImageCarousel from "@/components/esg/ImageCarousel"
 import SocialSection from "@/components/esg/SocialSection"
+import { ProductCarousel } from "@/components/solutions/ProductCarousel"
 
 export const metadata = {
     title: 'ESG',
@@ -14,7 +16,7 @@ export const metadata = {
 
 export default function ESGPage() {
     return (
-        <main className="mx-auto theme-gradient-blue" style={{ scrollBehavior: 'smooth' }}>
+        <main className="mx-auto theme-gradient-blue pb-12" style={{ scrollBehavior: 'smooth' }}>
             <Banner />
             <ESGSection />
             <div className="flex flex-col gap-10">
@@ -49,7 +51,7 @@ export default function ESGPage() {
                         mobileComponent={<></>}
                     />
                 </section>
-                <section id="requirements" className="container px-4 md:px-0">
+                <section id="requirements" className="container px-4 md:px-0 flex flex-col gap-12">
                     <div className="flex flex-col gap-4 items-center px-2">
                         <h2 className="text-h2 leading-none font-black mb-2">ISO-45001執行</h2>
                         <hr className="w-full border-t border-gray-400" />
@@ -57,15 +59,26 @@ export default function ESGPage() {
                     </div>
                     <RwdComponent
                         desktopComponent={
-                            <ImageCarousel
-                                carouselItems={esgISO45001CarouselItems}
-                                settings={{
-                                    slidesToShow: 3,
-                                    autoplay: false,
-                                }}
+                            <div className="flex flex-row gap-4">
+                                <div className="w-1/4">
+                                    <Image
+                                        src={certificateItem.image}
+                                        alt="ISO-45001"
+                                        width={100}
+                                        height={100}
+                                        className="w-full h-full object-cover rounded-md"
+                                    />
+                                </div>
+                                <div className="w-3/4">
+
+                                </div>
+                            </div>
+                        }
+                        mobileComponent={
+                            <ProductCarousel
+                                productImageList={esgISO45001CarouselItems.map(item => item.image)}
                             />
                         }
-                        mobileComponent={<></>}
                     />
                 </section>
             </div>
