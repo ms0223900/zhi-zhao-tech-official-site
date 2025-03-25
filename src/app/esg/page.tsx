@@ -16,7 +16,7 @@ export const metadata = {
 
 export default function ESGPage() {
     return (
-        <main className="mx-auto md:theme-gradient-blue pb-12" style={{ scrollBehavior: 'smooth' }}>
+        <main className="mx-auto bg-gradient-to-r from-[#FFFFFF] md:to-[#55BBF9]/30 pb-12" style={{ scrollBehavior: 'smooth' }}>
             <Banner />
             <ESGSection />
             <div className="flex flex-col gap-10">
