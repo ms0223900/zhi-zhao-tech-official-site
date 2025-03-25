@@ -16,7 +16,7 @@ export const metadata = {
 
 export default function ESGPage() {
     return (
-        <main className="mx-auto theme-gradient-blue pb-12" style={{ scrollBehavior: 'smooth' }}>
+        <main className="mx-auto md:theme-gradient-blue pb-12" style={{ scrollBehavior: 'smooth' }}>
             <Banner />
             <ESGSection />
             <div className="flex flex-col gap-10">
@@ -59,7 +59,7 @@ export default function ESGPage() {
                     </div>
                     <RwdComponent
                         desktopComponent={
-                            <div className="flex flex-row gap-4">
+                            <div className="flex flex-row gap-14">
                                 <div className="w-1/4">
                                     <Image
                                         src={certificateItem.image}
@@ -92,9 +92,23 @@ export default function ESGPage() {
                             </div>
                         }
                         mobileComponent={
-                            <ProductCarousel
-                                productImageList={esgISO45001CarouselItems.map(item => item.image)}
-                            />
+                            <div>
+                                <Image
+                                    src={certificateItem.image}
+                                    alt="ISO-45001"
+                                    width={100}
+                                    height={100}
+                                    className="w-full h-full object-cover rounded-md"
+                                />
+                                <div className="flex flex-col gap-4 items-center whitespace-pre-line py-6">
+                                    <p className="text-h5 font-medium text-center">{`2023.04\n通過ISO-45001認證`}</p>
+                                    <p className="text-h5 font-medium text-center">{`2023.06\n取得ISO-45001證書`}</p>
+                                </div>
+                                <ProductCarousel
+                                    productImageList={esgISO45001CarouselItems.slice(1).map(item => item.image)}
+                                />
+                                <h3 className="text-h3 leading-[250%] font-bold drop-shadow-md text-center max-w-[200px] mx-auto">{`智兆科技持續改善及提升品質、追求卓越\n致力於滿足顧客需求`}</h3>
+                            </div>
                         }
                     />
                 </section>
