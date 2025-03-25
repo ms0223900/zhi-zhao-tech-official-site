@@ -23,7 +23,7 @@ export default {
         'display-2': ['35px', { lineHeight: 'auto', fontWeight: '600' }],
         'h1': ['25px', { lineHeight: 'auto', fontWeight: '600', letterSpacing: '0.12rem' }],
         'h2': ['25px', { letterSpacing: '0.12rem', lineHeight: 'auto', fontWeight: '500' }],
-        'h3': ['20px', { lineHeight: 'auto', fontWeight: '500' }],
+        'h3': ['20px', { lineHeight: 'auto', fontWeight: '500', letterSpacing: '0.12rem' }],
         'h4': ['18px', { lineHeight: 'auto', fontWeight: '400', letterSpacing: '0.12rem' }],
         'h5': ['16px', { lineHeight: 'auto', fontWeight: '400' }],
         'h6': ['14px', { letterSpacing: '0.12rem', lineHeight: 'auto', fontWeight: '400' }],
