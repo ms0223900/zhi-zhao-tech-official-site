@@ -48,7 +48,9 @@ export default function ESGPage() {
                                 dotActiveClassName="bg-[#eaca00]"
                             />
                         }
-                        mobileComponent={<></>}
+                        mobileComponent={<ProductCarousel
+                            productImageList={esgSafetyCarouselItems.map(item => item.image)}
+                        />}
                     />
                 </section>
                 <section id="requirements" className="container px-4 md:px-0 flex flex-col gap-12">

@@ -5,7 +5,7 @@ import RwdComponent from "../common/RwdComponent";
 export default function SocialSection() {
     return (
         <section id="social" className="container px-4 md:px-8">
-            <div className="border-2 border-[#E57B42] rounded-2xl overflow-hidden theme-gradient-blue">
+            <div className="border-2 border-[#E57B42] rounded-2xl overflow-hidden bg-gradient-to-r from-[#ffffff00] to-[#E57B42]/30">
                 <div className="flex flex-col md:flex-row gap-4 items-center px-2 md:px-12 py-10 md:py-6">
                     {/* 左側文字區塊 */}
                     <div className="w-full md:w-[65%] flex-shrink-0 flex flex-col md:flex-row justify-start items-center gap-4 md:gap-12">
