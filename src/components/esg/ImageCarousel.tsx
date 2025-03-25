@@ -11,11 +11,13 @@ interface ImageCarouselProps {
     carouselItems: CarouselItem[]
     dotActiveClassName?: string
     dotClassName?: string
+    settings?: Settings
 }
 export default function ImageCarousel({
     carouselItems,
     dotActiveClassName = "bg-blue-500",
-    dotClassName = "bg-[#D9D9D9]"
+    dotClassName = "bg-[#D9D9D9]",
+    settings = {},
 }: ImageCarouselProps) {
     const [mounted, setMounted] = useState(false)
     const [currentSlide, setCurrentSlide] = useState(0)
@@ -23,7 +25,7 @@ export default function ImageCarousel({
         setMounted(true)
     }, [])
 
-    const settings: Settings = {
+    const _settings: Settings = {
         className: "max-h-[280px]",
         dots: true,
         dotsClass: "slick-dots !bottom-[-60px]",
@@ -66,13 +68,14 @@ export default function ImageCarousel({
                     slidesToScroll: 1,
                 }
             }
-        ]
+        ],
+        ...settings,
     }
 
     return (
         <section className="container py-12 px-4 md:px-8">
             {mounted && (
-                <Slider {...settings}>
+                <Slider {..._settings}>
                     {carouselItems.map((item) => (
                         <div key={item.id} className="px-2">
                             <div className="flex flex-col items-center">

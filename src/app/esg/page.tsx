@@ -49,7 +49,7 @@ export default function ESGPage() {
                         mobileComponent={<></>}
                     />
                 </section>
-                <section id="requirements" className="container px-4 md:px-8">
+                <section id="requirements" className="container px-4 md:px-0">
                     <div className="flex flex-col gap-4 items-center px-2">
                         <h2 className="text-h2 leading-none font-black mb-2">ISO-45001執行</h2>
                         <hr className="w-full border-t border-gray-400" />
@@ -59,6 +59,10 @@ export default function ESGPage() {
                         desktopComponent={
                             <ImageCarousel
                                 carouselItems={esgISO45001CarouselItems}
+                                settings={{
+                                    slidesToShow: 3,
+                                    autoplay: false,
+                                }}
                             />
                         }
                         mobileComponent={<></>}

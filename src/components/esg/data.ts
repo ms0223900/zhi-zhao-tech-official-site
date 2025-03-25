@@ -112,22 +112,22 @@ export const esgSafetyCarouselItems: CarouselItem[] = [
 
 export const esgISO45001CarouselItems: CarouselItem[] = [
     {
-        id: 4,
+        id: 1,
         image: '/images/esg/esg-iso45001/carousel-images/esg-iso45001-image-4.jpg',
         title: '證書'
     },
     {
-        id: 1,
+        id: 2,
         image: '/images/esg/esg-iso45001/carousel-images/esg-iso45001-image-1.jpg',
         title: 'ISO-45001'
     },
     {
-        id: 2,
+        id: 3,
         image: '/images/esg/esg-iso45001/carousel-images/esg-iso45001-image-2.jpg',
         title: 'ISO-45001'
     },
     {
-        id: 3,
+        id: 4,
         image: '/images/esg/esg-iso45001/carousel-images/esg-iso45001-image-3.jpg',
         title: 'ISO-45001'
     },
