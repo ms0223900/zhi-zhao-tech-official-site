@@ -16,10 +16,10 @@ export const metadata = {
 
 export default function ESGPage() {
     return (
-        <main className="mx-auto bg-gradient-to-r from-[#FFFFFF] md:to-[#55BBF9]/30 pb-12" style={{ scrollBehavior: 'smooth' }}>
+        <main className="relative mx-auto bg-gradient-to-r from-[#FFFFFF] md:to-[#55BBF9]/30 pb-12" style={{ scrollBehavior: 'smooth' }}>
             <Banner />
             <ESGSection />
-            <div className="flex flex-col gap-10">
+            <div className="flex flex-col gap-10 relative z-10">
                 <EnvironmentSection />
                 <RwdComponent
                     desktopComponent={<ImageCarousel carouselItems={esgECarouselItems} />}
@@ -135,6 +135,16 @@ export default function ESGPage() {
                     />
                 </section>
             </div>
+            <RwdComponent
+                desktopComponent={
+                    <>
+                        <img src="/images/esg/esg-bg-circle-1.svg" alt="ESG" className="w-[580px] h-auto object-cover rounded-md absolute top-[1200px] left-[-200px]" />
+                        <img src="/images/esg/esg-bg-circle-2.svg" alt="ESG" className="w-[1000px] h-auto object-cover rounded-md absolute top-[1800px] right-[-500px]" />
+                        <img src="/images/esg/esg-bg-circle-3.svg" alt="ESG" className="w-[224px] h-auto object-cover rounded-md absolute top-[2400px] left-[-60px]" />
+                    </>
+                }
+                mobileComponent={<></>}
+            />
         </main>
     )
 }
