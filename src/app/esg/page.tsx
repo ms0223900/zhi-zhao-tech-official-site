@@ -16,7 +16,7 @@ export const metadata = {
 
 export default function ESGPage() {
     return (
-        <main className="relative mx-auto bg-gradient-to-r from-[#FFFFFF] md:to-[#55BBF9]/30 pb-12" style={{ scrollBehavior: 'smooth' }}>
+        <main className="relative mx-auto bg-gradient-to-r from-[#FFFFFF] md:to-[#55BBF9]/30 pb-12 overflow-hidden" style={{ scrollBehavior: 'smooth' }}>
             <Banner />
             <ESGSection />
             <div className="flex flex-col gap-10 relative z-10">
@@ -36,7 +36,7 @@ export default function ESGPage() {
                 <GovernanceSection />
                 <section id="requirements" className="container px-4 md:px-8">
                     <div className="flex flex-col gap-4 items-center px-2">
-                        <h2 className="text-h2 leading-none font-black mb-2">工安需求</h2>
+                        <h2 className="text-h2 leading-none font-black mb-2">落實工安需求</h2>
                         <hr className="w-full border-t border-gray-400" />
                         <RwdComponent
                             desktopComponent={
