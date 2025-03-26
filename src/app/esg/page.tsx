@@ -38,7 +38,12 @@ export default function ESGPage() {
                     <div className="flex flex-col gap-4 items-center px-2">
                         <h2 className="text-h2 leading-none font-black mb-2">工安需求</h2>
                         <hr className="w-full border-t border-gray-400" />
-                        <p className="text-h4 text-xl max-w-[420px] text-center leading-[200%]">監工及工安人員依照規定每日工具箱宣導、工區巡檢及填寫工安日誌。</p>
+                        <RwdComponent
+                            desktopComponent={
+                                <p className="text-h4 text-xl max-w-[420px] text-center leading-[200%]">監工及工安人員依照規定每日工具箱宣導、工區巡檢及填寫工安日誌。</p>
+                            }
+                            mobileComponent={null}
+                        />
                     </div>
 
                     <RwdComponent
@@ -48,9 +53,14 @@ export default function ESGPage() {
                                 dotActiveClassName="bg-[#eaca00]"
                             />
                         }
-                        mobileComponent={<ProductCarousel
-                            productImageList={esgSafetyCarouselItems.map(item => item.image)}
-                        />}
+                        mobileComponent={
+                            <div className="flex flex-col gap-4 shadow-md rounded-md p-2 pt-8 bg-gradient-to-r from-[#FFFFFF] to-[#E0E0E0]">
+                                <p className="text-h4 text-xl max-w-[420px] text-center leading-[200%]">監工及工安人員依照規定每日工具箱宣導、工區巡檢及填寫工安日誌。</p>
+                                <ProductCarousel
+                                    productImageList={esgSafetyCarouselItems.map(item => item.image)}
+                                />
+                            </div>
+                        }
                     />
                 </section>
                 <section id="requirements" className="container px-4 md:px-0 flex flex-col gap-12">
