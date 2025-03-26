@@ -63,31 +63,38 @@ export default function ESGPage() {
                         }
                     />
                 </section>
-                <section id="requirements" className="container px-4 md:px-0 flex flex-col gap-12">
+                <section id="requirements" className="container px-4 flex flex-col gap-12">
                     <div className="flex flex-col gap-4 items-center px-2">
                         <h2 className="text-h2 leading-none font-black mb-2">ISO-45001執行</h2>
                         <hr className="w-full border-t border-gray-400" />
-                        <p className="text-h4 text-xl max-w-[560px] text-center leading-[200%]">執行ISO-45001 程序,無塵室建置統包案,現場訪查輔導評鑑, 檢視智兆科技公司施工現場落實ISO-45001 程度。</p>
+                        <RwdComponent
+                            desktopComponent={
+                                <p className="text-h4 text-xl max-w-[560px] text-center leading-[200%]">
+                                    執行ISO-45001 程序,無塵室建置統包案,現場訪查輔導評鑑, 檢視智兆科技公司施工現場落實ISO-45001 程度。
+                                </p>
+                            }
+                            mobileComponent={null}
+                        />
                     </div>
                     <RwdComponent
                         desktopComponent={
                             <div className="flex flex-row gap-14">
-                                <div className="w-1/4">
+                                <div className="md:w-1/3 xl:w-1/4">
                                     <Image
                                         src={certificateItem.image}
                                         alt="ISO-45001"
                                         width={100}
                                         height={100}
-                                        className="w-full h-full object-cover rounded-md"
+                                        className="w-full h-full object-cover rounded-md object-left"
                                     />
                                 </div>
-                                <div className="w-3/4">
+                                <div className="md:w-2/3 xl:w-3/4">
                                     <div className="flex flex-col gap-4">
                                         <div className="flex flex-row gap-4 items-center">
-                                            <div className="w-1/3">
+                                            <div className="md:w-1/2 xl:w-1/3">
                                                 <h3 className="text-h3 leading-[250%] font-bold drop-shadow-md">{`智兆科技持續改善及提升品質、追求卓越\n致力於滿足顧客需求`}</h3>
                                             </div>
-                                            <div className="w-2/3 whitespace-pre-line text-[#A6A4A4]">
+                                            <div className="md:w-2/3 xl:w-1/3 whitespace-pre-line text-[#A6A4A4]">
                                                 <p className="text-h3 font-medium">{`2023.04\n通過ISO-45001認證`}</p>
                                                 <p className="text-h3 font-medium">{`2023.06\n取得ISO-45001證書`}</p>
                                             </div>
@@ -104,7 +111,10 @@ export default function ESGPage() {
                             </div>
                         }
                         mobileComponent={
-                            <div>
+                            <div className="flex flex-col gap-4 shadow-md rounded-md p-2 pt-8 bg-gradient-to-r from-[#FFFFFF] to-[#E0E0E0]">
+                                <p className="text-h4 text-xl max-w-[560px] text-center leading-[200%]">
+                                    執行ISO-45001 程序,無塵室建置統包案,現場訪查輔導評鑑, 檢視智兆科技公司施工現場落實ISO-45001 程度。
+                                </p>
                                 <Image
                                     src={certificateItem.image}
                                     alt="ISO-45001"
@@ -112,7 +122,7 @@ export default function ESGPage() {
                                     height={100}
                                     className="w-full h-full object-cover rounded-md"
                                 />
-                                <div className="flex flex-col gap-4 items-center whitespace-pre-line py-6">
+                                <div className="flex flex-col gap-1 items-center whitespace-pre-line py-6">
                                     <p className="text-h5 font-medium text-center">{`2023.04\n通過ISO-45001認證`}</p>
                                     <p className="text-h5 font-medium text-center">{`2023.06\n取得ISO-45001證書`}</p>
                                 </div>
