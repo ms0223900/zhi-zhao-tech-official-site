@@ -10,7 +10,7 @@ const linkCardList = [
     {
         id: 1,
         link: "/careers#recruitment",
-        image: "/images/careers/careers-banner.jpg",
+        image: "/images/careers/careers-banner.jpg", // TODO: 替換圖片
         title: "人才培養",
         subtitle: "Talent Training"
     }, {
