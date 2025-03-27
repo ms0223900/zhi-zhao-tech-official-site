@@ -23,7 +23,7 @@ export default function ThreeDCarousel({ carouselItems }: ThreeDCarouselProps) {
         className: "center",
         centerMode: true,
         infinite: true,
-        centerPadding: "60px",
+        centerPadding: "100px",
         slidesToShow: 1,
         // speed: 500,
         beforeChange: (current, next) => setCurrentSlide(next),
@@ -44,14 +44,14 @@ export default function ThreeDCarousel({ carouselItems }: ThreeDCarouselProps) {
     if (!mounted) return null
 
     return (
-        <div className="w-full my-10 slider-container">
+        <div className="w-full my-10 slider-container overflow-hidden rounded-lg">
             <Slider {...settings}>
                 {carouselItems.map((item, index) => (
                     <div key={item.id} className={cn(
                         "px-4 relative",
                         "transform transition-all duration-500 transform-center",
                         index === currentSlide
-                            ? "scale-[1.4] brightness-[1] z-10"
+                            ? "scale-[1.3] brightness-[1] z-10"
                             : "scale-80 brightness-[0.8]"
                     )}>
                         <div
@@ -59,7 +59,7 @@ export default function ThreeDCarousel({ carouselItems }: ThreeDCarouselProps) {
                                 "transform transition-all duration-500 my-[100px]",
                             )}
                         >
-                            <div className="relative aspect-[4/3] overflow-hidden rounded-lg shadow-lg">
+                            <div className="relative aspect-[2/3] overflow-hidden rounded-lg shadow-lg">
                                 <img
                                     src={item.image}
                                     alt={item.title}
