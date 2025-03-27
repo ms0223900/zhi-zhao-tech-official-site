@@ -1,3 +1,4 @@
+import TalentTrainingSection from "@/components/careers/TalentTrainingSection"
 import Banner from "@/components/common/Banner"
 import LinkCard from "@/components/common/LinkCard"
 
@@ -36,6 +37,7 @@ export default function CareersPage() {
                 subtitle="Talent Area"
                 imageSrc="/images/careers/careers-banner.jpg"
             />
+
             <section className="container mx-auto px-4 py-16">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     {linkCardList.map((item) => (
@@ -49,6 +51,8 @@ export default function CareersPage() {
                     ))}
                 </div>
             </section>
+
+            <TalentTrainingSection />
         </main>
     )
 } 
