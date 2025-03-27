@@ -20,50 +20,43 @@ export default function ThreeDCarousel({ carouselItems }: ThreeDCarouselProps) {
     }, [])
 
     const settings: Settings = {
-        // className: "center",
+        className: "center",
         centerMode: true,
         infinite: true,
-        centerPadding: "0px",
-        slidesToShow: 3,
-        speed: 500,
+        centerPadding: "60px",
+        slidesToShow: 1,
+        // speed: 500,
         beforeChange: (current, next) => setCurrentSlide(next),
-        responsive: [
-            {
-                breakpoint: 768,
-                settings: {
-                    slidesToShow: 3,
-                    slidesToScroll: 1,
-                    centerMode: true,
-                    centerPadding: "0px",
-                }
-            }
-        ],
-        customPaging: (i: number) => (
-            <div
-                className={cn(
-                    "w-3 h-3 rounded-full transition-colors",
-                    i === currentSlide ? "bg-primary-600" : "bg-gray-300",
-                )}
-            />
-        ),
+        // variableWidth: true,
+        // responsive: [
+        //     {
+        //         breakpoint: 768,
+        //         settings: {
+        //             slidesToShow: 1,
+        //             slidesToScroll: 1,
+        //             centerMode: true,
+        //             centerPadding: "0px",
+        //         }
+        //     }
+        // ],
     }
 
     if (!mounted) return null
 
     return (
-        <div className="w-full my-10">
+        <div className="w-full my-10 slider-container">
             <Slider {...settings}>
                 {carouselItems.map((item, index) => (
                     <div key={item.id} className={cn(
-                        "px-2",
-                        "transform transition-all duration-500",
-                        // index === currentSlide
-                        //     ? "scale-[1.4] brightness-[1]"
-                        //     : "scale-80 brightness-[0.8]"
+                        "px-4 relative",
+                        "transform transition-all duration-500 transform-center",
+                        index === currentSlide
+                            ? "scale-[1.4] brightness-[1] z-10"
+                            : "scale-80 brightness-[0.8]"
                     )}>
                         <div
                             className={cn(
-                                "transform transition-all duration-500",
+                                "transform transition-all duration-500 my-[100px]",
                             )}
                         >
                             <div className="relative aspect-[4/3] overflow-hidden rounded-lg shadow-lg">
