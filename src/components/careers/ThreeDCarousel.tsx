@@ -20,21 +20,21 @@ export default function ThreeDCarousel({ carouselItems }: ThreeDCarouselProps) {
     }, [])
 
     const settings: Settings = {
-        className: "center",
+        // className: "center",
         centerMode: true,
         infinite: true,
-        centerPadding: "0",
+        centerPadding: "0px",
         slidesToShow: 3,
         speed: 500,
-        dots: true,
-        arrows: true,
         beforeChange: (current, next) => setCurrentSlide(next),
         responsive: [
             {
                 breakpoint: 768,
                 settings: {
-                    slidesToShow: 1,
+                    slidesToShow: 3,
                     slidesToScroll: 1,
+                    centerMode: true,
+                    centerPadding: "0px",
                 }
             }
         ],
@@ -51,16 +51,19 @@ export default function ThreeDCarousel({ carouselItems }: ThreeDCarouselProps) {
     if (!mounted) return null
 
     return (
-        <div className="w-full">
+        <div className="w-full my-10">
             <Slider {...settings}>
                 {carouselItems.map((item, index) => (
-                    <div key={item.id} className="px-4">
+                    <div key={item.id} className={cn(
+                        "px-2",
+                        "transform transition-all duration-500",
+                        // index === currentSlide
+                        //     ? "scale-[1.4] brightness-[1]"
+                        //     : "scale-80 brightness-[0.8]"
+                    )}>
                         <div
                             className={cn(
-                                "transform transition-all duration-300",
-                                index === currentSlide
-                                    ? "scale-100 opacity-100"
-                                    : "scale-90 opacity-70"
+                                "transform transition-all duration-500",
                             )}
                         >
                             <div className="relative aspect-[4/3] overflow-hidden rounded-lg shadow-lg">
@@ -70,7 +73,7 @@ export default function ThreeDCarousel({ carouselItems }: ThreeDCarouselProps) {
                                     className="w-full h-full object-cover"
                                 />
                                 <div className="absolute inset-0 bg-black/30 flex items-end justify-center p-4">
-                                    <h3 className="text-white text-xl font-semibold">
+                                    <h3 className="text-white text-xl font-semibold text-center">
                                         {item.title}
                                     </h3>
                                 </div>

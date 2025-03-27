@@ -1,3 +1,5 @@
+"use client"
+
 import ThreeDCarousel from './ThreeDCarousel'
 import { talentTrainingCarouselItems } from './data'
 
