@@ -10,19 +10,19 @@ const linkCardList = [
     {
         id: 1,
         link: "/careers#recruitment",
-        image: "/images/careers/careers-banner.jpg", // TODO: 替換圖片
+        image: "/images/careers/talent-training-cover.jpg",
         title: "人才培養",
         subtitle: "Talent Training"
     }, {
         id: 2,
         link: "/careers#recruitment",
-        image: "/images/careers/careers-banner.jpg",
+        image: "/images/careers/employee-benefits-cover.jpg",
         title: "員工福利",
         subtitle: "Employee Benefits"
     }, {
         id: 3,
         link: "/careers#recruitment",
-        image: "/images/careers/careers-banner.jpg",
+        image: "/images/careers/join-us-cover.jpg",
         title: "加入我們",
         subtitle: "Join Us"
     }
