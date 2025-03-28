@@ -31,7 +31,7 @@ export default function ThreeDCarousel({ carouselItems }: ThreeDCarouselProps) {
             {
                 breakpoint: 550,
                 settings: {
-                    // centerPadding: "60px",
+                    centerPadding: "0px",
                 }
             }
         ],
@@ -40,33 +40,24 @@ export default function ThreeDCarousel({ carouselItems }: ThreeDCarouselProps) {
     if (!mounted) return null
 
     return (
-        <div className="w-full my-10 slider-container overflow-hidden rounded-lg">
+        <div className={cn(
+            "w-full my-10 slider-container overflow-hidden rounded-lg ",
+            "px-4 relative",
+            "careers-carousel"
+        )}>
             <Slider {...settings}>
-                {carouselItems.map((item, index) => (
-                    <div key={item.id} className={cn(
-                        // "px-4 relative",
-                        "relative",
-                        "transform transition-all duration-500 transform-center",
-                        // index === (currentSlide + 1) % carouselItems.length
-                        //     ? "scale-[1.3] brightness-[1] z-10"
-                        //     : "scale-100 brightness-[0.6]"
-                    )}>
-                        <div
-                            className={cn(
-                                "transform transition-all duration-500 my-[100px]",
-                            )}
-                        >
+                {carouselItems.map((item) => (
+                    <div key={item.id} className="px-1">
+                        <div className={"my-[100px]"}>
                             <div className="relative aspect-[2/3]">
                                 <img
                                     src={item.image}
                                     alt={item.title}
                                     className="w-full h-full object-cover rounded-lg"
                                 />
-                                {index === (currentSlide + 1) % carouselItems.length && (
-                                    <h3 className="text-xl font-semibold text-center">
-                                        {item.title}
-                                    </h3>
-                                )}
+                                <h3 className="text-lg font-semibold text-center opacity-0">
+                                    {item.title}
+                                </h3>
                             </div>
                         </div>
                     </div>

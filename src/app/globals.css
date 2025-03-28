@@ -64,3 +64,15 @@ body {
 .container {
   @apply max-w-[960px] mx-auto;
 }
+
+.careers-carousel .slick-slide.slick-current {
+  @apply scale-[1.5] brightness-[1] z-10 relative transition-all duration-500;
+}
+
+.careers-carousel .slick-slide {
+  @apply scale-100 brightness-[0.6];
+}
+
+.careers-carousel .slick-slide.slick-slide.slick-current h3 {
+  @apply opacity-100;
+}
