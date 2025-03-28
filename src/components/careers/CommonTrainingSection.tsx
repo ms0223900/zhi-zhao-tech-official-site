@@ -36,10 +36,10 @@ export default function CommonTrainingSection({
                         <div className='space-y-1'>
                             {detailDescriptions.map((item, index) => (
                                 <div key={index}>
-                                    <h3 className="text-xl font-regular text-gray-800">
+                                    <h3 className="text-h5 font-regular text-gray-800">
                                         {item.title}
                                     </h3>
-                                    <p className="text-[#706F6F]">
+                                    <p className="text-[#706F6F] text-h5">
                                         {item.content}
                                     </p>
                                 </div>

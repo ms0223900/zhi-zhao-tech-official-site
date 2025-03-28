@@ -53,7 +53,7 @@ export default function CareersPage() {
                     ))}
                 </div>
             </section>
-            <div className="md--theme-gradient-blue">
+            <div className="md--theme-gradient-blue py-[71px]">
                 <CommonTrainingSection
                     title="人才培養"
                     subTitle="Talent Training"
@@ -91,6 +91,11 @@ export default function CareersPage() {
                     carouselItems={employeeBenefitsCarouselItems}
                     themeColor="#55BBF9"
                 />
+                <section>
+                    <p className="text-h3 text-center whitespace-pre-line">
+                        {`立即投遞履歷  成為智兆科技的一份子\n與我們攜手開創更美好的未來`}
+                    </p>
+                </section>
             </div>
         </main>
     )
