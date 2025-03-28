@@ -6,9 +6,9 @@ import { cn } from '@/utils/cn'
 
 export default function TalentTrainingSection() {
     return (
-        <section className="py-16 bg-gray-50" id="talent-training">
+        <section className="py-16" id="talent-training">
             <div className="container mx-auto px-4">
-                <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-16">
+                <div className="flex flex-col lg:flex-row items-center gap-4">
                     {/* Left side - Text content */}
                     <div className="w-full lg:w-1/2 space-y-6">
                         <CareerTitle title="人才培養" subTitle="Talent Training" />

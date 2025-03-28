@@ -24,6 +24,7 @@ export default function ThreeDCarousel({ carouselItems }: ThreeDCarouselProps) {
         infinite: true,
         centerPadding: "0px",
         slidesToShow: 3,
+        arrows: false,
         responsive: [
             {
                 breakpoint: 550,
@@ -45,7 +46,7 @@ export default function ThreeDCarousel({ carouselItems }: ThreeDCarouselProps) {
             <Slider {...settings}>
                 {carouselItems.map((item) => (
                     <div key={item.id} className="px-1">
-                        <div className={"my-[100px]"}>
+                        <div className={"my-[60px]"}>
                             <div className="relative aspect-[2/3]">
                                 <img
                                     src={item.image}

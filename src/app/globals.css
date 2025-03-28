@@ -61,6 +61,10 @@ body {
   @apply bg-gradient-to-r from-[#FFFFFF] to-[#55BBF9]/30;
 }
 
+.md--theme-gradient-blue {
+  @apply md:bg-gradient-to-r from-[#FFFFFF] to-[#55BBF9]/30;
+}
+
 .container {
   @apply max-w-[960px] mx-auto;
 }
