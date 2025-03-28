@@ -1,9 +1,8 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import { NewsItem } from '@/lib/graphql';
-import { ArrowRight } from 'lucide-react';
+import LinkCard from '../common/LinkCard';
 
 interface NewsCardProps {
     item: NewsItem;
@@ -36,39 +35,22 @@ export function NewsCard({ item }: NewsCardProps) {
     return (
         <Link href={`/news/${item.slug}`} className="group">
             <div className="flex flex-col h-full">
-                <div className="relative mb-4">
-                    {/* 新聞類別標籤 */}
-                    <span className={`absolute top-4 left-4 px-4 py-1 text-sm font-medium uppercase z-10 ${getCategoryBgColor()}`}>
+                <div>
+                    <span className={`top-4 left-4 px-4 py-1 text-sm font-medium uppercase z-10 ${getCategoryBgColor()}`}>
                         {item.newsGenre?.name || '其他'}
                     </span>
 
                     {/* 日期標籤 */}
-                    <span className="absolute top-4 right-4 px-4 py-1 text-sm font-medium z-10 bg-white">
+                    <span className=" top-4 right-4 px-4 py-1 text-sm font-medium z-10 bg-white">
                         {formattedDate}
                     </span>
-
-                    {/* 新聞封面圖 */}
-                    <div className="relative w-full aspect-[4/3] overflow-hidden">
-                        <Image
-                            src={item.cover?.url || '/placeholder-image.jpg'}
-                            alt={item.cover?.alternativeText || item.title}
-                            fill
-                            className="object-cover transition-transform duration-300 group-hover:scale-105"
-                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        />
-                    </div>
                 </div>
-
-                {/* 標題和內容 */}
-                <div className="flex flex-col flex-grow">
-                    <h3 className="text-xl font-bold mb-2">{item.title}</h3>
-                    <p className="text-gray-500 mb-4 text-sm flex-grow">{item.subtitle}</p>
-
-                    {/* 箭頭按鈕 */}
-                    <Link href={`/news/${item.slug}`} className="flex items-center self-end mt-auto text-blue-500 group-hover:text-blue-700 transition-colors">
-                        <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-                    </Link>
-                </div>
+                <LinkCard
+                    link={`/news/${item.slug}`}
+                    image={item.cover.url}
+                    title={item.title}
+                    subtitle={item.subtitle}
+                />
             </div>
         </Link>
     );
