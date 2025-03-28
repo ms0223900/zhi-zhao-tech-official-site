@@ -13,7 +13,6 @@ interface ThreeDCarouselProps {
 
 export default function ThreeDCarousel({ carouselItems }: ThreeDCarouselProps) {
     const [mounted, setMounted] = useState(false)
-    const [currentSlide, setCurrentSlide] = useState(0)
 
     useEffect(() => {
         setMounted(true)
@@ -23,10 +22,8 @@ export default function ThreeDCarousel({ carouselItems }: ThreeDCarouselProps) {
         className: "center",
         centerMode: true,
         infinite: true,
-        // centerPadding: "100px",
         centerPadding: "0px",
         slidesToShow: 3,
-        beforeChange: (current, next) => setCurrentSlide(next),
         responsive: [
             {
                 breakpoint: 550,
