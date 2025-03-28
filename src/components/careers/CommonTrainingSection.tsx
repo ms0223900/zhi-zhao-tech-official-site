@@ -13,7 +13,7 @@ interface TrainingSectionProps {
         content: string
     }[]
     carouselItems: CareerCarouselItem[]
-    themeColor?: string
+    themeColor: string
 }
 
 export default function CommonTrainingSection({
@@ -22,7 +22,7 @@ export default function CommonTrainingSection({
     description,
     detailDescriptions,
     carouselItems,
-    themeColor = "#E57B42"
+    themeColor
 }: TrainingSectionProps) {
     return (
         <section className="py-16">
@@ -61,27 +61,30 @@ export default function CommonTrainingSection({
 interface SectionTitleProps {
     title: string
     subTitle: string
-    themeColor?: string
+    themeColor: string
 }
 
 const SectionTitle = ({
     title,
     subTitle,
-    themeColor = "#E57B42"
+    themeColor
 }: SectionTitleProps) => {
     return (
         <div className={cn(
             "flex flex-row gap-[19px] items-center border-b border-b-[1px]",
-            themeColor ? `border-[${themeColor}]` : "border-gray-200"
-        )}>
+        )} style={{
+            borderColor: themeColor
+        }}>
             <div className={cn(
                 "w-[5px] h-[20px]",
-                themeColor ? `bg-[${themeColor}]` : "bg-gray-600"
-            )} />
+            )} style={{
+                backgroundColor: themeColor
+            }} />
             <h2 className={cn(
                 "text-h2 font-bold",
-                themeColor ? `text-[${themeColor}]` : "text-gray-900"
-            )}>
+            )} style={{
+                color: themeColor
+            }}>
                 {title}
             </h2>
             <span className="text-[12px] font-regular text-gray-600 leading-relaxed tracking-widest">
