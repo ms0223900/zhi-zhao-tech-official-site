@@ -47,7 +47,7 @@ export default function ThreeDCarousel({ carouselItems }: ThreeDCarouselProps) {
                 {carouselItems.map((item) => (
                     <div key={item.id} className="px-1">
                         <div className={"my-[60px]"}>
-                            <div className="relative aspect-[2/3]">
+                            <div className="relative aspect-[25/27]">
                                 <img
                                     src={item.image}
                                     alt={item.title}
