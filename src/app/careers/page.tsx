@@ -73,10 +73,23 @@ export default function CareersPage() {
                     detailDescriptions={[
                         { title: '- 全面保障', content: '享有勞保、健保與團體保險，提供全方位安全保障' },
                         { title: '- 優渥獎勵', content: '績效獎金、年終獎金，認可每位員工的付出' },
-                        { title: '- 休閒動', content: '定期舉辦員工旅遊、節日聚餐與團建活動' },
+                        { title: '- 休閒活動', content: '定期舉辦員工旅遊、節日聚餐與團建活動' },
                     ]}
                     carouselItems={employeeBenefitsCarouselItems}
                     themeColor="#FFE01F"
+                />
+                <CommonTrainingSection
+                    title="加入我們"
+                    subTitle="Join Us"
+                    description="加入智兆科技，開啟屬於您的精彩職涯！ "
+                    detailDescriptions={[
+                        { title: '- 挑戰與成長', content: '參與多元專案，拓展專業技能與視野' },
+                        { title: '- 專業團隊', content: '與行業頂尖專家並肩合作，共同成就卓越' },
+                        { title: '- 多元文化', content: '尊重多元背景與觀點，打造包容且創新的企業文化 ' },
+                        { title: '- 開放職缺', content: '我們正在尋找熱情與才華兼具的夥伴，加入我們一起實現夢想！' },
+                    ]}
+                    carouselItems={employeeBenefitsCarouselItems}
+                    themeColor="#55BBF9"
                 />
             </div>
         </main>
