@@ -52,7 +52,7 @@ export default function ThreeDCarousel({ carouselItems }: ThreeDCarouselProps) {
                                     alt={item.title}
                                     className="w-full h-full object-cover rounded-lg"
                                 />
-                                <h3 className="text-lg font-semibold text-center opacity-0">
+                                <h3 className="text-h6 text-center opacity-0 pt-4">
                                     {item.title}
                                 </h3>
                             </div>
