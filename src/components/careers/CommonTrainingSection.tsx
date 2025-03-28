@@ -4,6 +4,7 @@ import { CareerCarouselItem } from './data'
 import ThreeDCarousel from './ThreeDCarousel'
 
 interface TrainingSectionProps {
+    anchorId: string
     title: string
     subTitle: string
     description: string
@@ -17,6 +18,7 @@ interface TrainingSectionProps {
 
 export default function CommonTrainingSection({
     title,
+    anchorId,
     subTitle,
     description,
     detailDescriptions,
@@ -29,7 +31,9 @@ export default function CommonTrainingSection({
                 <div className="flex flex-col lg:flex-row items-center gap-4">
                     {/* Left side - Text content */}
                     <div className="w-full lg:w-[45%] space-y-6">
-                        <SectionTitle title={title} subTitle={subTitle} themeColor={themeColor} />
+                        <a id={anchorId}>
+                            <SectionTitle title={title} subTitle={subTitle} themeColor={themeColor} />
+                        </a>
                         <p className="text-h4 leading-relaxed">
                             {description}
                         </p>

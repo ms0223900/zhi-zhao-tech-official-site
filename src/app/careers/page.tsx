@@ -11,19 +11,19 @@ export const metadata = {
 const linkCardList = [
     {
         id: 1,
-        link: "/careers#recruitment",
+        link: "/careers#talent-training",
         image: "/images/careers/talent-training-cover.jpg",
         title: "人才培養",
         subtitle: "Talent Training"
     }, {
         id: 2,
-        link: "/careers#recruitment",
+        link: "/careers#employee-benefits",
         image: "/images/careers/employee-benefits-cover.jpg",
         title: "員工福利",
         subtitle: "Employee Benefits"
     }, {
         id: 3,
-        link: "/careers#recruitment",
+        link: "/careers#join-us",
         image: "/images/careers/join-us-cover.jpg",
         title: "加入我們",
         subtitle: "Join Us"
@@ -55,6 +55,7 @@ export default function CareersPage() {
             </section>
             <div className="md--theme-gradient-blue py-[71px]">
                 <CommonTrainingSection
+                    anchorId="talent-training"
                     title="人才培養"
                     subTitle="Talent Training"
                     description="我們深信人才是企業的核心競爭力，致力於為員工提供多元化的學習與成長機會，與我們一起，透過持續學習，突破自我界限，攜手共創未來"
@@ -67,6 +68,7 @@ export default function CareersPage() {
                     themeColor="#E57B42"
                 />
                 <CommonTrainingSection
+                    anchorId="employee-benefits"
                     title="員工福利"
                     subTitle="Employee Benefits"
                     description="智兆科技致力於打造員工友善的工作環境與完善的福利制度 "
@@ -79,6 +81,7 @@ export default function CareersPage() {
                     themeColor="#FFE01F"
                 />
                 <CommonTrainingSection
+                    anchorId="join-us"
                     title="加入我們"
                     subTitle="Join Us"
                     description="加入智兆科技，開啟屬於您的精彩職涯！ "
