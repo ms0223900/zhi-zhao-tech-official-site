@@ -25,20 +25,15 @@ export default function ThreeDCarousel({ carouselItems }: ThreeDCarouselProps) {
         infinite: true,
         centerPadding: "100px",
         slidesToShow: 1,
-        // speed: 500,
         beforeChange: (current, next) => setCurrentSlide(next),
-        // variableWidth: true,
-        // responsive: [
-        //     {
-        //         breakpoint: 768,
-        //         settings: {
-        //             slidesToShow: 1,
-        //             slidesToScroll: 1,
-        //             centerMode: true,
-        //             centerPadding: "0px",
-        //         }
-        //     }
-        // ],
+        responsive: [
+            {
+                breakpoint: 550,
+                settings: {
+                    centerPadding: "60px",
+                }
+            }
+        ],
     }
 
     if (!mounted) return null
@@ -59,17 +54,17 @@ export default function ThreeDCarousel({ carouselItems }: ThreeDCarouselProps) {
                                 "transform transition-all duration-500 my-[100px]",
                             )}
                         >
-                            <div className="relative aspect-[2/3] overflow-hidden rounded-lg shadow-lg">
+                            <div className="relative aspect-[2/3]">
                                 <img
                                     src={item.image}
                                     alt={item.title}
                                     className="w-full h-full object-cover"
                                 />
-                                <div className="absolute inset-0 bg-black/30 flex items-end justify-center p-4">
-                                    <h3 className="text-white text-xl font-semibold text-center">
+                                {index === currentSlide && (
+                                    <h3 className="text-xl font-semibold text-center">
                                         {item.title}
                                     </h3>
-                                </div>
+                                )}
                             </div>
                         </div>
                     </div>
