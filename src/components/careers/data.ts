@@ -25,4 +25,27 @@ export const talentTrainingCarouselItems: CareerCarouselItem[] = [
         image: '/images/careers/join-us-cover.jpg',
         title: '職涯發展2'
     }
-]; 
+];
+
+export const employeeBenefitsCarouselItems: CareerCarouselItem[] = [
+    {
+        id: 1,
+        image: '/images/careers/employee-benefits/employee-benefits-1.jpg',
+        title: '全面保障'
+    },
+    {
+        id: 2,
+        image: '/images/careers/employee-benefits/employee-benefits-2.jpg',
+        title: '優渥獎勵'
+    },
+    {
+        id: 3,
+        image: '/images/careers/employee-benefits/employee-benefits-3.jpg',
+        title: '定期舉辦活動'
+    },
+    {
+        id: 4,
+        image: '/images/careers/employee-benefits/employee-benefits-4.jpg',
+        title: '定期舉辦活動2'
+    }
+];

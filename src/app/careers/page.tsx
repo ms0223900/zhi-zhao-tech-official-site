@@ -1,5 +1,5 @@
 import CommonTrainingSection from "@/components/careers/CommonTrainingSection"
-import { talentTrainingCarouselItems } from "@/components/careers/data"
+import { employeeBenefitsCarouselItems, talentTrainingCarouselItems } from "@/components/careers/data"
 import Banner from "@/components/common/Banner"
 import LinkCard from "@/components/common/LinkCard"
 
@@ -75,7 +75,7 @@ export default function CareersPage() {
                         { title: '- 優渥獎勵', content: '績效獎金、年終獎金，認可每位員工的付出' },
                         { title: '- 休閒動', content: '定期舉辦員工旅遊、節日聚餐與團建活動' },
                     ]}
-                    carouselItems={talentTrainingCarouselItems}
+                    carouselItems={employeeBenefitsCarouselItems}
                     themeColor="#FFE01F"
                 />
             </div>
