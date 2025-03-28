@@ -100,44 +100,40 @@ export async function fetchNewsArticle(slug: string): Promise<NewsItem | null> {
     return null;
   }
 }
+export const NEWS_FRAGMENT = gql`
+  fragment NewsFragment on News {
+    documentId
+    title
+    subtitle
+    content
+    publishedAt
+    cover {
+      documentId
+      url
+    }
+    newsGenre {
+      title
+    }
+  }
+`;
 
 export const GET_NEWS_LIST = gql`
   query GetNewsList {
     newses {
-      documentId
-      title
-      subtitle
-      content
-      publishedAt
-      cover {
-        documentId
-        url
-      }
-      newsGenre {
-        title
-      }
+      ...NewsFragment
     }  
   }
+  ${NEWS_FRAGMENT}
 `;
 
 // 獲取單一新聞文章查詢
 export const GET_NEWS_ARTICLE = gql`
   query GetNewsArticle($slug: ID!) {
     newses(filters: { documentId: { eq: $slug } }) {
-      documentId
-      title
-      subtitle
-      content
-      publishedAt
-      cover {
-        documentId
-        url
-      }
-      newsGenre {
-        title
-      }
+      ...NewsFragment
     }
   }
+  ${NEWS_FRAGMENT}
 `;
 
 // 用於 generateStaticParams 函數的查詢
