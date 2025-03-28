@@ -51,8 +51,8 @@ export const GET_NEWS_LIST = gql`
 
 // 獲取單一新聞文章查詢
 export const GET_NEWS_ARTICLE = gql`
-  query GetNewsArticle($slug: String!) {
-    newses(filters: { slug: { eq: $slug } }) {
+  query GetNewsArticle($slug: ID!) {
+    newses(filters: { documentId: { eq: $slug } }) {
       documentId
       title
       subtitle

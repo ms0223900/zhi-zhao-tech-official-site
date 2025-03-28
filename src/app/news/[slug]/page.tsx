@@ -6,74 +6,54 @@ import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 import { graphQLClient, GET_NEWS_ARTICLE, GET_NEWS_SLUGS } from '@/lib/graphql';
 import { ArrowLeft } from 'lucide-react';
+import replaceS3UrlWithCloudFront from '@/utils/replaceS3UrlWithCloudFront';
 
 interface NewsArticleResponse {
-    newsArticles: {
-        data: Array<{
-            id: string;
-            attributes: {
-                title: string;
-                subtitle: string;
-                content: string;
-                publishedAt: string;
-                slug: string;
-                cover?: {
-                    data?: {
-                        attributes: {
-                            url: string;
-                            alternativeText?: string;
-                            width?: number;
-                            height?: number;
-                        }
-                    }
-                };
-                newsGenre?: {
-                    data?: {
-                        attributes: {
-                            name: string;
-                        }
-                    }
-                };
-            };
-        }>;
-    };
+    newses: {
+        documentId: string;
+        title: string;
+        subtitle: string;
+        content: string;
+        publishedAt: string;
+        cover: {
+            documentId: string;
+            url: string;
+        };
+        newsGenre: {
+            title: string;
+        };
+    }[]
 }
 
 interface NewsSlugsResponse {
-    newsArticles: {
-        data: Array<{
-            attributes: {
-                slug: string;
-            };
-        }>;
-    };
+    newses: {
+        documentId: string;
+    }[];
 }
 
 async function getNewsArticle(slug: string) {
     try {
         const response = await graphQLClient.request<NewsArticleResponse>(GET_NEWS_ARTICLE, { slug });
-        const article = response.newsArticles.data[0];
+        const article = response.newses[0];
 
         if (!article) {
             return null;
         }
 
         return {
-            id: article.id,
-            title: article.attributes.title,
-            subtitle: article.attributes.subtitle,
-            content: article.attributes.content,
-            publishedAt: article.attributes.publishedAt,
-            slug: article.attributes.slug,
-            cover: article.attributes.cover?.data?.attributes ? {
-                url: article.attributes.cover.data.attributes.url,
-                alternativeText: article.attributes.cover.data.attributes.alternativeText || '',
-                width: article.attributes.cover.data.attributes.width,
-                height: article.attributes.cover.data.attributes.height,
-            } : null,
-            newsGenre: article.attributes.newsGenre?.data?.attributes ? {
-                name: article.attributes.newsGenre.data.attributes.name
-            } : null
+            id: article.documentId,
+            title: article.title,
+            subtitle: article.subtitle,
+            publishedAt: article.publishedAt,
+            content: article.content,
+            slug: article.documentId,
+            cover: {
+                url: replaceS3UrlWithCloudFront(article.cover.url),
+            },
+            newsGenre: {
+                id: article.newsGenre.title,
+                name: article.newsGenre.title
+            }
         };
     } catch (error) {
         console.error('Failed to fetch news article:', error);
@@ -112,8 +92,8 @@ export async function generateMetadata({ params }: NewsArticleProps): Promise<Me
 export async function generateStaticParams() {
     try {
         const response = await graphQLClient.request<NewsSlugsResponse>(GET_NEWS_SLUGS);
-        const slugs = response.newsArticles.data.map((item) => ({
-            slug: item.attributes.slug,
+        const slugs = response.newses.map((item) => ({
+            slug: item.documentId,
         }));
         return slugs;
     } catch (error) {
@@ -170,7 +150,7 @@ export default async function NewsArticlePage({ params }: NewsArticleProps) {
                     <div className="relative w-full max-w-4xl mx-auto aspect-[16/9] overflow-hidden rounded-lg">
                         <Image
                             src={article.cover.url}
-                            alt={article.cover.alternativeText}
+                            alt={article.title}
                             fill
                             className="object-cover"
                             priority
