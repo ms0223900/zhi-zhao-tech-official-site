@@ -23,14 +23,15 @@ export default function ThreeDCarousel({ carouselItems }: ThreeDCarouselProps) {
         className: "center",
         centerMode: true,
         infinite: true,
-        centerPadding: "100px",
-        slidesToShow: 1,
+        // centerPadding: "100px",
+        centerPadding: "0px",
+        slidesToShow: 3,
         beforeChange: (current, next) => setCurrentSlide(next),
         responsive: [
             {
                 breakpoint: 550,
                 settings: {
-                    centerPadding: "60px",
+                    // centerPadding: "60px",
                 }
             }
         ],
@@ -43,11 +44,12 @@ export default function ThreeDCarousel({ carouselItems }: ThreeDCarouselProps) {
             <Slider {...settings}>
                 {carouselItems.map((item, index) => (
                     <div key={item.id} className={cn(
-                        "px-4 relative",
+                        // "px-4 relative",
+                        "relative",
                         "transform transition-all duration-500 transform-center",
-                        index === currentSlide
+                        index === (currentSlide + 1) % carouselItems.length
                             ? "scale-[1.3] brightness-[1] z-10"
-                            : "scale-80 brightness-[0.6]"
+                            : "scale-100 brightness-[0.6]"
                     )}>
                         <div
                             className={cn(
@@ -60,7 +62,7 @@ export default function ThreeDCarousel({ carouselItems }: ThreeDCarouselProps) {
                                     alt={item.title}
                                     className="w-full h-full object-cover rounded-lg"
                                 />
-                                {index === currentSlide && (
+                                {index === (currentSlide + 1) % carouselItems.length && (
                                     <h3 className="text-xl font-semibold text-center">
                                         {item.title}
                                     </h3>
