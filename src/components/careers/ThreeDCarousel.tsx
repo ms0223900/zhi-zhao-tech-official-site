@@ -47,9 +47,9 @@ export default function ThreeDCarousel({ carouselItems }: ThreeDCarouselProps) {
                         // "px-4 relative",
                         "relative",
                         "transform transition-all duration-500 transform-center",
-                        index === (currentSlide + 1) % carouselItems.length
-                            ? "scale-[1.3] brightness-[1] z-10"
-                            : "scale-100 brightness-[0.6]"
+                        // index === (currentSlide + 1) % carouselItems.length
+                        //     ? "scale-[1.3] brightness-[1] z-10"
+                        //     : "scale-100 brightness-[0.6]"
                     )}>
                         <div
                             className={cn(
