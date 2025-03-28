@@ -1,10 +1,10 @@
-export interface TalentTrainingCarouselItem {
+export interface CareerCarouselItem {
     id: number;
     image: string;
     title: string;
 }
 
-export const talentTrainingCarouselItems: TalentTrainingCarouselItem[] = [
+export const talentTrainingCarouselItems: CareerCarouselItem[] = [
     {
         id: 1,
         image: '/images/careers/talent-training-cover.jpg',

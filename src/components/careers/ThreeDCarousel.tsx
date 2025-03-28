@@ -4,11 +4,11 @@ import { useEffect, useState } from 'react'
 import Slider, { Settings } from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
-import { TalentTrainingCarouselItem } from './data'
+import { CareerCarouselItem } from './data'
 import { cn } from '@/utils/cn'
 
 interface ThreeDCarouselProps {
-    carouselItems: TalentTrainingCarouselItem[]
+    carouselItems: CareerCarouselItem[]
 }
 
 export default function ThreeDCarousel({ carouselItems }: ThreeDCarouselProps) {
