@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import typography from '@tailwindcss/typography';
 
 export default {
   content: [
@@ -46,8 +47,56 @@ export default {
         'slide-in-right': 'slide-in-right 0.3s ease-out',
         'fade-in': 'fade-in 0.2s ease-out',
         'fade-out': 'fade-out 0.2s ease-out'
-      }
+      },
+      typography: {
+        DEFAULT: {
+          css: {
+            maxWidth: '100%',
+            color: 'var(--foreground)',
+            a: {
+              color: '#088DDE',
+              '&:hover': {
+                color: '#044E7B',
+              },
+            },
+            strong: {
+              color: 'var(--foreground)',
+            },
+            h1: {
+              color: 'var(--foreground)',
+            },
+            h2: {
+              color: 'var(--foreground)',
+            },
+            h3: {
+              color: 'var(--foreground)',
+            },
+            h4: {
+              color: 'var(--foreground)',
+            },
+            h5: {
+              color: 'var(--foreground)',
+            },
+            h6: {
+              color: 'var(--foreground)',
+            },
+            blockquote: {
+              color: 'var(--foreground)',
+              borderLeftColor: '#088DDE',
+            },
+            code: {
+              color: 'var(--foreground)',
+            },
+            pre: {
+              backgroundColor: '#f7f7f7',
+            },
+            img: {
+              margin: 'auto',
+            },
+          },
+        },
+      },
     },
   },
-  plugins: [],
+  plugins: [typography],
 } satisfies Config;
