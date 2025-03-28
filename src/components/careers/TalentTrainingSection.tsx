@@ -12,7 +12,7 @@ export default function TalentTrainingSection() {
                     {/* Left side - Text content */}
                     <div className="w-full lg:w-1/2 space-y-6">
                         <CareerTitle title="人才培養" subTitle="Talent Training" />
-                        <p className="text-lg text-gray-600 leading-relaxed">
+                        <p className="text-h4 leading-relaxed">
                             我們深信人才是企業的核心競爭力，致力於為員工提供多元化的學習與成長機會，與我們一起，透過持續學習，突破自我界限，攜手共創未來
                         </p>
                         <div className="space-y-4">
