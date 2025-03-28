@@ -4,62 +4,8 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
-import { graphQLClient, GET_NEWS_ARTICLE, GET_NEWS_SLUGS } from '@/lib/graphql';
+import { fetchNewsArticle, graphQLClient, GET_NEWS_SLUGS, NewsSlugsResponse } from '@/lib/graphql';
 import { ArrowLeft } from 'lucide-react';
-import replaceS3UrlWithCloudFront from '@/utils/replaceS3UrlWithCloudFront';
-
-interface NewsArticleResponse {
-    newses: {
-        documentId: string;
-        title: string;
-        subtitle: string;
-        content: string;
-        publishedAt: string;
-        cover: {
-            documentId: string;
-            url: string;
-        };
-        newsGenre: {
-            title: string;
-        };
-    }[]
-}
-
-interface NewsSlugsResponse {
-    newses: {
-        documentId: string;
-    }[];
-}
-
-async function getNewsArticle(slug: string) {
-    try {
-        const response = await graphQLClient.request<NewsArticleResponse>(GET_NEWS_ARTICLE, { slug });
-        const article = response.newses[0];
-
-        if (!article) {
-            return null;
-        }
-
-        return {
-            id: article.documentId,
-            title: article.title,
-            subtitle: article.subtitle,
-            publishedAt: article.publishedAt,
-            content: article.content,
-            slug: article.documentId,
-            cover: {
-                url: replaceS3UrlWithCloudFront(article.cover.url),
-            },
-            newsGenre: {
-                id: article.newsGenre.title,
-                name: article.newsGenre.title
-            }
-        };
-    } catch (error) {
-        console.error('Failed to fetch news article:', error);
-        return null;
-    }
-}
 
 interface NewsArticleProps {
     params: Promise<{
@@ -69,7 +15,7 @@ interface NewsArticleProps {
 
 export async function generateMetadata({ params }: NewsArticleProps): Promise<Metadata> {
     const { slug } = await params;
-    const article = await getNewsArticle(slug);
+    const article = await fetchNewsArticle(slug);
 
     if (!article) {
         return {
@@ -104,7 +50,7 @@ export async function generateStaticParams() {
 
 export default async function NewsArticlePage({ params }: NewsArticleProps) {
     const { slug } = await params;
-    const article = await getNewsArticle(slug);
+    const article = await fetchNewsArticle(slug);
 
     if (!article) {
         notFound();

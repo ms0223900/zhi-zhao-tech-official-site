@@ -1,55 +1,8 @@
-import { graphQLClient, GET_NEWS_LIST, NewsItem } from '@/lib/graphql';
+import { fetchNewsList } from '@/lib/graphql';
 import { NewsCard } from '@/components/news/NewsCard';
-import replaceS3UrlWithCloudFront from '@/utils/replaceS3UrlWithCloudFront';
-
-// 定義 GraphQL 響應類型
-interface NewsArticlesResponse {
-    newses: {
-        documentId: string;
-        title: string;
-        subtitle: string;
-        content: string;
-        publishedAt: string;
-        cover: {
-            documentId: string;
-            url: string;
-        };
-        newsGenre: {
-            title: string;
-        };
-    }[];
-}
-
-
-async function getNewsList(): Promise<NewsItem[]> {
-    try {
-        const response = await graphQLClient.request<NewsArticlesResponse>(GET_NEWS_LIST);
-        const { newses } = response;
-
-        // 處理 Strapi 返回的資料結構
-        return newses.map((item) => ({
-            id: item.documentId,
-            title: item.title,
-            subtitle: item.subtitle,
-            publishedAt: item.publishedAt,
-            content: item.content,
-            slug: item.documentId,
-            cover: {
-                url: replaceS3UrlWithCloudFront(item.cover.url),
-            },
-            newsGenre: {
-                id: item.newsGenre.title,
-                name: item.newsGenre.title
-            }
-        }));
-    } catch (error) {
-        console.error('Failed to fetch news list:', error);
-        return [];
-    }
-}
 
 export default async function NewsPage() {
-    const news = await getNewsList();
+    const news = await fetchNewsList();
 
     return (
         <main className="container mx-auto px-4 py-12">
