@@ -58,7 +58,7 @@ export default function ThreeDCarousel({ carouselItems }: ThreeDCarouselProps) {
                                 <img
                                     src={item.image}
                                     alt={item.title}
-                                    className="w-full h-full object-cover"
+                                    className="w-full h-full object-cover rounded-lg"
                                 />
                                 {index === currentSlide && (
                                     <h3 className="text-xl font-semibold text-center">
