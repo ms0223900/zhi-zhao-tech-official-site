@@ -5,7 +5,7 @@ import { gql } from 'graphql-request';
 const endpoint = process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337/graphql';
 export const graphQLClient = new GraphQLClient(endpoint, {
   headers: {
-    Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
+    Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_TOKEN}`,
   },
 });
 

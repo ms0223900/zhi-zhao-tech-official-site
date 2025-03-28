@@ -1,5 +1,6 @@
 import { graphQLClient, GET_NEWS_LIST, NewsItem } from '@/lib/graphql';
 import { NewsCard } from '@/components/news/NewsCard';
+import replaceS3UrlWithCloudFront from '@/utils/replaceS3UrlWithCloudFront';
 
 // 定義 GraphQL 響應類型
 interface NewsArticlesResponse {
@@ -20,7 +21,7 @@ interface NewsArticlesResponse {
 }
 
 
-async function getNewsList() {
+async function getNewsList(): Promise<NewsItem[]> {
     try {
         const response = await graphQLClient.request<NewsArticlesResponse>(GET_NEWS_LIST);
         const { newses } = response;
@@ -31,14 +32,16 @@ async function getNewsList() {
             title: item.title,
             subtitle: item.subtitle,
             publishedAt: item.publishedAt,
-            cover: item.cover?.url ? {
-                url: item.cover.url,
-            } : null,
-            newsGenre: item.newsGenre?.title ? {
+            content: item.content,
+            slug: item.documentId,
+            cover: {
+                url: replaceS3UrlWithCloudFront(item.cover.url),
+            },
+            newsGenre: {
                 id: item.newsGenre.title,
                 name: item.newsGenre.title
-            } : null
-        })) as NewsItem[];
+            }
+        }));
     } catch (error) {
         console.error('Failed to fetch news list:', error);
         return [];

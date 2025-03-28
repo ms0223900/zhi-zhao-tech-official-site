@@ -34,7 +34,7 @@ export function NewsCard({ item }: NewsCardProps) {
     };
 
     return (
-        <div className="group">
+        <Link href={`/news/${item.slug}`} className="group">
             <div className="flex flex-col h-full">
                 <div className="relative mb-4">
                     {/* 新聞類別標籤 */}
@@ -70,6 +70,6 @@ export function NewsCard({ item }: NewsCardProps) {
                     </Link>
                 </div>
             </div>
-        </div>
+        </Link>
     );
 } 
