@@ -47,7 +47,7 @@ export default function ThreeDCarousel({ carouselItems }: ThreeDCarouselProps) {
                         "transform transition-all duration-500 transform-center",
                         index === currentSlide
                             ? "scale-[1.3] brightness-[1] z-10"
-                            : "scale-80 brightness-[0.8]"
+                            : "scale-80 brightness-[0.6]"
                     )}>
                         <div
                             className={cn(
