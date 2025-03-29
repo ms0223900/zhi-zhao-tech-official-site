@@ -17,8 +17,8 @@ interface TrainingSectionProps {
 }
 
 export default function CommonTrainingSection({
-    title,
     anchorId,
+    title,
     subTitle,
     description,
     detailDescriptions,
@@ -26,7 +26,7 @@ export default function CommonTrainingSection({
     themeColor
 }: TrainingSectionProps) {
     return (
-        <section className="pb-16">
+        <section className="pb-16 scroll-mt-[60px]" id={anchorId}>
             <div className="container mx-auto px-4">
                 <div className="flex flex-col lg:flex-row items-center gap-4">
                     {/* Left side - Text content */}
