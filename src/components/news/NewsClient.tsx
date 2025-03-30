@@ -49,7 +49,7 @@ export function NewsClient({ news }: NewsClientProps) {
                     className="mb-0"
                 />
             </div>
-            <div className="flex w-full justify-end translate-y-[-60px]">
+            <div className="flex w-full md:justify-end justify-center md:translate-y-[-60px] py-10 md:py-0">
                 <div className="relative inline-block">
                     <select
                         className="appearance-none bg-white border border-gray-300 rounded-md py-2 pl-4 pr-10 text-gray-700 cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500"
