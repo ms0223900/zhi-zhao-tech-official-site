@@ -12,7 +12,6 @@ export function NewsClient({ news }: NewsClientProps) {
     const [selectedGenre, setSelectedGenre] = useState<string>('全部');
     const [filteredNews, setFilteredNews] = useState<NewsItem[]>(news);
 
-    // 從 news 數據中提取唯一的 newsGenre 值
     const uniqueGenres = Array.from(
         new Set(
             news
@@ -65,7 +64,7 @@ export function NewsClient({ news }: NewsClientProps) {
             </div>
 
             {/* 新聞卡片網格 */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {filteredNews.map((item) => (
                     <NewsCard key={item.id} item={item} />
                 ))}

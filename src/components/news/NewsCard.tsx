@@ -34,14 +34,14 @@ export function NewsCard({ item }: NewsCardProps) {
 
     return (
         <Link href={`/news/${item.slug}`} className="group">
-            <div className="flex flex-col h-full">
-                <div>
-                    <span className={`top-4 left-4 px-4 py-1 text-sm font-medium uppercase z-10 ${getCategoryBgColor()}`}>
+            <div className="flex flex-col w-full gap-2">
+                <div className="flex justify-between w-full">
+                    <span className={`top-4 left-4 px-4 py-1 text-sm font-medium uppercase z-10 rounded-md ${getCategoryBgColor()}`}>
                         {item.newsGenre?.name || '其他'}
                     </span>
 
                     {/* 日期標籤 */}
-                    <span className=" top-4 right-4 px-4 py-1 text-sm font-medium z-10 bg-white">
+                    <span className=" top-4 right-4 px-4 py-1 text-sm font-medium z-10 bg-white tracking-widest">
                         {formattedDate}
                     </span>
                 </div>
