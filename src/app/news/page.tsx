@@ -5,7 +5,7 @@ export default async function NewsPage() {
     const news = await fetchNewsList();
 
     return (
-        <main className="container mx-auto px-4 py-12">
+        <main className="container mx-auto px-4 py-12 min-h-screen">
             <NewsClient news={news} />
         </main>
     );
