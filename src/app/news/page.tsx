@@ -6,11 +6,6 @@ export default async function NewsPage() {
 
     return (
         <main className="container mx-auto px-4 py-12">
-            <div className="mb-12 text-center">
-                <h1 className="text-4xl font-bold mb-2">最新消息</h1>
-                <p className="text-xl text-gray-600 uppercase tracking-wider">News</p>
-            </div>
-
             <NewsClient news={news} />
         </main>
     );

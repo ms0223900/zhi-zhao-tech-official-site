@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { NewsItem } from '@/lib/graphql';
 import { NewsCard } from './NewsCard';
+import TitleWithEngSubtitle from '../common/TitleWithEngSubtitle';
 
 interface NewsClientProps {
     news: NewsItem[];
@@ -39,9 +40,16 @@ export function NewsClient({ news }: NewsClientProps) {
     };
 
     return (
-        <>
+        <div>
             {/* 分類選擇器 */}
-            <div className="mb-8 flex justify-center">
+            <div className='flex justify-center items-center'>
+                <TitleWithEngSubtitle
+                    title="最新消息"
+                    subtitle="News"
+                    className="mb-0"
+                />
+            </div>
+            <div className="flex w-full justify-end translate-y-[-60px]">
                 <div className="relative inline-block">
                     <select
                         className="appearance-none bg-white border border-gray-300 rounded-md py-2 pl-4 pr-10 text-gray-700 cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -76,6 +84,6 @@ export function NewsClient({ news }: NewsClientProps) {
                     <p className="text-xl text-gray-500">目前沒有新聞</p>
                 </div>
             )}
-        </>
+        </div>
     );
 } 
