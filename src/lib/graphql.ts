@@ -1,10 +1,9 @@
 import { GraphQLClient } from 'graphql-request';
 import { gql } from 'graphql-request';
 import replaceS3UrlWithCloudFront from '@/utils/replaceS3UrlWithCloudFront';
+import { API_URL } from '@/gql/client';
 
-// 建立 GraphQL 客戶端
-const endpoint = process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337/graphql';
-export const graphQLClient = new GraphQLClient(endpoint, {
+export const graphQLClient = new GraphQLClient(API_URL, {
   headers: {
     Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_TOKEN}`,
   },

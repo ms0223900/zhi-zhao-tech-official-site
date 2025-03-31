@@ -1,6 +1,6 @@
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 
-const API_URL = process.env.NODE_ENV === 'production' ?
+export const API_URL = process.env.NODE_ENV === 'production' ?
     (process.env.NEXT_PUBLIC_SERVER_API_URL + '/graphql') :
     'http://localhost:1337/graphql';
 
