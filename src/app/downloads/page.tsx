@@ -192,9 +192,11 @@ const DownloadFileList: React.FC = () => {
     return (
         <div>
             <div className="flex justify-between items-center mb-6">
-                <h2 className="text-2xl font-bold">全部</h2>
+                <h2 className="text-2xl font-bold">
+                    {selectedCategory}
+                </h2>
                 <div className="relative">
-                    <div className="flex items-center">
+                    <div className="flex flex-col items-center">
                         <span className="mr-2 text-gray-600">依類別搜尋</span>
                         <Select
                             value={selectedCategory}
