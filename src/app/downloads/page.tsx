@@ -4,8 +4,8 @@ import { csrClient } from '@/gql/client';
 import { gql, useQuery } from '@apollo/client';
 import { ApolloProvider } from '@apollo/client';
 
-// 首先檢查是否存在這些組件
-// 如果沒有，我們可以自己實現簡單版本的
+const ITEMS_PER_PAGE = 12;
+
 const Select = ({ value, onValueChange, children }: {
     value: string;
     onValueChange: (value: string) => void;
@@ -143,7 +143,7 @@ const FileCard = ({ file }: { file: UploadedFile }) => {
             <a
                 href={downloadUrl}
                 target="_blank"
-                download
+                download={file.name}
                 className="flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-200 transition-colors"
                 aria-label="下載檔案"
             >
@@ -160,7 +160,6 @@ const DownloadFileList: React.FC = () => {
     const { loading, error, data } = useQuery<{ uploadFiles: UploadedFile[] }>(GET_UPLOADED_FILES);
     const [currentPage, setCurrentPage] = useState(1);
     const [selectedCategory, setSelectedCategory] = useState<string>('全部');
-    const itemsPerPage = 12;
 
     const filteredFiles = useMemo(() => {
         if (!data?.uploadFiles) return [];
@@ -172,8 +171,8 @@ const DownloadFileList: React.FC = () => {
         return data.uploadFiles.filter(file => getFileType(file) === selectedCategory);
     }, [data, selectedCategory]);
 
-    const totalPages = Math.ceil(filteredFiles.length / itemsPerPage);
-    const currentFiles = filteredFiles.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+    const totalPages = Math.ceil(filteredFiles.length / ITEMS_PER_PAGE);
+    const currentFiles = filteredFiles.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
 
     const categories = useMemo(() => {
         if (!data?.uploadFiles) return ['全部'];
