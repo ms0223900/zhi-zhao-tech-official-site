@@ -5,47 +5,11 @@ import React from "react";
 import { CarouselBanner } from "../components/home/CarouselBanner";
 import RwdComponent from "@/components/common/RwdComponent";
 import TitleWithEngSubtitle from "@/components/common/TitleWithEngSubtitle";
+import LatestNewsSection from "@/components/home/LatestNewsSection";
 
 export const metadata: Metadata = {
   title: "智兆科技 | Zhi Zhao Tech",
   description: "智兆科技官方網站",
-};
-
-const asyncGetNews = async () => {
-  // const { data } = await client.query({
-  //   query: gql`
-  //     query GetNews {
-  //       news {
-  //         id
-  //         title
-  //       }
-  //     }
-  //   `,
-  // });
-  // return data.news;
-  return [
-    {
-      category: "EVENT",
-      content: "內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容",
-      date: "2025-01-05",
-      bgColor: "bg-yellow-400",
-      textColor: "text-white",
-    },
-    {
-      category: "NEWS",
-      content: "內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容",
-      date: "2025-01-06",
-      bgColor: "bg-orange-500",
-      textColor: "text-white",
-    },
-    {
-      category: "OTHER",
-      content: "內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容",
-      date: "2025-01-07",
-      bgColor: "bg-sky-400",
-      textColor: "text-white",
-    },
-  ];
 };
 
 const services = [
@@ -135,8 +99,6 @@ const linkCardDataList = [
 ];
 
 export default async function Home() {
-  const news = await asyncGetNews();
-
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
@@ -150,26 +112,7 @@ export default async function Home() {
       </section>
 
       {/* News Section */}
-      <section className="py-16 theme-gradient-blue">
-        <div className="container mx-auto px-8 max-w-[958px]">
-          <TitleWithEngSubtitle title="最新消息" subtitle="News" />
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {news.map((item, index) => (
-              <NewsCard
-                key={index}
-                category={item.category}
-                content={item.content}
-                date={item.date}
-                bgColor={item.bgColor}
-                textColor={item.textColor}
-              />
-            ))}
-          </div>
-          <div className="text-right mt-4">
-            <button className="text-gray-600 hover:text-gray-800">閱讀更多</button>
-          </div>
-        </div>
-      </section>
+      <LatestNewsSection />
 
       {/* Services Section */}
       <section className="py-16">
@@ -272,26 +215,6 @@ function ServiceMobileCardItem({ title, subtitle, detailDescription, iconSrc }: 
         <h3 className="font-bold text-lg">{title + subtitle}</h3>
         <p className="text-gray-600 text-sm">{detailDescription}</p>
       </div>
-    </div>
-  );
-}
-
-interface NewsCardProps {
-  category: string;
-  content: string;
-  date: string;
-  bgColor: string;
-  textColor: string;
-}
-
-function NewsCard({ category, content, date, bgColor, textColor }: NewsCardProps) {
-  return (
-    <div className="p-6">
-      <span className={`${bgColor} ${textColor} text-sm font-medium px-3 py-1 rounded-md`}>
-        {category}
-      </span>
-      <p className="mt-4 text-gray-600 line-clamp-3">{content}</p>
-      <p className="mt-4 text-gray-400">{date}</p>
     </div>
   );
 }
