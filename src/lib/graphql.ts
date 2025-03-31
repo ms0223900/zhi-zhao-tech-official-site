@@ -85,6 +85,16 @@ export async function fetchNewsList(): Promise<NewsItem[]> {
   }
 }
 
+export async function fetchLatestNews(): Promise<NewsItem[]> {
+  try {
+    const response = await graphQLClient.request<NewsListResponse>(HOME_GET_LATEST_NEWS);
+    return response.newses.map(transformNewsData);
+  } catch (error) {
+    console.error('Failed to fetch latest news:', error);
+    return [];
+  }
+}
+
 export async function fetchNewsArticle(slug: string): Promise<NewsItem | null> {
   try {
     const response = await graphQLClient.request<NewsListResponse>(GET_NEWS_ARTICLE, { slug });
@@ -122,6 +132,16 @@ export const GET_NEWS_LIST = gql`
     newses {
       ...NewsFragment
     }  
+  }
+  ${NEWS_FRAGMENT}
+`;
+
+// latest 3 news
+export const HOME_GET_LATEST_NEWS = gql`
+  query GetLatestNews {
+    newses(limit: 3) {
+      ...NewsFragment
+    }
   }
   ${NEWS_FRAGMENT}
 `;
