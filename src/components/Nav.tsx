@@ -17,6 +17,11 @@ const navLinks = [
     routerConfig.careers,
 ];
 
+const mobileNavLinks = [
+    ...navLinks,
+    { href: routerConfig.contact.href, label: "聯絡我們" },
+];
+
 const Nav = () => {
     const pathname = usePathname();
     const [isOpen, setIsOpen] = useState(false);
@@ -110,7 +115,7 @@ const Nav = () => {
                     {/* Drawer panel */}
                     <div className="fixed inset-y-0 right-0 w-64 bg-white shadow-xl animate-slide-in-right">
                         <div className="px-2 pt-2 pb-3 space-y-1">
-                            {navLinks.map(link => (
+                            {mobileNavLinks.map(link => (
                                 <Link
                                     key={link.href}
                                     href={link.href}
