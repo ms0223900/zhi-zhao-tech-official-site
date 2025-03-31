@@ -92,7 +92,7 @@ function FooterPC() {
                 <div className="flex items-center py-4 pt-8">
                     <div className="flex items-center">
                         <div>
-                            <img src="/images/zhi-zhao-logo-black-with-text.svg" alt="智兆科技" className="w-[200px]" />
+                            <img src="/images/zhi-zhao-logo-black-with-text.png" alt="智兆科技" className="w-[200px]" />
                         </div>
                         <div className="flex items-center gap-6 pl-8">
                             {section2NavLinks.map((link) => (
@@ -112,8 +112,6 @@ function FooterMobile() {
         <footer className="bg-gradient-to-r from-[#55BBF9] to-[#FFFFFF] py-10">
             <div className="container mx-auto px-4">
                 <div className="flex flex-col items-center">
-
-
                     <div className="flex justify-center space-x-4 mb-4">
                         {section2NavLinks.map((link, index) => (
                             <div key={link.href} className="flex items-center">
@@ -127,7 +125,7 @@ function FooterMobile() {
 
                     <div className="flex justify-center items-center space-x-4 mb-4">
                         <div>
-                            <img src="/images/zhi-zhao-logo-black-with-text.svg" alt="智兆科技" className="w-[150px]" />
+                            <img src="/images/zhi-zhao-logo-black-with-text.png" alt="智兆科技" className="w-[150px]" />
                         </div>
                         <div className="flex items-center gap-3">
                             {mobileIconConfigs.map((icon) => (
