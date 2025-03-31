@@ -113,7 +113,7 @@ const Nav = () => {
                     />
 
                     {/* Drawer panel */}
-                    <div className="fixed inset-y-0 right-0 w-64 bg-white shadow-xl animate-slide-in-right">
+                    <div className="fixed inset-y-0 right-0 w-64 bg-white shadow-xl animate-slide-in-right theme-gradient-blue">
                         <div className="px-2 pt-2 pb-3 space-y-1">
                             {mobileNavLinks.map(link => (
                                 <Link
