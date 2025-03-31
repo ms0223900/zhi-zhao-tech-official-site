@@ -4,6 +4,8 @@
 import Link from "next/link";
 import { useState } from "react";
 import routerConfig from "./routerConfig";
+import { cn } from "@/utils/cn";
+import { useRouter, usePathname } from "next/navigation";
 
 const navLinks = [
     routerConfig.about,
@@ -16,6 +18,7 @@ const navLinks = [
 ];
 
 const Nav = () => {
+    const pathname = usePathname();
     const [isOpen, setIsOpen] = useState(false);
 
     return (
@@ -36,7 +39,10 @@ const Nav = () => {
                             <Link
                                 key={link.href}
                                 href={link.href}
-                                className="text-gray-700 hover:text-gray-900 hover:underline"
+                                className={cn(
+                                    "text-gray-700 hover:text-gray-900 hover:underline",
+                                    link.href === pathname && "text-[#E57B42] pb-1 border-b-2 border-[#E57B42]"
+                                )}
                             >
                                 {link.label}
                             </Link>
