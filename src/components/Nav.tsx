@@ -26,7 +26,7 @@ const Nav = () => {
                     {/* Logo 區域 */}
                     <div className="flex-shrink-0">
                         <Link href="/" className="text-xl font-bold">
-                            <img src="/images/zhi-zhao-logo.svg" alt="智兆科技" className="w-[110px] h-24" />
+                            <img src="/images/zhi-zhao-logo-colorful-with-text.png" alt="智兆科技" className="w-[164px] py-2 pr-4" />
                         </Link>
                     </div>
 

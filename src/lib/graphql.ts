@@ -139,7 +139,9 @@ export const GET_NEWS_LIST = gql`
 // latest 3 news
 export const HOME_GET_LATEST_NEWS = gql`
   query GetLatestNews {
-    newses(limit: 3) {
+    newses(pagination:  {
+       limit: 3
+    }, sort: ["publishedAt:desc"])  {
       ...NewsFragment
     }
   }
