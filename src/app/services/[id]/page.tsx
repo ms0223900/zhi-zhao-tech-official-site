@@ -9,6 +9,7 @@ import ServiceCarousel from '@/components/common/CarouselWithNavList'
 import RwdComponent from '@/components/common/RwdComponent'
 import MainContentContainer from '@/components/common/MainContentContainer'
 import BackButton from '@/components/common/BackButton'
+import RelatedServices from '@/components/services/RelatedServices'
 
 interface Props {
     params: Promise<{ id: string }>;
@@ -81,6 +82,9 @@ export default async function ServicePage({ params }: Props) {
                     <ServiceCarousel imageList={service.imageList} />
                 </div>
             </div>
+            <section>
+                <RelatedServices />
+            </section>
         </div>
     )
 }
