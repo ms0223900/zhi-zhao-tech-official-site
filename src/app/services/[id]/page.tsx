@@ -83,7 +83,7 @@ export default async function ServicePage({ params }: Props) {
                 </div>
             </div>
             <section>
-                <RelatedServices />
+                <RelatedServices slug={id} />
             </section>
         </div>
     )
