@@ -238,7 +238,7 @@ function ServiceCard({ title, description, detailDescription, image, bgColor }: 
           maxWidth: "max-content"
         }}
       />
-      <div className="relative h-full flex flex-col justify-end">
+      <div className="relative h-full flex flex-col justify-end w-full">
         <div className="flex flex-col justify-end items-center gap-2 p-6 bg-gradient-to-t from-black/90 to-transparent">
           <h3 className="text-white text-2xl font-bold">{title}</h3>
           <p className="text-white/80">{description}</p>
