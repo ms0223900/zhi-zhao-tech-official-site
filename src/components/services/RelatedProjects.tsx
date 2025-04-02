@@ -6,6 +6,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import LinkCard from "../common/LinkCard";
 import { csrClient } from "@/gql/client";
 import replaceS3UrlWithCloudFront from "@/utils/replaceS3UrlWithCloudFront";
+import TitleWithEngSubtitle from "../common/TitleWithEngSubtitle";
 
 interface ProjectDto {
     documentId: string;
@@ -128,8 +129,9 @@ const queryClient = new QueryClient();
 export default function RelatedProjects({ slug }: RelatedProjectsProps) {
     return (
         <QueryClientProvider client={queryClient}>
-            <div className="space-y-6">
-                <h2 className="text-2xl font-semibold text-center mb-8">相關案例</h2>
+            <div className="space-y-6 py-10">
+                <TitleWithEngSubtitle title="相關案例" subtitle="Related Cases" />
+                <hr />
                 <RelatedProjectsList slug={slug} />
             </div>
         </QueryClientProvider>
