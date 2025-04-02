@@ -78,9 +78,9 @@ const ProjectList = ({ projects }: ProjectListProps) => {
         <div className="space-y-8">
             {/* // genre drop down selector */}
             <div className="flex justify-center gap-2">
-                <select onChange={(e) => handleGenreChange(e.target.value)}>
-                    <option>
-                        All
+                <select className="w-full md:w-[500px] py-2 px-4 rounded-md border border-blue-800 text-center text-h5 bg-transparent" onChange={(e) => handleGenreChange(e.target.value)}>
+                    <option value="All">
+                        依案例類別選擇
                     </option>
                     {projects.map((project) => (
                         <option key={project.id} value={project.related_project_genre?.title || ''}>

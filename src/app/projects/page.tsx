@@ -12,13 +12,13 @@ export const metadata: Metadata = {
 
 export default async function ProjectsPage() {
     return (
-        <main className="mx-auto px-4 ">
+        <main className="mx-auto px-4 md:theme-gradient-blue">
             <Banner
                 title="工程實績"
                 subtitle="Project Performance"
                 imageSrc="/images/projects-banner.jpg"
             />
-            <section className="theme-gradient-blue">
+            <section>
                 <div className="container mx-auto py-8">
                     <ProjectListContainer />
                 </div>
