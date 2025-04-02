@@ -148,24 +148,35 @@ export default async function ProjectDetail({ params }: ProjectDetailProps) {
 
                     {/* Project Details */}
                     <div className="bg-[#fffef0] border border-[#e6e6c8] rounded-lg p-6 space-y-4">
-                        <div className="flex items-start">
-                            <span className="text-lg lr-1 shrink-0">工程地址：</span>
-                            <span className="text-gray-700">{project.description}</span>
-                        </div>
-                        <div className="flex items-start">
-                            <span className="text-lg lr-1 shrink-0">工程簡述：</span>
-                            <span className="text-gray-700">{project.description}</span>
-                        </div>
-                        {project.from && project.until && (
-                            <div className="flex items-start">
-                                <span className="text-lg lr-1 shrink-0">工程期間：</span>
-                                <span className="text-gray-700">{project.from} ~ {project.until}</span>
-                            </div>
-                        )}
-                        <div className="flex items-center">
-                            <span className="text-lg lr-1 shrink-0">承攬系統：</span>
-                            <span className="text-gray-700">{project.related_project_genre?.title}</span>
-                        </div>
+                        {[
+                            {
+                                label: '工程地址：',
+                                value: project.description,
+                                condition: true
+                            },
+                            {
+                                label: '工程簡述：',
+                                value: project.description,
+                                condition: true
+                            },
+                            {
+                                label: '工程期間：',
+                                value: `${project.from} ~ ${project.until}`,
+                                condition: project.from && project.until
+                            },
+                            {
+                                label: '承攬系統：',
+                                value: project.related_project_genre?.title,
+                                condition: true
+                            }
+                        ].map((item, index) => (
+                            item.condition && (
+                                <div key={index} className="flex items-start">
+                                    <span className="text-lg lr-1 shrink-0">{item.label}</span>
+                                    <span className="text-gray-700">{item.value}</span>
+                                </div>
+                            )
+                        ))}
                     </div>
                 </div>
 
