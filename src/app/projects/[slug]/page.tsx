@@ -148,22 +148,22 @@ export default async function ProjectDetail({ params }: ProjectDetailProps) {
 
                     {/* Project Details */}
                     <div className="bg-[#fffef0] border border-[#e6e6c8] rounded-lg p-6 space-y-4">
-                        <div className="flex items-center">
-                            <span className="text-lg lr-1">工程地址：</span>
+                        <div className="flex items-start">
+                            <span className="text-lg lr-1 shrink-0">工程地址：</span>
                             <span className="text-gray-700">{project.description}</span>
                         </div>
-                        <div className="flex items-center">
-                            <span className="text-lg lr-1">工程簡述：</span>
+                        <div className="flex items-start">
+                            <span className="text-lg lr-1 shrink-0">工程簡述：</span>
                             <span className="text-gray-700">{project.description}</span>
                         </div>
                         {project.from && project.until && (
-                            <div className="flex items-center">
-                                <span className="text-lg lr-1">工程期間：</span>
+                            <div className="flex items-start">
+                                <span className="text-lg lr-1 shrink-0">工程期間：</span>
                                 <span className="text-gray-700">{project.from} ~ {project.until}</span>
                             </div>
                         )}
                         <div className="flex items-center">
-                            <span className="text-lg lr-1">承攬系統：</span>
+                            <span className="text-lg lr-1 shrink-0">承攬系統：</span>
                             <span className="text-gray-700">{project.related_project_genre?.title}</span>
                         </div>
                     </div>
