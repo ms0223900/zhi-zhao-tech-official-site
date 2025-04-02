@@ -6,6 +6,7 @@ import { CarouselBanner } from "../components/home/CarouselBanner";
 import RwdComponent from "@/components/common/RwdComponent";
 import TitleWithEngSubtitle from "@/components/common/TitleWithEngSubtitle";
 import LatestNewsSection from "@/components/home/LatestNewsSection";
+import routerConfig from "@/components/routerConfig";
 
 export const metadata: Metadata = {
   title: "智兆科技 | Zhi Zhao Tech",
@@ -125,9 +126,9 @@ export default async function Home() {
           <div className="grid grid-cols-1 md:grid-cols-[280px,repeat(3,1fr)] gap-4 mt-12">
             <div className="flex flex-col items-center md:items-start justify-center space-y-4 md:space-y-6">
               <p className="text-center md:text-left text-gray-600 leading-[206%]">我們以創新技術為核心，專注於為客戶創造卓越價值。憑藉領先的技術實力與穩健可靠的運行模式，我們致力成為您值得信賴的合作夥伴，攜手共創雙贏的未來！</p>
-              <button className="flex items-center space-x-2 text-black hover:text-orange-700 rounded-full bg-[#E57B42]/50 px-6 py-1.5 border border-2 border-orange-500">
+              <Link href={routerConfig.about.href} className="flex items-center space-x-2 text-black hover:text-orange-700 rounded-full bg-[#E57B42]/50 px-6 py-1.5 border border-2 border-orange-500">
                 <span>了解更多</span>
-              </button>
+              </Link>
             </div>
             {services.map((item, index) => (
               <ServiceCard
