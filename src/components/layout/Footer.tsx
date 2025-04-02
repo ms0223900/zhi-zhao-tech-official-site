@@ -55,20 +55,12 @@ const EMAIL_ICON = {
     alt: "Email",
 }
 
-const LINE_ICON = {
-    key: "line",
-    link: "https://line.me/R/ti/p/%40zhi-zhao",
-    iconSrc: "/images/icons/line-icon.svg",
-    alt: "Line",
-}
-
 const iconConfigs: IconConfig[] = [
     FB_ICON,
     EMAIL_ICON,
-    LINE_ICON,
 ]
 
-const pcIconConfigs = iconConfigs.filter((icon) => icon.key !== "email");
+const pcIconConfigs = iconConfigs;
 const mobileIconConfigs = iconConfigs;
 
 function FooterPC() {
