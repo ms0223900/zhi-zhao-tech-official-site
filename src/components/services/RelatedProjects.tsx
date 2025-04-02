@@ -28,7 +28,7 @@ interface RelatedProjectVO {
     }[];
 }
 
-const ServiceConverter = {
+const ProjectConverter = {
     toVo: (dto: ProjectDto): RelatedProjectVO => ({
         id: dto.documentId,
         title: dto.title,
@@ -69,20 +69,20 @@ async function fetchRelatedProjects(slug: string): Promise<RelatedProjectVO[]> {
             fetchPolicy: 'no-cache',
         });
 
-        return data.projects.map(ServiceConverter.toVo);
+        return data.projects.map(ProjectConverter.toVo);
     } catch (error) {
-        console.error("Error fetching related services:", error);
+        console.error("Error fetching related projects:", error);
         return [];
     }
 }
 
-interface RelatedServicesProps {
+interface RelatedProjectsProps {
     slug: string;
 }
 
-function RelatedServicesList({ slug }: RelatedServicesProps) {
+function RelatedProjectsList({ slug }: RelatedProjectsProps) {
     const { data, isLoading, error } = useQuery({
-        queryKey: ['relatedServices', slug],
+        queryKey: ['relatedProjects', slug],
         queryFn: () => fetchRelatedProjects(slug),
     });
 
@@ -105,14 +105,14 @@ function RelatedServicesList({ slug }: RelatedServicesProps) {
 
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {data.map((service) => (
+            {data.map((project) => (
                 <LinkCard
-                    key={service.id}
+                    key={project.id}
                     imageWrapperClassName="aspect-[1.818] h-auto"
-                    link={`/services/${service.id}`}
-                    title={service.title}
-                    subtitle={service.subtitle}
-                    image={service.image[0]?.url ? replaceS3UrlWithCloudFront(service.image[0].url) : ''}
+                    link={`/services/${project.id}`}
+                    title={project.title}
+                    subtitle={project.subtitle}
+                    image={project.image[0]?.url ? replaceS3UrlWithCloudFront(project.image[0].url) : ''}
                 />
             ))}
         </div>
@@ -120,18 +120,18 @@ function RelatedServicesList({ slug }: RelatedServicesProps) {
 }
 
 function EmptyRelatedProjects() {
-    return <div>沒有相關服務</div>;
+    return <div>沒有相關案例</div>;
 }
 
 const queryClient = new QueryClient();
 
-export default function RelatedServices({ slug }: RelatedServicesProps) {
+export default function RelatedProjects({ slug }: RelatedProjectsProps) {
     return (
         <QueryClientProvider client={queryClient}>
             <div className="space-y-6">
                 <h2 className="text-2xl font-semibold text-center mb-8">相關案例</h2>
-                <RelatedServicesList slug={slug} />
+                <RelatedProjectsList slug={slug} />
             </div>
         </QueryClientProvider>
     );
-}
+} 
