@@ -100,7 +100,7 @@ function RelatedServicesList({ slug }: RelatedServicesProps) {
     }
 
     if (!data || data.length === 0) {
-        return <div>沒有相關服務</div>;
+        return <EmptyRelatedProjects />
     }
 
     return (
@@ -117,6 +117,10 @@ function RelatedServicesList({ slug }: RelatedServicesProps) {
             ))}
         </div>
     );
+}
+
+function EmptyRelatedProjects() {
+    return <div>沒有相關服務</div>;
 }
 
 const queryClient = new QueryClient();
