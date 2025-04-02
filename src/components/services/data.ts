@@ -51,6 +51,12 @@ export const services: Record<ServiceId, {
         content: '從系統規劃到施工與維護，涵蓋機電設備安裝、配線工程等，助力打造高效運作的智慧建築與設施。',
         imageList: [
             '/images/services/mechanical-electrical/cover.jpg',
+            '/images/services/mechanical-electrical/mechanical-electrical-1.jpg',
+            '/images/services/mechanical-electrical/mechanical-electrical-2.jpg',
+            '/images/services/mechanical-electrical/mechanical-electrical-3.jpg',
+            '/images/services/mechanical-electrical/mechanical-electrical-4.jpg',
+            '/images/services/mechanical-electrical/mechanical-electrical-5.jpg',
+            '/images/services/mechanical-electrical/mechanical-electrical-6.jpg',
         ],
     },
     'process-piping': {
@@ -85,6 +91,10 @@ export const services: Record<ServiceId, {
         content: '提供高效能的空氣分配與排氣系統設計，適用於無塵室、實驗室及商業空間，滿足空氣品質與能源效率需求。',
         imageList: [
             '/images/services/duct/cover.jpg',
+            '/images/services/duct/duct-1.jpg',
+            '/images/services/duct/duct-2.jpg',
+            '/images/services/duct/duct-3.jpg',
+            '/images/services/duct/duct-4.jpg',
         ],
     },
     'civil': {
@@ -94,6 +104,10 @@ export const services: Record<ServiceId, {
         content: '提供專業的建築與土木工程服務，從基礎設計到施工管理，保證建築結構的安全與穩定。',
         imageList: [
             '/images/services/civil/cover.jpg',
+            '/images/services/civil/civil-1.jpg',
+            '/images/services/civil/civil-2.jpg',
+            '/images/services/civil/civil-3.jpg',
+            '/images/services/civil/civil-4.jpg',
         ],
     },
     'steel': {
@@ -103,6 +117,11 @@ export const services: Record<ServiceId, {
         content: '專注於鋼結構的設計、製造與安裝，提供高強度、耐用的建築解決方案，適用於工業廠房與大型建築物。',
         imageList: [
             '/images/services/steel/cover.jpg',
+            '/images/services/steel/steel-1.jpg',
+            '/images/services/steel/steel-2.jpg',
+            '/images/services/steel/steel-3.jpg',
+            '/images/services/steel/steel-4.jpg',
+            '/images/services/steel/steel-5.jpg',
         ],
     },
     'waste-treatment': {
@@ -112,6 +131,10 @@ export const services: Record<ServiceId, {
         content: '設計與建置廢水及廢氣處理系統，涵蓋一般、酸鹼、有機及熱排氣，實現環保法規要求與永續經營目標。',
         imageList: [
             '/images/services/waste-treatment/cover.jpg',
+            '/images/services/waste-treatment/waste-treatment-1.jpg',
+            '/images/services/waste-treatment/waste-treatment-2.jpg',
+            '/images/services/waste-treatment/waste-treatment-3.jpg',
+            '/images/services/waste-treatment/waste-treatment-4.jpg',
         ],
     },
 }

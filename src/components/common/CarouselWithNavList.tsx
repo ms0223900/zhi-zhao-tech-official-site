@@ -77,7 +77,7 @@ export default function ServiceCarousel({ imageList, }: Props) {
                     {imageList.map((image, index) => (
                         <div
                             key={index}
-                            className={`cursor-pointer transition-all duration-300 px-1 ${currentSlide === index
+                            className={`cursor-pointer transition-all duration-300 px-1 aspect-[3/2] overflow-hidden ${currentSlide === index
                                 ? 'opacity-100'
                                 : 'opacity-70'
                                 }`}
@@ -85,7 +85,7 @@ export default function ServiceCarousel({ imageList, }: Props) {
                             <img
                                 src={image}
                                 alt={`縮略圖 ${index + 1}`}
-                                className="w-full object-cover rounded shadow-md"
+                                className="w-full h-full object-cover rounded shadow-md"
                             />
                         </div>
                     ))}
