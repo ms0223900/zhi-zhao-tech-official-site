@@ -154,7 +154,7 @@ function PinnedButtons() {
             </button>
 
             <a
-                href="mailto:contact@example.com"
+                href={`mailto:${ZHI_ZHAO_EMAIL}`}
                 className="hidden md:flex w-12 h-12 bg-white rounded-full shadow-lg items-center justify-center hover:bg-gray-100 transition-colors"
                 aria-label="Send email"
             >
