@@ -3,7 +3,7 @@
 import routerConfig from "../routerConfig";
 import Link from "next/link";
 
-const ZHI_ZHAO_EMAIL = "info@zhi-zhao.com";
+const ZHI_ZHAO_EMAIL = "taiwanz2@taiwanz2.com.tw";
 
 const Footer = () => {
     return (
