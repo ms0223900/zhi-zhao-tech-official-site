@@ -121,7 +121,18 @@ function RelatedProjectsList({ slug }: RelatedProjectsProps) {
 }
 
 function EmptyRelatedProjects() {
-    return <div>沒有相關案例</div>;
+    return <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {[...Array(3)].map((_, index) => (
+            <LinkCard
+                key={index}
+                imageWrapperClassName="aspect-[1.818] h-auto cursor-not-allowed"
+                link={""}
+                title="公司名稱"
+                subtitle="廠房"
+                image={'/images/empty-cover.jpg'}
+            />
+        ))}
+    </div>;
 }
 
 const queryClient = new QueryClient();
