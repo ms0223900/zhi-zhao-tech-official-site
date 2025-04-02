@@ -19,7 +19,7 @@ function Banner({ title, subtitle, imageSrc }: BannerProps) {
             </div>
             <div className="relative h-full flex flex-col items-center justify-center text-center">
                 <h1 className="text-white text-5xl font-bold mb-4">{title}</h1>
-                <p className="text-white text-xl">{subtitle}</p>
+                <p className="text-white text-xl tracking-widest">{subtitle}</p>
             </div>
         </section>
     );

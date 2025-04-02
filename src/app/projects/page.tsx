@@ -1,3 +1,4 @@
+import Banner from "@/components/common/Banner";
 import RelatedIndustriesSection from "@/components/common/RelatedIndustriesSection";
 import TitleWithEngSubtitle from "@/components/common/TitleWithEngSubtitle";
 import ProjectListContainer from "@/components/projects/ProjectList";
@@ -12,6 +13,11 @@ export const metadata: Metadata = {
 export default async function ProjectsPage() {
     return (
         <main className="mx-auto px-4 ">
+            <Banner
+                title="工程實績"
+                subtitle="Project Performance"
+                imageSrc="/images/projects-banner.jpg"
+            />
             <section className="theme-gradient-blue">
                 <div className="container mx-auto py-8">
                     <ProjectListContainer />
