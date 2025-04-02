@@ -19,7 +19,7 @@ interface ProjectDto {
     };
 }
 
-interface Service {
+interface RelatedProjectVO {
     id: string;
     title: string;
     subtitle: string;
@@ -29,7 +29,7 @@ interface Service {
 }
 
 const ServiceConverter = {
-    toVo: (dto: ProjectDto): Service => ({
+    toVo: (dto: ProjectDto): RelatedProjectVO => ({
         id: dto.documentId,
         title: dto.title,
         subtitle: dto.subtitle,
@@ -37,7 +37,7 @@ const ServiceConverter = {
     })
 };
 
-async function fetchRelatedProjects(slug: string): Promise<Service[]> {
+async function fetchRelatedProjects(slug: string): Promise<RelatedProjectVO[]> {
     try {
         const { data } = await csrClient.query<{
             projects: ProjectDto[];
