@@ -200,10 +200,10 @@ const FormSection = () => {
                         <div className="text-center">
                             <div className="space-y-3 text-center">
                                 {[
-                                    { label: '營業時間: ', value: '8:00 - 17:00' },
-                                    { label: '電話號碼: ', value: '07-3642101' },
-                                    { label: 'FAX: ', value: '07-3649490' },
-                                    { label: 'E-mail: ', value: 'taiwan53588280@gmail.com' }
+                                    { label: '營業時間：', value: '8:00 - 17:00' },
+                                    { label: '電話號碼：', value: '07-3642101' },
+                                    { label: 'FAX：', value: '07-3649490' },
+                                    { label: 'E-mail：', value: 'taiwan53588280@gmail.com' }
                                 ].map((item, index) => (
                                     <p key={index} className="flex items-center justify-center">
                                         <span className="font-medium">{item.label}</span>
