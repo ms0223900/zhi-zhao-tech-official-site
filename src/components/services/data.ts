@@ -35,7 +35,7 @@ export const services: Record<ServiceId, {
         id: 'fire-engineering',
         title: '消防工程',
         subtitle: 'Fire Engineering',
-        content: '專精於表面處理與防腐塗裝，提供長效耐用的塗裝方案，有效保護設備和建築結構，提升使用壽命。',
+        content: '符合業主需求及設計規範準則提供與建築物的消防安全設施規劃、安裝、檢測及取得使用許可。',
         imageList: [
             '/images/services/fire-engineering/cover.jpg',
             '/images/services/fire-engineering/fire-engineering-1.jpg',
@@ -66,7 +66,7 @@ export const services: Record<ServiceId, {
     },
     'hvac': {
         id: 'hvac',
-        title: '冷氣空調工程',
+        title: '冷凍空調工程',
         subtitle: 'HVAC Engineering',
         content: '專業提供中央空調、工業冷卻系統的設計與安裝，確保良好的空調效能與節能表現。',
         imageList: [
