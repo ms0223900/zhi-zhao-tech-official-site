@@ -42,7 +42,7 @@ const serviceCardDataList: ServiceCardItemProps[] = [
     title: "最優質",
     subtitle: "施工管理",
     iconSrc: "/images/icons/construction-icon.svg",
-    detailDescription: "以高品質工程和實用性為您服務",
+    detailDescription: "如期如質完成交付之任務,幫您打造出高規格與舒適、安全的工作環境",
   },
   {
     title: "最嚴謹",
@@ -54,13 +54,13 @@ const serviceCardDataList: ServiceCardItemProps[] = [
     title: "最快速",
     subtitle: "動員應變能力",
     iconSrc: "/images/icons/shift-fast-icon.svg",
-    detailDescription: "駐廠人員皆有機電系統、空調無塵室系統、製程系統等管理專長服務團隊",
+    detailDescription: "駐廠人員皆有機電系統、空調無塵室系統、製程系統等管理專長",
   },
   {
     title: "最絕對",
     subtitle: "專業能力",
     iconSrc: "/images/icons/professional-ability-icon.svg",
-    detailDescription: "最絕對的專業能力,建立在專業、快速、負責、認真、細心、誠信 六大原則上",
+    detailDescription: "智兆團隊秉持專業、快速、負責、認真、細心、誠信，六大原則",
   },
   {
     title: "最絕對",
