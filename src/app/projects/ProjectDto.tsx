@@ -8,10 +8,6 @@ export type ProjectDto = {
         url: string;
     }[];
     createdAt: string;
-    projectGenre: {
-        documentId: string;
-        title: string;
-    };
     related_project_genre: {
         documentId: string;
         title: string;
