@@ -97,7 +97,7 @@ function CoreValuesSection() {
                 <div className="mt-12 rounded-lg border border-2 border-[#95DDFF] p-8 bg-gradient-to-br from-[#FFFFFF] to-[#95DDFF20]">
                     <h3 className="text-2xl text-[#2196F3] font-bold text-left mb-6">智兆科技四大核心價值</h3>
                     <p className="text-gray-600 leading-relaxed">
-                        智兆科技以「熱誠、專業、團隊、誠信」為核心價值，結合豐富的技術實力和豐富的產業經驗，成功打造了多個高端項目，包括日月光半導體、聯一化工、旭智潔、台達科技、海洋生技、偉茂科技及多家國內科技企業的工程建設。
+                        智兆科技以「熱誠、專業、團隊、誠信」為核心價值，結合豐富的技術實力和豐富的產業經驗，成功打造了多個高端項目，包括日月光半導體廠、勝一化工、恩智浦、台虹科技、光寶科技、醫強科技、南茂科技、住華科技及多家國內科技企業的工程建設。
                     </p>
                 </div>
             </div>
