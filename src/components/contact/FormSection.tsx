@@ -73,7 +73,7 @@ const FormSection = () => {
                     'Authorization': `Bearer ${strapiToken}`,
                 },
                 body: JSON.stringify({
-                    to: 'taiwan53588280@gmail.com', // 可以換成動態設定的收件人
+                    to: 'taiwanz2@taiwanz2.com', // 可以換成動態設定的收件人
                     subject: `來自 ${data.company} 的諮詢`,
                     html: `
             <h2>聯絡表單提交</h2>
@@ -203,7 +203,7 @@ const FormSection = () => {
                                     { label: '營業時間：', value: '8:00 - 17:00' },
                                     { label: '電話號碼：', value: '07-3642101' },
                                     { label: 'FAX：', value: '07-3649490' },
-                                    { label: 'E-mail：', value: 'taiwan53588280@gmail.com' }
+                                    { label: 'E-mail：', value: 'taiwanz2@taiwanz2.com' }
                                 ].map((item, index) => (
                                     <p key={index} className="flex items-center justify-center">
                                         <span className="font-medium">{item.label}</span>
