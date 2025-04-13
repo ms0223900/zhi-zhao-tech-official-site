@@ -35,7 +35,7 @@ export const services: Record<ServiceId, {
         id: 'fire-engineering',
         title: '消防工程',
         subtitle: 'Fire Engineering',
-        content: '符合業主需求及設計規範準則提供與建築物的消防安全設施規劃、安裝、檢測及取得使用許可。',
+        content: '符合業主需求及設計規範準則，提供與建築物的消防安全設施規劃、安裝、檢測及取得使用許可',
         imageList: [
             '/images/services/fire-engineering/cover.jpg',
             '/images/services/fire-engineering/fire-engineering-1.jpg',
