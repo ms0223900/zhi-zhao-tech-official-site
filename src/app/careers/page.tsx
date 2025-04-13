@@ -18,7 +18,7 @@ const linkCardList = [
     }, {
         id: 2,
         link: "/careers#employee-benefits",
-        image: "/images/careers/employee-benefits-cover.jpg",
+        image: "/images/careers/employee-benefits-cover.webp",
         title: "員工福利",
         subtitle: "Employee Benefits"
     }, {
