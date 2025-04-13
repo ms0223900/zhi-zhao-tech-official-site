@@ -40,7 +40,7 @@ const ProjectCard = ({ project, gradientFrom, gradientTo, buttonColor }: Project
             </div>
             <div className={`w-[60%] absolute top-6 left-[40%] flex flex-col items-center`}>
                 <h3 className="text-h4 text-center font-semibold mb-4 ml-4 max-w-[70%]">{`${project?.title} - ${project?.subtitle}`}</h3>
-                <div className={`space-y-2 bg-gradient-to-r ${gradientFrom} ${gradientTo} py-3 pb-5 px-10 pl-[60px] rounded-lg`}>
+                <div className={`w-full space-y-2 bg-gradient-to-r ${gradientFrom} ${gradientTo} py-3 pb-5 px-10 pl-[60px] rounded-lg`}>
                     {[
                         {
                             label: '工程地址：',
@@ -73,22 +73,9 @@ const ProjectCard = ({ project, gradientFrom, gradientTo, buttonColor }: Project
                     )}
                 </div>
                 <div
-                    className={`absolute bottom-4 right-4 flex items-center justify-center w-12 h-12 ${buttonColor} rounded-full cursor-pointer`}
+                    className={`absolute -bottom-[15px] right-4 flex items-center justify-center w-[30px] h-[30px] ${buttonColor} rounded-full cursor-pointer`}
                 >
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-6 w-6 text-white"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                    >
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M9 5l7 7-7 7"
-                        />
-                    </svg>
+                    <img src="/images/icons/project-card-link-arrow.svg" alt="project-card-link-arrow" />
                 </div>
             </div>
         </div>
