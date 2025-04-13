@@ -50,6 +50,23 @@ async function asyncGetProjects(): Promise<Project[]> {
     }
 }
 
+export class PaginatedList<T> {
+    constructor(
+        private readonly items: T[],
+        private readonly currentPage: number,
+        private readonly itemsPerPage: number,
+    ) { }
+
+    get paginatedItems(): T[] {
+        const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+        return this.items.slice(startIndex, startIndex + this.itemsPerPage);
+    }
+
+    get totalPages(): number {
+        return Math.ceil(this.items.length / this.itemsPerPage);
+    }
+}
+
 
 interface ProjectListProps {
     projects: Project[]
@@ -69,14 +86,14 @@ const ProjectList = ({ projects }: ProjectListProps) => {
         projects :
         projects.filter(project => project.related_project_genre?.title === selectedGenre);
 
-    // Calculate pagination
-    const indexOfLastProject = currentPage * ITEMS_PER_PAGE;
-    const indexOfFirstProject = indexOfLastProject - ITEMS_PER_PAGE;
-    const currentProjects = filteredProjects.slice(indexOfFirstProject, indexOfLastProject);
-    const totalPages = Math.ceil(filteredProjects.length / ITEMS_PER_PAGE);
+    const paginatedProjects = new PaginatedList(
+        filteredProjects,
+        currentPage,
+        ITEMS_PER_PAGE
+    );
 
-    const handlePageChange = (pageNumber: number) => {
-        setCurrentPage(pageNumber);
+    const handlePageChange = (page: number) => {
+        setCurrentPage(page);
     };
 
     return (
@@ -100,7 +117,7 @@ const ProjectList = ({ projects }: ProjectListProps) => {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-[100px]">
                             {/* 左側卡片 */}
                             <FeaturedProjectCard
-                                project={currentProjects[0]}
+                                project={paginatedProjects.paginatedItems[0]}
                                 gradientFrom="from-white"
                                 gradientTo="to-[#F1BA9C]"
                                 buttonColor="bg-[#E57B42]"
@@ -108,7 +125,7 @@ const ProjectList = ({ projects }: ProjectListProps) => {
 
                             {/* 右側卡片 */}
                             <FeaturedProjectCard
-                                project={currentProjects[1] || null}
+                                project={paginatedProjects.paginatedItems[1] || null}
                                 gradientFrom="from-white"
                                 gradientTo="to-[#FFEE85]"
                                 buttonColor="bg-[#EACA00]"
@@ -117,7 +134,7 @@ const ProjectList = ({ projects }: ProjectListProps) => {
                         <div>
                             <TitleWithEngSubtitle title="相關案例" subtitle="Related Cases" />
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                                {currentProjects.slice(2).map((project) => (
+                                {paginatedProjects.paginatedItems.slice(2).map((project) => (
                                     <LinkCard
                                         key={project.id}
                                         imageWrapperClassName="aspect-[1.818] h-auto"
@@ -131,7 +148,7 @@ const ProjectList = ({ projects }: ProjectListProps) => {
                     </div>
                 }
                 mobileComponent={<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {currentProjects.map((project) => (
+                    {paginatedProjects.paginatedItems.map((project) => (
                         <LinkCard
                             key={project.id}
                             imageWrapperClassName="aspect-[1.818] h-auto"
@@ -146,16 +163,14 @@ const ProjectList = ({ projects }: ProjectListProps) => {
 
             {/* Pagination */}
             <div className="flex justify-center gap-2">
-                {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNumber) => (
+                {Array.from({ length: paginatedProjects.totalPages }, (_, i) => i + 1).map((page) => (
                     <button
-                        key={pageNumber}
-                        onClick={() => handlePageChange(pageNumber)}
-                        className={`px-4 py-2 rounded ${currentPage === pageNumber
-                            ? 'bg-blue-600 text-white'
-                            : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                        key={page}
+                        onClick={() => handlePageChange(page)}
+                        className={`px-4 py-2 rounded ${currentPage === page ? 'bg-blue-600 text-white' : 'bg-gray-200'
                             }`}
                     >
-                        {pageNumber}
+                        {page}
                     </button>
                 ))}
             </div>
