@@ -1,5 +1,5 @@
 import CommonTrainingSection from "@/components/careers/CommonTrainingSection"
-import { employeeBenefitsCarouselItems, talentTrainingCarouselItems } from "@/components/careers/data"
+import { employeeBenefitsCarouselItems, joinUsCarouselItems, talentTrainingCarouselItems } from "@/components/careers/data"
 import Banner from "@/components/common/Banner"
 import LinkCard from "@/components/common/LinkCard"
 
@@ -90,7 +90,7 @@ export default function CareersPage() {
                         { title: '- 多元文化', content: '尊重多元背景與觀點，打造包容且創新的企業文化 ' },
                         { title: '- 開放職缺', content: '我們正在尋找熱情與才華兼具的夥伴，加入我們一起實現夢想！' },
                     ]}
-                    carouselItems={employeeBenefitsCarouselItems}
+                    carouselItems={joinUsCarouselItems}
                     themeColor="#55BBF9"
                 />
                 <section>
