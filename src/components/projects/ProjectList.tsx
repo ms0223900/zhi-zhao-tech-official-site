@@ -9,9 +9,8 @@ import { ProjectDto, ProjectVoConverter } from "@/app/projects/ProjectDto";
 import { csrClient } from "@/gql/client";
 import { gql } from "@apollo/client";
 import RwdComponent from "../common/RwdComponent";
-import Image from 'next/image';
 import TitleWithEngSubtitle from "../common/TitleWithEngSubtitle";
-
+import FeaturedProjectCard from './FeaturedProjectCard';
 
 async function asyncGetProjects(): Promise<Project[]> {
 
@@ -97,103 +96,21 @@ const ProjectList = ({ projects }: ProjectListProps) => {
                 desktopComponent={
                     <div>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                            {/* 左側卡片 - 漸層色從 #FFFFFF 到 #F1BA9C */}
-                            <div className="flex rounded-lg overflow-hidden shadow-md">
-                                <div className="w-1/2 bg-gray-100 flex items-center justify-center">
-                                    <div className="relative w-full h-48">
-                                        {currentProjects[0]?.image?.[0]?.url ? (
-                                            <Image
-                                                src={replaceS3UrlWithCloudFront(currentProjects[0].image[0].url)}
-                                                alt={currentProjects[0].title}
-                                                fill
-                                                className="object-cover"
-                                            />
-                                        ) : (
-                                            <>
-                                                <Image
-                                                    src="/images/placeholder.jpg"
-                                                    alt="待請期待"
-                                                    fill
-                                                    className="object-contain"
-                                                />
-                                                <div className="absolute bottom-0 left-0 right-0 text-center pb-2 text-gray-500">
-                                                    敬請期待
-                                                </div>
-                                            </>
-                                        )}
-                                    </div>
-                                </div>
-                                <div className="w-2/3 p-6 relative bg-gradient-to-r from-white to-[#F1BA9C]">
-                                    <h3 className="text-xl font-semibold mb-4">公司名稱 - 廠房</h3>
-                                    <div className="space-y-2">
-                                        {[
-                                            {
-                                                label: '工程地址：',
-                                                value: currentProjects[0]?.address,
-                                                condition: true
-                                            },
-                                            {
-                                                label: '工程概述：',
-                                                value: currentProjects[0]?.description,
-                                                condition: true
-                                            },
-                                            {
-                                                label: '工程期間：',
-                                                value: currentProjects[0]?.projectDuration,
-                                                condition: currentProjects[0]?.projectDuration
-                                            },
-                                            {
-                                                label: '承攬系統：',
-                                                value: currentProjects[0]?.related_project_genre?.title,
-                                                condition: !!currentProjects[0]?.related_project_genre?.title
-                                            }
-                                        ].map((item, index) => (
-                                            item.condition && (
-                                                <p key={index}>
-                                                    <span className="font-medium">{item.label}</span>
-                                                    <span className="ml-2">{item.value}</span>
-                                                </p>
-                                            )
-                                        ))}
-                                    </div>
-                                    <div className="absolute bottom-4 right-4 flex items-center justify-center w-12 h-12 bg-[#E57B42] rounded-full cursor-pointer">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
+                            {/* 左側卡片 */}
+                            <FeaturedProjectCard
+                                project={currentProjects[0]}
+                                gradientFrom="from-white"
+                                gradientTo="to-[#F1BA9C]"
+                                buttonColor="bg-[#E57B42]"
+                            />
 
-                            {/* 右側卡片 - 漸層色從 #FFFFFF 到 #FFEE85 */}
-                            <div className="flex rounded-lg overflow-hidden shadow-md">
-                                <div className="w-1/3 bg-gray-100 flex items-center justify-center p-4">
-                                    <div className="relative w-full h-48">
-                                        <Image
-                                            src="/images/placeholder.jpg"
-                                            alt="待請期待"
-                                            fill
-                                            className="object-contain"
-                                        />
-                                        <div className="absolute bottom-0 left-0 right-0 text-center pb-2 text-gray-500">
-                                            敬請期待
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="w-2/3 p-6 relative bg-gradient-to-r from-white to-[#FFEE85]">
-                                    <h3 className="text-xl font-semibold mb-4">公司名稱 - 廠房</h3>
-                                    <div className="space-y-2">
-                                        <p><span className="font-medium">工程地址：</span></p>
-                                        <p><span className="font-medium">工程概述：</span></p>
-                                        <p><span className="font-medium">工程期間：</span></p>
-                                        <p><span className="font-medium">承攬系統：</span></p>
-                                    </div>
-                                    <div className="absolute bottom-4 right-4 flex items-center justify-center w-12 h-12 bg-[#EACA00] rounded-full cursor-pointer">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
+                            {/* 右側卡片 */}
+                            <FeaturedProjectCard
+                                project={currentProjects[1] || null}
+                                gradientFrom="from-white"
+                                gradientTo="to-[#FFEE85]"
+                                buttonColor="bg-[#EACA00]"
+                            />
                         </div>
                         <div>
                             <TitleWithEngSubtitle title="相關案例" subtitle="Related Cases" />
