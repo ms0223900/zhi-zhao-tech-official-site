@@ -65,7 +65,7 @@ const ProjectCard = ({ project, gradientFrom, gradientTo, buttonColor }: Project
                     ].map(
                         (item, index) =>
                             item.condition && (
-                                <p key={index}>
+                                <p key={index} className="line-clamp-2">
                                     <span className="font-medium">{item.label}</span>
                                     <span>{item.value}</span>
                                 </p>
