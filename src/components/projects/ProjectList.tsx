@@ -1,5 +1,5 @@
 'use client';
-import { Project } from "@/types/Project";
+import { Project, ProjectImpl } from "@/types/Project";
 import replaceS3UrlWithCloudFront from "@/utils/replaceS3UrlWithCloudFront";
 import { useState } from "react";
 import LinkCard from "../common/LinkCard";
@@ -117,7 +117,7 @@ const ProjectList = ({ projects }: ProjectListProps) => {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-[100px]">
                             {/* 左側卡片 */}
                             <FeaturedProjectCard
-                                project={paginatedProjects.paginatedItems[0]}
+                                project={paginatedProjects.paginatedItems[0] || ProjectImpl.empty()}
                                 gradientFrom="from-transparent"
                                 gradientTo="to-[#F1BA9C]"
                                 buttonColor="bg-[#E57B42]"
@@ -125,7 +125,7 @@ const ProjectList = ({ projects }: ProjectListProps) => {
 
                             {/* 右側卡片 */}
                             <FeaturedProjectCard
-                                project={paginatedProjects.paginatedItems[1] || null}
+                                project={paginatedProjects.paginatedItems[1] || ProjectImpl.empty()}
                                 gradientFrom="from-transparent"
                                 gradientTo="to-[#FFEE85]"
                                 buttonColor="bg-[#EACA00]"

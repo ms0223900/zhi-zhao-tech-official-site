@@ -32,7 +32,7 @@ export class ProjectImpl implements Project {
     ) { }
 
     get projectDuration(): string {
-        return this.from ? `${this.from} ~ ${this.until || ''}`.trim() : '';
+        return this.from ? `${this.from} ~ ${this.until || ''}`.trim() : '-';
     }
 
     // 檢查是否為空專案（特殊狀態）
@@ -41,10 +41,10 @@ export class ProjectImpl implements Project {
             '',
             '公司名稱',
             '廠房',
-            '',
-            '',
-            [],
-            null,
+            '-',
+            '-',
+            [{ url: '/images/empty-cover.jpg' }],
+            { documentId: '', title: '-' },
             new Date().toISOString(),
             null,
             null

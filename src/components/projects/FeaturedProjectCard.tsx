@@ -5,7 +5,7 @@ import { Project } from '@/types/Project';
 import replaceS3UrlWithCloudFront from '@/utils/replaceS3UrlWithCloudFront';
 
 interface ProjectCardProps {
-    project: Project | null;
+    project: Project;
     gradientFrom: string;
     gradientTo: string;
     buttonColor: string;
@@ -16,48 +16,37 @@ const ProjectCard = ({ project, gradientFrom, gradientTo, buttonColor }: Project
         <div className="flex relative">
             <div className="relative z-10 w-1/2 flex items-center justify-center">
                 <div className="relative w-full aspect-[245/166] rounded-lg overflow-hidden">
-                    {project?.image?.[0]?.url ? (
-                        <Image
-                            src={replaceS3UrlWithCloudFront(project.image[0].url)}
-                            alt={project.title}
-                            fill
-                            className="object-cover"
-                        />
-                    ) : (
-                        <>
-                            <Image
-                                src="/images/empty-cover.jpg"
-                                alt="敬請期待"
-                                fill
-                                className="object-contain"
-                            />
-                        </>
-                    )}
+                    <Image
+                        src={replaceS3UrlWithCloudFront(project.image[0].url)}
+                        alt={project.title}
+                        fill
+                        className="object-cover"
+                    />
                 </div>
             </div>
             <div className={`w-[60%] absolute top-6 left-[40%] flex flex-col items-center`}>
-                <h3 className="text-h4 text-center font-semibold mb-4 ml-4 max-w-[70%]">{`${project?.title} - ${project?.subtitle}`}</h3>
+                <h3 className="text-h4 text-center font-semibold mb-4 ml-4 max-w-[70%]">{`${project.title} - ${project.subtitle}`}</h3>
                 <div className={`w-full space-y-2 bg-gradient-to-r ${gradientFrom} ${gradientTo} py-3 pb-5 px-10 pl-[60px] rounded-lg`}>
                     {[
                         {
                             label: '工程地址：',
-                            value: project?.address,
+                            value: project.address,
                             condition: true,
                         },
                         {
                             label: '工程概述：',
-                            value: project?.description,
+                            value: project.description,
                             condition: true,
                         },
                         {
                             label: '工程期間：',
-                            value: project?.projectDuration,
-                            condition: !!project?.projectDuration,
+                            value: project.projectDuration,
+                            condition: !!project.projectDuration,
                         },
                         {
                             label: '承攬系統：',
-                            value: project?.related_project_genre?.title,
-                            condition: !!project?.related_project_genre?.title,
+                            value: project.related_project_genre?.title,
+                            condition: !!project.related_project_genre?.title,
                         },
                     ].map(
                         (item, index) =>
