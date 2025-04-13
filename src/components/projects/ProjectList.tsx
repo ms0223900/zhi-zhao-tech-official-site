@@ -97,7 +97,7 @@ const ProjectList = ({ projects }: ProjectListProps) => {
             <RwdComponent
                 desktopComponent={
                     <div>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-[100px]">
                             {/* 左側卡片 */}
                             <FeaturedProjectCard
                                 project={currentProjects[0]}

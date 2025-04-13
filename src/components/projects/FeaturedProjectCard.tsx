@@ -38,9 +38,9 @@ const ProjectCard = ({ project, gradientFrom, gradientTo, buttonColor }: Project
                     )}
                 </div>
             </div>
-            <div className={`w-2/3 absolute top-10 left-[40%]`}>
+            <div className={`w-[60%] absolute top-6 left-[40%]`}>
                 <h3 className="text-xl text-center font-semibold mb-4">{project?.title || '公司名稱 - 廠房'}</h3>
-                <div className={`space-y-2 bg-gradient-to-r ${gradientFrom} ${gradientTo} py-3 pb-5 px-10 rounded-lg`}>
+                <div className={`space-y-2 bg-gradient-to-r ${gradientFrom} ${gradientTo} py-3 pb-5 px-10 pl-[60px] rounded-lg`}>
                     {[
                         {
                             label: '工程地址：',
@@ -65,7 +65,7 @@ const ProjectCard = ({ project, gradientFrom, gradientTo, buttonColor }: Project
                     ].map(
                         (item, index) =>
                             item.condition && (
-                                <p key={index} className="line-clamp-2 text-sm">
+                                <p key={index} className="line-clamp-1 text-[10px]">
                                     <span className="font-medium">{item.label}</span>
                                     <span>{item.value}</span>
                                 </p>
