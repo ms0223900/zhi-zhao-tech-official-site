@@ -35,10 +35,11 @@ const validateWebhook = (req, res, next) => {
 // refactor exec commands
 const commands = [
     'git pull',
-    'docker-compose build --no-cache',
-    'docker-compose up -d',
     'docker image prune -f',
     'docker container prune -f',
+    'docker builder prune -f',
+    'docker-compose build --no-cache',
+    'docker-compose up -d',
 ]
 
 // Webhook endpoint
