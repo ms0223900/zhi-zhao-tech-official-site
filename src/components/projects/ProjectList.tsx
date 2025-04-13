@@ -118,7 +118,7 @@ const ProjectList = ({ projects }: ProjectListProps) => {
                             {/* 左側卡片 */}
                             <FeaturedProjectCard
                                 project={paginatedProjects.paginatedItems[0]}
-                                gradientFrom="from-white"
+                                gradientFrom="from-transparent"
                                 gradientTo="to-[#F1BA9C]"
                                 buttonColor="bg-[#E57B42]"
                             />
@@ -126,7 +126,7 @@ const ProjectList = ({ projects }: ProjectListProps) => {
                             {/* 右側卡片 */}
                             <FeaturedProjectCard
                                 project={paginatedProjects.paginatedItems[1] || null}
-                                gradientFrom="from-white"
+                                gradientFrom="from-transparent"
                                 gradientTo="to-[#FFEE85]"
                                 buttonColor="bg-[#EACA00]"
                             />
