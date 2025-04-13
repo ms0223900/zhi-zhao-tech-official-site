@@ -1,20 +1,22 @@
 /* eslint-disable @next/next/no-img-element */
+import { cn } from '@/utils/cn';
 import React from 'react';
 
 interface BannerProps {
     title: string;
     subtitle: string;
     imageSrc: string;
+    imgClassName?: string;
 }
 
-function Banner({ title, subtitle, imageSrc }: BannerProps) {
+function Banner({ title, subtitle, imageSrc, imgClassName }: BannerProps) {
     return (
         <section className="relative h-[400px]">
             <div className="absolute inset-0">
                 <img
                     src={imageSrc}
                     alt={title}
-                    className="w-full h-full object-cover"
+                    className={cn("w-full h-full object-cover", imgClassName)}
                 />
             </div>
             <div className="relative h-full flex flex-col items-center justify-center text-center">
