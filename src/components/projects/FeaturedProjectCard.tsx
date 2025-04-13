@@ -14,8 +14,8 @@ interface ProjectCardProps {
 const ProjectCard = ({ project, gradientFrom, gradientTo, buttonColor }: ProjectCardProps) => {
     return (
         <div className="flex">
-            <div className="w-1/2 flex items-center justify-center">
-                <div className="relative w-full aspect-[245/166]">
+            <div className="w-2/3 flex items-center justify-center">
+                <div className="relative w-full aspect-[245/166] rounded-lg overflow-hidden">
                     {project?.image?.[0]?.url ? (
                         <Image
                             src={replaceS3UrlWithCloudFront(project.image[0].url)}
@@ -38,8 +38,8 @@ const ProjectCard = ({ project, gradientFrom, gradientTo, buttonColor }: Project
                     )}
                 </div>
             </div>
-            <div className={`w-2/3 p-6 relative`}>
-                <h3 className="text-xl font-semibold mb-4">{project?.title || '公司名稱 - 廠房'}</h3>
+            <div className={`w-2/3 relative absolute top-10 right-0`}>
+                <h3 className="text-xl text-center font-semibold mb-4">{project?.title || '公司名稱 - 廠房'}</h3>
                 <div className={`space-y-2 bg-gradient-to-r ${gradientFrom} ${gradientTo} py-3 pb-5 rounded-lg`}>
                     {[
                         {
