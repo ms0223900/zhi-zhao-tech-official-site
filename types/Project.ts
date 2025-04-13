@@ -17,7 +17,7 @@ export interface Project {
     projectDuration: string
 }
 
-export class ProjectImpl implements Project {
+export class ProjectVo implements Project {
     constructor(
         public readonly id: string,
         public readonly title: string,
@@ -37,7 +37,7 @@ export class ProjectImpl implements Project {
 
     // 檢查是否為空專案（特殊狀態）
     static empty(): Project {
-        return new ProjectImpl(
+        return new ProjectVo(
             '',
             '公司名稱',
             '廠房',
@@ -52,7 +52,7 @@ export class ProjectImpl implements Project {
     }
 
     merge(partial: Partial<Project>): Project {
-        return new ProjectImpl(
+        return new ProjectVo(
             partial.id ?? this.id,
             partial.title ?? this.title,
             partial.subtitle ?? this.subtitle,

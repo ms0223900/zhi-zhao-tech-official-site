@@ -1,4 +1,4 @@
-import { Project, ProjectImpl } from "@/types/Project";
+import { Project, ProjectVo } from "@/types/Project";
 
 export type ProjectDto = {
     documentId: string;
@@ -15,7 +15,7 @@ export type ProjectDto = {
 
 export const ProjectVoConverter = {
     toVo: (projectDto: ProjectDto): Project => {
-        return new ProjectImpl(
+        return new ProjectVo(
             projectDto.documentId,
             projectDto.title,
             projectDto.subtitle,
@@ -31,7 +31,7 @@ export const ProjectVoConverter = {
 
     // 新增：處理空值或無效資料
     toVoOrEmpty: (projectDto?: ProjectDto | null): Project => {
-        return projectDto ? ProjectVoConverter.toVo(projectDto) : ProjectImpl.empty();
+        return projectDto ? ProjectVoConverter.toVo(projectDto) : ProjectVo.empty();
     }
 };
 
