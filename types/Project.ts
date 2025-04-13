@@ -14,4 +14,5 @@ export interface Project {
     createdAt: string
     from: string | null
     until: string | null
+    projectDuration: string
 }

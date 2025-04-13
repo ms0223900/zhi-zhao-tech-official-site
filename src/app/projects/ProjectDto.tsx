@@ -1,3 +1,5 @@
+import { Project } from "@/types/Project";
+
 export type ProjectDto = {
     documentId: string;
     title: string;
@@ -17,7 +19,7 @@ export type ProjectDto = {
 };
 
 export const ProjectVoConverter = {
-    toVo: (projectDto: ProjectDto) => {
+    toVo: (projectDto: ProjectDto): Project => {
         return {
             id: projectDto.documentId,
             title: projectDto.title,
@@ -29,6 +31,9 @@ export const ProjectVoConverter = {
             createdAt: projectDto.createdAt,
             from: projectDto.from,
             until: projectDto.until,
+            projectDuration: projectDto.from
+                ? `${projectDto.from} ~ ${projectDto.until || ''}`
+                : '',
         };
     }
 };

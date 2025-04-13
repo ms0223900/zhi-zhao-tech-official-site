@@ -139,10 +139,8 @@ const ProjectList = ({ projects }: ProjectListProps) => {
                                             },
                                             {
                                                 label: '工程期間：',
-                                                value: currentProjects[0]?.from && currentProjects[0]?.until
-                                                    ? `${currentProjects[0].from} ~ ${currentProjects[0].until}`
-                                                    : '',
-                                                condition: currentProjects[0]?.from && currentProjects[0]?.until
+                                                value: currentProjects[0]?.projectDuration,
+                                                condition: currentProjects[0]?.projectDuration
                                             },
                                             {
                                                 label: '承攬系統：',
