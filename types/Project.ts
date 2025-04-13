@@ -61,20 +61,5 @@ export class ProjectVo implements Project {
             null
         );
     }
-
-    merge(partial: Partial<Project>): Project {
-        return new ProjectVo(
-            partial.id ?? this.id,
-            partial.title ?? this.title,
-            partial.subtitle ?? this.subtitle,
-            partial.description ?? this.description,
-            partial.address ?? this.address,
-            partial.image ?? this.image,
-            partial.related_project_genre ?? this.related_project_genre,
-            partial.createdAt ?? this.createdAt,
-            partial.from ?? this.from,
-            partial.until ?? this.until
-        );
-    }
 }
 
