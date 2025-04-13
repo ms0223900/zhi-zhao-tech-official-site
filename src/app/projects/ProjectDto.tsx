@@ -1,9 +1,9 @@
-
 export type ProjectDto = {
     documentId: string;
     title: string;
     subtitle: string;
     description: string;
+    address: string;
     image: {
         url: string;
     }[];
@@ -23,6 +23,7 @@ export const ProjectVoConverter = {
             title: projectDto.title,
             subtitle: projectDto.subtitle,
             description: projectDto.description,
+            address: projectDto.address,
             image: projectDto.image.map((_img) => ({ url: _img.url })),
             related_project_genre: projectDto.related_project_genre,
             createdAt: projectDto.createdAt,

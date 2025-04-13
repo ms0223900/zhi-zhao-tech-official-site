@@ -27,6 +27,7 @@ async function asyncGetProject(id: string): Promise<Project> {
     title
     subtitle
     description
+    address
     image {
       url
     }
@@ -85,6 +86,7 @@ async function getRelatedProjects(projectId: string, genreId: string): Promise<P
                     documentId
                     title
                     subtitle
+                    address
                     image {
                         url
                     }
@@ -151,7 +153,7 @@ export default async function ProjectDetail({ params }: ProjectDetailProps) {
                         {[
                             {
                                 label: '工程地址：',
-                                value: project.description,
+                                value: project.address,
                                 condition: true
                             },
                             {

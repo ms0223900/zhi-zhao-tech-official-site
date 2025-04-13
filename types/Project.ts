@@ -3,6 +3,7 @@ export interface Project {
     title: string
     subtitle: string
     description: string
+    address: string
     image: {
         url: string
     }[]

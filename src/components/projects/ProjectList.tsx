@@ -27,6 +27,7 @@ async function asyncGetProjects(): Promise<Project[]> {
                     title
                     subtitle
                     description
+                    address
                     image {
                         url
                     }
@@ -128,7 +129,7 @@ const ProjectList = ({ projects }: ProjectListProps) => {
                                         {[
                                             {
                                                 label: '工程地址：',
-                                                value: currentProjects[0]?.description,
+                                                value: currentProjects[0]?.address,
                                                 condition: true
                                             },
                                             {
