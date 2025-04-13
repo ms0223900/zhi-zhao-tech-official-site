@@ -47,7 +47,6 @@ export class ProjectVo implements Project {
         return this.image[0]?.url ? replaceS3UrlWithCloudFront(this.image[0].url) : '/images/empty-cover.jpg';
     }
 
-    // 檢查是否為空專案（特殊狀態）
     static empty(): Project {
         return new ProjectVo(
             '',
