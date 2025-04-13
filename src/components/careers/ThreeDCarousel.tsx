@@ -19,7 +19,7 @@ export default function ThreeDCarousel({ carouselItems, settings }: ThreeDCarous
         setMounted(true)
     }, [])
 
-    if (!mounted) return null
+    if (!mounted) return null;
 
     const _settings: Settings = {
         className: "center",

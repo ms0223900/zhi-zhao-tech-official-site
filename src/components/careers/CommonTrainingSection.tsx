@@ -53,7 +53,12 @@ export default function CommonTrainingSection({
 
                     {/* Right side - 3D Carousel */}
                     <div className="w-full lg:w-[55%]">
-                        <ThreeDCarousel carouselItems={carouselItems} />
+                        <ThreeDCarousel
+                            carouselItems={carouselItems}
+                            settings={{
+                                autoplay: true,
+                                autoplaySpeed: 3000,
+                            }} />
                     </div>
                 </div>
             </div>
