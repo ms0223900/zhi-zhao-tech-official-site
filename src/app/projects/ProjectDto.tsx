@@ -31,9 +31,7 @@ export const ProjectVoConverter = {
             createdAt: projectDto.createdAt,
             from: projectDto.from,
             until: projectDto.until,
-            projectDuration: projectDto.from
-                ? `${projectDto.from} ~ ${projectDto.until || ''}`
-                : '',
+            projectDuration: projectDto.from ? `${projectDto.from} ~ ${projectDto.until || ''}` : '',
         };
     }
 };
