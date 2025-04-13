@@ -26,14 +26,11 @@ const ProjectCard = ({ project, gradientFrom, gradientTo, buttonColor }: Project
                     ) : (
                         <>
                             <Image
-                                src="/images/placeholder.jpg"
-                                alt="待請期待"
+                                src="/images/empty-cover.jpg"
+                                alt="敬請期待"
                                 fill
                                 className="object-contain"
                             />
-                            <div className="absolute bottom-0 left-0 right-0 text-center pb-2 text-gray-500">
-                                敬請期待
-                            </div>
                         </>
                     )}
                 </div>

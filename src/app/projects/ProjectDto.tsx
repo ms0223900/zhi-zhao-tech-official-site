@@ -1,4 +1,4 @@
-import { Project } from "@/types/Project";
+import { Project, ProjectImpl } from "@/types/Project";
 
 export type ProjectDto = {
     documentId: string;
@@ -6,33 +6,32 @@ export type ProjectDto = {
     subtitle: string;
     description: string;
     address: string;
-    image: {
-        url: string;
-    }[];
+    image: { url: string }[];
+    related_project_genre: { documentId: string; title: string };
     createdAt: string;
-    related_project_genre: {
-        documentId: string;
-        title: string;
-    };
     from: string | null;
     until: string | null;
 };
 
 export const ProjectVoConverter = {
     toVo: (projectDto: ProjectDto): Project => {
-        return {
-            id: projectDto.documentId,
-            title: projectDto.title,
-            subtitle: projectDto.subtitle,
-            description: projectDto.description,
-            address: projectDto.address,
-            image: projectDto.image.map((_img) => ({ url: _img.url })),
-            related_project_genre: projectDto.related_project_genre,
-            createdAt: projectDto.createdAt,
-            from: projectDto.from,
-            until: projectDto.until,
-            projectDuration: projectDto.from ? `${projectDto.from} ~ ${projectDto.until || ''}` : '',
-        };
+        return new ProjectImpl(
+            projectDto.documentId,
+            projectDto.title,
+            projectDto.subtitle,
+            projectDto.description,
+            projectDto.address,
+            projectDto.image,
+            projectDto.related_project_genre,
+            projectDto.createdAt,
+            projectDto.from,
+            projectDto.until
+        );
+    },
+
+    // 新增：處理空值或無效資料
+    toVoOrEmpty: (projectDto?: ProjectDto | null): Project => {
+        return projectDto ? ProjectVoConverter.toVo(projectDto) : ProjectImpl.empty();
     }
 };
 
