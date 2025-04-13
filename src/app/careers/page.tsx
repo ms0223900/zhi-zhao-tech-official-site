@@ -36,7 +36,7 @@ export default function CareersPage() {
             <Banner
                 title="人才專區"
                 subtitle="Talent Area"
-                imageSrc="/images/careers/careers-banner.jpg"
+                imageSrc="/images/careers/careers-banner.webp"
             />
 
 
