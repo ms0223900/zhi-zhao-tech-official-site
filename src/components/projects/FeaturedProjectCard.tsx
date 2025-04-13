@@ -39,7 +39,7 @@ const ProjectCard = ({ project, gradientFrom, gradientTo, buttonColor }: Project
                 </div>
             </div>
             <div className={`w-[60%] absolute top-6 left-[40%] flex flex-col items-center`}>
-                <h3 className="text-h4 text-center font-semibold mb-4 max-w-[70%]">{`${project?.title} - ${project?.subtitle}`}</h3>
+                <h3 className="text-h4 text-center font-semibold mb-4 ml-4 max-w-[70%]">{`${project?.title} - ${project?.subtitle}`}</h3>
                 <div className={`space-y-2 bg-gradient-to-r ${gradientFrom} ${gradientTo} py-3 pb-5 px-10 pl-[60px] rounded-lg`}>
                     {[
                         {
