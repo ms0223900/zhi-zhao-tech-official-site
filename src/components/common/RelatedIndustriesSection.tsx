@@ -78,8 +78,6 @@ function RelatedIndustriesSection() {
                     mobileComponent={<></>}
                     mobileClassName="w-0"
                 />
-
-
                 <div className="relative z-10 flex flex-col md:flex-row justify-end md:w-2/3 w-full scale-y-[1.005]">
                     {/* Right side with collapsible industry sections */}
                     <div className="w-full md:bg-[url('/images/about-bottom-section-right-card-bg.svg')] bg-cover bg-left bg-center bg-no-repeat">
