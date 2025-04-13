@@ -18,7 +18,7 @@ export default async function ProjectsPage() {
                 subtitle="Project Performance"
                 imageSrc="/images/projects-banner.jpg"
             />
-            <section>
+            <section className="theme-gradient-blue">
                 <div className="container mx-auto py-8">
                     <ProjectListContainer />
                 </div>
