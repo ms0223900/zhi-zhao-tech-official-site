@@ -2,7 +2,6 @@
 
 import Image from 'next/image';
 import { Project } from '@/types/Project';
-import replaceS3UrlWithCloudFront from '@/utils/replaceS3UrlWithCloudFront';
 import Link from 'next/link';
 
 interface ProjectCardProps {
@@ -19,7 +18,7 @@ const ProjectCard = ({ project, gradientFrom, gradientTo, buttonColor }: Project
                 <div className="relative z-10 w-1/2 flex items-center justify-center">
                     <div className="relative w-full aspect-[245/166] rounded-lg overflow-hidden">
                         <Image
-                            src={replaceS3UrlWithCloudFront(project.image[0].url)}
+                            src={project.coverImageUrl}
                             alt={project.title}
                             fill
                             className="object-cover"

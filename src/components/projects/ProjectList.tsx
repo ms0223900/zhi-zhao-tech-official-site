@@ -1,6 +1,5 @@
 'use client';
 import { Project, ProjectVo } from "@/types/Project";
-import replaceS3UrlWithCloudFront from "@/utils/replaceS3UrlWithCloudFront";
 import { useState } from "react";
 import LinkCard from "../common/LinkCard";
 import { QueryClient, useQuery } from "@tanstack/react-query";
@@ -138,10 +137,10 @@ const ProjectList = ({ projects }: ProjectListProps) => {
                                     <LinkCard
                                         key={project.id}
                                         imageWrapperClassName="aspect-[1.818] h-auto"
-                                        link={`/projects/${project.id}`}
+                                        link={project.projectLink}
                                         title={project.title}
                                         subtitle={project.subtitle}
-                                        image={project.image[0]?.url ? replaceS3UrlWithCloudFront(project.image[0].url) : ''} />
+                                        image={project.coverImageUrl} />
                                 ))}
                             </div>
                         </div>
@@ -152,10 +151,10 @@ const ProjectList = ({ projects }: ProjectListProps) => {
                         <LinkCard
                             key={project.id}
                             imageWrapperClassName="aspect-[1.818] h-auto"
-                            link={`/projects/${project.id}`}
+                            link={project.projectLink}
                             title={project.title}
                             subtitle={project.subtitle}
-                            image={project.image[0]?.url ? replaceS3UrlWithCloudFront(project.image[0].url) : ''} />
+                            image={project.coverImageUrl} />
                     ))}
                 </div>}
             />

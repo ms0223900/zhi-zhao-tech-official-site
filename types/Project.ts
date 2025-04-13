@@ -1,3 +1,5 @@
+import replaceS3UrlWithCloudFront from "@/utils/replaceS3UrlWithCloudFront"
+
 export interface Project {
     projectLink: string
     id: string
@@ -8,6 +10,7 @@ export interface Project {
     image: {
         url: string
     }[]
+    coverImageUrl: string
     related_project_genre: {
         documentId: string
         title: string
@@ -38,6 +41,10 @@ export class ProjectVo implements Project {
 
     get projectLink(): string {
         return this.id ? `/projects/${this.id}` : '';
+    }
+
+    get coverImageUrl(): string {
+        return this.image[0]?.url ? replaceS3UrlWithCloudFront(this.image[0].url) : '/images/empty-cover.jpg';
     }
 
     // 檢查是否為空專案（特殊狀態）
