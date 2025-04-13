@@ -98,26 +98,64 @@ const ProjectList = ({ projects }: ProjectListProps) => {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                             {/* 左側卡片 - 漸層色從 #FFFFFF 到 #F1BA9C */}
                             <div className="flex rounded-lg overflow-hidden shadow-md">
-                                <div className="w-1/3 bg-gray-100 flex items-center justify-center p-4">
+                                <div className="w-1/2 bg-gray-100 flex items-center justify-center">
                                     <div className="relative w-full h-48">
-                                        <Image
-                                            src="/images/placeholder.jpg"
-                                            alt="待請期待"
-                                            fill
-                                            className="object-contain"
-                                        />
-                                        <div className="absolute bottom-0 left-0 right-0 text-center pb-2 text-gray-500">
-                                            敬請期待
-                                        </div>
+                                        {currentProjects[0]?.image?.[0]?.url ? (
+                                            <Image
+                                                src={replaceS3UrlWithCloudFront(currentProjects[0].image[0].url)}
+                                                alt={currentProjects[0].title}
+                                                fill
+                                                className="object-cover"
+                                            />
+                                        ) : (
+                                            <>
+                                                <Image
+                                                    src="/images/placeholder.jpg"
+                                                    alt="待請期待"
+                                                    fill
+                                                    className="object-contain"
+                                                />
+                                                <div className="absolute bottom-0 left-0 right-0 text-center pb-2 text-gray-500">
+                                                    敬請期待
+                                                </div>
+                                            </>
+                                        )}
                                     </div>
                                 </div>
                                 <div className="w-2/3 p-6 relative bg-gradient-to-r from-white to-[#F1BA9C]">
                                     <h3 className="text-xl font-semibold mb-4">公司名稱 - 廠房</h3>
                                     <div className="space-y-2">
-                                        <p><span className="font-medium">工程地址：</span></p>
-                                        <p><span className="font-medium">工程概述：</span></p>
-                                        <p><span className="font-medium">工程期間：</span></p>
-                                        <p><span className="font-medium">承攬系統：</span></p>
+                                        {[
+                                            {
+                                                label: '工程地址：',
+                                                value: currentProjects[0]?.description,
+                                                condition: true
+                                            },
+                                            {
+                                                label: '工程概述：',
+                                                value: currentProjects[0]?.description,
+                                                condition: true
+                                            },
+                                            {
+                                                label: '工程期間：',
+                                                value: currentProjects[0]?.from && currentProjects[0]?.until
+                                                    ? `${currentProjects[0].from} ~ ${currentProjects[0].until}`
+                                                    : '',
+                                                condition: currentProjects[0]?.from && currentProjects[0]?.until
+                                            },
+                                            {
+                                                label: '承攬系統：',
+                                                value: currentProjects[0]?.related_project_genre?.title,
+                                                condition: !!currentProjects[0]?.related_project_genre?.title
+                                            }
+                                        ].map((item, index) => (
+                                            item.condition && (
+                                                <p key={index}>
+                                                    <span className="font-medium">{item.label}</span>
+                                                    <span className="ml-2">{item.value}</span>
+                                                </p>
+                                            )
+                                        ))}
                                     </div>
                                     <div className="absolute bottom-4 right-4 flex items-center justify-center w-12 h-12 bg-[#E57B42] rounded-full cursor-pointer">
                                         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
