@@ -14,7 +14,7 @@ interface ProjectCardProps {
 
 const ProjectCard = ({ project, gradientFrom, gradientTo, buttonColor }: ProjectCardProps) => {
     return (
-        <Link href={project.id ? `/projects/${project.id}` : ''}>
+        <Link href={project.projectLink}>
             <div className="flex relative">
                 <div className="relative z-10 w-1/2 flex items-center justify-center">
                     <div className="relative w-full aspect-[245/166] rounded-lg overflow-hidden">

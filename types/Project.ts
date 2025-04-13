@@ -1,4 +1,5 @@
 export interface Project {
+    projectLink: string
     id: string
     title: string
     subtitle: string
@@ -33,6 +34,10 @@ export class ProjectVo implements Project {
 
     get projectDuration(): string {
         return this.from ? `${this.from} ~ ${this.until || ''}`.trim() : '-';
+    }
+
+    get projectLink(): string {
+        return this.id ? `/projects/${this.id}` : '';
     }
 
     // 檢查是否為空專案（特殊狀態）
