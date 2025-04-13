@@ -9,16 +9,19 @@ import { cn } from '@/utils/cn'
 
 interface ThreeDCarouselProps {
     carouselItems: CareerCarouselItem[]
+    settings?: Settings
 }
 
-export default function ThreeDCarousel({ carouselItems }: ThreeDCarouselProps) {
+export default function ThreeDCarousel({ carouselItems, settings }: ThreeDCarouselProps) {
     const [mounted, setMounted] = useState(false)
 
     useEffect(() => {
         setMounted(true)
     }, [])
 
-    const settings: Settings = {
+    if (!mounted) return null
+
+    const _settings: Settings = {
         className: "center",
         centerMode: true,
         infinite: true,
@@ -33,6 +36,7 @@ export default function ThreeDCarousel({ carouselItems }: ThreeDCarouselProps) {
                 }
             }
         ],
+        ...settings
     }
 
     if (!mounted) return null
@@ -43,7 +47,7 @@ export default function ThreeDCarousel({ carouselItems }: ThreeDCarouselProps) {
             "px-4 relative",
             "careers-carousel"
         )}>
-            <Slider {...settings}>
+            <Slider {..._settings}>
                 {carouselItems.map((item) => (
                     <div key={item.id} className="px-1">
                         <div className={"my-[60px]"}>
