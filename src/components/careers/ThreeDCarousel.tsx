@@ -54,12 +54,9 @@ export default function ThreeDCarousel({ carouselItems, settings }: ThreeDCarous
                             <div className="relative aspect-[25/27]">
                                 <img
                                     src={item.image}
-                                    alt={item.title}
+                                    alt={`${item.id}`}
                                     className="w-full h-full object-cover rounded-lg"
                                 />
-                                <h3 className="text-h6 text-center opacity-0 pt-4">
-                                    {item.title}
-                                </h3>
                             </div>
                         </div>
                     </div>
