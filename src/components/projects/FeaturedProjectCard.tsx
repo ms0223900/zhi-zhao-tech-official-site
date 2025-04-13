@@ -13,8 +13,8 @@ interface ProjectCardProps {
 
 const ProjectCard = ({ project, gradientFrom, gradientTo, buttonColor }: ProjectCardProps) => {
     return (
-        <div className="flex">
-            <div className="w-2/3 flex items-center justify-center">
+        <div className="flex relative">
+            <div className="relative z-10 w-1/2 flex items-center justify-center">
                 <div className="relative w-full aspect-[245/166] rounded-lg overflow-hidden">
                     {project?.image?.[0]?.url ? (
                         <Image
@@ -38,9 +38,9 @@ const ProjectCard = ({ project, gradientFrom, gradientTo, buttonColor }: Project
                     )}
                 </div>
             </div>
-            <div className={`w-2/3 relative absolute top-10 right-0`}>
+            <div className={`w-2/3 absolute top-10 left-[40%]`}>
                 <h3 className="text-xl text-center font-semibold mb-4">{project?.title || '公司名稱 - 廠房'}</h3>
-                <div className={`space-y-2 bg-gradient-to-r ${gradientFrom} ${gradientTo} py-3 pb-5 rounded-lg`}>
+                <div className={`space-y-2 bg-gradient-to-r ${gradientFrom} ${gradientTo} py-3 pb-5 px-10 rounded-lg`}>
                     {[
                         {
                             label: '工程地址：',
@@ -65,7 +65,7 @@ const ProjectCard = ({ project, gradientFrom, gradientTo, buttonColor }: Project
                     ].map(
                         (item, index) =>
                             item.condition && (
-                                <p key={index} className="line-clamp-2">
+                                <p key={index} className="line-clamp-2 text-sm">
                                     <span className="font-medium">{item.label}</span>
                                     <span>{item.value}</span>
                                 </p>
