@@ -13,15 +13,15 @@ import TitleWithEngSubtitle from "../common/TitleWithEngSubtitle";
 import FeaturedProjectCard from './FeaturedProjectCard';
 
 async function asyncGetProjects(): Promise<Project[]> {
-
-    // TODO: 實作 API 串接
     try {
         const { data } = await csrClient.query<{
             projects: ProjectDto[];
         }>({
             query: gql`
             query GetProjects {
-                projects {
+                projects(
+                    sort: ["updatedAt:desc"]
+                ) {
                     documentId
                     title
                     subtitle
@@ -33,10 +33,12 @@ async function asyncGetProjects(): Promise<Project[]> {
                     related_project_genre {
                         documentId
                         title
-                        }
-                        createdAt
                     }
+                    createdAt
+                    from
+                    until
                 }
+            }
             `,
             fetchPolicy: 'no-cache',
         });

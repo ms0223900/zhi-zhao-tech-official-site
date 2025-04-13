@@ -67,7 +67,7 @@ const ProjectCard = ({ project, gradientFrom, gradientTo, buttonColor }: Project
                             item.condition && (
                                 <p key={index}>
                                     <span className="font-medium">{item.label}</span>
-                                    <span className="ml-2">{item.value}</span>
+                                    <span>{item.value}</span>
                                 </p>
                             ),
                     )}
