@@ -1,17 +1,21 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { NewsItem } from '@/lib/graphql';
+import { useState, useEffect, useMemo } from 'react';
+import { fetchNewsList, NewsItem } from '@/lib/graphql';
 import { NewsCard } from './NewsCard';
 import TitleWithEngSubtitle from '../common/TitleWithEngSubtitle';
+import { QueryClient, QueryClientProvider, useQuery } from '@tanstack/react-query';
 
-interface NewsClientProps {
-    news: NewsItem[];
-}
+export function News() {
+    const { data } = useQuery({
+        queryKey: ['news'],
+        queryFn: () => fetchNewsList()
+    })
+    const news = useMemo(() => data || [], [data]);
 
-export function NewsClient({ news }: NewsClientProps) {
+
     const [selectedGenre, setSelectedGenre] = useState<string>('全部');
-    const [filteredNews, setFilteredNews] = useState<NewsItem[]>(news);
+    const [filteredNews, setFilteredNews] = useState<NewsItem[]>(news || []);
 
     const uniqueGenres = Array.from(
         new Set(
@@ -86,4 +90,12 @@ export function NewsClient({ news }: NewsClientProps) {
             )}
         </div>
     );
-} 
+}
+
+export function NewsClient() {
+    return (
+        <QueryClientProvider client={new QueryClient()}>
+            <News />
+        </QueryClientProvider>
+    )
+}
