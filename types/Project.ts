@@ -1,6 +1,7 @@
 import replaceS3UrlWithCloudFront from "@/utils/replaceS3UrlWithCloudFront"
 
 export interface Project {
+    titleToDisplay: string
     projectLink: string
     id: string
     title: string
@@ -19,6 +20,7 @@ export interface Project {
     from: string | null
     until: string | null
     projectDuration: string
+    genresString: string
 }
 
 export class ProjectVo implements Project {
@@ -35,7 +37,13 @@ export class ProjectVo implements Project {
         public readonly until: string | null,
     ) { }
 
-    // TODO, project_genres to string
+    get titleToDisplay(): string {
+        return `${this.title}${this.subtitle ? ` - ${this.subtitle}` : ''}`
+    }
+
+    get genresString(): string {
+        return this.related_project_genres.map(genre => genre.title).join(', ');
+    }
 
     get projectDuration(): string {
         return this.from ? `${this.from} ~ ${this.until || ''}`.trim() : '-';

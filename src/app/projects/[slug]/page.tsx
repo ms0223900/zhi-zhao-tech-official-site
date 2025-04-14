@@ -132,7 +132,7 @@ export default async function ProjectDetail({ params }: ProjectDetailProps) {
                 <div className="mb-12 text-center">
                     <h1 className="text-4xl mb-2">工程案例</h1>
                     <p className="text-gray-500">Case</p>
-                    <h2 className="text-2xl mt-4">{project.title} - {project.subtitle}</h2>
+                    <h2 className="text-2xl mt-4">{project.titleToDisplay}</h2>
                 </div>
 
                 {/* Main Content Grid */}
@@ -169,8 +169,8 @@ export default async function ProjectDetail({ params }: ProjectDetailProps) {
                             },
                             {
                                 label: '承攬系統：',
-                                value: project.related_project_genres.map((genre) => genre.title).join(', '),
-                                condition: true
+                                value: project.genresString,
+                                condition: !!project.genresString
                             }
                         ].map((item, index) => (
                             item.condition && (

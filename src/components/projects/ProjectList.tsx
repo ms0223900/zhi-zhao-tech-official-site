@@ -83,7 +83,7 @@ const ProjectList = ({ projects }: ProjectListProps) => {
 
     const filteredProjects = selectedGenre === 'All' ?
         projects :
-        projects.filter(project => project.related_project_genre?.title === selectedGenre);
+        projects.filter(project => project.related_project_genres.some(genre => genre.title === selectedGenre));
 
     const paginatedProjects = new PaginatedList(
         filteredProjects,
@@ -104,8 +104,8 @@ const ProjectList = ({ projects }: ProjectListProps) => {
                         依案例類別選擇
                     </option>
                     {projects.map((project) => (
-                        <option key={project.id} value={project.related_project_genre?.title || ''}>
-                            {project.related_project_genre?.title || ''}
+                        <option key={project.id} value={project.genresString}>
+                            {project.genresString}
                         </option>
                     ))}
                 </select>

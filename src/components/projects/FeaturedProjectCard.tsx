@@ -26,7 +26,7 @@ const ProjectCard = ({ project, gradientFrom, gradientTo, buttonColor }: Project
                     </div>
                 </div>
                 <div className={`w-[60%] absolute top-6 left-[40%] flex flex-col items-center`}>
-                    <h3 className="text-h4 text-center font-semibold mb-4 ml-4 max-w-[70%]">{`${project.title} - ${project.subtitle}`}</h3>
+                    <h3 className="text-h4 text-center font-semibold mb-4 ml-4 max-w-[70%]">{project.titleToDisplay}</h3>
                     <div className={`w-full space-y-2 bg-gradient-to-r ${gradientFrom} ${gradientTo} py-3 pb-5 px-10 pl-[60px] rounded-lg`}>
                         {[
                             {
@@ -46,8 +46,8 @@ const ProjectCard = ({ project, gradientFrom, gradientTo, buttonColor }: Project
                             },
                             {
                                 label: '承攬系統：',
-                                value: project.related_project_genres.map((genre) => genre.title).join(', '),
-                                condition: !!project.related_project_genres.length,
+                                value: project.genresString,
+                                condition: !!project.genresString,
                             },
                         ].map(
                             (item, index) =>
