@@ -7,7 +7,7 @@ import TitleWithEngSubtitle from '../common/TitleWithEngSubtitle';
 import { QueryClient, QueryClientProvider, useQuery } from '@tanstack/react-query';
 
 export function News() {
-    const { data } = useQuery({
+    const { data, isFetching } = useQuery({
         queryKey: ['news'],
         queryFn: () => fetchNewsList()
     })
@@ -42,6 +42,15 @@ export function News() {
     const handleGenreChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setSelectedGenre(e.target.value);
     };
+
+    if (isFetching) {
+        return (
+            <div className="flex justify-center items-center min-h-[200px]">
+                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-600"></div>
+                <span className="ml-4 text-gray-600">載入中...</span>
+            </div>
+        )
+    }
 
     return (
         <div>
