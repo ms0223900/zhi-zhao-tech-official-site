@@ -31,7 +31,7 @@ async function asyncGetProject(id: string): Promise<Project> {
     image {
       url
     }
-    related_project_genre {
+    related_project_genres {
       documentId
       title
     }
@@ -118,7 +118,9 @@ async function getRelatedProjects(projectId: string, genreId: string): Promise<P
 export default async function ProjectDetail({ params }: ProjectDetailProps) {
     const { slug } = await params
     const project = await asyncGetProject(slug)
-    const relatedProjects = await Promise.all(project.related_project_genres.map(async (genre) => await getRelatedProjects(slug, genre.documentId))).then(projects => projects.flat())
+    const related_project_genres = project.related_project_genres
+    console.log("related_project_genres: ", related_project_genres)
+    const relatedProjects = await Promise.all(related_project_genres.map(async (genre) => await getRelatedProjects(slug, genre.documentId))).then(projects => projects.flat())
 
     return (
         <div className="theme-gradient-blue min-h-screen">
