@@ -119,7 +119,6 @@ export default async function ProjectDetail({ params }: ProjectDetailProps) {
     const { slug } = await params
     const project = await asyncGetProject(slug)
     const relatedProjects = project.related_project_genre ? await getRelatedProjects(slug, project.related_project_genre.documentId) : []
-    console.log(relatedProjects);
 
     return (
         <div className="theme-gradient-blue min-h-screen">
@@ -157,7 +156,7 @@ export default async function ProjectDetail({ params }: ProjectDetailProps) {
                                 condition: true
                             },
                             {
-                                label: '工程簡述：',
+                                label: '工程概述：',
                                 value: project.description,
                                 condition: true
                             },
