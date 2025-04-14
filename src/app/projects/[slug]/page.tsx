@@ -118,7 +118,7 @@ async function getRelatedProjects(projectId: string, genreId: string): Promise<P
 export default async function ProjectDetail({ params }: ProjectDetailProps) {
     const { slug } = await params
     const project = await asyncGetProject(slug)
-    const relatedProjects = project.related_project_genre ? await getRelatedProjects(slug, project.related_project_genre.documentId) : []
+    const relatedProjects = await Promise.all(project.related_project_genres.map(async (genre) => await getRelatedProjects(slug, genre.documentId))).then(projects => projects.flat())
 
     return (
         <div className="theme-gradient-blue min-h-screen">
@@ -167,7 +167,7 @@ export default async function ProjectDetail({ params }: ProjectDetailProps) {
                             },
                             {
                                 label: '承攬系統：',
-                                value: project.related_project_genre?.title,
+                                value: project.related_project_genres.map((genre) => genre.title).join(', '),
                                 condition: true
                             }
                         ].map((item, index) => (

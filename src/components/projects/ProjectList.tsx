@@ -29,7 +29,7 @@ async function asyncGetProjects(): Promise<Project[]> {
                     image {
                         url
                     }
-                    related_project_genre {
+                    related_project_genres {
                         documentId
                         title
                     }

@@ -7,7 +7,7 @@ export type ProjectDto = {
     description: string;
     address: string;
     image: { url: string }[];
-    related_project_genre: { documentId: string; title: string };
+    related_project_genres: { documentId: string; title: string }[];
     createdAt: string;
     from: string | null;
     until: string | null;
@@ -22,7 +22,7 @@ export const ProjectVoConverter = {
             projectDto.description,
             projectDto.address,
             projectDto.image,
-            projectDto.related_project_genre,
+            projectDto.related_project_genres,
             projectDto.createdAt,
             projectDto.from,
             projectDto.until

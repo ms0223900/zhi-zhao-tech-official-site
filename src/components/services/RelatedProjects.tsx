@@ -58,7 +58,7 @@ async function fetchRelatedProjects(slug: string): Promise<RelatedProjectVO[]> {
     image {
       url
     }
-    related_project_genre {
+    related_project_genres {
       key
     }
   }

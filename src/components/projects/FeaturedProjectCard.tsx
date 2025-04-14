@@ -46,8 +46,8 @@ const ProjectCard = ({ project, gradientFrom, gradientTo, buttonColor }: Project
                             },
                             {
                                 label: '承攬系統：',
-                                value: project.related_project_genre?.title,
-                                condition: !!project.related_project_genre?.title,
+                                value: project.related_project_genres.map((genre) => genre.title).join(', '),
+                                condition: !!project.related_project_genres.length,
                             },
                         ].map(
                             (item, index) =>

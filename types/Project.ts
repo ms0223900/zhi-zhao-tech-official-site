@@ -11,10 +11,10 @@ export interface Project {
         url: string
     }[]
     coverImageUrl: string
-    related_project_genre: {
+    related_project_genres: {
         documentId: string
         title: string
-    } | null
+    }[]
     createdAt: string
     from: string | null
     until: string | null
@@ -29,11 +29,13 @@ export class ProjectVo implements Project {
         public readonly description: string,
         public readonly address: string,
         public readonly image: { url: string }[],
-        public readonly related_project_genre: { documentId: string; title: string } | null,
+        public readonly related_project_genres: { documentId: string; title: string }[],
         public readonly createdAt: string,
         public readonly from: string | null,
         public readonly until: string | null,
     ) { }
+
+    // TODO, project_genres to string
 
     get projectDuration(): string {
         return this.from ? `${this.from} ~ ${this.until || ''}`.trim() : '-';
@@ -55,7 +57,7 @@ export class ProjectVo implements Project {
             '-',
             '-',
             [{ url: '/images/empty-cover.jpg' }],
-            { documentId: '', title: '-' },
+            [],
             new Date().toISOString(),
             null,
             null
