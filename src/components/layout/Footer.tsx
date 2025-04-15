@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import routerConfig from "../routerConfig";
@@ -27,8 +28,14 @@ const navLinks = [
     routerConfig.news,
     routerConfig.esg,
     routerConfig.careers,
+    routerConfig.contact,
 ]
 const section2NavLinks = [
+    routerConfig.downloads,
+    routerConfig.privacyPolicy,
+]
+
+const mobileNavLinks = [
     routerConfig.contact,
     routerConfig.downloads,
     routerConfig.privacyPolicy,
@@ -56,8 +63,8 @@ const EMAIL_ICON = {
 }
 
 const iconConfigs: IconConfig[] = [
-    FB_ICON,
-    EMAIL_ICON,
+    // FB_ICON,
+    // EMAIL_ICON,
 ]
 
 const pcIconConfigs = iconConfigs;
@@ -105,7 +112,7 @@ function FooterMobile() {
             <div className="container mx-auto px-4">
                 <div className="flex flex-col items-center">
                     <div className="flex justify-center space-x-4 mb-4">
-                        {section2NavLinks.map((link, index) => (
+                        {mobileNavLinks.map((link, index) => (
                             <div key={link.href} className="flex items-center">
                                 {index > 0 && <div className="w-px h-4 bg-gray-400 mr-4" />}
                                 <Link href={link.href} className="text-sm hover:underline">
