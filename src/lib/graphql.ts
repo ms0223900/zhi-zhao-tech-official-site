@@ -1,7 +1,7 @@
 import { GraphQLClient } from 'graphql-request';
-import { gql } from 'graphql-request';
+import { gql } from "@apollo/client";
 import replaceS3UrlWithCloudFront from '@/utils/replaceS3UrlWithCloudFront';
-import { API_URL } from '@/gql/client';
+import { API_URL, csrClient } from '@/gql/client';
 
 export const graphQLClient = new GraphQLClient(API_URL, {
   headers: {
@@ -76,8 +76,10 @@ export function transformNewsData(item: NewsGqlItem): NewsItem {
 
 export async function fetchNewsList(): Promise<NewsItem[]> {
   try {
-    const response = await graphQLClient.request<NewsListResponse>(GET_NEWS_LIST);
-    return response.newses.map(transformNewsData);
+    const response = await csrClient.query<NewsListResponse>({
+      query: GET_NEWS_LIST,
+    });
+    return response.data?.newses.map(transformNewsData) || [];
   } catch (error) {
     console.error('Failed to fetch news list:', error);
     return [];
