@@ -8,12 +8,10 @@ import MainContentContainer from '../common/MainContentContainer';
 import SectionTitle from './SectionTitle';
 import ProductAdvantageCard from './ProductAdvantageCard';
 
-const machineVisionProductImageList = [
-    "/images/machine-vision/machine-vision-1.jpg",
-    "/images/machine-vision/machine-vision-2.jpg",
-    "/images/machine-vision/machine-vision-3.jpg",
-    "/images/machine-vision/machine-vision-4.jpg",
-]
+const machineVisionProductImageList = Array.from({ length: 6 },
+    (_, i) => `/images/machine-vision/machine-vision-product-${i + 1}.jpg`
+);
+
 const productAdvantageList = [
     {
         title: "實時監控",

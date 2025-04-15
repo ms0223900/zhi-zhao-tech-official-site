@@ -8,11 +8,9 @@ import LinkCard from '../common/LinkCard';
 import SectionTitle from './SectionTitle';
 import ProductAdvantageCard from './ProductAdvantageCard';
 
-const particleSensorProductImageList = [
-    "/images/particle-sensor/product-1.jpg",
-    "/images/particle-sensor/product-2.jpg",
-    "/images/particle-sensor/product-3.jpg",
-]
+const particleSensorProductImageList = Array.from({ length: 6 },
+    (_, i) => `/images/particle-sensor/particle-sensor-product-${i + 1}.jpg`
+);
 export function ParticleSensorContent() {
     return (
         <div className="">
