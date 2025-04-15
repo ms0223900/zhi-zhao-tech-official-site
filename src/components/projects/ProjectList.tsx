@@ -1,6 +1,6 @@
 'use client';
 import { Project, ProjectVo } from "@/types/Project";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import LinkCard from "../common/LinkCard";
 import { QueryClient, useQuery } from "@tanstack/react-query";
 import { QueryClientProvider } from "@tanstack/react-query";
@@ -95,6 +95,11 @@ const ProjectList = ({ projects }: ProjectListProps) => {
         setCurrentPage(page);
     };
 
+    const projectGenres = useMemo(() => {
+        const allProjectGenres = projects.map(project => project.related_project_genres.map(genre => genre.title));
+        return Array.from(new Set(allProjectGenres.flat()));
+    }, [projects]);
+
     return (
         <div className="space-y-8">
             {/* // genre drop down selector */}
@@ -103,9 +108,9 @@ const ProjectList = ({ projects }: ProjectListProps) => {
                     <option value="All">
                         依案例類別選擇
                     </option>
-                    {projects.map((project) => (
-                        <option key={project.id} value={project.genresString}>
-                            {project.genresString}
+                    {projectGenres.map((genre) => (
+                        <option key={genre} value={genre}>
+                            {genre}
                         </option>
                     ))}
                 </select>
