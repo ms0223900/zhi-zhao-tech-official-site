@@ -89,9 +89,9 @@ function FooterPC() {
                     </div>
                 </div>
                 <div className="flex items-center py-4 pt-8">
-                    <div className="flex items-center">
-                        <div>
-                            <img src="/images/zhi-zhao-logo-black-with-text.png" alt="智兆科技" className="w-[200px]" />
+                    <div className="flex items-center pl-6">
+                        <div className="w-[200px] overflow-hidden">
+                            <img src="/images/zhi-zhao-logo-black-with-white-border-with-text.png" alt="智兆科技" className="w-[200px]" />
                         </div>
                         <div className="flex items-center gap-6 pl-8">
                             {section2NavLinks.map((link) => (
