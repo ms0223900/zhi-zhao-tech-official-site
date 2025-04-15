@@ -7,6 +7,9 @@ export const API_URL = process.env.NODE_ENV === 'production' ?
 export const client = new ApolloClient({
     uri: API_URL,
     cache: new InMemoryCache(),
+    headers: {
+        'Authorization': `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+    },
 });
 
 
@@ -15,5 +18,8 @@ const CSR_API_URL = (process.env.NEXT_PUBLIC_API_URL + '/graphql') || 'http://lo
 export const csrClient = new ApolloClient({
     uri: CSR_API_URL,
     cache: new InMemoryCache(),
+    headers: {
+        'Authorization': `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+    },
 });
 
