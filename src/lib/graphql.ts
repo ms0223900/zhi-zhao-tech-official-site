@@ -118,6 +118,7 @@ export const NEWS_FRAGMENT = gql`
     subtitle
     content
     publishedAt
+    updatedAt
     cover {
       documentId
       url
@@ -130,7 +131,7 @@ export const NEWS_FRAGMENT = gql`
 
 export const GET_NEWS_LIST = gql`
   query GetNewsList {
-    newses {
+    newses(sort: ["updatedAt:desc"]) {
       ...NewsFragment
     }  
   }
