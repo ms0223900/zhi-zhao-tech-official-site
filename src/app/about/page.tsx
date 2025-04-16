@@ -4,10 +4,11 @@ import RelatedIndustriesSection from "@/components/common/RelatedIndustriesSecti
 import React from "react";
 import Banner from "@/components/common/Banner";
 import TitleWithEngSubtitle from "@/components/common/TitleWithEngSubtitle";
+import { formatPageTitle } from "@/constants/metadata";
 
 export const metadata: Metadata = {
-    title: "About",
-    description: "About page",
+    title: formatPageTitle("關於智兆"),
+    description: "關於智兆科技的介紹，我們的使命、價值觀和服務項目",
 };
 
 export default function About() {

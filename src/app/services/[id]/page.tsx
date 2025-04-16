@@ -10,6 +10,7 @@ import RwdComponent from '@/components/common/RwdComponent'
 import MainContentContainer from '@/components/common/MainContentContainer'
 import BackButton from '@/components/common/BackButton'
 import RelatedProjects from '@/components/services/RelatedProjects'
+import { formatPageTitle } from '@/constants/metadata'
 
 interface Props {
     params: Promise<{ id: string }>;
@@ -21,12 +22,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
     if (!service) {
         return {
-            title: '服務項目 | 智兆科技',
+            title: formatPageTitle('服務項目'),
         }
     }
 
     return {
-        title: `${service.title} | 智兆科技`,
+        title: formatPageTitle(service.title),
         description: service.subtitle,
     }
 }

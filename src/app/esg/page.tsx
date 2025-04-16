@@ -8,9 +8,10 @@ import GovernanceSection from "@/components/esg/GovernanceSection"
 import ImageCarousel from "@/components/esg/ImageCarousel"
 import SocialSection from "@/components/esg/SocialSection"
 import { ProductCarousel } from "@/components/solutions/ProductCarousel"
+import { formatPageTitle } from "@/constants/metadata"
 
 export const metadata = {
-    title: 'ESG',
+    title: formatPageTitle('ESG'),
     description: '企業永續發展',
 }
 

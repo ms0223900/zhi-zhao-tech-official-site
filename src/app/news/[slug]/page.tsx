@@ -7,6 +7,7 @@ import rehypeRaw from 'rehype-raw';
 import { fetchNewsArticle, GET_NEWS_SLUGS, NewsSlugsResponse } from '@/lib/graphql';
 import { ArrowLeft } from 'lucide-react';
 import { clientForServer } from '@/gql/client';
+import { formatPageTitle } from '@/constants/metadata';
 
 interface NewsArticleProps {
     params: Promise<{
@@ -20,13 +21,13 @@ export async function generateMetadata({ params }: NewsArticleProps): Promise<Me
 
     if (!article) {
         return {
-            title: '找不到新聞 | 智兆科技',
+            title: formatPageTitle('找不到新聞'),
             description: '找不到您請求的新聞文章',
         };
     }
 
     return {
-        title: `${article.title} | 智兆科技`,
+        title: formatPageTitle(article.title),
         description: article.subtitle,
         openGraph: {
             title: article.title,

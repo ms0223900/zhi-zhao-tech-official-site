@@ -7,10 +7,11 @@ import RwdComponent from "@/components/common/RwdComponent";
 import TitleWithEngSubtitle from "@/components/common/TitleWithEngSubtitle";
 import LatestNewsSection from "@/components/home/LatestNewsSection";
 import routerConfig from "@/components/routerConfig";
+import { SITE_TITLE, DEFAULT_DESCRIPTION } from "@/constants/metadata";
 
 export const metadata: Metadata = {
-  title: "智兆科技 | Zhi Zhao Tech",
-  description: "智兆科技官方網站",
+  title: SITE_TITLE,
+  description: DEFAULT_DESCRIPTION,
 };
 
 const services = [

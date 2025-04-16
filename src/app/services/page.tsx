@@ -1,9 +1,10 @@
 import { Metadata } from 'next'
 import { services } from '@/components/services/data'
 import LinkCard from '@/components/common/LinkCard'
+import { formatPageTitle } from '@/constants/metadata'
 
 export const metadata: Metadata = {
-    title: '服務項目 | 智兆科技',
+    title: formatPageTitle('服務項目'),
     description: '智兆科技提供全方位工程服務，包括無塵室、塗裝、機電、製程管路等專業工程解決方案。',
 }
 
