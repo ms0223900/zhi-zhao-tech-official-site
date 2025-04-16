@@ -105,9 +105,38 @@ interface UploadedFile {
     name: string;
     url: string;
 }
-interface DownloadFile {
+interface DownloadFileDto {
     documentId: string;
     file: UploadedFile[];
+}
+
+// converter
+const convertDownloadFileDtoToVo = (downloadFileDto: DownloadFileDto): DownloadFileVo => {
+    return DownloadFileVo.create(downloadFileDto.documentId, downloadFileDto.file[0]);
+}
+
+// vo
+class DownloadFileVo {
+    private constructor(
+        public id: string,
+        private file: UploadedFile
+    ) { }
+
+    static create(id: string, file: UploadedFile): DownloadFileVo {
+        return new DownloadFileVo(id, file);
+    }
+
+    get fileName(): string {
+        return this.file.name;
+    }
+
+    get fileType(): string {
+        return getFileType(this.file);
+    }
+
+    get downloadUrl(): string {
+        return `${S3_CLOUDFRONT_URL}/${this.file.url.replace(new RegExp(S3_BUCKET_URL + '/?'), '')}`;
+    }
 }
 
 const getFileType = (fileData: UploadedFile): string => {
@@ -128,13 +157,8 @@ const getFileType = (fileData: UploadedFile): string => {
     return 'FILE';
 };
 
-const FileCard = ({ downloadFile }: { downloadFile: DownloadFile }) => {
-    // 使用第一筆 file 資料
-    const fileData = downloadFile.file[0];
-    if (!fileData) return null;
-
-    const fileType = getFileType(fileData);
-    const downloadUrl = `${S3_CLOUDFRONT_URL}/${fileData.url.replace(new RegExp(S3_BUCKET_URL + '/?'), '')}`;
+const FileCard = ({ downloadFile }: { downloadFile: DownloadFileVo }) => {
+    const { fileType, downloadUrl } = downloadFile;
 
     return (
         <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg mb-4 hover:bg-gray-100 transition-colors">
@@ -145,13 +169,13 @@ const FileCard = ({ downloadFile }: { downloadFile: DownloadFile }) => {
                     </div>
                 </div>
                 <div className="ml-4">
-                    <h3 className="text-lg font-medium break-words">{fileData.name}</h3>
+                    <h3 className="text-lg font-medium break-words">{downloadFile.fileName}</h3>
                 </div>
             </div>
             <a
                 href={downloadUrl}
                 target="_blank"
-                download={fileData.name}
+                download={downloadFile.fileName}
                 className="flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-200 transition-colors"
                 aria-label="下載檔案"
             >
@@ -165,33 +189,37 @@ const FileCard = ({ downloadFile }: { downloadFile: DownloadFile }) => {
 };
 
 const DownloadFileList: React.FC = () => {
-    const { loading, error, data } = useQuery<{ downloadFiles: DownloadFile[] }>(GET_DOWNLOAD_FILES);
+    const { loading, error, data } = useQuery<{ downloadFiles: DownloadFileDto[] }>(GET_DOWNLOAD_FILES);
     const [currentPage, setCurrentPage] = useState(1);
     const [selectedCategory, setSelectedCategory] = useState<string>('全部');
 
-    const filteredFiles = useMemo(() => {
+    const downloadFiles = useMemo(() => {
         if (!data?.downloadFiles) return [];
+        return data.downloadFiles.map(convertDownloadFileDtoToVo);
+    }, [data]);
+
+    const filteredFiles = useMemo(() => {
+        if (downloadFiles.length === 0) return [];
 
         if (selectedCategory === '全部') {
-            return data.downloadFiles;
+            return downloadFiles;
         }
 
-        return data.downloadFiles.filter(downloadFile =>
-            downloadFile.file.length > 0 && getFileType(downloadFile.file[0]) === selectedCategory
+        return downloadFiles.filter(downloadFile =>
+            downloadFile.fileType === selectedCategory
         );
-    }, [data, selectedCategory]);
+    }, [downloadFiles, selectedCategory]);
 
     const totalPages = Math.ceil(filteredFiles.length / ITEMS_PER_PAGE);
     const currentFiles = filteredFiles.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
 
     const categories = useMemo(() => {
-        if (!data?.downloadFiles) return ['全部'];
+        if (downloadFiles.length === 0) return ['全部'];
 
-        const fileTypes = data.downloadFiles
-            .filter(downloadFile => downloadFile.file.length > 0)
-            .map(downloadFile => getFileType(downloadFile.file[0]));
+        const fileTypes = downloadFiles
+            .map(downloadFile => downloadFile.fileType);
         return ['全部', ...Array.from(new Set(fileTypes))];
-    }, [data]);
+    }, [downloadFiles]);
 
     const handlePageChange = (page: number) => {
         setCurrentPage(page);
@@ -229,7 +257,7 @@ const DownloadFileList: React.FC = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {currentFiles.map((downloadFile) => (
-                    <FileCard key={downloadFile.documentId} downloadFile={downloadFile} />
+                    <FileCard key={downloadFile.id} downloadFile={downloadFile} />
                 ))}
             </div>
 
