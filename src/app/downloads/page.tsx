@@ -11,7 +11,9 @@ const S3_CLOUDFRONT_URL = process.env.NEXT_PUBLIC_S3_CLOUDFRONT_URL || '';
 
 const GET_DOWNLOAD_FILES = gql`
   query GetDownloadFiles {
-    downloadFiles {
+    downloadFiles(pagination:  {
+       limit: -1
+    }) {
       documentId
       file {
         mime
