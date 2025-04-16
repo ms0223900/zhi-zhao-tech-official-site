@@ -38,6 +38,22 @@ export async function generateMetadata({ params }: NewsArticleProps): Promise<Me
     };
 }
 
+const CustomMarkdownAnchorElement = ({ href, children, ...props }: React.AnchorHTMLAttributes<HTMLAnchorElement>) => {
+    const decodedHref = decodeURIComponent(href || '');
+    const decodedChildren = typeof children === 'string' ? decodeURIComponent(children) : children;
+    return (
+        <a
+            {...props}
+            href={decodedHref}
+            className="text-blue-500 hover:text-blue-700"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            {decodedChildren}
+        </a>
+    );
+};
+
 export async function generateStaticParams() {
     try {
         const response = await clientForServer.query<NewsSlugsResponse>({
@@ -68,21 +84,6 @@ export default async function NewsArticlePage({ params }: NewsArticleProps) {
         day: '2-digit',
     }).replace(/\//g, '-');
 
-    const remarkLinkElement = ({ href, children, ...props }: React.AnchorHTMLAttributes<HTMLAnchorElement>) => {
-        const decodedHref = decodeURIComponent(href || '');
-        const decodedChildren = typeof children === 'string' ? decodeURIComponent(children) : children;
-        return (
-            <a
-                {...props}
-                href={decodedHref}
-                className="text-blue-500 hover:text-blue-700"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                {decodedChildren}
-            </a>
-        );
-    };
     return (
         <main className="container mx-auto px-4 py-12">
             {/* 返回按鈕 */}
@@ -132,7 +133,7 @@ export default async function NewsArticlePage({ params }: NewsArticleProps) {
                     remarkPlugins={[remarkGfm]}
                     rehypePlugins={[rehypeRaw]}
                     components={{
-                        a: remarkLinkElement,
+                        a: CustomMarkdownAnchorElement,
                     }}
                 >
                     {article.content}
