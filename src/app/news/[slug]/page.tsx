@@ -6,7 +6,7 @@ import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 import { fetchNewsArticle, GET_NEWS_SLUGS, NewsSlugsResponse } from '@/lib/graphql';
 import { ArrowLeft } from 'lucide-react';
-import { client } from '@/gql/client';
+import { clientForServer } from '@/gql/client';
 
 interface NewsArticleProps {
     params: Promise<{
@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: NewsArticleProps): Promise<Me
 
 export async function generateStaticParams() {
     try {
-        const response = await client.query<NewsSlugsResponse>({
+        const response = await clientForServer.query<NewsSlugsResponse>({
             query: GET_NEWS_SLUGS,
         });
         const slugs = response.data?.newses.map((item) => ({

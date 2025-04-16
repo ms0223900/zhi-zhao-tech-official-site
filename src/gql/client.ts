@@ -4,7 +4,7 @@ export const API_URL = process.env.NODE_ENV === 'production' ?
     (process.env.NEXT_PUBLIC_SERVER_API_URL + '/graphql') :
     'http://localhost:1337/graphql';
 
-export const client = new ApolloClient({
+export const clientForServer = new ApolloClient({
     uri: API_URL,
     cache: new InMemoryCache(),
     headers: {

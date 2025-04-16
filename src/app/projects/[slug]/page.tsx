@@ -2,7 +2,7 @@ import { Project } from '@/types/Project'
 import Image from 'next/image'
 import { ProjectVoConverter } from "../ProjectDto"
 import { ProjectDto } from "../ProjectDto"
-import { client } from "@/gql/client"
+import { clientForServer } from "@/gql/client"
 import { gql } from '@apollo/client'
 import replaceS3UrlWithCloudFront from '@/utils/replaceS3UrlWithCloudFront'
 import LinkCard from '@/components/common/LinkCard'
@@ -17,7 +17,7 @@ interface ProjectDetailProps {
 
 async function asyncGetProject(id: string): Promise<Project> {
     try {
-        const { data } = await client.query<{
+        const { data } = await clientForServer.query<{
             project: ProjectDto;
         }>({
             query: gql`
@@ -55,7 +55,7 @@ async function asyncGetProject(id: string): Promise<Project> {
 
 async function asyncGetProjectIds(): Promise<string[]> {
     try {
-        const { data } = await client.query<{
+        const { data } = await clientForServer.query<{
             projects: ProjectDto[];
         }>({
             query: gql`
@@ -77,7 +77,7 @@ async function asyncGetProjectIds(): Promise<string[]> {
 
 async function getRelatedProjects(projectId: string, genreId: string): Promise<Project[]> {
     try {
-        const { data } = await client.query<{
+        const { data } = await clientForServer.query<{
             projects: ProjectDto[];
         }>({
             query: gql`
