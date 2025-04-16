@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
+import remarkGfm from 'remark-gfm';
 import { fetchNewsArticle, GET_NEWS_SLUGS, NewsSlugsResponse } from '@/lib/graphql';
 import { ArrowLeft } from 'lucide-react';
 import { clientForServer } from '@/gql/client';
@@ -67,6 +68,21 @@ export default async function NewsArticlePage({ params }: NewsArticleProps) {
         day: '2-digit',
     }).replace(/\//g, '-');
 
+    const remarkLinkElement = ({ href, children, ...props }: React.AnchorHTMLAttributes<HTMLAnchorElement>) => {
+        const decodedHref = decodeURIComponent(href || '');
+        const decodedChildren = typeof children === 'string' ? decodeURIComponent(children) : children;
+        return (
+            <a
+                {...props}
+                href={decodedHref}
+                className="text-blue-500 hover:text-blue-700"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                {decodedChildren}
+            </a>
+        );
+    };
     return (
         <main className="container mx-auto px-4 py-12">
             {/* 返回按鈕 */}
@@ -112,7 +128,13 @@ export default async function NewsArticlePage({ params }: NewsArticleProps) {
 
             {/* 文章內容 - Markdown 格式 */}
             <div className="prose prose-lg max-w-4xl mx-auto">
-                <ReactMarkdown rehypePlugins={[rehypeRaw]}>
+                <ReactMarkdown
+                    remarkPlugins={[remarkGfm]}
+                    rehypePlugins={[rehypeRaw]}
+                    components={{
+                        a: remarkLinkElement,
+                    }}
+                >
                     {article.content}
                 </ReactMarkdown>
             </div>
