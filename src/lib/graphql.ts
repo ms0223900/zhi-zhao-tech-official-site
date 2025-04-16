@@ -1,13 +1,6 @@
-import { GraphQLClient } from 'graphql-request';
 import { gql } from "@apollo/client";
 import replaceS3UrlWithCloudFront from '@/utils/replaceS3UrlWithCloudFront';
-import { API_URL, csrClient } from '@/gql/client';
-
-export const graphQLClient = new GraphQLClient(API_URL, {
-  headers: {
-    Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_TOKEN}`,
-  },
-});
+import { csrClient } from '@/gql/client';
 
 // 新聞相關類型定義
 export interface NewsGenre {
@@ -88,8 +81,10 @@ export async function fetchNewsList(): Promise<NewsItem[]> {
 
 export async function fetchLatestNews(): Promise<NewsItem[]> {
   try {
-    const response = await graphQLClient.request<NewsListResponse>(HOME_GET_LATEST_NEWS);
-    return response.newses.map(transformNewsData);
+    const response = await csrClient.query<NewsListResponse>({
+      query: HOME_GET_LATEST_NEWS,
+    });
+    return response.data?.newses.map(transformNewsData) || [];
   } catch (error) {
     console.error('Failed to fetch latest news:', error);
     return [];
@@ -98,8 +93,11 @@ export async function fetchLatestNews(): Promise<NewsItem[]> {
 
 export async function fetchNewsArticle(slug: string): Promise<NewsItem | null> {
   try {
-    const response = await graphQLClient.request<NewsListResponse>(GET_NEWS_ARTICLE, { slug });
-    const article = response.newses[0];
+    const response = await csrClient.query<NewsListResponse>({
+      query: GET_NEWS_ARTICLE,
+      variables: { slug },
+    });
+    const article = response.data?.newses[0];
 
     if (!article) {
       return null;

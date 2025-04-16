@@ -4,8 +4,9 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
-import { fetchNewsArticle, graphQLClient, GET_NEWS_SLUGS, NewsSlugsResponse } from '@/lib/graphql';
+import { fetchNewsArticle, GET_NEWS_SLUGS, NewsSlugsResponse } from '@/lib/graphql';
 import { ArrowLeft } from 'lucide-react';
+import { client } from '@/gql/client';
 
 interface NewsArticleProps {
     params: Promise<{
@@ -19,13 +20,13 @@ export async function generateMetadata({ params }: NewsArticleProps): Promise<Me
 
     if (!article) {
         return {
-            title: '找不到新聞 | 智昭科技',
+            title: '找不到新聞 | 智兆科技',
             description: '找不到您請求的新聞文章',
         };
     }
 
     return {
-        title: `${article.title} | 智昭科技`,
+        title: `${article.title} | 智兆科技`,
         description: article.subtitle,
         openGraph: {
             title: article.title,
@@ -37,8 +38,10 @@ export async function generateMetadata({ params }: NewsArticleProps): Promise<Me
 
 export async function generateStaticParams() {
     try {
-        const response = await graphQLClient.request<NewsSlugsResponse>(GET_NEWS_SLUGS);
-        const slugs = response.newses.map((item) => ({
+        const response = await client.query<NewsSlugsResponse>({
+            query: GET_NEWS_SLUGS,
+        });
+        const slugs = response.data?.newses.map((item) => ({
             slug: item.documentId,
         }));
         return slugs;
