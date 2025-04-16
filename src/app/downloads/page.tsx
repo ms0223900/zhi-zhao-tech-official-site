@@ -85,38 +85,42 @@ const PaginationNext = ({
 const S3_BUCKET_URL = process.env.NEXT_PUBLIC_S3_BUCKET_URL || '';
 const S3_CLOUDFRONT_URL = process.env.NEXT_PUBLIC_S3_CLOUDFRONT_URL || '';
 
-const GET_UPLOADED_FILES = gql`
-  query GetUploadedFiles {
-    uploadFiles {
+const GET_DOWNLOAD_FILES = gql`
+  query GetDownloadFiles {
+    downloadFiles {
       documentId
-      mime
-      provider
-      name
-      url
+      file {
+        mime
+        provider
+        name
+        url
+      }
     }
   }
 `;
 
 interface UploadedFile {
-    documentId: string;
     mime: string;
     provider: string;
     name: string;
     url: string;
 }
+interface DownloadFile {
+    documentId: string;
+    file: UploadedFile[];
+}
 
-// Get file type from mime type or file extension
-const getFileType = (file: UploadedFile): string => {
-    if (file.mime.includes('pdf')) return 'PDF';
-    if (file.mime.includes('word') || file.mime.includes('doc')) return 'DOC';
-    if (file.mime.includes('excel') || file.mime.includes('sheet') || file.mime.includes('xls')) return 'XLS';
-    if (file.mime.includes('powerpoint') || file.mime.includes('presentation') || file.mime.includes('ppt')) return 'PPT';
-    if (file.mime.includes('image')) return 'IMG';
-    if (file.mime.includes('zip') || file.mime.includes('compressed')) return 'ZIP';
-    if (file.mime.includes('text')) return 'TXT';
+const getFileType = (fileData: UploadedFile): string => {
+    if (fileData.mime.includes('pdf')) return 'PDF';
+    if (fileData.mime.includes('word') || fileData.mime.includes('doc')) return 'DOC';
+    if (fileData.mime.includes('excel') || fileData.mime.includes('sheet') || fileData.mime.includes('xls')) return 'XLS';
+    if (fileData.mime.includes('powerpoint') || fileData.mime.includes('presentation') || fileData.mime.includes('ppt')) return 'PPT';
+    if (fileData.mime.includes('image')) return 'IMG';
+    if (fileData.mime.includes('zip') || fileData.mime.includes('compressed')) return 'ZIP';
+    if (fileData.mime.includes('text')) return 'TXT';
 
     // If mime type doesn't work, try the file extension from name or url
-    const extension = file.name.split('.').pop()?.toUpperCase();
+    const extension = fileData.name.split('.').pop()?.toUpperCase();
     if (extension && ['PDF', 'DOC', 'DOCX', 'XLS', 'XLSX', 'PPT', 'PPTX', 'JPG', 'PNG', 'ZIP', 'TXT'].includes(extension)) {
         return extension;
     }
@@ -124,9 +128,13 @@ const getFileType = (file: UploadedFile): string => {
     return 'FILE';
 };
 
-const FileCard = ({ file }: { file: UploadedFile }) => {
-    const fileType = getFileType(file);
-    const downloadUrl = `${S3_CLOUDFRONT_URL}/${file.url.replace(new RegExp(S3_BUCKET_URL + '/?'), '')}`;
+const FileCard = ({ downloadFile }: { downloadFile: DownloadFile }) => {
+    // 使用第一筆 file 資料
+    const fileData = downloadFile.file[0];
+    if (!fileData) return null;
+
+    const fileType = getFileType(fileData);
+    const downloadUrl = `${S3_CLOUDFRONT_URL}/${fileData.url.replace(new RegExp(S3_BUCKET_URL + '/?'), '')}`;
 
     return (
         <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg mb-4 hover:bg-gray-100 transition-colors">
@@ -137,13 +145,13 @@ const FileCard = ({ file }: { file: UploadedFile }) => {
                     </div>
                 </div>
                 <div className="ml-4">
-                    <h3 className="text-lg font-medium break-words">{file.name}</h3>
+                    <h3 className="text-lg font-medium break-words">{fileData.name}</h3>
                 </div>
             </div>
             <a
                 href={downloadUrl}
                 target="_blank"
-                download={file.name}
+                download={fileData.name}
                 className="flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-200 transition-colors"
                 aria-label="下載檔案"
             >
@@ -157,27 +165,31 @@ const FileCard = ({ file }: { file: UploadedFile }) => {
 };
 
 const DownloadFileList: React.FC = () => {
-    const { loading, error, data } = useQuery<{ uploadFiles: UploadedFile[] }>(GET_UPLOADED_FILES);
+    const { loading, error, data } = useQuery<{ downloadFiles: DownloadFile[] }>(GET_DOWNLOAD_FILES);
     const [currentPage, setCurrentPage] = useState(1);
     const [selectedCategory, setSelectedCategory] = useState<string>('全部');
 
     const filteredFiles = useMemo(() => {
-        if (!data?.uploadFiles) return [];
+        if (!data?.downloadFiles) return [];
 
         if (selectedCategory === '全部') {
-            return data.uploadFiles;
+            return data.downloadFiles;
         }
 
-        return data.uploadFiles.filter(file => getFileType(file) === selectedCategory);
+        return data.downloadFiles.filter(downloadFile =>
+            downloadFile.file.length > 0 && getFileType(downloadFile.file[0]) === selectedCategory
+        );
     }, [data, selectedCategory]);
 
     const totalPages = Math.ceil(filteredFiles.length / ITEMS_PER_PAGE);
     const currentFiles = filteredFiles.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
 
     const categories = useMemo(() => {
-        if (!data?.uploadFiles) return ['全部'];
+        if (!data?.downloadFiles) return ['全部'];
 
-        const fileTypes = data.uploadFiles.map(file => getFileType(file));
+        const fileTypes = data.downloadFiles
+            .filter(downloadFile => downloadFile.file.length > 0)
+            .map(downloadFile => getFileType(downloadFile.file[0]));
         return ['全部', ...Array.from(new Set(fileTypes))];
     }, [data]);
 
@@ -216,8 +228,8 @@ const DownloadFileList: React.FC = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {currentFiles.map((file) => (
-                    <FileCard key={file.documentId} file={file} />
+                {currentFiles.map((downloadFile) => (
+                    <FileCard key={downloadFile.documentId} downloadFile={downloadFile} />
                 ))}
             </div>
 
