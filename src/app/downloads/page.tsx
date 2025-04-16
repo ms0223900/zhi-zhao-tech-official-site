@@ -6,6 +6,84 @@ import { ApolloProvider } from '@apollo/client';
 
 const ITEMS_PER_PAGE = 12;
 
+const S3_BUCKET_URL = process.env.NEXT_PUBLIC_S3_BUCKET_URL || '';
+const S3_CLOUDFRONT_URL = process.env.NEXT_PUBLIC_S3_CLOUDFRONT_URL || '';
+
+const GET_DOWNLOAD_FILES = gql`
+  query GetDownloadFiles {
+    downloadFiles {
+      documentId
+      file {
+        mime
+        provider
+        name
+        url
+      }
+    }
+  }
+`;
+
+interface UploadedFile {
+    mime: string;
+    provider: string;
+    name: string;
+    url: string;
+}
+interface DownloadFileDto {
+    documentId: string;
+    file: UploadedFile[];
+}
+
+const convertDownloadFileDtoToVo = (downloadFileDto: DownloadFileDto): DownloadFileVo => {
+    return DownloadFileVo.create(downloadFileDto.documentId, downloadFileDto.file[0]);
+}
+
+class DownloadFileVo {
+    private constructor(
+        private _id: string,
+        private file: UploadedFile
+    ) { }
+
+    static create(id: string, file: UploadedFile): DownloadFileVo {
+        return new DownloadFileVo(id, file);
+    }
+
+    get id(): string {
+        return this._id;
+    }
+
+    get fileName(): string {
+        return this.file.name;
+    }
+
+    get fileType(): string {
+        return getFileType(this.file);
+    }
+
+    get downloadUrl(): string {
+        return `${S3_CLOUDFRONT_URL}/${this.file.url.replace(new RegExp(S3_BUCKET_URL + '/?'), '')}`;
+    }
+}
+
+const getFileType = (fileData: UploadedFile): string => {
+    if (fileData.mime.includes('pdf')) return 'PDF';
+    if (fileData.mime.includes('word') || fileData.mime.includes('doc')) return 'DOC';
+    if (fileData.mime.includes('excel') || fileData.mime.includes('sheet') || fileData.mime.includes('xls')) return 'XLS';
+    if (fileData.mime.includes('powerpoint') || fileData.mime.includes('presentation') || fileData.mime.includes('ppt')) return 'PPT';
+    if (fileData.mime.includes('image')) return 'IMG';
+    if (fileData.mime.includes('zip') || fileData.mime.includes('compressed')) return 'ZIP';
+    if (fileData.mime.includes('text')) return 'TXT';
+
+    // If mime type doesn't work, try the file extension from name or url
+    const extension = fileData.name.split('.').pop()?.toUpperCase();
+    if (extension && ['PDF', 'DOC', 'DOCX', 'XLS', 'XLSX', 'PPT', 'PPTX', 'JPG', 'PNG', 'ZIP', 'TXT'].includes(extension)) {
+        return extension;
+    }
+
+    return 'FILE';
+};
+
+
 const Select = ({ value, onValueChange, children }: {
     value: string;
     onValueChange: (value: string) => void;
@@ -81,81 +159,6 @@ const PaginationNext = ({
         </svg>
     </button>
 );
-
-const S3_BUCKET_URL = process.env.NEXT_PUBLIC_S3_BUCKET_URL || '';
-const S3_CLOUDFRONT_URL = process.env.NEXT_PUBLIC_S3_CLOUDFRONT_URL || '';
-
-const GET_DOWNLOAD_FILES = gql`
-  query GetDownloadFiles {
-    downloadFiles {
-      documentId
-      file {
-        mime
-        provider
-        name
-        url
-      }
-    }
-  }
-`;
-
-interface UploadedFile {
-    mime: string;
-    provider: string;
-    name: string;
-    url: string;
-}
-interface DownloadFileDto {
-    documentId: string;
-    file: UploadedFile[];
-}
-
-// converter
-const convertDownloadFileDtoToVo = (downloadFileDto: DownloadFileDto): DownloadFileVo => {
-    return DownloadFileVo.create(downloadFileDto.documentId, downloadFileDto.file[0]);
-}
-
-// vo
-class DownloadFileVo {
-    private constructor(
-        public id: string,
-        private file: UploadedFile
-    ) { }
-
-    static create(id: string, file: UploadedFile): DownloadFileVo {
-        return new DownloadFileVo(id, file);
-    }
-
-    get fileName(): string {
-        return this.file.name;
-    }
-
-    get fileType(): string {
-        return getFileType(this.file);
-    }
-
-    get downloadUrl(): string {
-        return `${S3_CLOUDFRONT_URL}/${this.file.url.replace(new RegExp(S3_BUCKET_URL + '/?'), '')}`;
-    }
-}
-
-const getFileType = (fileData: UploadedFile): string => {
-    if (fileData.mime.includes('pdf')) return 'PDF';
-    if (fileData.mime.includes('word') || fileData.mime.includes('doc')) return 'DOC';
-    if (fileData.mime.includes('excel') || fileData.mime.includes('sheet') || fileData.mime.includes('xls')) return 'XLS';
-    if (fileData.mime.includes('powerpoint') || fileData.mime.includes('presentation') || fileData.mime.includes('ppt')) return 'PPT';
-    if (fileData.mime.includes('image')) return 'IMG';
-    if (fileData.mime.includes('zip') || fileData.mime.includes('compressed')) return 'ZIP';
-    if (fileData.mime.includes('text')) return 'TXT';
-
-    // If mime type doesn't work, try the file extension from name or url
-    const extension = fileData.name.split('.').pop()?.toUpperCase();
-    if (extension && ['PDF', 'DOC', 'DOCX', 'XLS', 'XLSX', 'PPT', 'PPTX', 'JPG', 'PNG', 'ZIP', 'TXT'].includes(extension)) {
-        return extension;
-    }
-
-    return 'FILE';
-};
 
 const FileCard = ({ downloadFile }: { downloadFile: DownloadFileVo }) => {
     const { fileType, downloadUrl } = downloadFile;
