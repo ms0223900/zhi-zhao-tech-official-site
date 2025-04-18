@@ -91,7 +91,7 @@ export default function ESGPage() {
                                 </div>
                                 <div className="md:w-2/3 xl:w-3/4">
                                     <div className="flex flex-col gap-4">
-                                        <div className="flex flex-row gap-4 items-center">
+                                        <div className="flex flex-row gap-6 items-center">
                                             <div className="md:w-1/2 xl:w-1/3">
                                                 <h3 className="whitespace-pre-line text-h3 leading-[200%] font-bold drop-shadow-md">{`智兆科技持續改善\n提升品質、追求卓越\n致力於滿足顧客需求`}</h3>
                                             </div>
