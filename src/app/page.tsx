@@ -55,7 +55,7 @@ const serviceCardDataList: ServiceCardItemProps[] = [
     title: "最快速",
     subtitle: "動員應變能力",
     iconSrc: "/images/icons/shift-fast-icon.svg",
-    detailDescription: "駐廠人員皆有機電系統、空調無塵室系統、製程系統等管理專長",
+    detailDescription: `駐廠人員皆有\n機電系統、空調無塵室系統、製程系統等管理專長`,
   },
   {
     title: "最絕對",
@@ -73,7 +73,7 @@ const serviceCardDataList: ServiceCardItemProps[] = [
     title: "最實在",
     subtitle: "價格與服務",
     iconSrc: "/images/icons/price-service-icon.svg",
-    detailDescription: "以高品質工程和實用性為您服務",
+    detailDescription: "以高品質工程和\n實用性為您服務",
   }
 ];
 
@@ -206,7 +206,7 @@ function ServiceFlipCardItem({ title, subtitle, detailDescription, iconSrc }: Se
           <h2 className="font-bold text-xl mt-4">{title}</h2>
           <p className="text-gray-600 mt-2">{subtitle}</p>
         </div>
-        <div className="flip-card-back flex flex-col items-center justify-center bg-[#4A515D] rounded-lg py-2.5 px-5">{detailDescription}</div>
+        <div className="flip-card-back flex flex-col items-center justify-center bg-[#4A515D] rounded-lg py-2.5 px-5 whitespace-pre-line">{detailDescription}</div>
       </div>
     </div>
   );
@@ -214,6 +214,7 @@ function ServiceFlipCardItem({ title, subtitle, detailDescription, iconSrc }: Se
 
 // ServiceMobileCardItem
 function ServiceMobileCardItem({ title, subtitle, detailDescription, iconSrc }: ServiceCardItemProps) {
+  const removeNewLine = (text: string) => text.replace(/\n/g, '');
   return (
     <div className="py-4 px-7 rounded-md shadow-sm flex items-center text-center gap-4 bg-gradient-to-r from-white to-gray-300 border border-[1px] border-[#282423]">
       <div className="text-orange-500 h-[60px] flex items-center justify-center">
@@ -222,7 +223,7 @@ function ServiceMobileCardItem({ title, subtitle, detailDescription, iconSrc }: 
       <div className="w-[3px] h-[40px] bg-black" />
       <div className="flex flex-col items-center text-center w-full">
         <h3 className="font-bold text-lg">{title + subtitle}</h3>
-        <p className="text-gray-600 text-sm">{detailDescription}</p>
+        <p className="text-gray-600 text-sm">{removeNewLine(detailDescription)}</p>
       </div>
     </div>
   );
