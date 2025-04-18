@@ -41,6 +41,9 @@ export default function ThreeDCarousel({ carouselItems, settings }: ThreeDCarous
 
     if (!mounted) return null
 
+    // clone carouselItems for safety
+    const clonedCarouselItems = [...carouselItems, ...carouselItems, ...carouselItems, ...carouselItems]
+
     return (
         <div className={cn(
             "w-full my-10 slider-container overflow-hidden rounded-lg ",
@@ -48,7 +51,7 @@ export default function ThreeDCarousel({ carouselItems, settings }: ThreeDCarous
             "careers-carousel"
         )}>
             <Slider {..._settings}>
-                {carouselItems.map((item) => (
+                {clonedCarouselItems.map((item) => (
                     <div key={item.id} className="px-1">
                         <div className={"my-[60px]"}>
                             <div className="relative aspect-[25/27]">

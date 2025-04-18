@@ -124,7 +124,6 @@ const productAdvantageList = [
     }
 ]
 
-// product advantage section
 function ProductAdvantageSection() {
     return (
         <section className="bg-white -mx-4 md:mx-0 px-4">
