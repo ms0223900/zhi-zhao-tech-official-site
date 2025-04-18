@@ -57,7 +57,7 @@ export default function CommonTrainingSection({
                             carouselItems={carouselItems}
                             settings={{
                                 autoplay: true,
-                                autoplaySpeed: 4000,
+                                autoplaySpeed: 3000,
                             }} />
                     </div>
                 </div>
