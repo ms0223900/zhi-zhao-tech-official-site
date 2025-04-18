@@ -107,7 +107,7 @@ export default async function Home() {
       <section className="relative h-[600px]">
         <CarouselBanner />
         <div className="absolute left-0 md:pl-[92px] md:pr-[44px] right-0 md:right-auto bottom-[70px] md:bottom-[50px] md:py-[24px]  mx-auto flex flex-col justify-center text-center md:text-left">
-          <div className="w-full h-full absolute z-1 md:bg-gray-700/50 md:blur-[11px] mx-auto left-0" />
+          <div className="w-full h-full md:absolute z-1 md:bg-[#161616]/50 md:blur-[11px] mx-auto left-0" />
           <div className="relative z-2 flex flex-col justify-center text-center md:text-left">
             <div className="pb-8">
               {["智", "兆", "科", "技"].map((char, index) => (
