@@ -71,7 +71,7 @@ export default function ESGPage() {
                         <RwdComponent
                             desktopComponent={
                                 <p className="text-h4 text-xl max-w-[560px] text-center leading-[200%]">
-                                    執行ISO-45001 程序,無塵室建置統包案,現場訪查輔導評鑑, 檢視智兆科技公司施工現場落實ISO-45001 程度。
+                                    {`執行ISO-45001 程序,無塵室建置統包案,現場訪查輔導\n評鑑, 檢視智兆科技公司施工現場落實ISO-45001 程度。`}
                                 </p>
                             }
                             mobileComponent={null}
@@ -93,11 +93,11 @@ export default function ESGPage() {
                                     <div className="flex flex-col gap-4">
                                         <div className="flex flex-row gap-4 items-center">
                                             <div className="md:w-1/2 xl:w-1/3">
-                                                <h3 className="text-h3 leading-[250%] font-bold drop-shadow-md">{`智兆科技持續改善及提升品質、追求卓越\n致力於滿足顧客需求`}</h3>
+                                                <h3 className="whitespace-pre-line text-h3 leading-[200%] font-bold drop-shadow-md">{`智兆科技持續改善\n提升品質、追求卓越\n致力於滿足顧客需求`}</h3>
                                             </div>
-                                            <div className="md:w-2/3 xl:w-1/3 whitespace-pre-line text-[#A6A4A4]">
-                                                <p className="text-h3 font-medium">{`2023.04\n通過ISO-45001認證`}</p>
-                                                <p className="text-h3 font-medium">{`2023.06\n取得ISO-45001證書`}</p>
+                                            <div className="flex flex-col gap-2 md:w-2/3 xl:w-1/3 whitespace-pre-line text-[#A6A4A4]">
+                                                <p className="text-h3 font-medium leading-[130%]">{`2023.04\n通過ISO-45001認證`}</p>
+                                                <p className="text-h3 font-medium leading-[130%] whitespace-pre-line">{`2023.06\n取得ISO-45001證書`}</p>
                                             </div>
                                         </div>
                                         <div className="flex flex-row gap-4">
@@ -114,7 +114,7 @@ export default function ESGPage() {
                         mobileComponent={
                             <div className="flex flex-col gap-4 shadow-md rounded-md p-2 pt-8 bg-gradient-to-r from-[#FFFFFF] to-[#E0E0E0]">
                                 <p className="text-h4 text-xl max-w-[560px] text-center leading-[200%]">
-                                    執行ISO-45001 程序,無塵室建置統包案,現場訪查輔導評鑑, 檢視智兆科技公司施工現場落實ISO-45001 程度。
+                                    {`執行ISO-45001 程序,無塵室建置統包案,現場訪查輔導\n評鑑, 檢視智兆科技公司施工現場落實ISO-45001 程度。`}
                                 </p>
                                 <Image
                                     src={certificateItem.image}
@@ -130,7 +130,7 @@ export default function ESGPage() {
                                 <ProductCarousel
                                     productImageList={esgISO45001CarouselItems.slice(1).map(item => item.image)}
                                 />
-                                <h3 className="text-h3 leading-[250%] font-bold drop-shadow-md text-center max-w-[200px] mx-auto">{`智兆科技持續改善及提升品質、追求卓越\n致力於滿足顧客需求`}</h3>
+                                <h3 className="text-h3 leading-[200%] font-bold drop-shadow-md text-center max-w-[200px] mx-auto">{`智兆科技持續改善\n提升品質、追求卓越\n致力於滿足顧客需求`}</h3>
                             </div>
                         }
                     />
