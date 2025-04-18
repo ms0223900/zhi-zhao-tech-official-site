@@ -106,14 +106,17 @@ export default async function Home() {
       {/* Hero Section */}
       <section className="relative h-[600px]">
         <CarouselBanner />
-        <div className="absolute left-0 md:left-[92px] right-0 md:right-auto bottom-[70px] mx-auto flex flex-col justify-center text-center md:text-left">
-          <div className="pb-8">
-            {["智", "兆", "科", "技"].map((char, index) => (
-              <span key={index} className="text-white text-5xl font-bold border-[1px] border-white p-2">{char}</span>
-            ))}
+        <div className="absolute left-0 md:pl-[92px] md:pr-[44px] right-0 md:right-auto bottom-[70px] md:bottom-[50px] md:py-[24px]  mx-auto flex flex-col justify-center text-center md:text-left">
+          <div className="w-full h-full absolute z-1 md:bg-gray-700/50 md:blur-[11px] mx-auto left-0" />
+          <div className="relative z-2 flex flex-col justify-center text-center md:text-left">
+            <div className="pb-8">
+              {["智", "兆", "科", "技"].map((char, index) => (
+                <span key={index} className="text-white text-5xl font-bold border-[1px] border-white p-2">{char}</span>
+              ))}
+            </div>
+            <p className="text-white text-xl mb-2">專業 快速 負責</p>
+            <p className="text-white text-xl">認真 細心 誠信</p>
           </div>
-          <p className="text-white text-xl mb-2">專業 快速 負責</p>
-          <p className="text-white text-xl">認真 細心 誠信</p>
         </div>
       </section>
 
