@@ -132,6 +132,7 @@ export default async function ProjectDetail({ params }: ProjectDetailProps) {
                 <div className="mb-12 text-center">
                     <h1 className="text-4xl mb-2">工程案例</h1>
                     <p className="text-gray-500">Case</p>
+                    <hr className="my-4 border-t-[1px] border-gray-300" />
                     <h2 className="text-2xl mt-4">{project.titleToDisplay}</h2>
                 </div>
 

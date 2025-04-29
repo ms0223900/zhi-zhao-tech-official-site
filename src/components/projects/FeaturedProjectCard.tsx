@@ -26,7 +26,7 @@ const ProjectCard = ({ project, gradientFrom, gradientTo, buttonColor }: Project
                     </div>
                 </div>
                 <div className={`w-[60%] absolute top-6 left-[40%] flex flex-col items-center`}>
-                    <h3 className="text-h4 text-center font-semibold mb-4 ml-4 max-w-[70%]">{project.titleToDisplay}</h3>
+                    <h3 className="text-h4 text-center font-semibold mb-4 ml-[50px] max-w-[90%] truncate">{project.titleToDisplay}</h3>
                     <div className={`w-full space-y-2 bg-gradient-to-r ${gradientFrom} ${gradientTo} py-3 pb-5 px-10 pl-[60px] rounded-lg`}>
                         {[
                             {
@@ -52,7 +52,7 @@ const ProjectCard = ({ project, gradientFrom, gradientTo, buttonColor }: Project
                         ].map(
                             (item, index) =>
                                 item.condition && (
-                                    <p key={index} className="line-clamp-1 text-[10px]">
+                                    <p key={index} className="line-clamp-1 text-[12px]">
                                         <span className="font-medium">{item.label}</span>
                                         <span>{item.value}</span>
                                     </p>
