@@ -10,6 +10,7 @@ import { gql } from "@apollo/client";
 import RwdComponent from "../common/RwdComponent";
 import TitleWithEngSubtitle from "../common/TitleWithEngSubtitle";
 import FeaturedProjectCard from './FeaturedProjectCard';
+import { ChevronDown } from "lucide-react";
 
 async function asyncGetProjects(): Promise<Project[]> {
     try {
@@ -104,16 +105,20 @@ const ProjectList = ({ projects }: ProjectListProps) => {
         <div className="space-y-8">
             {/* // genre drop down selector */}
             <div className="flex justify-center gap-2">
-                <select className="w-full md:w-[500px] py-2 px-4 rounded-md border border-blue-800 text-center text-h5 bg-transparent" onChange={(e) => handleGenreChange(e.target.value)}>
-                    <option value="All">
-                        依案例類別選擇
-                    </option>
-                    {projectGenres.map((genre) => (
-                        <option key={genre} value={genre}>
-                            {genre}
-                        </option>
-                    ))}
-                </select>
+                <div className="relative w-full md:w-[500px]">
+                    <select
+                        className="w-full py-2 px-4 pr-10 rounded-md border border-blue-800 text-center text-h5 bg-transparent appearance-none"
+                        onChange={(e) => handleGenreChange(e.target.value)}
+                    >
+                        <option value="All">依案例類別選擇</option>
+                        {projectGenres.map((genre) => (
+                            <option key={genre} value={genre}>
+                                {genre}
+                            </option>
+                        ))}
+                    </select>
+                    <ChevronDown className="pointer-events-none absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-blue-800" />
+                </div>
             </div>
             <RwdComponent
                 desktopComponent={
