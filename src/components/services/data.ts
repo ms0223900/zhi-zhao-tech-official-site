@@ -21,7 +21,7 @@ export const services: Record<ServiceId, {
         id: 'clean-room',
         title: '無塵室工程',
         subtitle: 'Clean room project',
-        content: '提供全方位無塵室設計、建造與維護服務，適用於半導體、光電及高科技產業，確保高潔淨度與穩定的製程環境。',
+        content: '提供全方位無塵室設計、建造與\n維護服務，適用於半導體、光電及高科技產業，確保高潔淨度與穩定的製程環境。',
         imageList: [
             '/images/services/clean-room/cover.jpg',
             '/images/services/clean-room/clean-room-1.jpg',

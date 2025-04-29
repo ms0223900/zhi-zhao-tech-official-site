@@ -427,7 +427,7 @@ function EnergyManagementSolutionSection() {
 
                 <div>
                     <div className="relative flex w-full">
-                        <div className="relative flex z-10 md:text-h3">
+                        <div className="relative flex z-10 md:text-h3 pl-3">
                             <img src="/images/energy-circle.png" alt="能源管理解決方案" />
                             <p className="text-center font-bold absolute top-[46%] left-[38%]">能耗管理系統
                                 <br />
