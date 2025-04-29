@@ -81,22 +81,22 @@ const linkCardDataList = [
   {
     title: "聯絡我們",
     image: "/images/home/home-route-direct_contact-us.jpg",
-    link: "/contact",
+    link: routerConfig.contact.href,
   },
   {
     title: "解決方案",
     image: "/images/home/home-route-direct_solution.jpg",
-    link: "/solutions",
+    link: routerConfig.solutions.href,
   },
   {
     title: "文件下載專區",
     image: "/images/home/home-route-direct_download.jpg",
-    link: "/downloads",
+    link: routerConfig.downloads.href,
   },
   {
     title: "隱私權政策",
     image: "/images/home/home-route-direct_privacy.jpg",
-    link: "/privacy",
+    link: routerConfig.privacyPolicy.href,
   },
 ];
 
