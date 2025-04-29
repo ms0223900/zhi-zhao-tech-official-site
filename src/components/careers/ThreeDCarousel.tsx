@@ -28,6 +28,7 @@ export default function ThreeDCarousel({ carouselItems, settings }: ThreeDCarous
         centerPadding: "0px",
         slidesToShow: 3,
         arrows: false,
+        pauseOnHover: false,
         responsive: [
             {
                 breakpoint: 550,
