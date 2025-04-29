@@ -10,7 +10,6 @@ import { usePathname } from "next/navigation";
 const navLinks = [
     routerConfig.about,
     routerConfig.services,
-    routerConfig.solutions,
     routerConfig.projects,
     routerConfig.news,
     routerConfig.esg,
