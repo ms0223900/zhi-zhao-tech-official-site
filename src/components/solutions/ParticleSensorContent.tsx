@@ -85,6 +85,7 @@ function LinkSection() {
                     image={item.image}
                     title={item.title}
                     subtitle={item.subtitle}
+                    showArrow={false}
                 />
             ))}
         </div>

@@ -3,6 +3,16 @@ import Image from "next/image";
 import ArrowRight from "/public/images/icons/icon-long-arrow-right.svg";
 import { cn } from "@/utils/cn";
 
+interface LinkCardProps {
+    arrowColor?: string,
+    imageWrapperClassName?: string,
+    link: string,
+    image: string,
+    title: string,
+    subtitle: string,
+    showArrow?: boolean,
+}
+
 function LinkCard({
     arrowColor = "#1E88E5",
     imageWrapperClassName,
@@ -10,18 +20,18 @@ function LinkCard({
     image,
     title,
     subtitle,
-}: {
-    arrowColor?: string,
-    imageWrapperClassName?: string,
-    link: string,
-    image: string,
-    title: string,
-    subtitle: string,
-}) {
+    showArrow = true,
+}: LinkCardProps) {
+    const LinkWrapperComponent = link ? Link : "div"
     return (
-        <Link
+        <LinkWrapperComponent
             href={link}
-            className="w-full group block bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+            className={
+                cn(
+                    "w-full group block bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300",
+                    !link && "cursor-default"
+                )
+            }
         >
             <div className={cn("aspect-w-16 aspect-h-14 bg-gray-100 h-[230px] overflow-hidden", imageWrapperClassName)}>
                 <Image
@@ -39,11 +49,13 @@ function LinkCard({
                     </h3>
                     <p className="text-[#9D9D9D] pb-2">{subtitle}</p>
                 </div>
-                <div>
-                    <ArrowRight width={22} fill={arrowColor} />
-                </div>
+                {showArrow && (
+                    <div>
+                        <ArrowRight width={22} fill={arrowColor} />
+                    </div>
+                )}
             </div>
-        </Link>
+        </LinkWrapperComponent>
     )
 }
 
