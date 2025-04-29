@@ -277,7 +277,7 @@ function CompanyHistorySection() {
                                 `}>
                                     <div className="text-black text-2xl">{item.year}</div>
                                     <div className={`absolute ${index % 2 === 0 ? 'bottom-2' : 'top-2'} w-3 h-3 rounded-full ${item.dotColor}`} />
-                                    <div className={`absolute w-full h-full bg-transparent w-[116%] h-[116%] rounded-full border-[1px] ${item.borderColor}`} />
+                                    <div className={`absolute bg-transparent w-[116%] h-[116%] rounded-full border-[1px] ${item.borderColor}`} />
                                 </div>
 
                                 <div className={`
@@ -329,7 +329,7 @@ function MobileCompanyHistorySection() {
                                 `}>
                                         <div className="-translate-y-4 text-black text-md">{item.year}</div>
                                         {/* circle background with offset circle */}
-                                        <div className={`absolute w-full h-full bg-transparent w-[120%] h-[120%] rounded-full border-[1px] ${item.borderColor}`} />
+                                        <div className={`absolute bg-transparent w-[120%] h-[120%] rounded-full border-[1px] ${item.borderColor}`} />
                                     </div>
 
                                     {/* // top border  */}
@@ -361,7 +361,7 @@ function MobileCompanyHistorySection() {
                                 `}>
                                         <div className="-translate-y-4 text-black text-md">{item.year}</div>
                                         {/* circle background with offset circle */}
-                                        <div className={`absolute w-full h-full bg-transparent w-[120%] h-[120%] rounded-full border-[1px] ${item.borderColor}`} />
+                                        <div className={`absolute bg-transparent w-[120%] h-[120%] rounded-full border-[1px] ${item.borderColor}`} />
                                     </div>
 
                                     {/* // top border  */}
