@@ -20,10 +20,12 @@ const serviceList = [
     services['waste-treatment'],
 ]
 
+const ITEM_PER_ROW = 3;
+
 export default function ServicesPage() {
     const getArrowColor = (index: number): string => {
-        if (index < 2) return "#1E88E5";
-        if (index < 5) return "#E57B42";
+        if (index < ITEM_PER_ROW) return "#1E88E5";
+        if (index < ITEM_PER_ROW * 2) return "#E57B42";
         return "#EACA00";
     };
 
