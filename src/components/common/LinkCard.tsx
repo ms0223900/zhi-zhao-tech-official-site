@@ -44,10 +44,10 @@ function LinkCard({
             </div>
             <div className="p-4 py-3 flex justify-between items-center">
                 <div>
-                    <h3 className="text-xl font-semibold group-hover:text-blue-600 transition-colors">
+                    <h3 className="text-xl font-semibold group-hover:text-blue-600 transition-colors line-clamp-2">
                         {title}
                     </h3>
-                    <p className="text-[#9D9D9D] pb-2">{subtitle}</p>
+                    <p className="text-[#9D9D9D] pb-2 line-clamp-2">{subtitle}</p>
                 </div>
                 {showArrow && (
                     <div>
