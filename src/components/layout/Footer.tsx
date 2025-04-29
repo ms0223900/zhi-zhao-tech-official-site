@@ -162,7 +162,7 @@ function PinnedButtons() {
 
             <a
                 href={`mailto:${ZHI_ZHAO_EMAIL}`}
-                className="hidden md:flex w-12 h-12 bg-white rounded-full shadow-lg items-center justify-center hover:bg-gray-100 transition-colors"
+                className="md:flex md:w-12 md:h-12 w-8 h-8 bg-white rounded-full shadow-lg items-center justify-center hover:bg-gray-100 transition-colors"
                 aria-label="Send email"
             >
                 <img src={EMAIL_ICON.iconSrc} alt={EMAIL_ICON.alt} className="w-full h-full" />
