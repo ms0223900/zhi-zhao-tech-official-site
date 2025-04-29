@@ -124,7 +124,7 @@ function FooterMobile() {
 
                     <div className="flex justify-center items-center space-x-4 mb-4">
                         <div>
-                            <img src="/images/zhi-zhao-logo-black-with-text.png" alt="智兆科技" className="w-[150px]" />
+                            <img src="/images/zhi-zhao-logo-black-with-white-border-with-text.png" alt="智兆科技" className="w-[150px]" />
                         </div>
                         <div className="flex items-center gap-3">
                             {mobileIconConfigs.map((icon) => (
