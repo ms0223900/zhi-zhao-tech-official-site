@@ -118,8 +118,8 @@ async function getRelatedProjects(projectId: string, genreId: string): Promise<P
 export default async function ProjectDetail({ params }: ProjectDetailProps) {
     const { slug } = await params
     const project = await asyncGetProject(slug)
+
     const related_project_genres = project.related_project_genres
-    console.log("related_project_genres: ", related_project_genres)
     const relatedProjects = await Promise.all(related_project_genres.map(async (genre) => await getRelatedProjects(slug, genre.documentId))).then(projects => projects.flat())
 
     return (
@@ -185,20 +185,22 @@ export default async function ProjectDetail({ params }: ProjectDetailProps) {
                 </div>
 
                 {/* Related Projects */}
-                <div>
-                    <h3 className="text-2xl mb-6">相關案例</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                        {relatedProjects.map((related) => (
-                            <LinkCard
-                                key={related.id}
-                                link={`/projects/${related.id}`}
-                                title={related.title}
-                                subtitle={related.subtitle}
-                                image={related.image[0]?.url ? replaceS3UrlWithCloudFront(related.image[0].url) : ''}
-                            />
-                        ))}
+                {relatedProjects.length > 0 && (
+                    <div>
+                        <h3 className="text-2xl mb-6">相關案例</h3>
+                        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                            {relatedProjects.map((related) => (
+                                <LinkCard
+                                    key={related.id}
+                                    link={`/projects/${related.id}`}
+                                    title={related.title}
+                                    subtitle={related.subtitle}
+                                    image={related.image[0]?.url ? replaceS3UrlWithCloudFront(related.image[0].url) : ''}
+                                />
+                            ))}
+                        </div>
                     </div>
-                </div>
+                )}
             </div>
         </div>
     )
