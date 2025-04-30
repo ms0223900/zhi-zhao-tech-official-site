@@ -1,11 +1,10 @@
 import { Metadata } from 'next'
 import { services } from '@/components/services/data'
 import LinkCard from '@/components/common/LinkCard'
-import { formatPageTitle } from '@/constants/metadata'
 
 export const metadata: Metadata = {
-    title: formatPageTitle('服務項目'),
-    description: '智兆科技提供全方位工程服務，包括無塵室、塗裝、機電、製程管路等專業工程解決方案。',
+    title: "服務項目 Service｜智兆科技",
+    description: "智兆科技以「熱誠、專業、團隊、誠信」為核心價值，提供完整的工程服務，包括無塵室設計、空調系統、製程管路與環保工程，從規劃到施工，滿足各產業高標準需求。",
 }
 
 const serviceList = [

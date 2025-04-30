@@ -6,8 +6,8 @@ import { Metadata } from "next";
 
 // meta
 export const metadata: Metadata = {
-    title: "工程實績",
-    description: "工程實績",
+    title: "工程實績 Projects｜智兆科技",
+    description: "工程實績展示多項成功的工程案例，涵蓋無塵室、空調、製程管路等領域，豐富的技術實力和豐富的產業經驗，成功打造了多個高端項目，包括日月光半導體廠、勝一化工、恩智浦、台虹科技、光寶科技、醫強科技、南茂科技、住華科技及多家國內科技企業的工程建設。",
 }
 
 export default async function ProjectsPage() {

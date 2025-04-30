@@ -8,11 +8,11 @@ import GovernanceSection from "@/components/esg/GovernanceSection"
 import ImageCarousel from "@/components/esg/ImageCarousel"
 import SocialSection from "@/components/esg/SocialSection"
 import { ProductCarousel } from "@/components/solutions/ProductCarousel"
-import { formatPageTitle } from "@/constants/metadata"
+import { Metadata } from "next"
 
-export const metadata = {
-    title: formatPageTitle('ESG'),
-    description: '企業永續發展',
+export const metadata: Metadata = {
+    title: "永續發展 ESG ｜智兆科技",
+    description: "智兆科技 積極推動環境保護、社會責任與公司治理，致力於成為永續發展的企業典範，為社會創造長遠價值。",
 }
 
 export default function ESGPage() {

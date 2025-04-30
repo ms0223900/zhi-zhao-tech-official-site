@@ -2,10 +2,11 @@ import CommonTrainingSection from "@/components/careers/CommonTrainingSection"
 import { employeeBenefitsCarouselItems, joinUsCarouselItems, talentTrainingCarouselItems } from "@/components/careers/data"
 import Banner from "@/components/common/Banner"
 import LinkCard from "@/components/common/LinkCard"
+import { Metadata } from "next"
 
-export const metadata = {
-    title: '人才專區',
-    description: '加入我們的團隊',
+export const metadata: Metadata = {
+    title: "人才招募 Careers｜ 加入智兆科技，共創雙贏未來",
+    description: "智兆科技致力於打造員工友善的工作環境與完善的福利制度 ，提供多元化的學習與成長機會，與我們一起，透過持續學習，突破自我界限，攜手共創未來。",
 }
 
 const linkCardList = [

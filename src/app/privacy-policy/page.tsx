@@ -1,4 +1,10 @@
 import TitleWithEngSubtitle from "@/components/common/TitleWithEngSubtitle";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "隱私權政策 Privacy Policy｜智兆科技",
+    description: "了解智兆科技如何蒐集、處理與保護您的個人資料，遵守個資法與國際資料保護法規。",
+};
 
 const PrivacyPolicyPage = () => {
     return (

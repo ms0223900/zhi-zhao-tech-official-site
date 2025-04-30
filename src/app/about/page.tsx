@@ -4,11 +4,10 @@ import RelatedIndustriesSection from "@/components/common/RelatedIndustriesSecti
 import React from "react";
 import Banner from "@/components/common/Banner";
 import TitleWithEngSubtitle from "@/components/common/TitleWithEngSubtitle";
-import { formatPageTitle } from "@/constants/metadata";
 
 export const metadata: Metadata = {
-    title: formatPageTitle("關於智兆"),
-    description: "關於智兆科技的介紹，我們的使命、價值觀和服務項目",
+    title: "關於智兆 About｜智兆科技",
+    description: "智兆科技企業有限公司成立於2012年，專注於無塵室工程、空調工程、製程管路及系統工程的整體解決方案。我們致力於為半導體、光電、生技化學及其他高科技產業提供優質的工程服務，以滿足客戶對高規格、高效率、高安全性的需求。",
 };
 
 export default function About() {
