@@ -216,7 +216,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     const project = await asyncGetProject(slug);
 
     return {
-        title: `工程案例 | ${project.title} - ${project.subtitle}`,
+        title: `${project.titleToDisplay} | 工程案例`,
         // You can add more metadata fields here if needed
         // description: project.description,
         // openGraph: {
