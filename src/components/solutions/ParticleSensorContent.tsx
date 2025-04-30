@@ -223,7 +223,7 @@ function ActualCaseSection() {
             <div className="container mt-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="flex flex-col gap-4 items-center">
-                        <button className="bg-transparent border-2 border border-blue-300 rounded-full py-2 md:px-[80px] px-[60px] text-center">
+                        <button className="bg-transparent border-2 border border-blue-300 rounded-full py-2 md:px-[80px] px-[60px] text-center cursor-default">
                             {"ESP03：T3固晶機內櫃"}
                         </button>
                         <div className="grid grid-cols-2 gap-4 mb-8">
@@ -232,7 +232,7 @@ function ActualCaseSection() {
                         </div>
                     </div>
                     <div className="flex flex-col gap-4 items-center">
-                        <button className="bg-transparent border-2 border border-blue-300 rounded-full py-2 md:px-[80px] px-[60px] text-center">
+                        <button className="bg-transparent border-2 border border-blue-300 rounded-full py-2 md:px-[80px] px-[60px] text-center cursor-default">
                             {"ESP02：T3印刷機內"}
                         </button>
                         <div className="grid grid-cols-2 gap-4 mb-8">

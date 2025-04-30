@@ -86,11 +86,11 @@ const ProjectList = ({ projects }: ProjectListProps) => {
         projects :
         projects.filter(project => project.related_project_genres.some(genre => genre.title === selectedGenre));
 
-    const paginatedProjects = new PaginatedList(
+    const paginatedProjects = useMemo(() => new PaginatedList(
         filteredProjects,
         currentPage,
         ITEMS_PER_PAGE
-    );
+    ), [filteredProjects, currentPage]);
 
     const handlePageChange = (page: number) => {
         setCurrentPage(page);
@@ -100,6 +100,10 @@ const ProjectList = ({ projects }: ProjectListProps) => {
         const allProjectGenres = projects.map(project => project.related_project_genres.map(genre => genre.title));
         return Array.from(new Set(allProjectGenres.flat()));
     }, [projects]);
+
+    const relatedProjects = useMemo(() => {
+        return paginatedProjects.paginatedItems.slice(2);
+    }, [paginatedProjects]);
 
     return (
         <div className="space-y-8">
@@ -140,20 +144,22 @@ const ProjectList = ({ projects }: ProjectListProps) => {
                                 buttonColor="bg-[#EACA00]"
                             />
                         </div>
-                        <div>
-                            <TitleWithEngSubtitle title="相關案例" subtitle="Related Cases" />
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                                {paginatedProjects.paginatedItems.slice(2).map((project) => (
-                                    <LinkCard
-                                        key={project.id}
-                                        imageWrapperClassName="aspect-[1.818] h-auto"
-                                        link={project.projectLink}
-                                        title={project.title}
-                                        subtitle={project.subtitle}
-                                        image={project.coverImageUrl} />
-                                ))}
+                        {relatedProjects.length > 0 && (
+                            <div>
+                                <TitleWithEngSubtitle title="相關案例" subtitle="Related Cases" />
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                    {relatedProjects.map((project) => (
+                                        <LinkCard
+                                            key={project.id}
+                                            imageWrapperClassName="aspect-[1.818] h-auto"
+                                            link={project.projectLink}
+                                            title={project.title}
+                                            subtitle={project.subtitle}
+                                            image={project.coverImageUrl} />
+                                    ))}
+                                </div>
                             </div>
-                        </div>
+                        )}
                     </div>
                 }
                 mobileComponent={<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
