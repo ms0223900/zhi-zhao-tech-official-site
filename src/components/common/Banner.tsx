@@ -20,8 +20,8 @@ function Banner({ title, subtitle, imageSrc, imgClassName }: BannerProps) {
                 />
             </div>
             <div className="relative h-full flex flex-col items-center justify-center text-center">
-                <div className="relative z-1 p-2">
-                    <div className="w-full h-full z-0 absolute bg-[#161616]/50 blur-[11px] mx-auto left-0" />
+                <div className="relative z-1 p-2 bg-[#161616]/50 py-4 px-8">
+                    {/* <div className="w-full h-full z-0 absolute bg-[#161616]/50 mx-auto left-0" /> */}
                     <h1 className="relative text-white z-1 text-5xl font-bold mb-4">{title}</h1>
                     <p className="relative text-white z-1 text-xl tracking-widest">{subtitle}</p>
                 </div>
