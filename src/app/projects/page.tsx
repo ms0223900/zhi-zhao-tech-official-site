@@ -16,7 +16,7 @@ export default async function ProjectsPage() {
             <Banner
                 title="工程實績"
                 subtitle="Project Performance"
-                imageSrc="/images/projects-banner.jpg"
+                imageSrc="/images/projects-banner.webp"
             />
             <section className="theme-gradient-blue px-4">
                 <div className="container mx-auto py-8">
