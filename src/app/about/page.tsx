@@ -4,6 +4,7 @@ import RelatedIndustriesSection from "@/components/common/RelatedIndustriesSecti
 import React from "react";
 import Banner from "@/components/common/Banner";
 import TitleWithEngSubtitle from "@/components/common/TitleWithEngSubtitle";
+import RwdComponent from "@/components/common/RwdComponent";
 
 export const metadata: Metadata = {
     title: "關於智兆 About｜智兆科技",
@@ -164,11 +165,29 @@ function CompanyAdvantagesSection() {
                     ))}
                 </div>
                 <div className="mt-12 text-center bg-white border border-[#95DDFF] shadow-xl p-6 rounded-lg">
-                    <p className="text-gray-700 max-w-2xl mx-auto text-h4 leading-[200%]">
-                        智兆科技堅信，透過專業的技術、細緻的管理與客戶至上的理念<br />
-                        我們能為各產業提供最佳的系統工程解決方案<br />
-                        成為業界的領導者與客戶的最佳夥伴
-                    </p>
+                    <RwdComponent
+                        desktopComponent={
+                            <p className="text-gray-700 max-w-2xl mx-auto text-h4 leading-[200%]">
+                                智兆科技堅信，透過專業的技術、細緻的管理與客戶至上的理念<br />
+                                我們能為各產業提供最佳的系統工程解決方案<br />
+                                成為業界的領導者與客戶的最佳夥伴
+                            </p>
+                        }
+                        mobileComponent={
+                            <p className="text-gray-700 max-w-2xl mx-auto text-h5 leading-[150%] whitespace-pre-line">
+                                {`智兆科技堅信
+透過專業技術
+細緻的管理
+客戶至上的理念
+
+我們能為各產業提供
+最佳的系統工程解決方案
+成為業界的領導者
+與客戶的最佳夥伴`}
+                            </p>
+                        }
+                    />
+
                 </div>
             </div>
         </section>
