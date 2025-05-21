@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: NewsArticleProps): Promise<Me
 
     return {
         title: formatPageTitle(article.title),
-        description: article.subtitle,
+        description: article.content.replace(/\s+/g, ' ').trim(),
         openGraph: {
             title: article.title,
             description: article.subtitle,
