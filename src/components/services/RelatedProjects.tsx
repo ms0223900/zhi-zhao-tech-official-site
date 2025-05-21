@@ -44,11 +44,11 @@ async function fetchRelatedProjects(slug: string): Promise<RelatedProjectVO[]> {
             projects: ProjectDto[];
         }>({
             query: gql`
-        query GetRelatedProjects($key: String!) {
+        query GetRelatedProjects($genres: [String]) {
   projects(filters:  {
-     related_project_genre:  {
+     related_project_genres:  {
         key:  {
-           eq: $key
+           in: $genres
         }
      }
   }) {
@@ -65,7 +65,7 @@ async function fetchRelatedProjects(slug: string): Promise<RelatedProjectVO[]> {
 }
       `,
             variables: {
-                key: slug
+                genres: [slug]
             },
             fetchPolicy: 'no-cache',
         });
