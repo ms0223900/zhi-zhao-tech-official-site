@@ -20,22 +20,30 @@ interface ProjectDto {
     };
 }
 
-interface RelatedProjectVO {
-    id: string;
-    title: string;
-    subtitle: string;
-    image: {
-        url: string;
-    }[];
+class RelatedProjectVO {
+    private constructor(
+        public readonly id: string,
+        public readonly title: string,
+        public readonly subtitle: string,
+        public readonly image: { url: string }[]
+    ) { }
+
+    static create(dto: ProjectDto): RelatedProjectVO {
+        return new RelatedProjectVO(
+            dto.documentId,
+            dto.title,
+            dto.subtitle,
+            dto.image || []
+        );
+    }
+
+    get projectLink(): string {
+        return this.id ? `/projects/${this.id}` : '';
+    }
 }
 
 const ProjectConverter = {
-    toVo: (dto: ProjectDto): RelatedProjectVO => ({
-        id: dto.documentId,
-        title: dto.title,
-        subtitle: dto.subtitle,
-        image: dto.image || []
-    })
+    toVo: (dto: ProjectDto): RelatedProjectVO => RelatedProjectVO.create(dto)
 };
 
 async function fetchRelatedProjects(slug: string): Promise<RelatedProjectVO[]> {
@@ -110,7 +118,7 @@ function RelatedProjectsList({ slug }: RelatedProjectsProps) {
                 <LinkCard
                     key={project.id}
                     imageWrapperClassName="aspect-[1.818] h-auto"
-                    link={`/services/${project.id}`}
+                    link={`/projects/${project.id}`}
                     title={project.title}
                     subtitle={project.subtitle}
                     image={project.image[0]?.url ? replaceS3UrlWithCloudFront(project.image[0].url) : ''}
