@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
     return {
         title: formatPageTitle(service.title),
-        description: service.subtitle,
+        description: service.description,
     }
 }
 
