@@ -53,13 +53,13 @@ function WelcomeSection() {
                     </div>
                     <div className="flex-1 relative md:block hidden">
                         <div className="absolute inset-0">
-                            <img src="/images/welcome-person-right.png" alt="歡迎來到智兆科技" className="w-full h-full object-contain" />
+                            <img src="/images/welcome-person-right.webp" alt="歡迎來到智兆科技" className="w-full h-full object-contain" />
                         </div>
-                        <div className="absolute top-[20px] right-[180px] bg-white rounded-lg p-2">
+                        <div className="absolute top-[20px] right-[200px] bg-white rounded-lg p-2">
                             <div className="text-[#2196F3] text-h1 text-center mb-2">500+</div>
                             <div className="text-gray-500 text-sm text-center">專業</div>
                         </div>
-                        <div className="absolute w-[150px] top-[100px] right-[260px] bg-white rounded-lg p-2">
+                        <div className="absolute w-[150px] top-[60px] right-[300px] bg-white rounded-lg p-2">
                             <div className="text-[#2196F3] text-h1 text-center">300+</div>
                             <div className="text-gray-500 text-sm text-center">熱忱</div>
                         </div>
