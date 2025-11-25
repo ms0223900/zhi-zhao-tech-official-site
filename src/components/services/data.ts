@@ -6,8 +6,7 @@ type ServiceId =
     'hvac' |
     'duct' |
     'civil' |
-    'steel' |
-    'waste-treatment'
+    'steel'
 
 export const services: Record<ServiceId, {
     id: ServiceId
@@ -64,7 +63,7 @@ export const services: Record<ServiceId, {
     },
     'process-piping': {
         id: 'process-piping',
-        title: '製程管路工程',
+        title: '二次配製程管路工程',
         subtitle: 'Process Piping Engineering',
         description: '提供高科技產業用製程管路設計與施工服務，包含特殊氣體、高純度氣體、純水、化學品、排廢水與真空系統。所有管材選用符合業界規範之高潔淨等級材料，並搭配自動控制與監測設備，確保整體製程穩定、安全。廣泛應用於半導體、光電、生技及化工產線。',
         content: '設計與安裝高精度製程管路系統，包含氣體、真空及化學管路，確保高科技產業的穩定運作與生產需求。',
@@ -131,19 +130,6 @@ export const services: Record<ServiceId, {
             '/images/services/steel/steel-4.jpg',
             '/images/services/steel/steel-5.jpg',
         ],
-    },
-    'waste-treatment': {
-        id: 'waste-treatment',
-        title: '廢水與廢氣處理工程',
-        subtitle: 'Environmental Engineering',
-        content: '設計與建置廢水及廢氣處理系統，涵蓋一般、酸鹼、有機及熱排氣，實現環保法規要求與永續經營目標。',
-        description: '針對生產過程中產生的廢水、酸鹼廢氣與有機廢氣，提供完整的處理系統設計與建置服務，確保符合法規標準。包含酸鹼中和塔、活性碳過濾器、RO系統等，可依產業類型量身規劃。協助企業落實環保責任與ESG永續目標，降低風險與營運成本。',
-        imageList: [
-            '/images/services/waste-treatment/cover.jpg',
-            '/images/services/waste-treatment/waste-treatment-1.jpg',
-            '/images/services/waste-treatment/waste-treatment-2.jpg',
-            '/images/services/waste-treatment/waste-treatment-3.jpg',
-            '/images/services/waste-treatment/waste-treatment-4.jpg',
-        ],
-    },
+    }
+
 }

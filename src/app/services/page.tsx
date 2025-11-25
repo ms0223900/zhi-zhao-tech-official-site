@@ -1,6 +1,6 @@
-import { Metadata } from 'next'
-import { services } from '@/components/services/data'
 import LinkCard from '@/components/common/LinkCard'
+import { services } from '@/components/services/data'
+import { Metadata } from 'next'
 
 export const metadata: Metadata = {
     title: "服務項目 Service｜智兆科技",
@@ -16,7 +16,6 @@ const serviceList = [
     services['duct'],
     services['civil'],
     services['steel'],
-    services['waste-treatment'],
 ]
 
 const ITEM_PER_ROW = 3;
