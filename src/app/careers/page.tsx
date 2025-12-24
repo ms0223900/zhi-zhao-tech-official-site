@@ -3,6 +3,7 @@ import CommonTrainingSection from "@/components/careers/CommonTrainingSection"
 import { employeeBenefitsCarouselItems, joinUsCarouselItems, talentTrainingCarouselItems } from "@/components/careers/data"
 import Banner from "@/components/common/Banner"
 import LinkCard from "@/components/common/LinkCard"
+import { FEATURE_NAMES, isFeatureEnabled } from "@/config/featureToggle"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
@@ -42,11 +43,13 @@ export default function CareersPage() {
                 imgClassName="object-bottom"
             />
             {/* 我們的日常 - Career News */}
-            <section className="w-full py-16">
-                <div className="container mx-auto">
-                    <CareerNewsList />
-                </div>
-            </section>
+            {isFeatureEnabled(FEATURE_NAMES.CAREER_NEWS) && (
+                <section className="w-full py-16">
+                    <div className="container mx-auto">
+                        <CareerNewsList />
+                    </div>
+                </section>
+            )}
             <section className="container mx-auto px-4 py-16">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     {linkCardList.map((item) => (

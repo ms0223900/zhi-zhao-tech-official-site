@@ -5,3 +5,7 @@ NEXT_PUBLIC_S3_BUCKET_URL=
 
 # strapi
 NEXT_STRAPI_TOKEN=
+
+# Feature Toggles
+# 設定為 'true' 以啟用功能，預設為 false (功能關閉)
+# NEXT_PUBLIC_FEATURE_CAREER_NEWS=true
