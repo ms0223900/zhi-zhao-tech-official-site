@@ -195,79 +195,180 @@ interface Comment {
 
 ---
 
-### 2.3 API 需求
+### 2.3 文章 API
 
-#### 2.3.1 文章列表 API
+文章 API Schema 格式沿用 `src/lib/graphql.ts` 中的 News 格式，確保與現有架構一致。
 
-**端點**：`GET /api/team-daily/articles`
+#### 2.3.1 TypeScript 類型定義
 
-**查詢參數**：
-- `page`: number（頁碼，預設 1）
-- `limit`: number（每頁數量，預設 3）
-- `tag`: string（標籤篩選，可選：'TOP' | 'NEW'）
+```typescript
+// 應用層使用的文章類型
+export interface TeamDailyItem {
+  id: string;
+  title: string;
+  subtitle: string;
+  content: string;
+  cover: {
+    url: string;
+    alternativeText?: string;
+  };
+  publishedAt: string;
+  updatedAt: string;
+  slug: string;
+  tags?: ArticleTag[];
+}
 
-**回應格式**：
-```json
-{
-  "data": {
-    "articles": TeamDailyArticle[],
-    "pagination": {
-      "currentPage": number,
-      "totalPages": number,
-      "totalItems": number,
-      "itemsPerPage": number
+// GraphQL 響應類型
+export interface TeamDailyGqlItem {
+  documentId: string;
+  title: string;
+  subtitle: string;
+  content: string;
+  publishedAt: string;
+  updatedAt: string;
+  cover: {
+    documentId: string;
+    url: string;
+  };
+  tags?: {
+    type: string;
+    label: string;
+  }[];
+}
+
+// GraphQL 響應包裝類型
+export interface TeamDailyListResponse {
+  teamDailyArticles: TeamDailyGqlItem[];
+}
+
+export interface TeamDailySlugsResponse {
+  teamDailyArticles: {
+    documentId: string;
+  }[];
+}
+```
+
+#### 2.3.2 數據轉換函數
+
+```typescript
+// 將 GraphQL 響應轉換為應用使用的格式
+export function transformTeamDailyData(item: TeamDailyGqlItem): TeamDailyItem {
+  return {
+    id: item.documentId,
+    title: item.title,
+    subtitle: item.subtitle,
+    publishedAt: item.publishedAt,
+    updatedAt: item.updatedAt,
+    content: item.content,
+    slug: item.documentId,
+    cover: {
+      url: replaceS3UrlWithCloudFront(item.cover.url),
+    },
+    tags: item.tags?.map(tag => ({
+      type: tag.type as 'TOP' | 'NEW',
+      label: tag.label,
+      color: tag.type === 'TOP' ? '#E57B42' : '#55BBF9'
+    }))
+  };
+}
+```
+
+#### 2.3.3 GraphQL 查詢
+
+```typescript
+// GraphQL Fragment
+export const TEAM_DAILY_FRAGMENT = gql`
+  fragment TeamDailyFragment on TeamDailyArticle {
+    documentId
+    title
+    subtitle
+    content
+    publishedAt
+    updatedAt
+    cover {
+      documentId
+      url
+    }
+    tags {
+      type
+      label
     }
   }
-}
+`;
+
+// 獲取文章列表查詢
+export const GET_TEAM_DAILY_LIST = gql`
+  query GetTeamDailyList {
+    teamDailyArticles(sort: ["updatedAt:desc"]) {
+      ...TeamDailyFragment
+    }
+  }
+  ${TEAM_DAILY_FRAGMENT}
+`;
+
+// 獲取單一文章查詢
+export const GET_TEAM_DAILY_ARTICLE = gql`
+  query GetTeamDailyArticle($slug: ID!) {
+    teamDailyArticles(filters: { documentId: { eq: $slug } }) {
+      ...TeamDailyFragment
+    }
+  }
+  ${TEAM_DAILY_FRAGMENT}
+`;
+
+// 用於 generateStaticParams 的查詢
+export const GET_TEAM_DAILY_SLUGS = gql`
+  query GetTeamDailySlugs {
+    teamDailyArticles {
+      documentId
+    }
+  }
+`;
 ```
 
-#### 2.3.2 文章詳情 API
+#### 2.3.4 數據獲取函數
 
-**端點**：`GET /api/team-daily/articles/[slug]`
+```typescript
+// 獲取文章列表
+export async function fetchTeamDailyList(): Promise<TeamDailyItem[]> {
+  try {
+    const response = await csrClient.query<TeamDailyListResponse>({
+      query: GET_TEAM_DAILY_LIST,
+    });
+    return response.data?.teamDailyArticles.map(transformTeamDailyData) || [];
+  } catch (error) {
+    console.error('Failed to fetch team daily list:', error);
+    return [];
+  }
+}
 
-**回應格式**：
-```json
-{
-  "data": {
-    "article": TeamDailyArticle
+// 獲取單一文章
+export async function fetchTeamDailyArticle(slug: string): Promise<TeamDailyItem | null> {
+  try {
+    const response = await csrClient.query<TeamDailyListResponse>({
+      query: GET_TEAM_DAILY_ARTICLE,
+      variables: { slug },
+    });
+    const article = response.data?.teamDailyArticles[0];
+
+    if (!article) {
+      return null;
+    }
+
+    return transformTeamDailyData(article);
+  } catch (error) {
+    console.error('Failed to fetch team daily article:', error);
+    return null;
   }
 }
 ```
 
-#### 2.3.3 評論列表 API
-
-**端點**：`GET /api/team-daily/articles/[articleId]/comments`
-
-**回應格式**：
-```json
-{
-  "data": {
-    "comments": Comment[]
-  }
-}
-```
-
-#### 2.3.4 提交評論 API
-
-**端點**：`POST /api/team-daily/articles/[articleId]/comments`
-
-**請求體**：
-```json
-{
-  "author": string,
-  "content": string,
-  "isPinned": boolean（可選）
-}
-```
-
-**回應格式**：
-```json
-{
-  "data": {
-    "comment": Comment
-  }
-}
-```
+**注意事項**：
+- API Schema 格式與 News 保持一致，便於維護與擴展
+- 使用相同的數據轉換模式（`transformTeamDailyData`）
+- 使用相同的錯誤處理策略
+- 圖片 URL 使用 `replaceS3UrlWithCloudFront` 進行轉換
+- 在 Strapi CMS 中需建立對應的 `TeamDailyArticle` 內容類型
 
 ---
 
