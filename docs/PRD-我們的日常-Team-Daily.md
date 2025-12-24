@@ -3,7 +3,7 @@
 ## 1. 專案概述
 
 ### 1.1 專案名稱
-人才專區 - 我們的日常 (Team Daily)
+人才專區 - 我們的日常 (Career News)
 
 ### 1.2 專案背景
 智兆科技官方網站人才專區需要新增「我們的日常」功能模組，用於展示公司內部日常活動、員工旅遊、生日慶祝、專案里程碑等內容，讓求職者和現有員工更深入了解公司文化與工作氛圍。
@@ -48,7 +48,7 @@
 
 **區塊標題**：
 - 中文標題：「我們的日常」
-- 英文副標題：「Team Daily」
+- 英文副標題：「Career News」
 - 樣式：淺藍色背景標題欄，與現有設計風格一致
 
 **文章列表項目**：
@@ -157,7 +157,7 @@
 #### 2.2.1 文章資料模型
 
 ```typescript
-interface TeamDailyArticle {
+interface CareerNewsArticle {
   id: string;                    // 唯一識別碼
   title: string;                  // 文章標題
   subtitle?: string;              // 副標題（可選）
@@ -203,7 +203,7 @@ interface Comment {
 
 ```typescript
 // 應用層使用的文章類型
-export interface TeamDailyItem {
+export interface CareerNewsItem {
   id: string;
   title: string;
   subtitle: string;
@@ -219,7 +219,7 @@ export interface TeamDailyItem {
 }
 
 // GraphQL 響應類型
-export interface TeamDailyGqlItem {
+export interface CareerNewsGqlItem {
   documentId: string;
   title: string;
   subtitle: string;
@@ -237,12 +237,12 @@ export interface TeamDailyGqlItem {
 }
 
 // GraphQL 響應包裝類型
-export interface TeamDailyListResponse {
-  teamDailyArticles: TeamDailyGqlItem[];
+export interface CareerNewsListResponse {
+  careerNewsArticles: CareerNewsGqlItem[];
 }
 
-export interface TeamDailySlugsResponse {
-  teamDailyArticles: {
+export interface CareerNewsSlugsResponse {
+  careerNewsArticles: {
     documentId: string;
   }[];
 }
@@ -252,7 +252,7 @@ export interface TeamDailySlugsResponse {
 
 ```typescript
 // 將 GraphQL 響應轉換為應用使用的格式
-export function transformTeamDailyData(item: TeamDailyGqlItem): TeamDailyItem {
+export function transformCareerNewsData(item: CareerNewsGqlItem): CareerNewsItem {
   return {
     id: item.documentId,
     title: item.title,
@@ -277,8 +277,8 @@ export function transformTeamDailyData(item: TeamDailyGqlItem): TeamDailyItem {
 
 ```typescript
 // GraphQL Fragment
-export const TEAM_DAILY_FRAGMENT = gql`
-  fragment TeamDailyFragment on TeamDailyArticle {
+export const CAREER_NEWS_FRAGMENT = gql`
+  fragment CareerNewsFragment on CareerNewsArticle {
     documentId
     title
     subtitle
@@ -297,29 +297,29 @@ export const TEAM_DAILY_FRAGMENT = gql`
 `;
 
 // 獲取文章列表查詢
-export const GET_TEAM_DAILY_LIST = gql`
-  query GetTeamDailyList {
-    teamDailyArticles(sort: ["updatedAt:desc"]) {
-      ...TeamDailyFragment
+export const GET_CAREER_NEWS_LIST = gql`
+  query GetCareerNewsList {
+    careerNewsArticles(sort: ["updatedAt:desc"]) {
+      ...CareerNewsFragment
     }
   }
-  ${TEAM_DAILY_FRAGMENT}
+  ${CAREER_NEWS_FRAGMENT}
 `;
 
 // 獲取單一文章查詢
-export const GET_TEAM_DAILY_ARTICLE = gql`
-  query GetTeamDailyArticle($slug: ID!) {
-    teamDailyArticles(filters: { documentId: { eq: $slug } }) {
-      ...TeamDailyFragment
+export const GET_CAREER_NEWS_ARTICLE = gql`
+  query GetCareerNewsArticle($slug: ID!) {
+    careerNewsArticles(filters: { documentId: { eq: $slug } }) {
+      ...CareerNewsFragment
     }
   }
-  ${TEAM_DAILY_FRAGMENT}
+  ${CAREER_NEWS_FRAGMENT}
 `;
 
 // 用於 generateStaticParams 的查詢
-export const GET_TEAM_DAILY_SLUGS = gql`
-  query GetTeamDailySlugs {
-    teamDailyArticles {
+export const GET_CAREER_NEWS_SLUGS = gql`
+  query GetCareerNewsSlugs {
+    careerNewsArticles {
       documentId
     }
   }
@@ -330,34 +330,34 @@ export const GET_TEAM_DAILY_SLUGS = gql`
 
 ```typescript
 // 獲取文章列表
-export async function fetchTeamDailyList(): Promise<TeamDailyItem[]> {
+export async function fetchCareerNewsList(): Promise<CareerNewsItem[]> {
   try {
-    const response = await csrClient.query<TeamDailyListResponse>({
-      query: GET_TEAM_DAILY_LIST,
+    const response = await csrClient.query<CareerNewsListResponse>({
+      query: GET_CAREER_NEWS_LIST,
     });
-    return response.data?.teamDailyArticles.map(transformTeamDailyData) || [];
+    return response.data?.careerNewsArticles.map(transformCareerNewsData) || [];
   } catch (error) {
-    console.error('Failed to fetch team daily list:', error);
+    console.error('Failed to fetch career news list:', error);
     return [];
   }
 }
 
 // 獲取單一文章
-export async function fetchTeamDailyArticle(slug: string): Promise<TeamDailyItem | null> {
+export async function fetchCareerNewsArticle(slug: string): Promise<CareerNewsItem | null> {
   try {
-    const response = await csrClient.query<TeamDailyListResponse>({
-      query: GET_TEAM_DAILY_ARTICLE,
+    const response = await csrClient.query<CareerNewsListResponse>({
+      query: GET_CAREER_NEWS_ARTICLE,
       variables: { slug },
     });
-    const article = response.data?.teamDailyArticles[0];
+    const article = response.data?.careerNewsArticles[0];
 
     if (!article) {
       return null;
     }
 
-    return transformTeamDailyData(article);
+    return transformCareerNewsData(article);
   } catch (error) {
-    console.error('Failed to fetch team daily article:', error);
+    console.error('Failed to fetch career news article:', error);
     return null;
   }
 }
@@ -365,22 +365,22 @@ export async function fetchTeamDailyArticle(slug: string): Promise<TeamDailyItem
 
 **注意事項**：
 - API Schema 格式與 News 保持一致，便於維護與擴展
-- 使用相同的數據轉換模式（`transformTeamDailyData`）
+- 使用相同的數據轉換模式（`transformCareerNewsData`）
 - 使用相同的錯誤處理策略
 - 圖片 URL 使用 `replaceS3UrlWithCloudFront` 進行轉換
-- 在 Strapi CMS 中需建立對應的 `TeamDailyArticle` 內容類型
+- 在 Strapi CMS 中需建立對應的 `CareerNewsArticle` 內容類型
 
 ---
 
 ### 2.4 頁面路由需求
 
 #### 2.4.1 文章列表頁
-- **路由**：`/careers/team-daily` 或 `/careers#team-daily`
-- **組件**：`TeamDailyListPage`
+- **路由**：`/careers/career-news` 或 `/careers#career-news`
+- **組件**：`CareerNewsListPage`
 
 #### 2.4.2 文章詳情頁
-- **路由**：`/careers/team-daily/[slug]`
-- **組件**：`TeamDailyArticlePage`
+- **路由**：`/careers/career-news/[slug]`
+- **組件**：`CareerNewsArticlePage`
 - **功能**：
   - 顯示完整文章內容
   - 顯示評論區塊
@@ -454,17 +454,17 @@ export async function fetchTeamDailyArticle(slug: string): Promise<TeamDailyItem
 src/
 ├── app/
 │   └── careers/
-│       └── team-daily/
+│       └── career-news/
 │           ├── page.tsx                    # 文章列表頁
 │           └── [slug]/
 │               └── page.tsx                # 文章詳情頁
 ├── components/
 │   └── careers/
-│       └── team-daily/
-│           ├── TeamDailyList.tsx           # 文章列表組件
-│           ├── TeamDailyArticleCard.tsx     # 文章卡片組件
-│           ├── TeamDailyPagination.tsx     # 分頁組件
-│           ├── TeamDailyComments.tsx       # 評論區組件
+│       └── career-news/
+│           ├── CareerNewsList.tsx           # 文章列表組件
+│           ├── CareerNewsArticleCard.tsx     # 文章卡片組件
+│           ├── CareerNewsPagination.tsx     # 分頁組件
+│           ├── CareerNewsComments.tsx       # 評論區組件
 │           ├── CommentForm.tsx              # 評論表單組件
 │           └── CommentList.tsx              # 評論列表組件
 └── lib/
@@ -474,7 +474,7 @@ src/
 ### 4.3 資料獲取策略
 
 **方案一：使用現有 GraphQL 架構**
-- 在 Strapi/CMS 中新增「Team Daily Article」內容類型
+- 在 Strapi/CMS 中新增「Career News Article」內容類型
 - 擴展 `src/lib/graphql.ts` 新增查詢
 - 使用 Server Components 獲取資料
 
