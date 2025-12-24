@@ -1,7 +1,8 @@
 'use client';
 
-import Link from 'next/link';
 import { NewsItem } from '@/lib/graphql';
+import { formatDate } from '@/utils/formatDate';
+import Link from 'next/link';
 import LinkCard from '../common/LinkCard';
 
 interface NewsCardProps {
@@ -9,12 +10,7 @@ interface NewsCardProps {
 }
 
 export function NewsCard({ item }: NewsCardProps) {
-    // 格式化日期
-    const formattedDate = new Date(item.publishedAt).toLocaleDateString('zh-TW', {
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-    }).replace(/\//g, '-');
+    const formattedDate = formatDate(item.publishedAt);
 
     // 根據 newsGenre 決定標籤顏色
     const getCategoryBgColor = () => {
