@@ -1,3 +1,8 @@
+import { formatPageTitle } from '@/constants/metadata';
+import { clientForServer } from '@/gql/client';
+import { fetchNewsArticle, GET_NEWS_SLUGS, NewsSlugsResponse } from '@/lib/graphql';
+import { formatDate } from '@/utils/formatDate';
+import { ArrowLeft } from 'lucide-react';
 import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -5,10 +10,6 @@ import { notFound } from 'next/navigation';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 import remarkGfm from 'remark-gfm';
-import { fetchNewsArticle, GET_NEWS_SLUGS, NewsSlugsResponse } from '@/lib/graphql';
-import { ArrowLeft } from 'lucide-react';
-import { clientForServer } from '@/gql/client';
-import { formatPageTitle } from '@/constants/metadata';
 
 interface NewsArticleProps {
     params: Promise<{
@@ -77,12 +78,7 @@ export default async function NewsArticlePage({ params }: NewsArticleProps) {
         notFound();
     }
 
-    // 格式化日期
-    const formattedDate = new Date(article.publishedAt).toLocaleDateString('zh-TW', {
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-    }).replace(/\//g, '-');
+    const formattedDate = formatDate(article.publishedAt);
 
     return (
         <main className="container mx-auto px-4 py-12">
