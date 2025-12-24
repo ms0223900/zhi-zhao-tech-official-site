@@ -1,3 +1,4 @@
+import { CareerNewsList } from "@/components/careers/career-news/CareerNewsList"
 import CommonTrainingSection from "@/components/careers/CommonTrainingSection"
 import { employeeBenefitsCarouselItems, joinUsCarouselItems, talentTrainingCarouselItems } from "@/components/careers/data"
 import Banner from "@/components/common/Banner"
@@ -40,6 +41,12 @@ export default function CareersPage() {
                 imageSrc="/images/careers/careers-banner.webp"
                 imgClassName="object-bottom"
             />
+            {/* 我們的日常 - Career News */}
+            <section className="w-full py-16">
+                <div className="container mx-auto">
+                    <CareerNewsList />
+                </div>
+            </section>
             <section className="container mx-auto px-4 py-16">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     {linkCardList.map((item) => (
