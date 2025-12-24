@@ -374,11 +374,7 @@ export async function fetchCareerNewsArticle(slug: string): Promise<CareerNewsIt
 
 ### 2.4 頁面路由需求
 
-#### 2.4.1 文章列表頁
-- **路由**：`/careers/career-news` 或 `/careers#career-news`
-- **組件**：`CareerNewsListPage`
-
-#### 2.4.2 文章詳情頁
+#### 2.4.1 文章詳情頁
 - **路由**：`/careers/career-news/[slug]`
 - **組件**：`CareerNewsArticlePage`
 - **功能**：
@@ -455,7 +451,6 @@ src/
 ├── app/
 │   └── careers/
 │       └── career-news/
-│           ├── page.tsx                    # 文章列表頁
 │           └── [slug]/
 │               └── page.tsx                # 文章詳情頁
 ├── components/
