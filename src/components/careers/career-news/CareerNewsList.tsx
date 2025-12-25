@@ -1,8 +1,31 @@
 'use client';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { useState, useMemo } from 'react';
 import { CareerNewsArticleCard } from './CareerNewsArticleCard';
+import { CareerNewsPagination } from './CareerNewsPagination';
 import { mockCareerNewsData } from './mockCareerNewsData';
+import { CareerNewsItem } from '@/lib/graphql';
+
+// 分頁工具類
+class PaginatedList<T> {
+  constructor(
+    private readonly items: T[],
+    private readonly currentPage: number,
+    private readonly itemsPerPage: number,
+  ) {}
+
+  get paginatedItems(): T[] {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    return this.items.slice(startIndex, startIndex + this.itemsPerPage);
+  }
+
+  get totalPages(): number {
+    return Math.ceil(this.items.length / this.itemsPerPage);
+  }
+}
+
+const ITEMS_PER_PAGE = 3;
 
 function CareerNewsListContent() {
   // 使用假資料
@@ -15,8 +38,23 @@ function CareerNewsListContent() {
   //   queryFn: () => fetchCareerNewsList(),
   // });
 
-  // 根據第一個使用者故事，只顯示前 3 篇文章
-  const displayedArticles = data?.slice(0, 3) || [];
+  const [currentPage, setCurrentPage] = useState(1);
+
+  // 分頁邏輯
+  const paginatedList = useMemo(
+    () => new PaginatedList<CareerNewsItem>(data || [], currentPage, ITEMS_PER_PAGE),
+    [data, currentPage]
+  );
+
+  const displayedArticles = paginatedList.paginatedItems;
+  const totalPages = paginatedList.totalPages;
+  const totalItems = data?.length || 0;
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    // 滾動到列表頂部，提供更好的用戶體驗
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   if (isFetching) {
     return (
@@ -40,7 +78,7 @@ function CareerNewsListContent() {
       {/* 標題欄 - 淺藍色背景 */}
       <div className="bg-[#55BBF9]/30 py-4 px-4 md:px-8 w-full flex flex-row items-center gap-2">
         <h2 className="text-h2 font-bold text-[#282423]">我們的日常</h2>
-        <span className="text-h6 text-[#706F6F]">Team Daily</span>
+        <span className="text-h6 text-[#706F6F]">Career News</span>
       </div>
 
       {/* 文章列表 */}
@@ -51,6 +89,15 @@ function CareerNewsListContent() {
           ))}
         </div>
       </div>
+
+      {/* 分頁控制 */}
+      <CareerNewsPagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        totalItems={totalItems}
+        itemsPerPage={ITEMS_PER_PAGE}
+        onPageChange={handlePageChange}
+      />
     </div>
   );
 }
