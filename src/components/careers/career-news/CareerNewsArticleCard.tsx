@@ -2,6 +2,7 @@
 
 import { CareerNewsItem } from '@/lib/graphql';
 import { formatDate } from '@/utils/formatDate';
+import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 
 interface CareerNewsArticleCardProps {
@@ -15,22 +16,7 @@ export function CareerNewsArticleCard({ item }: CareerNewsArticleCardProps) {
     <Link href={`/careers/career-news/${item.slug}`} className="group">
       <div className="flex items-center gap-4 py-4 border-b border-gray-200 hover:bg-gray-50 transition-colors">
         {/* 箭頭圖示 */}
-        <div className="flex-shrink-0">
-          <svg
-            viewBox="0 0 15 28"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            className="w-4 h-7"
-          >
-            <path
-              d="M2 26.2358L13.0482 14.0001L2 1.7644"
-              stroke="#55BBF9"
-              strokeWidth="3"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </div>
+        <ArrowRight className="w-4 h-7 text-[#55BBF9]" />
 
         {/* 文章內容 */}
         <div className="flex-1 flex items-center justify-between gap-4 flex-wrap md:flex-nowrap">
