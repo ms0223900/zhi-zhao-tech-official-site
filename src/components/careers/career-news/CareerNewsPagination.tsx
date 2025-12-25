@@ -7,14 +7,6 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { PaginationControls } from './PaginationControls';
 
-// 分頁計算相關常數
-const MAX_VISIBLE_PAGES_WITHOUT_ELLIPSIS = 7;
-const PAGES_BEFORE_ELLIPSIS_WHEN_NEAR_START = 4;
-const PAGES_TO_SHOW_WHEN_NEAR_START = 5;
-const PAGES_FROM_END_TO_TRIGGER_END_MODE = 3;
-const PAGES_TO_SHOW_WHEN_NEAR_END = 5;
-const PAGES_AROUND_CURRENT = 2;
-
 interface CareerNewsPaginationProps {
   currentPage: number;
   totalPages: number;
@@ -30,52 +22,6 @@ interface PaginationFormValues {
   pageJump?: string;
 }
 
-/**
- * 計算要顯示的頁碼陣列
- * 總頁數 ≤ 7：顯示所有頁碼
- * 總頁數 > 7：顯示首頁、末頁、當前頁及前後各 2 頁，中間用「...」省略
- */
-function calculatePageNumbers(
-  currentPage: number,
-  totalPages: number
-): (number | 'ellipsis')[] {
-  if (totalPages <= MAX_VISIBLE_PAGES_WITHOUT_ELLIPSIS) {
-    // 顯示所有頁碼
-    return Array.from({ length: totalPages }, (_, i) => i + 1);
-  }
-
-  const pages: (number | 'ellipsis')[] = [];
-
-  // 總是顯示首頁
-  pages.push(1);
-
-  if (currentPage <= PAGES_BEFORE_ELLIPSIS_WHEN_NEAR_START) {
-    // 當前頁在前 4 頁，顯示 1-5 和末頁
-    for (let i = 2; i <= PAGES_TO_SHOW_WHEN_NEAR_START; i++) {
-      pages.push(i);
-    }
-    pages.push('ellipsis');
-    pages.push(totalPages);
-  } else if (currentPage >= totalPages - PAGES_FROM_END_TO_TRIGGER_END_MODE) {
-    // 當前頁在後 4 頁，顯示首頁和最後 5 頁
-    pages.push('ellipsis');
-    for (let i = totalPages - (PAGES_TO_SHOW_WHEN_NEAR_END - 1); i <= totalPages; i++) {
-      pages.push(i);
-    }
-  } else {
-    // 當前頁在中間，顯示首頁、當前頁前後各 2 頁、末頁
-    pages.push('ellipsis');
-    for (let i = currentPage - PAGES_AROUND_CURRENT; i <= currentPage + PAGES_AROUND_CURRENT; i++) {
-      pages.push(i);
-    }
-    pages.push('ellipsis');
-    pages.push(totalPages);
-  }
-
-  return pages;
-}
-
-
 export function CareerNewsPagination({
   currentPage,
   totalPages,
@@ -85,11 +31,6 @@ export function CareerNewsPagination({
   onPageChange,
   onItemsPerPageChange,
 }: CareerNewsPaginationProps) {
-  const pageNumbers = useMemo(
-    () => calculatePageNumbers(currentPage, totalPages),
-    [currentPage, totalPages]
-  );
-
   // 使用 useMemo 創建動態驗證 schema，避免每次渲染都重新創建
   const paginationSchema = useMemo(() => {
     return z.object({
@@ -270,7 +211,6 @@ export function CareerNewsPagination({
         <PaginationControls
           currentPage={currentPage}
           totalPages={totalPages}
-          pageNumbers={pageNumbers}
           onPrevious={handlePrevious}
           onNext={handleNext}
           onPageClick={handlePageClick}
