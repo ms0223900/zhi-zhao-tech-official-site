@@ -1,15 +1,26 @@
 'use client';
 
+import { cn } from '@/utils/cn';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useMemo } from 'react';
 
-// 分頁計算相關常數
-const MAX_VISIBLE_PAGES_WITHOUT_ELLIPSIS = 7;
-const PAGES_BEFORE_ELLIPSIS_WHEN_NEAR_START = 4;
-const PAGES_TO_SHOW_WHEN_NEAR_START = 5;
-const PAGES_FROM_END_TO_TRIGGER_END_MODE = 3;
-const PAGES_TO_SHOW_WHEN_NEAR_END = 5;
-const PAGES_AROUND_CURRENT = 2;
+/**
+ * 分頁計算相關常數
+ */
+const PAGINATION_CONFIG = {
+  /** 不顯示省略號的最大頁碼數 */
+  MAX_VISIBLE_PAGES_WITHOUT_ELLIPSIS: 7,
+  /** 當前頁在前幾頁時觸發「靠近起始」模式 */
+  PAGES_BEFORE_ELLIPSIS_WHEN_NEAR_START: 4,
+  /** 靠近起始時顯示的頁碼數 */
+  PAGES_TO_SHOW_WHEN_NEAR_START: 5,
+  /** 當前頁距離末頁幾頁時觸發「靠近結束」模式 */
+  PAGES_FROM_END_TO_TRIGGER_END_MODE: 3,
+  /** 靠近結束時顯示的頁碼數 */
+  PAGES_TO_SHOW_WHEN_NEAR_END: 5,
+  /** 當前頁前後各顯示的頁碼數 */
+  PAGES_AROUND_CURRENT: 2,
+} as const;
 
 interface PaginationControlsProps {
   currentPage: number;
@@ -35,26 +46,24 @@ interface PaginationButtonProps {
  * 取得導航按鈕的 className
  */
 function getNavigationButtonClassName(isDisabled: boolean): string {
-  const baseClasses = 'flex items-center justify-center w-10 h-10 rounded-md transition-colors';
-
-  if (isDisabled) {
-    return `${baseClasses} bg-gray-100 text-gray-400 cursor-not-allowed`;
-  }
-
-  return `${baseClasses} bg-white border border-gray-300 text-[#282423] hover:bg-[#55BBF9]/10 hover:border-[#55BBF9] cursor-pointer`;
+  return cn(
+    'flex items-center justify-center w-10 h-10 rounded-md transition-colors',
+    isDisabled
+      ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
+      : 'bg-white border border-gray-300 text-[#282423] hover:bg-[#55BBF9]/10 hover:border-[#55BBF9] cursor-pointer'
+  );
 }
 
 /**
  * 取得頁碼按鈕的 className
  */
 function getPageNumberButtonClassName(isActive: boolean): string {
-  const baseClasses = 'min-w-[40px] h-10 px-3 rounded-md text-sm font-medium transition-colors';
-
-  if (isActive) {
-    return `${baseClasses} bg-[#55BBF9] text-white`;
-  }
-
-  return `${baseClasses} bg-white border border-gray-300 text-[#282423] hover:bg-[#55BBF9]/10 hover:border-[#55BBF9]`;
+  return cn(
+    'min-w-[40px] h-10 px-3 rounded-md text-sm font-medium transition-colors',
+    isActive
+      ? 'bg-[#55BBF9] text-white'
+      : 'bg-white border border-gray-300 text-[#282423] hover:bg-[#55BBF9]/10 hover:border-[#55BBF9]'
+  );
 }
 
 /**
@@ -66,37 +75,47 @@ function calculatePageNumbers(
   currentPage: number,
   totalPages: number
 ): (number | 'ellipsis')[] {
+  const {
+    MAX_VISIBLE_PAGES_WITHOUT_ELLIPSIS,
+    PAGES_BEFORE_ELLIPSIS_WHEN_NEAR_START,
+    PAGES_TO_SHOW_WHEN_NEAR_START,
+    PAGES_FROM_END_TO_TRIGGER_END_MODE,
+    PAGES_TO_SHOW_WHEN_NEAR_END,
+    PAGES_AROUND_CURRENT,
+  } = PAGINATION_CONFIG;
+
+  // 如果總頁數不超過限制，顯示所有頁碼
   if (totalPages <= MAX_VISIBLE_PAGES_WITHOUT_ELLIPSIS) {
-    // 顯示所有頁碼
     return Array.from({ length: totalPages }, (_, i) => i + 1);
   }
 
-  const pages: (number | 'ellipsis')[] = [];
+  const pages: (number | 'ellipsis')[] = [1]; // 總是顯示首頁
 
-  // 總是顯示首頁
-  pages.push(1);
+  const isNearStart = currentPage <= PAGES_BEFORE_ELLIPSIS_WHEN_NEAR_START;
+  const isNearEnd = currentPage >= totalPages - PAGES_FROM_END_TO_TRIGGER_END_MODE;
 
-  if (currentPage <= PAGES_BEFORE_ELLIPSIS_WHEN_NEAR_START) {
-    // 當前頁在前 4 頁，顯示 1-5 和末頁
+  if (isNearStart) {
+    // 當前頁靠近起始：顯示 1-5 和末頁
     for (let i = 2; i <= PAGES_TO_SHOW_WHEN_NEAR_START; i++) {
       pages.push(i);
     }
+    pages.push('ellipsis', totalPages);
+  } else if (isNearEnd) {
+    // 當前頁靠近結束：顯示首頁和最後 5 頁
+    const startPage = totalPages - (PAGES_TO_SHOW_WHEN_NEAR_END - 1);
     pages.push('ellipsis');
-    pages.push(totalPages);
-  } else if (currentPage >= totalPages - PAGES_FROM_END_TO_TRIGGER_END_MODE) {
-    // 當前頁在後 4 頁，顯示首頁和最後 5 頁
-    pages.push('ellipsis');
-    for (let i = totalPages - (PAGES_TO_SHOW_WHEN_NEAR_END - 1); i <= totalPages; i++) {
+    for (let i = startPage; i <= totalPages; i++) {
       pages.push(i);
     }
   } else {
-    // 當前頁在中間，顯示首頁、當前頁前後各 2 頁、末頁
+    // 當前頁在中間：顯示首頁、當前頁前後各 2 頁、末頁
+    const startPage = currentPage - PAGES_AROUND_CURRENT;
+    const endPage = currentPage + PAGES_AROUND_CURRENT;
     pages.push('ellipsis');
-    for (let i = currentPage - PAGES_AROUND_CURRENT; i <= currentPage + PAGES_AROUND_CURRENT; i++) {
+    for (let i = startPage; i <= endPage; i++) {
       pages.push(i);
     }
-    pages.push('ellipsis');
-    pages.push(totalPages);
+    pages.push('ellipsis', totalPages);
   }
 
   return pages;
