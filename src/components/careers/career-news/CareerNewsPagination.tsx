@@ -1,10 +1,11 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 import { useEffect, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
+import { PaginationControls } from './PaginationControls';
 
 // 分頁計算相關常數
 const MAX_VISIBLE_PAGES_WITHOUT_ELLIPSIS = 7;
@@ -74,89 +75,6 @@ function calculatePageNumbers(
   return pages;
 }
 
-/**
- * 取得導航按鈕的 className
- */
-function getNavigationButtonClassName(isDisabled: boolean): string {
-  const baseClasses = 'flex items-center justify-center w-10 h-10 rounded-md transition-colors';
-
-  if (isDisabled) {
-    return `${baseClasses} bg-gray-100 text-gray-400 cursor-not-allowed`;
-  }
-
-  return `${baseClasses} bg-white border border-gray-300 text-[#282423] hover:bg-[#55BBF9]/10 hover:border-[#55BBF9] cursor-pointer`;
-}
-
-/**
- * 取得頁碼按鈕的 className
- */
-function getPageNumberButtonClassName(isActive: boolean): string {
-  const baseClasses = 'min-w-[40px] h-10 px-3 rounded-md text-sm font-medium transition-colors';
-
-  if (isActive) {
-    return `${baseClasses} bg-[#55BBF9] text-white`;
-  }
-
-  return `${baseClasses} bg-white border border-gray-300 text-[#282423] hover:bg-[#55BBF9]/10 hover:border-[#55BBF9]`;
-}
-
-/**
- * 省略號組件
- */
-function Ellipsis() {
-  return (
-    <span className="px-2 text-[#706F6F]">
-      ...
-    </span>
-  );
-}
-
-/**
- * 頁碼按鈕組件
- */
-interface PaginationButtonProps {
-  page: number;
-  isActive: boolean;
-  onClick: (page: number) => void;
-}
-
-function PaginationButton({ page, isActive, onClick }: PaginationButtonProps) {
-  return (
-    <button
-      onClick={() => onClick(page)}
-      className={getPageNumberButtonClassName(isActive)}
-      aria-label={`第 ${page} 頁`}
-      aria-current={isActive ? 'page' : undefined}
-    >
-      {page}
-    </button>
-  );
-}
-
-/**
- * 導航按鈕組件（上一頁/下一頁）
- */
-interface NavigationButtonProps {
-  direction: 'prev' | 'next';
-  isDisabled: boolean;
-  onClick: () => void;
-}
-
-function NavigationButton({ direction, isDisabled, onClick }: NavigationButtonProps) {
-  const Icon = direction === 'prev' ? ChevronLeft : ChevronRight;
-  const ariaLabel = direction === 'prev' ? '上一頁' : '下一頁';
-
-  return (
-    <button
-      onClick={onClick}
-      disabled={isDisabled}
-      className={getNavigationButtonClassName(isDisabled)}
-      aria-label={ariaLabel}
-    >
-      <Icon className="w-5 h-5" />
-    </button>
-  );
-}
 
 export function CareerNewsPagination({
   currentPage,
@@ -349,41 +267,14 @@ export function CareerNewsPagination({
         </div>
 
         {/* 右側：分頁控制 */}
-        {totalPages > 1 && (
-          <div className="flex items-center gap-2">
-            {/* 上一頁按鈕 */}
-            <NavigationButton
-              direction="prev"
-              isDisabled={currentPage === 1}
-              onClick={handlePrevious}
-            />
-
-            {/* 頁碼按鈕 */}
-            <div className="flex items-center gap-1">
-              {pageNumbers.map((page, index) => {
-                if (page === 'ellipsis') {
-                  return <Ellipsis key={`ellipsis-${index}`} />;
-                }
-
-                return (
-                  <PaginationButton
-                    key={page}
-                    page={page}
-                    isActive={page === currentPage}
-                    onClick={handlePageClick}
-                  />
-                );
-              })}
-            </div>
-
-            {/* 下一頁按鈕 */}
-            <NavigationButton
-              direction="next"
-              isDisabled={currentPage === totalPages}
-              onClick={handleNext}
-            />
-          </div>
-        )}
+        <PaginationControls
+          currentPage={currentPage}
+          totalPages={totalPages}
+          pageNumbers={pageNumbers}
+          onPrevious={handlePrevious}
+          onNext={handleNext}
+          onPageClick={handlePageClick}
+        />
       </div>
     </div>
   );
