@@ -1,11 +1,11 @@
 'use client';
 
+import { CareerNewsItem } from '@/lib/graphql';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { useState, useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { CareerNewsArticleCard } from './CareerNewsArticleCard';
 import { CareerNewsPagination } from './CareerNewsPagination';
 import { mockCareerNewsData } from './mockCareerNewsData';
-import { CareerNewsItem } from '@/lib/graphql';
 
 // 分頁工具類
 class PaginatedList<T> {
@@ -13,7 +13,7 @@ class PaginatedList<T> {
     private readonly items: T[],
     private readonly currentPage: number,
     private readonly itemsPerPage: number,
-  ) {}
+  ) { }
 
   get paginatedItems(): T[] {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
