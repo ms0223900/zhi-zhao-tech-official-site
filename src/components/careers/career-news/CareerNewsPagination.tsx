@@ -3,6 +3,14 @@
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useMemo } from 'react';
 
+// 分頁計算相關常數
+const MAX_VISIBLE_PAGES_WITHOUT_ELLIPSIS = 7;
+const PAGES_BEFORE_ELLIPSIS_WHEN_NEAR_START = 4;
+const PAGES_TO_SHOW_WHEN_NEAR_START = 5;
+const PAGES_FROM_END_TO_TRIGGER_END_MODE = 3;
+const PAGES_TO_SHOW_WHEN_NEAR_END = 5;
+const PAGES_AROUND_CURRENT = 2;
+
 interface CareerNewsPaginationProps {
   currentPage: number;
   totalPages: number;
@@ -20,7 +28,7 @@ function calculatePageNumbers(
   currentPage: number,
   totalPages: number
 ): (number | 'ellipsis')[] {
-  if (totalPages <= 7) {
+  if (totalPages <= MAX_VISIBLE_PAGES_WITHOUT_ELLIPSIS) {
     // 顯示所有頁碼
     return Array.from({ length: totalPages }, (_, i) => i + 1);
   }
@@ -30,23 +38,23 @@ function calculatePageNumbers(
   // 總是顯示首頁
   pages.push(1);
 
-  if (currentPage <= 4) {
+  if (currentPage <= PAGES_BEFORE_ELLIPSIS_WHEN_NEAR_START) {
     // 當前頁在前 4 頁，顯示 1-5 和末頁
-    for (let i = 2; i <= 5; i++) {
+    for (let i = 2; i <= PAGES_TO_SHOW_WHEN_NEAR_START; i++) {
       pages.push(i);
     }
     pages.push('ellipsis');
     pages.push(totalPages);
-  } else if (currentPage >= totalPages - 3) {
+  } else if (currentPage >= totalPages - PAGES_FROM_END_TO_TRIGGER_END_MODE) {
     // 當前頁在後 4 頁，顯示首頁和最後 5 頁
     pages.push('ellipsis');
-    for (let i = totalPages - 4; i <= totalPages; i++) {
+    for (let i = totalPages - (PAGES_TO_SHOW_WHEN_NEAR_END - 1); i <= totalPages; i++) {
       pages.push(i);
     }
   } else {
     // 當前頁在中間，顯示首頁、當前頁前後各 2 頁、末頁
     pages.push('ellipsis');
-    for (let i = currentPage - 2; i <= currentPage + 2; i++) {
+    for (let i = currentPage - PAGES_AROUND_CURRENT; i <= currentPage + PAGES_AROUND_CURRENT; i++) {
       pages.push(i);
     }
     pages.push('ellipsis');
@@ -54,6 +62,90 @@ function calculatePageNumbers(
   }
 
   return pages;
+}
+
+/**
+ * 取得導航按鈕的 className
+ */
+function getNavigationButtonClassName(isDisabled: boolean): string {
+  const baseClasses = 'flex items-center justify-center w-10 h-10 rounded-md transition-colors';
+
+  if (isDisabled) {
+    return `${baseClasses} bg-gray-100 text-gray-400 cursor-not-allowed`;
+  }
+
+  return `${baseClasses} bg-white border border-gray-300 text-[#282423] hover:bg-[#55BBF9]/10 hover:border-[#55BBF9] cursor-pointer`;
+}
+
+/**
+ * 取得頁碼按鈕的 className
+ */
+function getPageNumberButtonClassName(isActive: boolean): string {
+  const baseClasses = 'min-w-[40px] h-10 px-3 rounded-md text-sm font-medium transition-colors';
+
+  if (isActive) {
+    return `${baseClasses} bg-[#55BBF9] text-white`;
+  }
+
+  return `${baseClasses} bg-white border border-gray-300 text-[#282423] hover:bg-[#55BBF9]/10 hover:border-[#55BBF9]`;
+}
+
+/**
+ * 省略號組件
+ */
+function Ellipsis() {
+  return (
+    <span className="px-2 text-[#706F6F]">
+      ...
+    </span>
+  );
+}
+
+/**
+ * 頁碼按鈕組件
+ */
+interface PaginationButtonProps {
+  page: number;
+  isActive: boolean;
+  onClick: (page: number) => void;
+}
+
+function PaginationButton({ page, isActive, onClick }: PaginationButtonProps) {
+  return (
+    <button
+      onClick={() => onClick(page)}
+      className={getPageNumberButtonClassName(isActive)}
+      aria-label={`第 ${page} 頁`}
+      aria-current={isActive ? 'page' : undefined}
+    >
+      {page}
+    </button>
+  );
+}
+
+/**
+ * 導航按鈕組件（上一頁/下一頁）
+ */
+interface NavigationButtonProps {
+  direction: 'prev' | 'next';
+  isDisabled: boolean;
+  onClick: () => void;
+}
+
+function NavigationButton({ direction, isDisabled, onClick }: NavigationButtonProps) {
+  const Icon = direction === 'prev' ? ChevronLeft : ChevronRight;
+  const ariaLabel = direction === 'prev' ? '上一頁' : '下一頁';
+
+  return (
+    <button
+      onClick={onClick}
+      disabled={isDisabled}
+      className={getNavigationButtonClassName(isDisabled)}
+      aria-label={ariaLabel}
+    >
+      <Icon className="w-5 h-5" />
+    </button>
+  );
 }
 
 export function CareerNewsPagination({
@@ -97,75 +189,36 @@ export function CareerNewsPagination({
       {totalPages > 1 && (
         <div className="flex items-center gap-2">
           {/* 上一頁按鈕 */}
-          <button
+          <NavigationButton
+            direction="prev"
+            isDisabled={currentPage === 1}
             onClick={handlePrevious}
-            disabled={currentPage === 1}
-            className={`
-            flex items-center justify-center w-10 h-10 rounded-md
-            transition-colors
-            ${currentPage === 1
-                ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                : 'bg-white border border-gray-300 text-[#282423] hover:bg-[#55BBF9]/10 hover:border-[#55BBF9] cursor-pointer'
-              }
-          `}
-            aria-label="上一頁"
-          >
-            <ChevronLeft className="w-5 h-5" />
-          </button>
+          />
 
           {/* 頁碼按鈕 */}
           <div className="flex items-center gap-1">
             {pageNumbers.map((page, index) => {
               if (page === 'ellipsis') {
-                return (
-                  <span
-                    key={`ellipsis-${index}`}
-                    className="px-2 text-[#706F6F]"
-                  >
-                    ...
-                  </span>
-                );
+                return <Ellipsis key={`ellipsis-${index}`} />;
               }
 
-              const isActive = page === currentPage;
-
               return (
-                <button
+                <PaginationButton
                   key={page}
-                  onClick={() => handlePageClick(page)}
-                  className={`
-                  min-w-[40px] h-10 px-3 rounded-md text-sm font-medium
-                  transition-colors
-                  ${isActive
-                      ? 'bg-[#55BBF9] text-white'
-                      : 'bg-white border border-gray-300 text-[#282423] hover:bg-[#55BBF9]/10 hover:border-[#55BBF9]'
-                    }
-                `}
-                  aria-label={`第 ${page} 頁`}
-                  aria-current={isActive ? 'page' : undefined}
-                >
-                  {page}
-                </button>
+                  page={page}
+                  isActive={page === currentPage}
+                  onClick={handlePageClick}
+                />
               );
             })}
           </div>
 
           {/* 下一頁按鈕 */}
-          <button
+          <NavigationButton
+            direction="next"
+            isDisabled={currentPage === totalPages}
             onClick={handleNext}
-            disabled={currentPage === totalPages}
-            className={`
-            flex items-center justify-center w-10 h-10 rounded-md
-            transition-colors
-            ${currentPage === totalPages
-                ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                : 'bg-white border border-gray-300 text-[#282423] hover:bg-[#55BBF9]/10 hover:border-[#55BBF9] cursor-pointer'
-              }
-          `}
-            aria-label="下一頁"
-          >
-            <ChevronRight className="w-5 h-5" />
-          </button>
+          />
         </div>
       )}
 
