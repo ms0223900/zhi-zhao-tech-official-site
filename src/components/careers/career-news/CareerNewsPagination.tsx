@@ -1,7 +1,7 @@
 'use client';
 
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 // 分頁計算相關常數
 const MAX_VISIBLE_PAGES_WITHOUT_ELLIPSIS = 7;
@@ -16,7 +16,9 @@ interface CareerNewsPaginationProps {
   totalPages: number;
   totalItems: number;
   itemsPerPage: number;
+  itemsPerPageOptions: number[];
   onPageChange: (page: number) => void;
+  onItemsPerPageChange: (itemsPerPage: number) => void;
 }
 
 /**
@@ -153,12 +155,22 @@ export function CareerNewsPagination({
   totalPages,
   totalItems,
   itemsPerPage,
+  itemsPerPageOptions,
   onPageChange,
+  onItemsPerPageChange,
 }: CareerNewsPaginationProps) {
+  const [pageJumpInput, setPageJumpInput] = useState<string>('');
+  const [selectedItemsPerPage, setSelectedItemsPerPage] = useState<string>(itemsPerPage.toString());
+
   const pageNumbers = useMemo(
     () => calculatePageNumbers(currentPage, totalPages),
     [currentPage, totalPages]
   );
+
+  // 當 itemsPerPage 從外部改變時，同步更新本地狀態
+  useEffect(() => {
+    setSelectedItemsPerPage(itemsPerPage.toString());
+  }, [itemsPerPage]);
 
   const handlePrevious = () => {
     if (currentPage > 1) {
@@ -178,56 +190,121 @@ export function CareerNewsPagination({
     }
   };
 
+  const handleFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    // 處理每頁顯示數量變更
+    const newItemsPerPage = parseInt(selectedItemsPerPage, 10);
+    if (newItemsPerPage && itemsPerPageOptions.includes(newItemsPerPage) && newItemsPerPage !== itemsPerPage) {
+      onItemsPerPageChange(newItemsPerPage);
+    }
+
+    // 處理頁碼跳轉
+    if (pageJumpInput) {
+      const targetPage = parseInt(pageJumpInput, 10);
+      if (targetPage >= 1 && targetPage <= totalPages) {
+        onPageChange(targetPage);
+        setPageJumpInput('');
+      }
+    }
+
+    // 滾動到列表頂部
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
-    <div className="w-full flex flex-col md:flex-row items-center justify-between gap-4 py-6 px-4 md:px-8">
-      {/* 左側：總筆數顯示 */}
-      <div className="text-sm text-[#706F6F]">
-        共 {totalItems} 筆資料
-      </div>
-
-      {/* 中間：分頁控制 */}
-      {totalPages > 1 && (
-        <div className="flex items-center gap-2">
-          {/* 上一頁按鈕 */}
-          <NavigationButton
-            direction="prev"
-            isDisabled={currentPage === 1}
-            onClick={handlePrevious}
-          />
-
-          {/* 頁碼按鈕 */}
+    <div className="w-full bg-gray-50 py-4 px-4 md:px-8">
+      <div className="w-full flex flex-col lg:flex-row items-center justify-between gap-4">
+        {/* 左側：每頁顯示數量選擇器和頁碼跳轉 */}
+        <form onSubmit={handleFormSubmit} className="flex flex-wrap items-center gap-2 text-sm text-[#706F6F]">
           <div className="flex items-center gap-1">
-            {pageNumbers.map((page, index) => {
-              if (page === 'ellipsis') {
-                return <Ellipsis key={`ellipsis-${index}`} />;
-              }
-
-              return (
-                <PaginationButton
-                  key={page}
-                  page={page}
-                  isActive={page === currentPage}
-                  onClick={handlePageClick}
-                />
-              );
-            })}
+            <span>每頁顯示</span>
+            <div className="relative">
+              <select
+                value={selectedItemsPerPage}
+                onChange={(e) => setSelectedItemsPerPage(e.target.value)}
+                className="appearance-none bg-white border border-gray-300 rounded px-2 py-1 pr-6 text-center text-sm text-[#282423] w-12 focus:outline-none focus:ring-2 focus:ring-[#55BBF9] focus:border-[#55BBF9] cursor-pointer"
+                aria-label="每頁顯示數量"
+              >
+                {itemsPerPageOptions.map((option) => (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                ))}
+              </select>
+              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-1 text-gray-700">
+                <ChevronRight className="w-3 h-3 rotate-90" />
+              </div>
+            </div>
+            <span>筆,到第</span>
+            <input
+              type="number"
+              min="1"
+              max={totalPages}
+              value={pageJumpInput}
+              onChange={(e) => setPageJumpInput(e.target.value)}
+              placeholder={currentPage.toString()}
+              className="w-10 bg-white border border-gray-300 rounded px-2 py-1 text-center text-sm text-[#282423] focus:outline-none focus:ring-2 focus:ring-[#55BBF9] focus:border-[#55BBF9]"
+              aria-label="跳轉到第幾頁"
+            />
+            <span>頁</span>
+            <button
+              type="submit"
+              className="bg-[#55BBF9] text-white px-3 py-1 rounded text-sm font-medium hover:bg-[#088DDE] transition-colors focus:outline-none focus:ring-2 focus:ring-[#55BBF9] focus:ring-offset-2 ml-1"
+            >
+              送出
+            </button>
           </div>
+        </form>
 
-          {/* 下一頁按鈕 */}
-          <NavigationButton
-            direction="next"
-            isDisabled={currentPage === totalPages}
-            onClick={handleNext}
-          />
+        {/* 中間：總筆數和當前頁碼顯示 */}
+        <div className="flex items-center gap-2 text-sm text-[#706F6F]">
+          <span>共 {totalItems} 筆資料</span>
+          {totalPages > 1 && (
+            <>
+              <span>,</span>
+              <span>第 {currentPage}/{totalPages} 頁</span>
+            </>
+          )}
         </div>
-      )}
 
-      {/* 右側：當前頁碼顯示 */}
-      {totalPages > 1 && (
-        <div className="text-sm text-[#706F6F]">
-          第 {currentPage} / {totalPages} 頁
-        </div>
-      )}
+        {/* 右側：分頁控制 */}
+        {totalPages > 1 && (
+          <div className="flex items-center gap-2">
+            {/* 上一頁按鈕 */}
+            <NavigationButton
+              direction="prev"
+              isDisabled={currentPage === 1}
+              onClick={handlePrevious}
+            />
+
+            {/* 頁碼按鈕 */}
+            <div className="flex items-center gap-1">
+              {pageNumbers.map((page, index) => {
+                if (page === 'ellipsis') {
+                  return <Ellipsis key={`ellipsis-${index}`} />;
+                }
+
+                return (
+                  <PaginationButton
+                    key={page}
+                    page={page}
+                    isActive={page === currentPage}
+                    onClick={handlePageClick}
+                  />
+                );
+              })}
+            </div>
+
+            {/* 下一頁按鈕 */}
+            <NavigationButton
+              direction="next"
+              isDisabled={currentPage === totalPages}
+              onClick={handleNext}
+            />
+          </div>
+        )}
+      </div>
     </div>
   );
 }

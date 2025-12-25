@@ -25,7 +25,8 @@ class PaginatedList<T> {
   }
 }
 
-const ITEMS_PER_PAGE = 3;
+const DEFAULT_ITEMS_PER_PAGE = 3;
+const ITEMS_PER_PAGE_OPTIONS = [3, 6, 9, 12];
 
 function CareerNewsListContent() {
   // 使用假資料
@@ -39,11 +40,12 @@ function CareerNewsListContent() {
   // });
 
   const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(DEFAULT_ITEMS_PER_PAGE);
 
   // 分頁邏輯
   const paginatedList = useMemo(
-    () => new PaginatedList<CareerNewsItem>(data || [], currentPage, ITEMS_PER_PAGE),
-    [data, currentPage]
+    () => new PaginatedList<CareerNewsItem>(data || [], currentPage, itemsPerPage),
+    [data, currentPage, itemsPerPage]
   );
 
   const displayedArticles = paginatedList.paginatedItems;
@@ -53,6 +55,16 @@ function CareerNewsListContent() {
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
     // 滾動到列表頂部，提供更好的用戶體驗
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleItemsPerPageChange = (newItemsPerPage: number) => {
+    setItemsPerPage(newItemsPerPage);
+    // 重新計算當前頁碼：如果當前頁超出範圍，調整到最後一頁
+    const newTotalPages = Math.ceil((data?.length || 0) / newItemsPerPage);
+    const adjustedPage = currentPage > newTotalPages ? newTotalPages : currentPage;
+    setCurrentPage(adjustedPage > 0 ? adjustedPage : 1);
+    // 滾動到列表頂部
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -95,8 +107,10 @@ function CareerNewsListContent() {
         currentPage={currentPage}
         totalPages={totalPages}
         totalItems={totalItems}
-        itemsPerPage={ITEMS_PER_PAGE}
+        itemsPerPage={itemsPerPage}
+        itemsPerPageOptions={ITEMS_PER_PAGE_OPTIONS}
         onPageChange={handlePageChange}
+        onItemsPerPageChange={handleItemsPerPageChange}
       />
     </div>
   );
