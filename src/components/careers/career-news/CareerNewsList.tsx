@@ -60,10 +60,8 @@ function CareerNewsListContent() {
 
   const handleItemsPerPageChange = (newItemsPerPage: number) => {
     setItemsPerPage(newItemsPerPage);
-    // 重新計算當前頁碼：如果當前頁超出範圍，調整到最後一頁
-    const newTotalPages = Math.ceil((data?.length || 0) / newItemsPerPage);
-    const adjustedPage = currentPage > newTotalPages ? newTotalPages : currentPage;
-    setCurrentPage(adjustedPage > 0 ? adjustedPage : 1);
+    // 改變每頁顯示數量時，一律跳轉到第 1 頁
+    setCurrentPage(1);
     // 滾動到列表頂部
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };

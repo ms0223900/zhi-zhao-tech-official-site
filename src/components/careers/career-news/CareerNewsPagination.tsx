@@ -161,6 +161,7 @@ export function CareerNewsPagination({
 }: CareerNewsPaginationProps) {
   const [pageJumpInput, setPageJumpInput] = useState<string>('');
   const [selectedItemsPerPage, setSelectedItemsPerPage] = useState<string>(itemsPerPage.toString());
+  const [pageJumpError, setPageJumpError] = useState<string>('');
 
   const pageNumbers = useMemo(
     () => calculatePageNumbers(currentPage, totalPages),
@@ -171,6 +172,11 @@ export function CareerNewsPagination({
   useEffect(() => {
     setSelectedItemsPerPage(itemsPerPage.toString());
   }, [itemsPerPage]);
+
+  // 當 currentPage 或 totalPages 改變時，清除錯誤訊息
+  useEffect(() => {
+    setPageJumpError('');
+  }, [currentPage, totalPages]);
 
   const handlePrevious = () => {
     if (currentPage > 1) {
@@ -190,6 +196,64 @@ export function CareerNewsPagination({
     }
   };
 
+  /**
+   * 驗證頁碼輸入是否有效
+   */
+  const validatePageInput = (value: string): boolean => {
+    if (!value || value.trim() === '') {
+      return false;
+    }
+
+    const pageNum = parseInt(value, 10);
+
+    // 檢查是否為有效數字
+    if (isNaN(pageNum)) {
+      return false;
+    }
+
+    // 檢查是否在有效範圍內
+    if (pageNum < 1 || pageNum > totalPages) {
+      return false;
+    }
+
+    return true;
+  };
+
+  /**
+   * 處理頁碼輸入變化，即時驗證
+   */
+  const handlePageJumpInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setPageJumpInput(value);
+
+    // 清除之前的錯誤
+    if (pageJumpError) {
+      setPageJumpError('');
+    }
+
+    // 如果輸入為空，不顯示錯誤
+    if (!value || value.trim() === '') {
+      return;
+    }
+
+    // 即時驗證輸入值
+    const pageNum = parseInt(value, 10);
+    if (isNaN(pageNum)) {
+      setPageJumpError('請輸入有效的數字');
+      return;
+    }
+
+    if (pageNum < 1) {
+      setPageJumpError(`頁碼不能小於 1`);
+      return;
+    }
+
+    if (pageNum > totalPages) {
+      setPageJumpError(`頁碼不能大於 ${totalPages}`);
+      return;
+    }
+  };
+
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -201,59 +265,104 @@ export function CareerNewsPagination({
 
     // 處理頁碼跳轉
     if (pageJumpInput) {
+      // 驗證輸入
+      if (!validatePageInput(pageJumpInput)) {
+        const pageNum = parseInt(pageJumpInput, 10);
+        if (isNaN(pageNum)) {
+          setPageJumpError('請輸入有效的數字');
+        } else if (pageNum < 1) {
+          setPageJumpError(`頁碼不能小於 1`);
+        } else if (pageNum > totalPages) {
+          setPageJumpError(`頁碼不能大於 ${totalPages}`);
+        }
+        return;
+      }
+
       const targetPage = parseInt(pageJumpInput, 10);
       if (targetPage >= 1 && targetPage <= totalPages) {
         onPageChange(targetPage);
         setPageJumpInput('');
+        setPageJumpError('');
+        // 滾動到列表頂部
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
+    } else {
+      // 如果沒有輸入頁碼，只處理每頁顯示數量變更
+      // 滾動到列表頂部
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-
-    // 滾動到列表頂部
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
     <div className="w-full bg-gray-50 py-4 px-4 md:px-8">
       <div className="w-full flex flex-col lg:flex-row items-center justify-between gap-4">
         {/* 左側：每頁顯示數量選擇器和頁碼跳轉 */}
-        <form onSubmit={handleFormSubmit} className="flex flex-wrap items-center gap-2 text-sm text-[#706F6F]">
-          <div className="flex items-center gap-1">
-            <span>每頁顯示</span>
-            <div className="relative">
-              <select
-                value={selectedItemsPerPage}
-                onChange={(e) => setSelectedItemsPerPage(e.target.value)}
-                className="appearance-none bg-white border border-gray-300 rounded px-2 py-1 pr-6 text-center text-sm text-[#282423] w-12 focus:outline-none focus:ring-2 focus:ring-[#55BBF9] focus:border-[#55BBF9] cursor-pointer"
-                aria-label="每頁顯示數量"
-              >
-                {itemsPerPageOptions.map((option) => (
-                  <option key={option} value={option}>
-                    {option}
-                  </option>
-                ))}
-              </select>
-              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-1 text-gray-700">
-                <ChevronRight className="w-3 h-3 rotate-90" />
+        <form onSubmit={handleFormSubmit} className="flex flex-wrap items-start gap-2 text-sm text-[#706F6F]">
+          <div className="flex flex-col">
+            <div className="flex items-center gap-1">
+              <span>每頁顯示</span>
+              <div className="relative">
+                <select
+                  value={selectedItemsPerPage}
+                  onChange={(e) => setSelectedItemsPerPage(e.target.value)}
+                  className="appearance-none bg-white border border-gray-300 rounded px-2 py-1 pr-6 text-center text-sm text-[#282423] w-12 focus:outline-none focus:ring-2 focus:ring-[#55BBF9] focus:border-[#55BBF9] cursor-pointer"
+                  aria-label="每頁顯示數量"
+                >
+                  {itemsPerPageOptions.map((option) => (
+                    <option key={option} value={option}>
+                      {option}
+                    </option>
+                  ))}
+                </select>
+                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-1 text-gray-700">
+                  <ChevronRight className="w-3 h-3 rotate-90" />
+                </div>
               </div>
+              <span>筆,到第</span>
+              <div className="relative">
+                <input
+                  type="number"
+                  min="1"
+                  max={totalPages}
+                  value={pageJumpInput}
+                  onChange={handlePageJumpInputChange}
+                  onBlur={() => {
+                    // 當失去焦點時，如果輸入無效，保留錯誤訊息
+                    if (pageJumpInput && !validatePageInput(pageJumpInput)) {
+                      // 錯誤訊息已由 handlePageJumpInputChange 設置
+                    }
+                  }}
+                  placeholder={currentPage.toString()}
+                  disabled={totalPages <= 1}
+                  className={`w-10 bg-white border rounded px-2 py-1 text-center text-sm text-[#282423] focus:outline-none focus:ring-2 focus:ring-[#55BBF9] focus:border-[#55BBF9] ${pageJumpError
+                    ? 'border-red-500 focus:border-red-500 focus:ring-red-500'
+                    : 'border-gray-300'
+                    } ${totalPages <= 1
+                      ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                      : ''
+                    }`}
+                  aria-label="跳轉到第幾頁"
+                  aria-invalid={pageJumpError ? 'true' : 'false'}
+                  aria-describedby={pageJumpError ? 'page-jump-error' : undefined}
+                />
+              </div>
+              <span>頁</span>
+              <button
+                type="submit"
+                className="bg-[#55BBF9] text-white px-3 py-1 rounded text-sm font-medium hover:bg-[#088DDE] transition-colors focus:outline-none focus:ring-2 focus:ring-[#55BBF9] focus:ring-offset-2 ml-1"
+              >
+                送出
+              </button>
             </div>
-            <span>筆,到第</span>
-            <input
-              type="number"
-              min="1"
-              max={totalPages}
-              value={pageJumpInput}
-              onChange={(e) => setPageJumpInput(e.target.value)}
-              placeholder={currentPage.toString()}
-              className="w-10 bg-white border border-gray-300 rounded px-2 py-1 text-center text-sm text-[#282423] focus:outline-none focus:ring-2 focus:ring-[#55BBF9] focus:border-[#55BBF9]"
-              aria-label="跳轉到第幾頁"
-            />
-            <span>頁</span>
-            <button
-              type="submit"
-              className="bg-[#55BBF9] text-white px-3 py-1 rounded text-sm font-medium hover:bg-[#088DDE] transition-colors focus:outline-none focus:ring-2 focus:ring-[#55BBF9] focus:ring-offset-2 ml-1"
-            >
-              送出
-            </button>
+            {pageJumpError && (
+              <span
+                id="page-jump-error"
+                className="mt-1 text-xs text-red-500 whitespace-nowrap"
+                role="alert"
+              >
+                {pageJumpError}
+              </span>
+            )}
           </div>
         </form>
 
