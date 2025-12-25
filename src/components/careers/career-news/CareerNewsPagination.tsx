@@ -1,7 +1,10 @@
 'use client';
 
+import { zodResolver } from '@hookform/resolvers/zod';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo } from 'react';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
 
 // 分頁計算相關常數
 const MAX_VISIBLE_PAGES_WITHOUT_ELLIPSIS = 7;
@@ -19,6 +22,11 @@ interface CareerNewsPaginationProps {
   itemsPerPageOptions: number[];
   onPageChange: (page: number) => void;
   onItemsPerPageChange: (itemsPerPage: number) => void;
+}
+
+interface PaginationFormValues {
+  itemsPerPage: string;
+  pageJump?: string;
 }
 
 /**
@@ -159,24 +167,56 @@ export function CareerNewsPagination({
   onPageChange,
   onItemsPerPageChange,
 }: CareerNewsPaginationProps) {
-  const [pageJumpInput, setPageJumpInput] = useState<string>('');
-  const [selectedItemsPerPage, setSelectedItemsPerPage] = useState<string>(itemsPerPage.toString());
-  const [pageJumpError, setPageJumpError] = useState<string>('');
-
   const pageNumbers = useMemo(
     () => calculatePageNumbers(currentPage, totalPages),
     [currentPage, totalPages]
   );
 
-  // 當 itemsPerPage 從外部改變時，同步更新本地狀態
-  useEffect(() => {
-    setSelectedItemsPerPage(itemsPerPage.toString());
-  }, [itemsPerPage]);
+  // 使用 useMemo 創建動態驗證 schema，避免每次渲染都重新創建
+  const paginationSchema = useMemo(() => {
+    return z.object({
+      itemsPerPage: z.string().refine(
+        (val) => {
+          const num = parseInt(val, 10);
+          return !isNaN(num) && itemsPerPageOptions.includes(num);
+        },
+        { message: '請選擇有效的每頁顯示數量' }
+      ),
+      pageJump: z.string().optional().refine(
+        (val) => {
+          if (!val || val.trim() === '') return true;
+          const pageNum = parseInt(val, 10);
+          if (isNaN(pageNum)) return false;
+          return pageNum >= 1 && pageNum <= totalPages;
+        },
+        { message: `頁碼必須在 1 到 ${totalPages} 之間` }
+      ),
+    });
+  }, [itemsPerPageOptions, totalPages]);
 
-  // 當 currentPage 或 totalPages 改變時，清除錯誤訊息
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+    reset,
+  } = useForm<PaginationFormValues>({
+    resolver: zodResolver(paginationSchema),
+    defaultValues: {
+      itemsPerPage: itemsPerPage.toString(),
+      pageJump: '',
+    },
+  });
+
+  // 當 itemsPerPage 從外部改變時，同步更新表單值
   useEffect(() => {
-    setPageJumpError('');
-  }, [currentPage, totalPages]);
+    setValue('itemsPerPage', itemsPerPage.toString());
+  }, [itemsPerPage, setValue]);
+
+  // 當 currentPage 或 totalPages 改變時，清除頁碼跳轉輸入
+  useEffect(() => {
+    setValue('pageJump', '');
+  }, [currentPage, totalPages, setValue]);
 
   const handlePrevious = () => {
     if (currentPage > 1) {
@@ -196,93 +236,22 @@ export function CareerNewsPagination({
     }
   };
 
-  /**
-   * 驗證頁碼輸入是否有效
-   */
-  const validatePageInput = (value: string): boolean => {
-    if (!value || value.trim() === '') {
-      return false;
-    }
-
-    const pageNum = parseInt(value, 10);
-
-    // 檢查是否為有效數字
-    if (isNaN(pageNum)) {
-      return false;
-    }
-
-    // 檢查是否在有效範圍內
-    if (pageNum < 1 || pageNum > totalPages) {
-      return false;
-    }
-
-    return true;
-  };
-
-  /**
-   * 處理頁碼輸入變化，即時驗證
-   */
-  const handlePageJumpInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setPageJumpInput(value);
-
-    // 清除之前的錯誤
-    if (pageJumpError) {
-      setPageJumpError('');
-    }
-
-    // 如果輸入為空，不顯示錯誤
-    if (!value || value.trim() === '') {
-      return;
-    }
-
-    // 即時驗證輸入值
-    const pageNum = parseInt(value, 10);
-    if (isNaN(pageNum)) {
-      setPageJumpError('請輸入有效的數字');
-      return;
-    }
-
-    if (pageNum < 1) {
-      setPageJumpError(`頁碼不能小於 1`);
-      return;
-    }
-
-    if (pageNum > totalPages) {
-      setPageJumpError(`頁碼不能大於 ${totalPages}`);
-      return;
-    }
-  };
-
-  const handleFormSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-
+  const onSubmit = (data: PaginationFormValues) => {
     // 處理每頁顯示數量變更
-    const newItemsPerPage = parseInt(selectedItemsPerPage, 10);
+    const newItemsPerPage = parseInt(data.itemsPerPage, 10);
     if (newItemsPerPage && itemsPerPageOptions.includes(newItemsPerPage) && newItemsPerPage !== itemsPerPage) {
       onItemsPerPageChange(newItemsPerPage);
     }
 
     // 處理頁碼跳轉
-    if (pageJumpInput) {
-      // 驗證輸入
-      if (!validatePageInput(pageJumpInput)) {
-        const pageNum = parseInt(pageJumpInput, 10);
-        if (isNaN(pageNum)) {
-          setPageJumpError('請輸入有效的數字');
-        } else if (pageNum < 1) {
-          setPageJumpError(`頁碼不能小於 1`);
-        } else if (pageNum > totalPages) {
-          setPageJumpError(`頁碼不能大於 ${totalPages}`);
-        }
-        return;
-      }
-
-      const targetPage = parseInt(pageJumpInput, 10);
+    if (data.pageJump && data.pageJump.trim() !== '') {
+      const targetPage = parseInt(data.pageJump, 10);
       if (targetPage >= 1 && targetPage <= totalPages) {
         onPageChange(targetPage);
-        setPageJumpInput('');
-        setPageJumpError('');
+        reset({
+          itemsPerPage: data.itemsPerPage,
+          pageJump: '',
+        });
         // 滾動到列表頂部
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
@@ -297,15 +266,14 @@ export function CareerNewsPagination({
     <div className="w-full bg-gray-50 py-4 px-4 md:px-8">
       <div className="w-full flex flex-col lg:flex-row items-center justify-between gap-4">
         {/* 左側：每頁顯示數量選擇器和頁碼跳轉 */}
-        <form onSubmit={handleFormSubmit} className="flex flex-wrap items-start gap-2 text-sm text-[#706F6F]">
+        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-wrap items-start gap-2 text-sm text-[#706F6F]">
           <div className="flex flex-col">
             <div className="flex items-center gap-1">
               <span>每頁顯示</span>
               <div className="relative">
                 <select
-                  value={selectedItemsPerPage}
-                  onChange={(e) => setSelectedItemsPerPage(e.target.value)}
-                  className="appearance-none bg-white border border-gray-300 rounded px-2 py-1 pr-6 text-center text-sm text-[#282423] w-12 focus:outline-none focus:ring-2 focus:ring-[#55BBF9] focus:border-[#55BBF9] cursor-pointer"
+                  {...register('itemsPerPage')}
+                  className={`appearance-none bg-white border rounded px-2 py-1 pr-6 text-center text-sm text-[#282423] w-12 focus:outline-none focus:ring-2 focus:ring-[#55BBF9] focus:border-[#55BBF9] cursor-pointer ${errors.itemsPerPage ? 'border-red-500' : 'border-gray-300'}`}
                   aria-label="每頁顯示數量"
                 >
                   {itemsPerPageOptions.map((option) => (
@@ -324,17 +292,10 @@ export function CareerNewsPagination({
                   type="number"
                   min="1"
                   max={totalPages}
-                  value={pageJumpInput}
-                  onChange={handlePageJumpInputChange}
-                  onBlur={() => {
-                    // 當失去焦點時，如果輸入無效，保留錯誤訊息
-                    if (pageJumpInput && !validatePageInput(pageJumpInput)) {
-                      // 錯誤訊息已由 handlePageJumpInputChange 設置
-                    }
-                  }}
+                  {...register('pageJump')}
                   placeholder={currentPage.toString()}
                   disabled={totalPages <= 1}
-                  className={`w-10 bg-white border rounded px-2 py-1 text-center text-sm text-[#282423] focus:outline-none focus:ring-2 focus:ring-[#55BBF9] focus:border-[#55BBF9] ${pageJumpError
+                  className={`w-10 bg-white border rounded px-2 py-1 text-center text-sm text-[#282423] focus:outline-none focus:ring-2 focus:ring-[#55BBF9] focus:border-[#55BBF9] ${errors.pageJump
                     ? 'border-red-500 focus:border-red-500 focus:ring-red-500'
                     : 'border-gray-300'
                     } ${totalPages <= 1
@@ -342,8 +303,8 @@ export function CareerNewsPagination({
                       : ''
                     }`}
                   aria-label="跳轉到第幾頁"
-                  aria-invalid={pageJumpError ? 'true' : 'false'}
-                  aria-describedby={pageJumpError ? 'page-jump-error' : undefined}
+                  aria-invalid={errors.pageJump ? 'true' : 'false'}
+                  aria-describedby={errors.pageJump ? 'page-jump-error' : undefined}
                 />
               </div>
               <span>頁</span>
@@ -354,13 +315,21 @@ export function CareerNewsPagination({
                 送出
               </button>
             </div>
-            {pageJumpError && (
+            {errors.pageJump && (
               <span
                 id="page-jump-error"
                 className="mt-1 text-xs text-red-500 whitespace-nowrap"
                 role="alert"
               >
-                {pageJumpError}
+                {errors.pageJump.message}
+              </span>
+            )}
+            {errors.itemsPerPage && (
+              <span
+                className="mt-1 text-xs text-red-500 whitespace-nowrap"
+                role="alert"
+              >
+                {errors.itemsPerPage.message}
               </span>
             )}
           </div>

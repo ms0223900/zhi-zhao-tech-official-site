@@ -1,10 +1,10 @@
 'use client'
 
+import { FormInput } from '@/components/FormInput'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { FormInput } from '@/components/FormInput'
 
 const formSchema = z.object({
     company: z.string().min(1, '請輸入公司/單位名稱'),
@@ -20,16 +20,6 @@ type FormValues = z.infer<typeof formSchema>
 const strapiToken = process.env.NEXT_PUBLIC_STRAPI_TOKEN;
 const SEND_EMAIL_API_URL = process.env.NEXT_PUBLIC_API_URL + "/api/email/send";
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const TEST_DEFAULT_VALUES = {
-    company: 'testCompany',
-    location: '台中市',
-    name: 'testName',
-    phone: 'testPhone',
-    email: 'testEmail@gmail.com',
-    message: 'testMessage',
-}
-
 // 台灣地區選項
 const locationOptions = [
     '基隆市', '台北市', '新北市', '桃園市', '新竹市', '新竹縣',
@@ -39,7 +29,6 @@ const locationOptions = [
 ]
 
 const FormSection = () => {
-    const [isSubmitting, setIsSubmitting] = useState(false)
     const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
     const [isModalOpen, setIsModalOpen] = useState(false)
 
@@ -47,7 +36,7 @@ const FormSection = () => {
         register,
         handleSubmit,
         reset,
-        formState: { errors },
+        formState: { errors, isSubmitting },
     } = useForm<FormValues>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -58,12 +47,10 @@ const FormSection = () => {
             email: '',
             message: '',
         },
-        // defaultValues: TEST_DEFAULT_VALUES,
     })
 
     const onSubmit = async (data: FormValues) => {
         try {
-            setIsSubmitting(true)
             setSubmitStatus('idle')
 
             const response = await fetch(SEND_EMAIL_API_URL!, {
@@ -100,8 +87,6 @@ const FormSection = () => {
         } catch (error) {
             console.error('提交表單時發生錯誤:', error)
             setSubmitStatus('error')
-        } finally {
-            setIsSubmitting(false)
         }
     }
 
