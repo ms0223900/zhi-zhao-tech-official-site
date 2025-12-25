@@ -57,6 +57,7 @@ export function CareerNewsPagination({
     register,
     handleSubmit,
     setValue,
+    watch,
     formState: { errors },
     reset,
   } = useForm<PaginationFormValues>({
@@ -67,6 +68,9 @@ export function CareerNewsPagination({
     },
   });
 
+  // 監聽 itemsPerPage 的變化
+  const watchedItemsPerPage = watch('itemsPerPage');
+
   // 當 itemsPerPage 從外部改變時，同步更新表單值
   useEffect(() => {
     setValue('itemsPerPage', itemsPerPage.toString());
@@ -74,8 +78,8 @@ export function CareerNewsPagination({
 
   // 當 currentPage 或 totalPages 改變時，清除頁碼跳轉輸入
   useEffect(() => {
-    setValue('pageJump', '');
-  }, [currentPage, totalPages, setValue]);
+    setValue('pageJump', '1');
+  }, [currentPage, totalPages, watchedItemsPerPage]);
 
   const handlePrevious = () => {
     if (currentPage > 1) {
