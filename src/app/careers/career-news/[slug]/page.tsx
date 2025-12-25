@@ -1,6 +1,5 @@
+import { mockCareerNewsData } from '@/components/careers/career-news/mockCareerNewsData';
 import { formatPageTitle } from '@/constants/metadata';
-import { clientForServer } from '@/gql/client';
-import { fetchCareerNewsArticle, GET_CAREER_NEWS_SLUGS, CareerNewsSlugsResponse } from '@/lib/graphql';
 import { formatDate } from '@/utils/formatDate';
 import { ArrowLeft } from 'lucide-react';
 import { Metadata } from 'next';
@@ -19,7 +18,12 @@ interface CareerNewsArticleProps {
 
 export async function generateMetadata({ params }: CareerNewsArticleProps): Promise<Metadata> {
   const { slug } = await params;
-  const article = await fetchCareerNewsArticle(slug);
+  // 使用 mock 資料
+  const article = mockCareerNewsData.find(item => item.slug === slug);
+
+  // 原本的 fetchCareerNewsArticle（已註解）
+  // TODO: 使用 GraphQL 查詢
+  // const article = await fetchCareerNewsArticle(slug);
 
   if (!article) {
     return {
@@ -60,23 +64,35 @@ const CustomMarkdownAnchorElement = ({
 };
 
 export async function generateStaticParams() {
-  try {
-    const response = await clientForServer.query<CareerNewsSlugsResponse>({
-      query: GET_CAREER_NEWS_SLUGS,
-    });
-    const slugs = response.data?.careerNewsArticles.map((item) => ({
-      slug: item.documentId,
-    }));
-    return slugs;
-  } catch (error) {
-    console.error('Failed to generate static params:', error);
-    return [];
-  }
+  // 使用 mock 資料生成靜態參數
+  const slugs = mockCareerNewsData.map((item) => ({
+    slug: item.slug,
+  }));
+
+  // TODO: 使用 GraphQL 查詢
+  // try {
+  //   const response = await clientForServer.query<CareerNewsSlugsResponse>({
+  //     query: GET_CAREER_NEWS_SLUGS,
+  //   });
+  //   const slugs = response.data?.careerNewsArticles.map((item) => ({
+  //     slug: item.documentId,
+  //   }));
+  //   return slugs;
+  // } catch (error) {
+  //   console.error('Failed to generate static params:', error);
+  //   return [];
+  // }
+
+  return slugs;
 }
 
 export default async function CareerNewsArticlePage({ params }: CareerNewsArticleProps) {
   const { slug } = await params;
-  const article = await fetchCareerNewsArticle(slug);
+  // 使用 mock 資料
+  const article = mockCareerNewsData.find(item => item.slug === slug);
+
+  // TODO: 使用 GraphQL 查詢
+  // const article = await fetchCareerNewsArticle(slug);
 
   if (!article) {
     notFound();
