@@ -1,9 +1,9 @@
-import { mockCareerNewsData } from '@/components/careers/career-news/mockCareerNewsData';
 import { formatPageTitle } from '@/constants/metadata';
+import { clientForServer } from '@/gql/client';
+import { CareerNewsSlugsResponse, fetchCareerNewsArticle, GET_CAREER_NEWS_SLUGS } from '@/lib/graphql';
 import { formatDate } from '@/utils/formatDate';
 import { ArrowLeft } from 'lucide-react';
 import { Metadata } from 'next';
-import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import ReactMarkdown from 'react-markdown';
@@ -18,12 +18,8 @@ interface CareerNewsArticleProps {
 
 export async function generateMetadata({ params }: CareerNewsArticleProps): Promise<Metadata> {
   const { slug } = await params;
-  // 使用 mock 資料
-  const article = mockCareerNewsData.find(item => item.slug === slug);
 
-  // 原本的 fetchCareerNewsArticle（已註解）
-  // TODO: 使用 GraphQL 查詢
-  // const article = await fetchCareerNewsArticle(slug);
+  const article = await fetchCareerNewsArticle(slug);
 
   if (!article) {
     return {
@@ -38,7 +34,6 @@ export async function generateMetadata({ params }: CareerNewsArticleProps): Prom
     openGraph: {
       title: article.title,
       description: article.subtitle,
-      images: article.cover ? [{ url: article.cover.url }] : [],
     },
   };
 }
@@ -64,35 +59,23 @@ const CustomMarkdownAnchorElement = ({
 };
 
 export async function generateStaticParams() {
-  // 使用 mock 資料生成靜態參數
-  const slugs = mockCareerNewsData.map((item) => ({
-    slug: item.slug,
-  }));
-
-  // TODO: 使用 GraphQL 查詢
-  // try {
-  //   const response = await clientForServer.query<CareerNewsSlugsResponse>({
-  //     query: GET_CAREER_NEWS_SLUGS,
-  //   });
-  //   const slugs = response.data?.careerNewsArticles.map((item) => ({
-  //     slug: item.documentId,
-  //   }));
-  //   return slugs;
-  // } catch (error) {
-  //   console.error('Failed to generate static params:', error);
-  //   return [];
-  // }
-
-  return slugs;
+  try {
+    const response = await clientForServer.query<CareerNewsSlugsResponse>({
+      query: GET_CAREER_NEWS_SLUGS,
+    });
+    const slugs = response.data?.careerNewses.map((item) => ({
+      slug: item.documentId,
+    }));
+    return slugs;
+  } catch (error) {
+    console.error('Failed to generate static params:', error);
+    return [];
+  }
 }
 
 export default async function CareerNewsArticlePage({ params }: CareerNewsArticleProps) {
   const { slug } = await params;
-  // 使用 mock 資料
-  const article = mockCareerNewsData.find(item => item.slug === slug);
-
-  // TODO: 使用 GraphQL 查詢
-  // const article = await fetchCareerNewsArticle(slug);
+  const article = await fetchCareerNewsArticle(slug);
 
   if (!article) {
     notFound();
@@ -117,22 +100,11 @@ export default async function CareerNewsArticlePage({ params }: CareerNewsArticl
       <div className="mb-8">
         <div className="flex flex-wrap items-center gap-4 mb-4">
           {/* 標籤徽章 */}
-          {article.tags && article.tags.length > 0 && (
+          {article.newsGenre && (
             <div className="flex gap-2">
-              {article.tags.map((tag, index) => (
-                <span
-                  key={index}
-                  className={`
-                    px-3 py-1 rounded-md text-sm font-medium whitespace-nowrap
-                    ${tag.type === 'TOP'
-                      ? 'bg-[#E57B42] text-white'
-                      : 'bg-white border border-[#55BBF9] text-[#55BBF9]'
-                    }
-                  `}
-                >
-                  {tag.label}
-                </span>
-              ))}
+              <span className="px-3 py-1 rounded-md text-sm font-medium whitespace-nowrap bg-[#55BBF9] text-white">
+                {article.newsGenre.title}
+              </span>
             </div>
           )}
           <span className="text-gray-500">{formattedDate}</span>
@@ -142,22 +114,6 @@ export default async function CareerNewsArticlePage({ params }: CareerNewsArticl
           <h2 className="text-2xl text-gray-600 mb-8">{article.subtitle}</h2>
         )}
       </div>
-
-      {/* 封面圖片 */}
-      {article.cover && (
-        <div className="mb-12 relative">
-          <div className="relative w-full max-w-4xl mx-auto aspect-[16/9] overflow-hidden rounded-lg">
-            <Image
-              src={article.cover.url}
-              alt={article.title}
-              fill
-              className="object-cover"
-              priority
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 900px"
-            />
-          </div>
-        </div>
-      )}
 
       {/* 文章內容 - Markdown 格式 */}
       <div className="prose prose-lg max-w-4xl mx-auto">
