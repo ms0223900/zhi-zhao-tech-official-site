@@ -1,3 +1,4 @@
+import { NewsGenreBadge } from '@/components/careers/career-news/NewsGenreBadge';
 import { formatPageTitle } from '@/constants/metadata';
 import { clientForServer } from '@/gql/client';
 import { CareerNewsSlugsResponse, fetchCareerNewsArticle, GET_CAREER_NEWS_SLUGS } from '@/lib/graphql';
@@ -100,13 +101,7 @@ export default async function CareerNewsArticlePage({ params }: CareerNewsArticl
       <div className="mb-8">
         <div className="flex flex-wrap items-center gap-4 mb-4">
           {/* 標籤徽章 */}
-          {article.newsGenre && (
-            <div className="flex gap-2">
-              <span className="px-3 py-1 rounded-md text-sm font-medium whitespace-nowrap bg-[#55BBF9] text-white">
-                {article.newsGenre.title}
-              </span>
-            </div>
-          )}
+          <NewsGenreBadge newsGenre={article.newsGenre} />
           <span className="text-gray-500">{formattedDate}</span>
         </div>
         <h1 className="text-4xl font-bold mb-4">{article.title}</h1>
