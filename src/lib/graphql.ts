@@ -169,10 +169,8 @@ export const GET_NEWS_SLUGS = gql`
 
 // ==================== Career News 相關類型定義 ====================
 
-export interface ArticleTag {
-  type: 'TOP' | 'NEW';
-  label: string;
-  color: string;
+export interface CareerNewsGenre {
+  title: string;
 }
 
 export interface CareerNewsItem {
@@ -180,14 +178,10 @@ export interface CareerNewsItem {
   title: string;
   subtitle: string;
   content: string;
-  cover: {
-    url: string;
-    alternativeText?: string;
-  };
   publishedAt: string;
   updatedAt: string;
   slug: string;
-  tags?: ArticleTag[];
+  newsGenre?: CareerNewsGenre;
 }
 
 // GraphQL 響應類型
@@ -202,18 +196,17 @@ export interface CareerNewsGqlItem {
     documentId: string;
     url: string;
   };
-  tags?: {
-    type: string;
-    label: string;
-  }[];
+  newsGenre: {
+    title: string;
+  };
 }
 
 export interface CareerNewsListResponse {
-  careerNewsArticles: CareerNewsGqlItem[];
+  careerNewses: CareerNewsGqlItem[];
 }
 
 export interface CareerNewsSlugsResponse {
-  careerNewsArticles: {
+  careerNewses: {
     documentId: string;
   }[];
 }
@@ -228,33 +221,23 @@ export function transformCareerNewsData(item: CareerNewsGqlItem): CareerNewsItem
     updatedAt: item.updatedAt,
     content: item.content,
     slug: item.documentId,
-    cover: {
-      url: replaceS3UrlWithCloudFront(item.cover.url),
-    },
-    tags: item.tags?.map(tag => ({
-      type: tag.type as 'TOP' | 'NEW',
-      label: tag.label,
-      color: tag.type === 'TOP' ? '#E57B42' : '#55BBF9'
-    }))
+    newsGenre: item.newsGenre ? {
+      title: item.newsGenre.title,
+    } : undefined,
   };
 }
 
 // GraphQL Fragment
 export const CAREER_NEWS_FRAGMENT = gql`
-  fragment CareerNewsFragment on CareerNewsArticle {
+  fragment CareerNewsFragment on CareerNews {
     documentId
     title
     subtitle
     content
     publishedAt
     updatedAt
-    cover {
-      documentId
-      url
-    }
-    tags {
-      type
-      label
+    newsGenre {
+      title
     }
   }
 `;
@@ -262,7 +245,7 @@ export const CAREER_NEWS_FRAGMENT = gql`
 // 獲取文章列表查詢
 export const GET_CAREER_NEWS_LIST = gql`
   query GetCareerNewsList {
-    careerNewsArticles(sort: ["updatedAt:desc"]) {
+    careerNewses(sort: ["updatedAt:desc"]) {
       ...CareerNewsFragment
     }
   }
@@ -272,7 +255,7 @@ export const GET_CAREER_NEWS_LIST = gql`
 // 獲取單一文章查詢
 export const GET_CAREER_NEWS_ARTICLE = gql`
   query GetCareerNewsArticle($slug: ID!) {
-    careerNewsArticles(filters: { documentId: { eq: $slug } }) {
+    careerNewses(filters: { documentId: { eq: $slug } }) {
       ...CareerNewsFragment
     }
   }
@@ -282,7 +265,7 @@ export const GET_CAREER_NEWS_ARTICLE = gql`
 // 用於 generateStaticParams 的查詢
 export const GET_CAREER_NEWS_SLUGS = gql`
   query GetCareerNewsSlugs {
-    careerNewsArticles {
+    careerNewses {
       documentId
     }
   }
@@ -294,7 +277,7 @@ export async function fetchCareerNewsList(): Promise<CareerNewsItem[]> {
     const response = await csrClient.query<CareerNewsListResponse>({
       query: GET_CAREER_NEWS_LIST,
     });
-    return response.data?.careerNewsArticles.map(transformCareerNewsData) || [];
+    return response.data?.careerNewses.map(transformCareerNewsData) || [];
   } catch (error) {
     console.error('Failed to fetch career news list:', error);
     return [];
@@ -308,7 +291,7 @@ export async function fetchCareerNewsArticle(slug: string): Promise<CareerNewsIt
       query: GET_CAREER_NEWS_ARTICLE,
       variables: { slug },
     });
-    const article = response.data?.careerNewsArticles[0];
+    const article = response.data?.careerNewses[0];
 
     if (!article) {
       return null;

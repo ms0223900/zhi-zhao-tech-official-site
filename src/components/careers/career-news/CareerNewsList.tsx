@@ -1,11 +1,10 @@
 'use client';
 
-import { CareerNewsItem } from '@/lib/graphql';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { CareerNewsItem, fetchCareerNewsList } from '@/lib/graphql';
+import { QueryClient, QueryClientProvider, useQuery } from '@tanstack/react-query';
 import { useMemo, useState } from 'react';
 import { CareerNewsArticleCard } from './CareerNewsArticleCard';
 import { CareerNewsPagination } from './CareerNewsPagination';
-import { mockCareerNewsData } from './mockCareerNewsData';
 
 // 分頁工具類
 class PaginatedList<T> {
@@ -30,14 +29,14 @@ const ITEMS_PER_PAGE_OPTIONS = [3, 6, 9, 12];
 
 function CareerNewsListContent() {
   // 使用假資料
-  const data = mockCareerNewsData;
-  const isFetching = false;
+  // const data = mockCareerNewsData;
+  // const isFetching = false;
 
   // 原本的 useQuery 查詢（已註解）
-  // const { data, isFetching } = useQuery({
-  //   queryKey: ['careerNews'],
-  //   queryFn: () => fetchCareerNewsList(),
-  // });
+  const { data, isFetching } = useQuery({
+    queryKey: ['careerNews'],
+    queryFn: () => fetchCareerNewsList(),
+  });
 
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(DEFAULT_ITEMS_PER_PAGE);

@@ -13,7 +13,7 @@ export const clientForServer = new ApolloClient({
 });
 
 
-const CSR_API_URL = (process.env.NEXT_PUBLIC_API_URL + '/graphql') || 'http://localhost:1337/graphql';
+const CSR_API_URL = process.env.NODE_ENV === 'production' ? (process.env.NEXT_PUBLIC_API_URL + '/graphql') : 'http://localhost:1337/graphql';
 
 export const csrClient = new ApolloClient({
     uri: CSR_API_URL,

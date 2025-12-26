@@ -6,182 +6,110 @@ export const mockCareerNewsData: CareerNewsItem[] = [
     title: '團隊建設活動：年度戶外拓展訓練',
     subtitle: '透過團隊合作活動，增進同事間默契與信任',
     content: '今年我們舉辦了年度戶外拓展訓練活動，所有團隊成員都參與了這次難忘的體驗。活動包括團隊合作遊戲、信任建立練習和挑戰任務，讓大家在輕鬆的氛圍中加深了解。',
-    cover: {
-      url: '/images/careers/join-us/join-us-01.jpg',
-      alternativeText: '團隊建設活動照片',
-    },
     publishedAt: '2024-12-15T10:00:00.000Z',
     updatedAt: '2024-12-15T10:00:00.000Z',
     slug: 'mock-1',
-    tags: [
-      {
-        type: 'TOP',
-        label: '熱門',
-        color: '#E57B42',
-      },
-    ],
+    newsGenre: {
+      title: '熱門',
+    },
   },
   {
     id: 'mock-2',
     title: '技術分享會：AI 在工程管理中的應用',
     subtitle: '探索人工智慧如何提升工程效率與品質',
     content: '本次技術分享會邀請了業界專家，深入探討 AI 技術在工程管理領域的最新應用。從自動化檢測到智能排程，AI 正在改變我們的工作方式。',
-    cover: {
-      url: '/images/careers/talent-training/talent-training-01.jpg',
-      alternativeText: '技術分享會現場',
-    },
     publishedAt: '2024-12-10T14:30:00.000Z',
     updatedAt: '2024-12-10T14:30:00.000Z',
     slug: 'mock-2',
-    tags: [
-      {
-        type: 'NEW',
-        label: '最新',
-        color: '#55BBF9',
-      },
-    ],
+    newsGenre: {
+      title: '最新',
+    },
   },
   {
     id: 'mock-3',
     title: '員工福利升級：全新健身房與休閒空間',
     subtitle: '打造更舒適的工作環境，提升員工幸福感',
     content: '為了提供更好的工作環境，公司新增了設備齊全的健身房和休閒空間。員工可以在工作之餘放鬆身心，保持健康的生活習慣。',
-    cover: {
-      url: '/images/careers/employee-benefits/employee-benefits-01.jpg',
-      alternativeText: '健身房設施',
-    },
     publishedAt: '2024-12-05T09:00:00.000Z',
     updatedAt: '2024-12-05T09:00:00.000Z',
     slug: 'mock-3',
-    tags: [
-      {
-        type: 'TOP',
-        label: '熱門',
-        color: '#E57B42',
-      },
-    ],
+    newsGenre: {
+      title: '熱門',
+    },
   },
   {
     id: 'mock-4',
     title: '專案成功案例分享：半導體廠房建置',
     subtitle: '從規劃到完工，見證團隊專業實力',
     content: '我們成功完成了大型半導體廠房的建置專案，從初期規劃到最終驗收，展現了團隊在工程管理、品質控制和安全標準方面的專業能力。',
-    cover: {
-      url: '/images/companies/semiconductor/semiconductor-01.jpg',
-      alternativeText: '半導體廠房專案',
-    },
     publishedAt: '2024-11-28T16:00:00.000Z',
     updatedAt: '2024-11-28T16:00:00.000Z',
     slug: 'mock-4',
-    tags: [],
   },
   {
     id: 'mock-5',
     title: '新人培訓計畫：2024 年度新進員工訓練',
     subtitle: '協助新同事快速融入團隊，掌握工作技能',
     content: '為期兩週的新人培訓計畫圓滿結束，新進員工透過系統化的課程學習，不僅掌握了專業技能，也深入了解了公司文化與價值觀。',
-    cover: {
-      url: '/images/careers/talent-training/talent-training-02.jpg',
-      alternativeText: '新人培訓現場',
-    },
     publishedAt: '2024-11-20T11:00:00.000Z',
     updatedAt: '2024-11-20T11:00:00.000Z',
     slug: 'mock-5',
-    tags: [
-      {
-        type: 'NEW',
-        label: '最新',
-        color: '#55BBF9',
-      },
-    ],
+    newsGenre: { title: '最新' },
   },
   {
     id: 'mock-6',
     title: '年度聚餐：感謝每一位夥伴的付出',
     subtitle: '在美食與歡笑中，回顧一年的成長與收穫',
     content: '年度聚餐活動在溫馨的氛圍中舉行，大家齊聚一堂，分享過去一年的工作心得與生活點滴。感謝每一位夥伴的辛勤付出，讓公司持續成長。',
-    cover: {
-      url: '/images/careers/join-us/join-us-02.jpg',
-      alternativeText: '年度聚餐活動',
-    },
     publishedAt: '2024-11-15T18:00:00.000Z',
     updatedAt: '2024-11-15T18:00:00.000Z',
     slug: 'mock-6',
-    tags: [],
+    newsGenre: undefined,
   },
   {
     id: 'mock-7',
     title: '安全訓練課程：提升職場安全意識',
     subtitle: '定期安全訓練，確保工作環境零事故',
     content: '公司定期舉辦安全訓練課程，透過實際案例分享和模擬演練，提升全體員工的安全意識。安全是我們最重視的價值，每個細節都不容忽視。',
-    cover: {
-      url: '/images/esg/esg-s/esg-s-01.jpg',
-      alternativeText: '安全訓練課程',
-    },
     publishedAt: '2024-11-08T13:30:00.000Z',
     updatedAt: '2024-11-08T13:30:00.000Z',
     slug: 'mock-7',
-    tags: [
-      {
-        type: 'TOP',
-        label: '熱門',
-        color: '#E57B42',
-      },
-    ],
+    newsGenre: {
+      title: '熱門',
+    },
   },
   {
     id: 'mock-8',
     title: '技術創新：導入智慧化工程管理系統',
     subtitle: '運用數位化工具，提升專案管理效率',
     content: '公司成功導入全新的智慧化工程管理系統，透過數位化工具整合專案進度、資源配置和品質監控，大幅提升管理效率與決策品質。',
-    cover: {
-      url: '/images/companies/engineer-control-panel.jpg',
-      alternativeText: '工程管理系統',
-    },
     publishedAt: '2024-11-01T10:00:00.000Z',
     updatedAt: '2024-11-01T10:00:00.000Z',
     slug: 'mock-8',
-    tags: [
-      {
-        type: 'NEW',
-        label: '最新',
-        color: '#55BBF9',
-      },
-    ],
+    newsGenre: {
+      title: '最新',
+    },
   },
   {
     id: 'mock-9',
     title: '志工活動：參與社區環境清潔日',
     subtitle: '回饋社會，展現企業社會責任',
     content: '公司同仁自發性參與社區環境清潔日活動，透過實際行動展現對環境保護的承諾。我們相信企業不僅要追求商業成功，更要承擔社會責任。',
-    cover: {
-      url: '/images/esg/esg-e/esg-e-01.jpg',
-      alternativeText: '社區環境清潔活動',
-    },
     publishedAt: '2024-10-25T15:00:00.000Z',
     updatedAt: '2024-10-25T15:00:00.000Z',
     slug: 'mock-9',
-    tags: [],
   },
   {
     id: 'mock-10',
     title: '員工表揚：優秀員工頒獎典禮',
     subtitle: '表彰傑出表現，激勵團隊持續進步',
     content: '年度優秀員工頒獎典禮隆重舉行，多位表現優異的同仁獲得表彰。這些優秀的夥伴不僅在專業領域表現出色，更為團隊帶來正向影響。',
-    cover: {
-      url: '/images/careers/join-us/join-us-03.jpg',
-      alternativeText: '優秀員工頒獎典禮',
-    },
     publishedAt: '2024-10-18T12:00:00.000Z',
     updatedAt: '2024-10-18T12:00:00.000Z',
     slug: 'mock-10',
-    tags: [
-      {
-        type: 'TOP',
-        label: '熱門',
-        color: '#E57B42',
-      },
-    ],
+    newsGenre: {
+      title: '熱門',
+    },
   },
 ];
 
