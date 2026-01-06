@@ -16,23 +16,8 @@ interface NavigationButtonProps {
 }
 
 /**
- * 取得導航按鈕的 className
- */
-function getNavigationButtonClassName(direction: 'prev' | 'next', isDisabled: boolean): string {
-  return cn(
-    'flex items-center justify-center h-10 px-2 rounded-md transition-colors',
-    isDisabled
-      ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-      : direction === 'prev'
-        ? 'bg-white border border-gray-300 text-[#282423] hover:bg-[#55BBF9]/10 hover:border-[#55BBF9] cursor-pointer'
-        : 'bg-[#55BBF9] text-white hover:bg-[#088DDE] cursor-pointer'
-  );
-}
-
-/**
  * 導航按鈕組件（上一頁/下一頁）
  */
-// TODO: 照設計稿調整按鈕樣式、文字
 function NavigationButton({ direction, isDisabled, onClick }: NavigationButtonProps) {
   const label = direction === 'prev' ? '上一頁' : '下一頁';
 
@@ -40,7 +25,12 @@ function NavigationButton({ direction, isDisabled, onClick }: NavigationButtonPr
     <button
       onClick={onClick}
       disabled={isDisabled}
-      className={getNavigationButtonClassName(direction, isDisabled)}
+      className={cn(
+        'flex items-center justify-center px-2 py-1 rounded-md transition-colors',
+        isDisabled
+          ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
+          : 'bg-[#55BBF9] text-white hover:bg-[#088DDE] cursor-pointer'
+      )}
       aria-label={label}
     >
       {label}
@@ -75,8 +65,8 @@ export function PaginationControls({
       />
 
       {/* 頁碼顯示 */}
-      <span className="text-sm text-[#282423] px-2">
-        第 {currentPage}/{totalPages} 頁
+      <span className="text-md text-[#282423] px-2">
+        第 {currentPage} / {totalPages} 頁
       </span>
     </div>
   );

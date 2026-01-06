@@ -12,14 +12,14 @@ export function CareerNewsArticleCard({ item }: CareerNewsArticleCardProps) {
   const formattedDate = formatDate(item.publishedAt);
 
   return (
-    <Link href={`/careers/career-news/${item.slug}`} className="group flex items-center gap-8">
+    <Link href={`/careers/career-news/${item.slug}`} className="group flex items-center gap-10">
       <div className="flex items-center gap-4 flex-shrink-0">
-        <span className="text-xl text-[#afafaf] whitespace-nowrap">
+        <span className="text-2xl text-[#afafaf] whitespace-nowrap">
           {formattedDate}
         </span>
       </div>
 
-      <div className="w-full flex items-center gap-4 py-4 transition-colors bg-white rounded-full p-8">
+      <div className="w-full flex items-center gap-4 py-6 transition-colors bg-white rounded-full p-8">
         {/* 文章內容 */}
         <div className="flex-1 flex items-center justify-between gap-4 flex-wrap md:flex-nowrap">
           {/* 標題 */}

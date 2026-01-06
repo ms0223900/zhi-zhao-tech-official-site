@@ -74,12 +74,14 @@ function CareerNewsListContent() {
   return (
     <div className="w-full">
       <div className="py-4 px-4 md:px-8 w-full flex flex-row items-center gap-2">
-        <h2 className="text-h2 font-bold text-[#282423]">我們的日常</h2>
-        <span className="text-h6 text-[#706F6F]">Career News</span>
+        <img src="/taiwanz2-favicon.ico" alt="Team Daily" className="h-10 flex-shrink-0" />
+        <h2 className="text-h2 font-bold text-[#282423] flex-shrink-0">智兆日常</h2>
+        <span className="text-h6 text-[#706F6F] flex-shrink-0">Team Daily</span>
+        <hr className="w-full border-t border-[#088DDE]" />
       </div>
 
       {/* 文章列表 */}
-      <div className="w-full px-4 md:px-8 py-8">
+      <div className="w-full px-4 md:px-8 py-4">
         <div className="w-full flex flex-col gap-3">
           {displayedArticles.map((article) => (
             <CareerNewsArticleCard key={article.id} item={article} />
