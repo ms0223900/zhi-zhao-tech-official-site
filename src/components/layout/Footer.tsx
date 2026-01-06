@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import routerConfig from "../routerConfig";
 import Link from "next/link";
+import routerConfig from "../routerConfig";
 
 const ZHI_ZHAO_EMAIL = "taiwanz2@taiwanz2.com.tw";
 
@@ -50,7 +50,7 @@ interface IconConfig {
 
 const FB_ICON = {
     key: "fb",
-    link: "https://www.facebook.com/zhi-zhao.com",
+    link: "https://www.facebook.com/share/1Swg41ASfp/?mibextid=wwXIfr",
     iconSrc: "/images/icons/fb-icon.svg",
     alt: "Facebook",
 }
@@ -62,9 +62,17 @@ const EMAIL_ICON = {
     alt: "Email",
 }
 
+const INSTAGRAM_ICON: IconConfig = {
+    key: "instagram",
+    link: "https://www.instagram.com/taiwanz2/",
+    iconSrc: "/images/icons/instagram-icon.svg", // TODO: 尚未設定 Instagram LOGO
+    alt: "Instagram",
+}
+
+
 const iconConfigs: IconConfig[] = [
-    // FB_ICON,
-    // EMAIL_ICON,
+    FB_ICON,
+    // INSTAGRAM_ICON,
 ]
 
 const pcIconConfigs = iconConfigs;
