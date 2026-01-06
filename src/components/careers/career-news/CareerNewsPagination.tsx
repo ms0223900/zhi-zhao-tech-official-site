@@ -27,7 +27,7 @@ export function CareerNewsPagination({
 
   return (
     <div className="w-full py-4 px-4 md:px-8">
-      <div className="w-full flex flex-col lg:flex-row items-center justify-end gap-4">
+      <div className="w-full flex items-center justify-end gap-4">
         <PaginationControls
           currentPage={currentPage}
           totalPages={totalPages}
