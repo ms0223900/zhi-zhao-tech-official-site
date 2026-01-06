@@ -74,8 +74,7 @@ function CareerNewsListContent() {
 
   return (
     <div className="w-full">
-      {/* 標題欄 - 淺藍色背景 */}
-      <div className="bg-[#55BBF9]/30 py-4 px-4 md:px-8 w-full flex flex-row items-center gap-2">
+      <div className="py-4 px-4 md:px-8 w-full flex flex-row items-center gap-2">
         <h2 className="text-h2 font-bold text-[#282423]">我們的日常</h2>
         <span className="text-h6 text-[#706F6F]">Career News</span>
       </div>
