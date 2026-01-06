@@ -19,7 +19,7 @@ export function CareerNewsArticleCard({ item }: CareerNewsArticleCardProps) {
         </span>
       </div>
 
-      <div className="flex items-center gap-4 py-4 transition-colors bg-white rounded-full p-8 shadow-lg">
+      <div className="w-full flex items-center gap-4 py-4 transition-colors bg-white rounded-full p-8">
         {/* 文章內容 */}
         <div className="flex-1 flex items-center justify-between gap-4 flex-wrap md:flex-nowrap">
           {/* 標題 */}

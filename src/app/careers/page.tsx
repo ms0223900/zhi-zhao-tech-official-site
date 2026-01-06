@@ -44,7 +44,7 @@ export default function CareersPage() {
             />
             {/* 我們的日常 - Career News */}
             {isFeatureEnabled(FEATURE_NAMES.CAREER_NEWS) && (
-                <section className="w-full theme-gradient-blue">
+                <section className="w-full md:py-8 theme-gradient-blue">
                     <div className="container mx-auto">
                         <CareerNewsList />
                     </div>
