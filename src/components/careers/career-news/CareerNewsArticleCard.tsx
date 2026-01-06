@@ -4,7 +4,6 @@ import { CareerNewsItem } from '@/lib/graphql';
 import { formatDate } from '@/utils/formatDate';
 import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
-import { NewsGenreBadge } from './NewsGenreBadge';
 
 interface CareerNewsArticleCardProps {
   item: CareerNewsItem;
@@ -26,19 +25,15 @@ export function CareerNewsArticleCard({ item }: CareerNewsArticleCardProps) {
             {item.title}
           </h3>
 
-          {/* 日期和標籤 */}
+          {/* 日期 */}
           <div className="flex items-center gap-4 flex-shrink-0">
-            {/* 日期 */}
             <span className="text-sm text-[#6E6E6E] whitespace-nowrap">
               {formattedDate}
             </span>
-
-            {/* 標籤徽章 */}
-            <NewsGenreBadge newsGenre={item.newsGenre} />
           </div>
         </div>
       </div>
-    </Link >
+    </Link>
   );
 }
 

@@ -1,7 +1,6 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { ChevronRight } from 'lucide-react';
 import { useEffect, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -128,96 +127,11 @@ export function CareerNewsPagination({
   return (
     <div className="w-full bg-gray-50 py-4 px-4 md:px-8">
       <div className="w-full flex flex-col lg:flex-row items-center justify-between gap-4">
-        {/* 左側：每頁顯示數量選擇器和頁碼跳轉 */}
-        <div className='flex flex-row items-center justify-start gap-2'>
-          <form onSubmit={handleSubmit(onSubmit)} className="flex flex-wrap items-start gap-2 text-sm text-[#706F6F]">
-            <div className="flex flex-col">
-              <div className="flex items-center gap-1">
-                <span>每頁顯示</span>
-                <div className="relative">
-                  <select
-                    {...register('itemsPerPage')}
-                    className={`appearance-none bg-white border rounded px-2 py-1 pr-6 text-center text-sm text-[#282423] w-12 focus:outline-none focus:ring-2 focus:ring-[#55BBF9] focus:border-[#55BBF9] cursor-pointer ${errors.itemsPerPage ? 'border-red-500' : 'border-gray-300'}`}
-                    aria-label="每頁顯示數量"
-                  >
-                    {itemsPerPageOptions.map((option) => (
-                      <option key={option} value={option}>
-                        {option}
-                      </option>
-                    ))}
-                  </select>
-                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-1 text-gray-700">
-                    <ChevronRight className="w-3 h-3 rotate-90" />
-                  </div>
-                </div>
-                <span>筆，到第</span>
-                <div className="relative">
-                  <input
-                    type="number"
-                    min="1"
-                    max={totalPages}
-                    {...register('pageJump')}
-                    placeholder={currentPage.toString()}
-                    disabled={totalPages <= 1}
-                    className={`w-10 bg-white border rounded px-2 py-1 text-center text-sm text-[#282423] focus:outline-none focus:ring-2 focus:ring-[#55BBF9] focus:border-[#55BBF9] ${errors.pageJump
-                      ? 'border-red-500 focus:border-red-500 focus:ring-red-500'
-                      : 'border-gray-300'
-                      } ${totalPages <= 1
-                        ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                        : ''
-                      }`}
-                    aria-label="跳轉到第幾頁"
-                    aria-invalid={errors.pageJump ? 'true' : 'false'}
-                    aria-describedby={errors.pageJump ? 'page-jump-error' : undefined}
-                  />
-                </div>
-                <span>頁</span>
-                <button
-                  type="submit"
-                  className="bg-[#55BBF9] text-white px-3 py-1 rounded text-sm font-medium hover:bg-[#088DDE] transition-colors focus:outline-none focus:ring-2 focus:ring-[#55BBF9] focus:ring-offset-2 ml-1"
-                >
-                  送出
-                </button>
-              </div>
-              {errors.pageJump && (
-                <span
-                  id="page-jump-error"
-                  className="mt-1 text-xs text-red-500 whitespace-nowrap"
-                  role="alert"
-                >
-                  {errors.pageJump.message}
-                </span>
-              )}
-              {errors.itemsPerPage && (
-                <span
-                  className="mt-1 text-xs text-red-500 whitespace-nowrap"
-                  role="alert"
-                >
-                  {errors.itemsPerPage.message}
-                </span>
-              )}
-            </div>
-          </form>
-
-          {/* 中間：總筆數和當前頁碼顯示 */}
-          <div className="flex items-center gap-2 text-sm text-[#706F6F]">
-            <span>共 {totalItems} 筆資料</span>
-            {totalPages > 1 && (
-              <>
-                <span>,</span>
-                <span>第 {currentPage}/{totalPages} 頁</span>
-              </>
-            )}
-          </div>
-        </div>
-
-        {/* 右側：分頁控制 */}
         <PaginationControls
           currentPage={currentPage}
           totalPages={totalPages}
           onPrevious={handlePrevious}
           onNext={handleNext}
-          onPageClick={handlePageClick}
         />
       </div>
     </div>
