@@ -82,7 +82,7 @@ function CareerNewsListContent() {
 
       {/* 文章列表 */}
       <div className="w-full px-4 md:px-8 py-8">
-        <div className="w-full">
+        <div className="w-full flex flex-col gap-3">
           {displayedArticles.map((article) => (
             <CareerNewsArticleCard key={article.id} item={article} />
           ))}
