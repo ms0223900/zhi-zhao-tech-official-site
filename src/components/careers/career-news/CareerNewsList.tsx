@@ -25,7 +25,6 @@ class PaginatedList<T> {
 }
 
 const DEFAULT_ITEMS_PER_PAGE = 3;
-const ITEMS_PER_PAGE_OPTIONS = [3, 6, 9, 12];
 
 function CareerNewsListContent() {
   // 使用假資料
@@ -39,17 +38,15 @@ function CareerNewsListContent() {
   });
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(DEFAULT_ITEMS_PER_PAGE);
 
   // 分頁邏輯
   const paginatedList = useMemo(
-    () => new PaginatedList<CareerNewsItem>(data || [], currentPage, itemsPerPage),
-    [data, currentPage, itemsPerPage]
+    () => new PaginatedList<CareerNewsItem>(data || [], currentPage, DEFAULT_ITEMS_PER_PAGE),
+    [data, currentPage]
   );
 
   const displayedArticles = paginatedList.paginatedItems;
   const totalPages = paginatedList.totalPages;
-  const totalItems = data?.length || 0;
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
@@ -57,13 +54,6 @@ function CareerNewsListContent() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handleItemsPerPageChange = (newItemsPerPage: number) => {
-    setItemsPerPage(newItemsPerPage);
-    // 改變每頁顯示數量時，一律跳轉到第 1 頁
-    setCurrentPage(1);
-    // 滾動到列表頂部
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
 
   if (isFetching) {
     return (
@@ -103,11 +93,7 @@ function CareerNewsListContent() {
       <CareerNewsPagination
         currentPage={currentPage}
         totalPages={totalPages}
-        totalItems={totalItems}
-        itemsPerPage={itemsPerPage}
-        itemsPerPageOptions={ITEMS_PER_PAGE_OPTIONS}
         onPageChange={handlePageChange}
-        onItemsPerPageChange={handleItemsPerPageChange}
       />
     </div>
   );

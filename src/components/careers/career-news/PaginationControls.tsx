@@ -1,7 +1,6 @@
 'use client';
 
 import { cn } from '@/utils/cn';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface PaginationControlsProps {
   currentPage: number;
@@ -21,7 +20,7 @@ interface NavigationButtonProps {
  */
 function getNavigationButtonClassName(direction: 'prev' | 'next', isDisabled: boolean): string {
   return cn(
-    'flex items-center justify-center w-10 h-10 rounded-md transition-colors',
+    'flex items-center justify-center h-10 px-2 rounded-md transition-colors',
     isDisabled
       ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
       : direction === 'prev'
@@ -35,17 +34,16 @@ function getNavigationButtonClassName(direction: 'prev' | 'next', isDisabled: bo
  */
 // TODO: 照設計稿調整按鈕樣式、文字
 function NavigationButton({ direction, isDisabled, onClick }: NavigationButtonProps) {
-  const Icon = direction === 'prev' ? ChevronLeft : ChevronRight;
-  const ariaLabel = direction === 'prev' ? '上一頁' : '下一頁';
+  const label = direction === 'prev' ? '上一頁' : '下一頁';
 
   return (
     <button
       onClick={onClick}
       disabled={isDisabled}
       className={getNavigationButtonClassName(direction, isDisabled)}
-      aria-label={ariaLabel}
+      aria-label={label}
     >
-      <Icon className="w-5 h-5" />
+      {label}
     </button>
   );
 }
