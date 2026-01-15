@@ -65,14 +65,14 @@ const EMAIL_ICON = {
 const INSTAGRAM_ICON: IconConfig = {
     key: "instagram",
     link: "https://www.instagram.com/taiwanz2/",
-    iconSrc: "/images/icons/instagram-icon.svg", // TODO: 尚未設定 Instagram LOGO
+    iconSrc: "/images/icons/ig-icon.png",
     alt: "Instagram",
 }
 
 
 const iconConfigs: IconConfig[] = [
     FB_ICON,
-    // INSTAGRAM_ICON,
+    INSTAGRAM_ICON,
 ]
 
 const pcIconConfigs = iconConfigs;
