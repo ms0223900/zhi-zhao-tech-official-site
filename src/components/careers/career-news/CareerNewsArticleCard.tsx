@@ -23,7 +23,7 @@ export function CareerNewsArticleCard({ item }: CareerNewsArticleCardProps) {
         {/* 文章內容 */}
         <div className="flex-1 flex items-center justify-between gap-4 flex-wrap md:flex-nowrap">
           {/* 標題 */}
-          <h3 className="text-h3 font-medium text-[#282423] group-hover:text-[#088DDE] transition-colors flex-1 min-w-0 line-clamp-1">
+          <h3 className="text-h3 font-medium text-[#000000] group-hover:text-[#088DDE] transition-colors flex-1 min-w-0 line-clamp-1">
             {item.title}
           </h3>
         </div>
