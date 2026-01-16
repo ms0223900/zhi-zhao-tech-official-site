@@ -26,7 +26,7 @@ function NavigationButton({ direction, isDisabled, onClick }: NavigationButtonPr
       onClick={onClick}
       disabled={isDisabled}
       className={cn(
-        'flex items-center justify-center px-2 py-1 rounded-md transition-colors',
+        'flex items-center justify-center px-3 py-2 rounded-lg transition-colors',
         isDisabled
           ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
           : 'bg-[#55BBF9] text-white hover:bg-[#088DDE] cursor-pointer'
@@ -49,7 +49,7 @@ export function PaginationControls({
   onNext,
 }: PaginationControlsProps) {
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center justify-end gap-3">
       {/* 上一頁按鈕 */}
       <NavigationButton
         direction="prev"
@@ -65,8 +65,8 @@ export function PaginationControls({
       />
 
       {/* 頁碼顯示 */}
-      <span className="text-md text-[#282423] px-2">
-        第 {currentPage} / {totalPages} 頁
+      <span className="text-lg font-medium tracking-widest text-[#707070] pl-2">
+        第 {currentPage}/{totalPages} 頁
       </span>
     </div>
   );
