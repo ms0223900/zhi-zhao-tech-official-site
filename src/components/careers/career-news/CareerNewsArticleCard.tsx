@@ -12,9 +12,9 @@ export function CareerNewsArticleCard({ item }: CareerNewsArticleCardProps) {
   const formattedDate = formatDate(item.publishedAt);
 
   return (
-    <Link href={`/careers/career-news/${item.slug}`} className="group flex items-center gap-10">
+    <Link href={`/careers/career-news/${item.slug}`} className="group flex items-center gap-[38px]">
       <div className="flex items-center gap-4 flex-shrink-0">
-        <span className="text-2xl text-[#afafaf] whitespace-nowrap">
+        <span className="text-xl font-medium tracking-widest text-[#A29C9C] whitespace-nowrap">
           {formattedDate}
         </span>
       </div>
