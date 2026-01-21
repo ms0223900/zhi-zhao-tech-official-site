@@ -91,7 +91,7 @@ function CareerNewsListContent() {
         </div>
       </div>
 
-      <div className="h-[64px] w-full" />
+      <div className="h-[48px] md:h-[64px] w-full" />
 
       {/* 分頁控制 */}
       <CareerNewsPagination
