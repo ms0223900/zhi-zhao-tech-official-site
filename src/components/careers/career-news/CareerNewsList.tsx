@@ -73,10 +73,10 @@ function CareerNewsListContent() {
 
   return (
     <div className="w-full">
-      <div className="px-2 md:px-0 w-full flex flex-row items-center gap-4">
-        <img src="/taiwanz2-favicon.ico" alt="Team Daily" className="h-10 flex-shrink-0" />
-        <h2 className="text-h2 font-bold text-[#282423] flex-shrink-0">智兆日常</h2>
-        <span className="text-[12px] tracking-widest text-[#706F6F] flex-shrink-0">Team Daily</span>
+      <div className="px-2 md:px-0 w-full flex flex-row items-center gap-2 md:gap-4">
+        <img src="/taiwanz2-favicon.ico" alt="Team Daily" className="h-8 md:h-10 flex-shrink-0" />
+        <h2 className="text-h4 md:text-h2 font-bold text-[#282423] flex-shrink-0">智兆日常</h2>
+        <span className="text-sm md:text-[12px] tracking-widest text-[#706F6F] flex-shrink-0">Team Daily</span>
         <hr className="w-full border-t mr-4 border-[#088DDE]" />
       </div>
 
