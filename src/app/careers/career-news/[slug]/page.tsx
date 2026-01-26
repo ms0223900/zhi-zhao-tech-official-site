@@ -1,4 +1,5 @@
 import { NewsGenreBadge } from '@/components/careers/career-news/NewsGenreBadge';
+import CustomMarkdownAnchorElement from '@/components/markdown/CustomMarkdownAnchorElement';
 import CustomMarkdownImageElement from '@/components/markdown/CustomMarkdownImageElement';
 import { formatPageTitle } from '@/constants/metadata';
 import { clientForServer } from '@/gql/client';
@@ -39,26 +40,6 @@ export async function generateMetadata({ params }: CareerNewsArticleProps): Prom
     },
   };
 }
-
-const CustomMarkdownAnchorElement = ({
-  href,
-  children,
-  ...props
-}: React.AnchorHTMLAttributes<HTMLAnchorElement>) => {
-  const decodedHref = decodeURIComponent(href || '');
-  const decodedChildren = typeof children === 'string' ? decodeURIComponent(children) : children;
-  return (
-    <a
-      {...props}
-      href={decodedHref}
-      className="text-blue-500 hover:text-blue-700"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      {decodedChildren}
-    </a>
-  );
-};
 
 export async function generateStaticParams() {
   try {

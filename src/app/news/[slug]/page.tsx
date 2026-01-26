@@ -1,3 +1,5 @@
+import CustomMarkdownAnchorElement from '@/components/markdown/CustomMarkdownAnchorElement';
+import CustomMarkdownImageElement from '@/components/markdown/CustomMarkdownImageElement';
 import { formatPageTitle } from '@/constants/metadata';
 import { clientForServer } from '@/gql/client';
 import { fetchNewsArticle, GET_NEWS_SLUGS, NewsSlugsResponse } from '@/lib/graphql';
@@ -38,22 +40,6 @@ export async function generateMetadata({ params }: NewsArticleProps): Promise<Me
         },
     };
 }
-
-const CustomMarkdownAnchorElement = ({ href, children, ...props }: React.AnchorHTMLAttributes<HTMLAnchorElement>) => {
-    const decodedHref = decodeURIComponent(href || '');
-    const decodedChildren = typeof children === 'string' ? decodeURIComponent(children) : children;
-    return (
-        <a
-            {...props}
-            href={decodedHref}
-            className="text-blue-500 hover:text-blue-700"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-            {decodedChildren}
-        </a>
-    );
-};
 
 export async function generateStaticParams() {
     try {
@@ -130,6 +116,7 @@ export default async function NewsArticlePage({ params }: NewsArticleProps) {
                     rehypePlugins={[rehypeRaw]}
                     components={{
                         a: CustomMarkdownAnchorElement,
+                        img: CustomMarkdownImageElement,
                     }}
                 >
                     {article.content}
