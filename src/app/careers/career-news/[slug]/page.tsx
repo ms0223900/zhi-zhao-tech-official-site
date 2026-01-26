@@ -3,6 +3,7 @@ import { formatPageTitle } from '@/constants/metadata';
 import { clientForServer } from '@/gql/client';
 import { CareerNewsSlugsResponse, fetchCareerNewsArticle, GET_CAREER_NEWS_SLUGS } from '@/lib/graphql';
 import { formatDate } from '@/utils/formatDate';
+import replaceS3UrlWithCloudFront from '@/utils/replaceS3UrlWithCloudFront';
 import { ArrowLeft } from 'lucide-react';
 import { Metadata } from 'next';
 import Link from 'next/link';
@@ -56,6 +57,12 @@ const CustomMarkdownAnchorElement = ({
     >
       {decodedChildren}
     </a>
+  );
+};
+
+const CustomMarkdownImageElement = ({ src, alt, ...props }: React.ImgHTMLAttributes<HTMLImageElement>) => {
+  return (
+    <img src={replaceS3UrlWithCloudFront(src || '')} alt={alt || ''} {...props} />
   );
 };
 
@@ -117,6 +124,7 @@ export default async function CareerNewsArticlePage({ params }: CareerNewsArticl
           rehypePlugins={[rehypeRaw]}
           components={{
             a: CustomMarkdownAnchorElement,
+            img: CustomMarkdownImageElement,
           }}
         >
           {article.content}
