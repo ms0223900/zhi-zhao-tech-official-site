@@ -1,261 +1,299 @@
-# Refactor Command Guide
+# /refactor
 
-This command guides you through a systematic code refactoring process following best practices and maintaining code quality.
+## Description
+分析規劃與重構 - 程式碼品質改進與系統性重構
+
+## Usage
+系統性地改進程式碼品質，包含重構規劃和具體執行
+
+## Two Main Approaches
+
+### Approach 1: 重構規劃 (Refactoring Planning)
+適用於較大範圍的重構，需要先分析和規劃
+
+#### Prompt Template
+```
+請你分析以下程式碼，生成重構建議清單，並為優先級高的項目規劃詳細的重構步驟：
+
+請參考以下脈絡：
+- 需求文件：@{需求文件路徑}
+- 模組拆解：@{模組拆解文件路徑}
+- 解決方案：@{解決方案文件路徑}
+- 實作任務清單：@{實作任務清單文件路徑}
+
+請先分析以下項目，找出可以改進的地方：
+1. 程式碼氣味：找出重複程式碼、過長的函數、過大的類別、魔法數字等問題
+2. 可抽象化的模組：識別可以提取成共用函數或模組的重複邏輯
+3. 可文件化的知識：找出需要補充說明的地方，包含複雜演算法、特殊業務邏輯、設計決策原因等
+4. 可維護性問題：識別過度耦合、難以測試、難以擴展的部分
+5. 效能優化機會：找出可能的效能瓶頸或優化空間
+
+請以結構化的方式列出建議，每個建議都要包含：
+- 問題描述
+- 影響範圍
+- 改進優先級（高、中、低）
+- 預期效益
+
+接著，請為優先級「高」的項目（或前 3 個優先級最高的項目），生成詳細的重構步驟。
+
+每個重構項目都要包含：
+1. 重構目標：明確說明這次重構要達成什麼目標
+2. 重構步驟：將重構拆解成多個小步驟，每個步驟都要：
+   - 說明要做什麼
+   - 列出需要修改的檔案
+   - 提供驗證方法
+   - 標註可能的風險
+3. 測試策略：說明重構後如何驗證功能沒有被破壞
+4. 回滾方案：如果重構失敗，如何快速回滾到原始狀態
+
+請確保每個步驟都可以獨立執行和驗證，避免一次性大幅修改。
+```
+
+### Approach 2: 直接重構執行 (Direct Refactoring)
+立即執行重構，遵循系統性的重構流程
 
 ## Refactoring Philosophy
-
-- **Small Steps, Fast Iterations**: Refactor in small, incremental changes
-- **Test-Driven Refactoring**: Ensure tests pass before and after each change
-- **Quality Over Speed**: Prioritize code quality and maintainability
-- **Preserve Functionality**: Never change behavior, only improve structure
-- **Follow SOLID Principles**: Apply Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, Dependency Inversion
+- **小步快跑，快遞迭代**：重構分為小步驟，每次小幅修改
+- **測試驅動重構**：確保測試通過後再進行下個步驟
+- **品質優先於速度**：重視程式碼品質和可維護性
+- **保持功能不變**：只改善結構，不改變行為
+- **遵循 SOLID 原則**：應用單一職責、開放封閉等原則
 
 ## Pre-Refactoring Checklist
-
-Before starting any refactoring:
-
-- [ ] All existing tests pass
-- [ ] TypeScript compilation succeeds (`npm run lint`)
-- [ ] Build succeeds (`npm run build`)
-- [ ] Refactoring scope is clearly defined and small
-- [ ] Dependencies and impacts are identified
-- [ ] Refactoring plan is documented
+重構前必須確認：
+- [ ] 所有現有測試通過
+- [ ] TypeScript 編譯成功 (`npm run lint`)
+- [ ] 建置成功 (`npm run build`)
+- [ ] 重構範圍已明確定義且規模適中
+- [ ] 相依關係和影響已識別
+- [ ] 重構計劃已記錄
 
 ## Refactoring Process
 
-### Phase 1: Preparation
+### Phase 1: 準備階段 (Preparation)
+1. **識別重構範圍**
+   - 確定需要重構的具體程式碼
+   - 識別相關檔案和相依關係
+   - 記錄目前行為和預期結果
 
-1. **Identify Refactoring Scope**
-   - Determine specific code to refactor
-   - Identify related files and dependencies
-   - Document current behavior and expected outcome
+2. **建立 TODO 清單**
+   - 將重構拆解成小而獨立的步驟
+   - 每個步驟都要能獨立驗證
+   - 估計每個步驟的努力程度
 
-2. **Create TODO List**
-   - Break down refactoring into small, atomic steps
-   - Each step should be independently verifiable
-   - Estimate effort for each step
+3. **確保測試覆蓋**
+   - 驗證現有測試是否涵蓋要重構的程式碼
+   - 如有需要，補充遺漏的測試
+   - 確保測試驗證的是行為而非實作
 
-3. **Ensure Test Coverage**
-   - Verify existing tests cover the code to be refactored
-   - Add missing tests if necessary (do this BEFORE refactoring)
-   - Ensure tests validate behavior, not implementation
-
-4. **Run Baseline Checks**
+4. **執行基準檢查**
    ```bash
-   npm run lint      # TypeScript and code quality checks
-   npm run build     # Build verification
+   npm run lint      # TypeScript 和程式碼品質檢查
+   npm run build     # 建置驗證
    ```
 
-### Phase 2: Execution
+### Phase 2: 執行階段 (Execution)
+1. **小步驟執行**
+   - 每次只修改一小部分程式碼
+   - 每個步驟都是單一、專注的改變
+   - 小步驟範例：
+     - 提取函數
+     - 重新命名變數
+     - 將大元件拆分成小元件
+     - 提取自訂 Hook
+     - 將工具函數移至獨立檔案
 
-1. **Execute Small Steps**
-   - Refactor only one small portion at a time
-   - Each step should be a single, focused change
-   - Examples of small steps:
-     - Extract a function
-     - Rename a variable
-     - Split a large component into smaller ones
-     - Extract a custom hook
-     - Move a utility function to a separate file
-
-2. **Verify After Each Step**
+2. **每個步驟後驗證**
    ```bash
-   npm run lint      # Verify code quality
-   npm run build     # Verify build still works
+   npm run lint      # 驗證程式碼品質
+   npm run build     # 驗證建置仍正常
    ```
-   - Ensure TypeScript compilation succeeds
-   - Ensure no new linting errors
-   - Verify functionality manually or through tests
+   - 確保 TypeScript 編譯成功
+   - 確保沒有新增 Lint 錯誤
+   - 手動或透過測試驗證功能
 
-3. **Commit Small Changes**
-   - Consider committing after each successful small step
-   - Use descriptive commit messages
-   - This allows easy rollback if needed
+3. **小幅提交**
+   - 考慮在每個成功小步驟後提交
+   - 使用描述性的提交訊息
+   - 必要時允許快速回滾
 
-### Phase 3: Validation
-
-After completing all refactoring steps:
-
-1. **Final Verification**
+### Phase 3: 驗證階段 (Validation)
+重構完成後：
+1. **最終驗證**
    ```bash
-   npm run lint      # Ensure all checks pass
-   npm run build     # Ensure build succeeds
+   npm run lint      # 確保所有檢查通過
+   npm run build     # 確保建置成功
    ```
 
-2. **Functional Verification**
-   - Test the refactored code manually
-   - Verify all features still work as expected
-   - Check for any regressions
+2. **功能驗證**
+   - 手動測試重構後的程式碼
+   - 驗證所有功能仍按預期運作
+   - 檢查是否有迴歸問題
 
-3. **Code Quality Review**
-   - Verify code is more maintainable
-   - Check that complexity is reduced
-   - Ensure naming is clear and consistent
-   - Verify SOLID principles are followed
+3. **程式碼品質檢視**
+   - 驗證程式碼更易維護
+   - 檢查複雜度是否降低
+   - 確保命名清晰且一致
+   - 驗證 SOLID 原則是否遵循
 
 ## Post-Refactoring Checklist
-
-- [ ] All linting checks pass
-- [ ] Build succeeds without errors
-- [ ] Functionality behavior is unchanged
-- [ ] Code quality has improved (readability, maintainability)
-- [ ] No new dependencies added (unless necessary)
-- [ ] Refactoring aligns with project conventions
-- [ ] Related documentation updated if needed
+- [ ] 所有 Lint 檢查通過
+- [ ] 建置成功且無錯誤
+- [ ] 功能行為未改變
+- [ ] 程式碼品質已改善（可讀性、可維護性）
+- [ ] 未新增相依關係（除非必要）
+- [ ] 重構符合專案慣例
+- [ ] 如有需要，相關文件已更新
 
 ## Common Refactoring Patterns
 
-### Extract Function/Component
-- Identify duplicated code or complex logic
-- Extract into reusable function/component
-- Maintain same interface and behavior
-- Update all call sites
+### 提取函數/元件 (Extract Function/Component)
+- 識別重複程式碼或複雜邏輯
+- 提取為可重用函數/元件
+- 維持相同介面和行為
+- 更新所有呼叫點
 
-### Rename for Clarity
-- Use descriptive names that reveal intent
-- Update all references
-- Ensure TypeScript catches all usages
+### 重新命名以增加清晰度 (Rename for Clarity)
+- 使用能表達意圖的描述性名稱
+- 更新所有參考
+- 確保 TypeScript 能捕捉所有使用點
 
-### Split Large Component
-- Identify logical boundaries
-- Split into smaller, focused components
-- Maintain component interface
-- Ensure props are properly typed
+### 拆解大元件 (Split Large Component)
+- 識別邏輯邊界
+- 拆分成較小、專注的元件
+- 維持元件介面
+- 確保 Props 正確定義型別
 
-### Extract Custom Hook
-- Identify component logic that can be reused
-- Extract into custom hook
-- Follow React hook naming conventions (use*)
-- Ensure proper dependency arrays
+### 提取自訂 Hook (Extract Custom Hook)
+- 識別可重用的元件邏輯
+- 提取為自訂 Hook
+- 遵循 React Hook 命名慣例 (use*)
+- 確保正確的相依陣列
 
-### Move to Appropriate Location
-- Move utility functions to `src/lib/`
-- Move types to `src/types/` or appropriate location
-- Update all imports
-- Ensure proper exports
+### 移至適當位置 (Move to Appropriate Location)
+- 將工具函數移至 `src/lib/`
+- 將型別移至 `src/types/` 或適當位置
+- 更新所有 import
+- 確保正確的匯出
 
-### Simplify Conditional Logic
-- Extract complex conditions to well-named variables
-- Use early returns where appropriate
-- Consider using ternary operators for simple cases
-- Avoid nested ternaries
+### 簡化條件邏輯 (Simplify Conditional Logic)
+- 將複雜條件提取為具名變數
+- 適當時使用早期回傳
+- 考慮簡單情況下的三元運算子
+- 避免巢狀三元運算子
 
-## React-Specific Refactoring Guidelines
+## React 特定重構指南
 
-### Component Refactoring
-- Prefer React Server Components (RSC) where possible
-- Minimize 'use client' directives
-- Extract client-side logic to separate client components
-- Use proper TypeScript types for props
+### 元件重構 (Component Refactoring)
+- 優先使用 React Server Components (RSC)
+- 最小化 'use client' 指示詞
+- 將客戶端邏輯提取為獨立客戶端元件
+- 使用正確的 TypeScript Props 型別
 
-### State Management Refactoring
-- Consider if state can be moved to URL (using nuqs)
-- Evaluate if state should be lifted up or moved down
-- Use `useActionState` for form state (React 19)
-- Minimize client-side state
+### 狀態管理重構 (State Management Refactoring)
+- 考慮是否可將狀態移至 URL (使用 nuqs)
+- 評估狀態應上移或下移
+- 對表單狀態使用 `useActionState` (React 19)
+- 最小化客戶端狀態
 
-### Performance Refactoring
-- Use React.memo only when necessary and beneficial
-- Use useCallback for stable function references passed to memoized children
-- Use useMemo for expensive computations
-- Don't overuse optimization hooks
+### 效能重構 (Performance Refactoring)
+- 只有在必要且有益時才使用 React.memo
+- 使用 useCallback 為傳遞給 memoized 子元件的穩定函數參考
+- 使用 useMemo 處理昂貴計算
+- 不要過度使用最佳化 Hook
 
-## TypeScript Refactoring Guidelines
+## TypeScript 重構指南
 
-### Type Safety
-- Always maintain type safety during refactoring
-- Use proper type inference where possible
-- Prefer interfaces over types
-- Use `satisfies` operator for type validation
+### 型別安全 (Type Safety)
+- 重構時始終維持型別安全
+- 適當時使用正確的型別推斷
+- 優先使用介面而非型別
+- 使用 `satisfies` 運算子進行型別驗證
 
-### Type Improvements
-- Add missing types
-- Improve type specificity
-- Use const assertions where appropriate
-- Avoid `any` types
+### 型別改善 (Type Improvements)
+- 新增遺漏的型別
+- 改善型別特異性
+- 適當時使用 const assertion
+- 避免 `any` 型別
 
-## Error Handling
+## 錯誤處理
 
-If refactoring encounters issues:
+如果重構遇到問題：
+1. **立即停止** 如果測試失敗
+2. **必要時回滾最後的改變**
+3. **徹底調查問題**
+4. **修復問題** 再繼續進行
+5. **在繼續前重新執行所有檢查**
 
-1. **Stop immediately** if tests fail
-2. **Revert the last change** if needed
-3. **Investigate the issue** thoroughly
-4. **Fix the problem** before proceeding
-5. **Re-run all checks** before continuing
+## 最佳實務
 
-## Best Practices
+1. **重構與功能開發分離**
+   - 將重構與功能開發分開
+   - 先完成重構，再新增功能
 
-1. **Never refactor and add features simultaneously**
-   - Keep refactoring separate from feature development
-   - Complete refactoring first, then add features
+2. **記錄複雜重構決策**
+   - 為什麼這樣做而非什麼，新增註解
+   - 更新相關文件
 
-2. **Document complex refactoring decisions**
-   - Add comments explaining why, not what
-   - Update relevant documentation
+3. **維持向後相容性**
+   - 不要破壞現有 API
+   - 如有重大改變，考慮棄用策略
 
-3. **Maintain backward compatibility**
-   - Don't break existing APIs
-   - Consider deprecation strategy for breaking changes
+4. **團隊檢視**
+   - 對大型重構，取得程式碼檢視
+   - 分享所學的改善知識
 
-4. **Review with team**
-   - For large refactorings, get code review
-   - Share knowledge about improvements made
-
-5. **Measure improvements**
-   - Compare code complexity before/after
-   - Verify performance hasn't regressed
-   - Document improvements made
+5. **測量改善**
+   - 重構前後比較程式碼複雜度
+   - 驗證效能沒有退化
+   - 記錄達成的改善
 
 ## Commands Reference
 
 ```bash
-# Before refactoring - establish baseline
-npm run lint      # TypeScript and ESLint checks
-npm run build     # Build verification
+# 重構前 - 建立基準
+npm run lint      # TypeScript 和 ESLint 檢查
+npm run build     # 建置驗證
 
-# During refactoring - verify each step
-npm run lint      # Verify code quality maintained
-npm run build     # Verify build still works
+# 重構中 - 驗證每個步驟
+npm run lint      # 驗證程式碼品質維持
+npm run build     # 驗證建置仍正常
 
-# After refactoring - final validation
-npm run lint      # Final code quality check
-npm run build     # Final build verification
+# 重構後 - 最終驗證
+npm run lint      # 最終程式碼品質檢查
+npm run build     # 最終建置驗證
 ```
 
-## Example Refactoring Workflow
+## 重構工作流程範例
 
-1. **Identify**: "This component is too large (300+ lines)"
+1. **識別**：「這個元件太大（300+ 行）」
 
-2. **Plan**:
-   - Extract header section → Header component
-   - Extract form logic → Custom hook
-   - Extract utility functions → `src/lib/utils.ts`
+2. **規劃**：
+   - 提取標題區段 → Header 元件
+   - 提取表單邏輯 → 自訂 Hook
+   - 提取工具函數 → `src/lib/utils.ts`
 
-3. **Execute**:
-   - Step 1: Extract Header component
-     - Create `Header.tsx`
-     - Move header JSX and styles
-     - Update imports
-     - Run `npm run lint && npm run build`
-   
-   - Step 2: Extract form hook
-     - Create `useFormData.ts`
-     - Move form state and handlers
-     - Update component to use hook
-     - Run `npm run lint && npm run build`
-   
-   - Step 3: Extract utilities
-     - Move functions to `src/lib/utils.ts`
-     - Update imports
-     - Run `npm run lint && npm run build`
+3. **執行**：
+   - 步驟 1：提取 Header 元件
+     - 建立 `Header.tsx`
+     - 移動標題 JSX 和樣式
+     - 更新 import
+     - 執行 `npm run lint && npm run build`
+   - 步驟 2：提取表單 Hook
+     - 建立 `useFormData.ts`
+     - 移動表單狀態和處理器
+     - 更新元件使用 Hook
+     - 執行 `npm run lint && npm run build`
+   - 步驟 3：提取工具
+     - 移動函數至 `src/lib/utils.ts`
+     - 更新 import
+     - 執行 `npm run lint && npm run build`
 
-4. **Validate**:
-   - All checks pass
-   - Component is now smaller and more maintainable
-   - Functionality unchanged
+4. **驗證**：
+   - 所有檢查通過
+   - 元件現在更小且更易維護
+   - 功能未改變
 
 ---
 
-Remember: Refactoring is about improving code quality while preserving functionality. Take small steps, verify frequently, and prioritize maintainability.
-
+記住：重構是為了在保持功能不變的情況下改善程式碼品質。小步前進、頻繁驗證，並優先考慮可維護性。
