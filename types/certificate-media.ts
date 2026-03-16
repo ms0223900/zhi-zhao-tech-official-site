@@ -39,6 +39,23 @@ interface RawCertificateMediaItem {
   [key: string]: unknown;
 }
 
+/** 型別守衛：是否為含 data 陣列的物件 */
+function hasDataArray(obj: unknown): obj is { data: RawCertificateMediaItem[] } {
+  return (
+    typeof obj === "object" &&
+    obj !== null &&
+    "data" in obj &&
+    Array.isArray((obj as { data: unknown }).data)
+  );
+}
+
+/** 型別守衛：是否為含 attributes 的物件 */
+function hasAttributes(obj: unknown): obj is {
+  attributes: { items?: RawCertificateMediaItem[] };
+} {
+  return typeof obj === "object" && obj !== null && "attributes" in obj;
+}
+
 /** 圖片檔副檔名 */
 const IMAGE_EXTENSIONS = /\.(jpg|jpeg|png|gif|webp|svg|bmp)(\?|$)/i;
 
@@ -69,6 +86,8 @@ export function detectMediaType(sourceUrl: string): CertificateMediaType | null 
 
 /**
  * 從 Strapi 媒體物件或字串取得 URL
+ * @param value 媒體物件 `{ url: string }` 或直接為 URL 字串
+ * @returns 有效的 URL 字串，若無法取得則回傳 null
  */
 function extractUrl(value: unknown): string | null {
   if (value == null) return null;
@@ -93,10 +112,10 @@ export function convertCertificateMedia(raw: unknown): CertificateMediaItem[] {
   let items: RawCertificateMediaItem[];
   if (Array.isArray(raw)) {
     items = raw;
-  } else if (typeof raw === "object" && "data" in raw && Array.isArray((raw as { data: unknown }).data)) {
-    items = (raw as { data: RawCertificateMediaItem[] }).data;
-  } else if (typeof raw === "object" && "attributes" in raw) {
-    const attrs = (raw as { attributes: { items?: RawCertificateMediaItem[] } }).attributes;
+  } else if (hasDataArray(raw)) {
+    items = raw.data;
+  } else if (hasAttributes(raw)) {
+    const attrs = raw.attributes;
     items = Array.isArray(attrs?.items) ? attrs.items : [];
   } else {
     return [];
