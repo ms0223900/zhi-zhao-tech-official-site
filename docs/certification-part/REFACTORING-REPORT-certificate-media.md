@@ -3,7 +3,7 @@
 
 ## 1. 分析範圍
 
-- **目標檔案**：`types/certificate-media.ts`
+- **目標檔案**：`types/certificate-media/`（模組化目錄）
 - **相關文件**：`docs/certification-part/01-專業證照資料模型與型別定義.md`、PRD
 - **分析日期**：2025-03-16
 
@@ -75,7 +75,7 @@
 
 ### 4.2 測試檔案位置
 
-- `types/certificate-media.test.ts`
+- `types/certificate-media/certificate-media.test.ts`
 
 ### 4.3 執行指令
 
@@ -91,7 +91,7 @@ npm run test:watch  # 監聽模式
 | 基準檢查（lint） | ⚠️ Node.js 版本需 18.18.0+ |
 | 基準檢查（build） | ⚠️ 同上 |
 | 測試框架 | ✅ Vitest 已加入 |
-| 測試案例 | ✅ 已撰寫於 `types/certificate-media.test.ts` |
+| 測試案例 | ✅ 已撰寫於 `types/certificate-media/certificate-media.test.ts` |
 | 文件命名修正 [H1] | ✅ 已完成（04 文件已改為 `convertCertificateMedia`） |
 | 型別守衛 [M1] | ✅ 已完成（hasDataArray、hasAttributes） |
 | extractUrl JSDoc [L1] | ✅ 已完成 |

@@ -9,7 +9,7 @@ import {
   CERTIFICATE_MEDIA_TYPES,
   convertCertificateMedia,
   detectMediaType,
-} from "./certificate-media";
+} from ".";
 
 describe("detectMediaType", () => {
   describe("正常流程 - 圖片 URL", () => {
