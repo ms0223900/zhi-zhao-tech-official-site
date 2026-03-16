@@ -80,3 +80,12 @@ body {
 .careers-carousel .slick-slide.slick-slide.slick-current h3 {
   @apply opacity-100;
 }
+
+/* 專業證照輪播：主素材置中時微放大 */
+.certificate-carousel .slick-slide.slick-current {
+  @apply scale-105 z-10 relative;
+}
+
+.certificate-carousel .slick-slide {
+  @apply scale-100 transition-transform duration-300;
+}
