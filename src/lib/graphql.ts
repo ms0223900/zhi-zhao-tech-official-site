@@ -1,8 +1,8 @@
 import { csrClient } from "@/gql/client";
-import replaceS3UrlWithCloudFront from "@/utils/replaceS3UrlWithCloudFront";
-import { gql } from "@apollo/client";
 import type { CertificateMediaItem } from "@/types/certificate-media";
 import { convertCertificateMedia } from "@/types/certificate-media";
+import replaceS3UrlWithCloudFront from "@/utils/replaceS3UrlWithCloudFront";
+import { gql } from "@apollo/client";
 
 // 新聞相關類型定義
 export interface NewsGenre {
@@ -329,26 +329,25 @@ export interface CertificationsResponse {
 
 /**
  * 將 GraphQL 的 certifications 結果轉換成前端使用的 CertificateMediaItem[]
- * - 統一透過 convertCertificateMedia 處理，保持與 Strapi REST/其他來源一致的轉換邏輯
- * - 這裡僅負責把 GraphQL 結構對應到 RawCertificateMediaItem 需要的欄位
+ * - 統一透過 convertCertificateMedia 處理
+ * - 僅先做 URL 正規化，再直接交給 GraphQL 結構轉換
  */
 export function transformCertificationsToCertificateMediaItems(
   response: CertificationsResponse
 ): CertificateMediaItem[] {
-  const rawArray = response.certifications.map((item) => ({
-    documentId: item.documentId,
-    previewImage: {
+  const normalizedCertifications = response.certifications.map((item) => ({
+    ...item,
+    thumbnail: {
       url: replaceS3UrlWithCloudFront(item.thumbnail.url),
     },
-    source: item.videoUrl
-      ? item.videoUrl
-      : {
-          url: replaceS3UrlWithCloudFront(item.mediaFile.url),
-        },
-    name: item.title,
+    videoUrl: item.videoUrl,
+    mediaFile: {
+      ...item.mediaFile,
+      url: replaceS3UrlWithCloudFront(item.mediaFile.url),
+    },
   }));
 
-  return convertCertificateMedia(rawArray);
+  return convertCertificateMedia(normalizedCertifications);
 }
 
 // GraphQL 查詢：專業證照列表

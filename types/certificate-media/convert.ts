@@ -1,35 +1,37 @@
 /**
  * 專業證照素材轉換 - 公開 API
- * 將 CMS raw JSON 轉換為前端可用的 CertificateMediaItem[]
+ * 將 GraphQL certifications 轉換為前端可用的 CertificateMediaItem[]
  */
+import type { CertificationGqlItem } from "@/lib/graphql";
 import type { CertificateMediaItem } from "./types";
-import { RawDataResolver } from "./raw-data-resolver";
 import { CertificateMediaEntity } from "./entity";
 import { MediaTypeDetector } from "./media-type-detector";
 
 /**
- * 依據 sourceUrl 判斷素材類型
- * @param sourceUrl 內容來源 URL
+ * 依據 GraphQL 單筆資料判斷素材類型
+ * @param certification GraphQL 回傳的單筆證照資料
  * @returns 素材類型，若無法判斷則回傳 null
  */
 export function detectMediaType(
-  sourceUrl: string
+  certification: Pick<CertificationGqlItem, "videoUrl" | "mediaFile">
 ): CertificateMediaItem["mediaType"] | null {
-  return MediaTypeDetector.detect(sourceUrl);
+  return MediaTypeDetector.detect(certification);
 }
 
 /**
- * 將 CMS 回傳的 raw JSON 轉換為 CertificateMediaItem[]
+ * 將 GraphQL certifications 陣列轉換為 CertificateMediaItem[]
  * 對不合法輸入有基本防禦，忽略不完整資料或回傳空陣列
  *
- * @param raw Strapi CMS API 回傳的 JSON
+ * @param certifications GraphQL certifications 陣列
  * @returns 轉換後的專業證照素材陣列
  */
-export function convertCertificateMedia(raw: unknown): CertificateMediaItem[] {
-  const items = RawDataResolver.resolve(raw);
+export function convertCertificateMedia(
+  certifications: CertificationGqlItem[] | null | undefined
+): CertificateMediaItem[] {
+  if (!Array.isArray(certifications)) return [];
 
-  return items
-    .map((item, index) => CertificateMediaEntity.fromRaw(item, index))
+  return certifications
+    .map((item) => CertificateMediaEntity.fromGqlItem(item))
     .filter((entity): entity is CertificateMediaEntity => entity !== null)
     .map((entity) => entity.toPlainObject());
 }

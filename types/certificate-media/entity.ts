@@ -1,9 +1,9 @@
 /**
  * 專業證照素材 Entity
- * 封裝單筆素材的領域邏輯，提供從 Raw 建立的工廠方法
+ * 封裝 GraphQL 單筆資料到前端 UI 使用的資料模型
  */
-import type { CertificateMediaItem, RawCertificateMediaItem } from "./types";
-import { UrlExtractor } from "./url-extractor";
+import type { CertificationGqlItem } from "@/lib/graphql";
+import type { CertificateMediaItem } from "./types";
 import { MediaTypeDetector } from "./media-type-detector";
 
 /** 專業證照素材 Entity */
@@ -48,38 +48,19 @@ export class CertificateMediaEntity implements CertificateMediaItem {
     };
   }
 
-  /**
-   * 從 Raw CMS 資料建立 Entity
-   * @param rawItem 單筆原始素材
-   * @param index 索引（用於 fallback id）
-   * @returns Entity 或 null（資料不完整時）
-   */
-  static fromRaw(
-    rawItem: RawCertificateMediaItem,
-    index: number
+  /** 從 GraphQL 單筆證照資料建立 Entity */
+  static fromGqlItem(
+    certification: CertificationGqlItem
   ): CertificateMediaEntity | null {
-    if (!rawItem || typeof rawItem !== "object") return null;
+    const id = certification.documentId?.trim();
+    const previewImageUrl = certification.thumbnail?.url?.trim();
+    const fileUrl = certification.mediaFile?.url?.trim();
+    const videoUrl = certification.videoUrl?.trim();
+    const sourceUrl = videoUrl || fileUrl;
+    const name = certification.title?.trim();
+    const mediaType = MediaTypeDetector.detect(certification);
 
-    const previewImageUrl = UrlExtractor.extract(rawItem.previewImage);
-    const sourceUrl = UrlExtractor.extract(rawItem.source);
-    const name =
-      typeof rawItem.name === "string" && rawItem.name.trim()
-        ? rawItem.name.trim()
-        : null;
-
-    if (!previewImageUrl || !sourceUrl || !name) return null;
-
-    const mediaType = MediaTypeDetector.detect(sourceUrl);
-    if (!mediaType) return null; // 非 image / pdf / video 不納入規格
-
-    const id =
-      typeof rawItem.documentId === "string"
-        ? rawItem.documentId
-        : typeof rawItem.id === "string"
-          ? rawItem.id
-          : typeof rawItem.id === "number"
-            ? String(rawItem.id)
-            : `cert-media-${index}-${Date.now()}`;
+    if (!id || !previewImageUrl || !sourceUrl || !name || !mediaType) return null;
 
     return new CertificateMediaEntity({
       id,
