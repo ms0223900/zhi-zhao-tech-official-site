@@ -1,6 +1,8 @@
-import { csrClient } from '@/gql/client';
-import replaceS3UrlWithCloudFront from '@/utils/replaceS3UrlWithCloudFront';
+import { csrClient } from "@/gql/client";
+import replaceS3UrlWithCloudFront from "@/utils/replaceS3UrlWithCloudFront";
 import { gql } from "@apollo/client";
+import type { CertificateMediaItem } from "@/types/certificate-media";
+import { convertCertificateMedia } from "@/types/certificate-media";
 
 // 新聞相關類型定義
 export interface NewsGenre {
@@ -301,5 +303,92 @@ export async function fetchCareerNewsArticle(slug: string): Promise<CareerNewsIt
   } catch (error) {
     console.error('Failed to fetch career news article:', error);
     return null;
+  }
+}
+
+// ==================== Certificates / 專業證照 相關定義 ====================
+
+/** GraphQL 回傳的單筆專業證照資料（對應 GetCertifications query） */
+export interface CertificationGqlItem {
+  documentId: string;
+  title: string;
+  thumbnail: {
+    url: string;
+  };
+  videoUrl: string | null;
+  mediaFile: {
+    url: string;
+    mime: string;
+  };
+}
+
+/** GetCertifications 查詢的 GraphQL 響應包裝 */
+export interface CertificationsResponse {
+  certifications: CertificationGqlItem[];
+}
+
+/**
+ * 將 GraphQL 的 certifications 結果轉換成前端使用的 CertificateMediaItem[]
+ * - 統一透過 convertCertificateMedia 處理，保持與 Strapi REST/其他來源一致的轉換邏輯
+ * - 這裡僅負責把 GraphQL 結構對應到 RawCertificateMediaItem 需要的欄位
+ */
+export function transformCertificationsToCertificateMediaItems(
+  response: CertificationsResponse
+): CertificateMediaItem[] {
+  const rawArray = response.certifications.map((item) => ({
+    documentId: item.documentId,
+    previewImage: {
+      url: replaceS3UrlWithCloudFront(item.thumbnail.url),
+    },
+    source: item.videoUrl
+      ? item.videoUrl
+      : {
+          url: replaceS3UrlWithCloudFront(item.mediaFile.url),
+        },
+    name: item.title,
+  }));
+
+  return convertCertificateMedia(rawArray);
+}
+
+// GraphQL 查詢：專業證照列表
+export const GET_CERTIFICATIONS = gql`
+  query GetCertifications {
+    certifications {
+      documentId
+      title
+      thumbnail {
+        url
+      }
+      videoUrl
+      mediaFile {
+        url
+        mime
+      }
+    }
+  }
+`;
+
+/**
+ * 從 CMS 取得專業證照素材並轉成 CertificateMediaItem[]
+ * - 失敗時回傳空陣列
+ */
+export async function fetchCertificateMediaItems(): Promise<CertificateMediaItem[]> {
+  try {
+    const response = await csrClient.query<CertificationsResponse>({
+      query: GET_CERTIFICATIONS,
+    });
+
+    if (!response.data || !Array.isArray(response.data.certifications)) {
+      return [];
+    }
+
+    return transformCertificationsToCertificateMediaItems(response.data);
+  } catch (error) {
+    // 實務上可視需求改成回傳 mock 或記錄更完整錯誤資訊
+    // 這裡先與現有 News / Career News 錯誤處理風格一致
+    // eslint-disable-next-line no-console
+    console.error("Failed to fetch certifications:", error);
+    return [];
   }
 }
