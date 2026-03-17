@@ -1,10 +1,10 @@
 "use client";
 
+import TitleWithEngSubtitle from "@/components/common/TitleWithEngSubtitle";
 import { fetchCertificateMediaItems } from "@/lib/graphql";
 import type { CertificateMediaItem } from "@/types/certificate-media";
-import TitleWithEngSubtitle from "@/components/common/TitleWithEngSubtitle";
 import { QueryClient, QueryClientProvider, useQuery } from "@tanstack/react-query";
-import React, { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { CertificateCarousel } from "./CertificateCarousel";
 
 export interface CertificateSectionProps {
@@ -87,7 +87,6 @@ function CertificateSectionContent({
       <TitleWithEngSubtitle
         title={title}
         subtitle={subtitle}
-        className="mb-8 md:mb-12"
       />
       <CertificateCarousel
         items={items}

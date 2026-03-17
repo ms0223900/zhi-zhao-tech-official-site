@@ -25,8 +25,8 @@ function CarouselArrow({
       type="button"
       onClick={onClick}
       className={cn(
-        "w-10 h-10 absolute top-1/2 -translate-y-1/2 z-10",
-        "rounded-full bg-white border border-gray-200",
+        "w-10 h-10 md:w-[64px] md:h-[64px] absolute top-[40%] -translate-y-1/2 z-10",
+        "rounded-full bg-white/80",
         "flex items-center justify-center",
         "hover:bg-gray-50 transition-colors shadow-sm",
         direction === "prev" ? "left-0 md:-left-2" : "right-0 md:-right-2"
@@ -159,14 +159,14 @@ export function CertificateCarousel({
                   className="w-full h-auto object-cover"
                 />
               </div>
-              <p className="mt-3 text-center text-h5 text-foreground line-clamp-1 leading-[2]">
+              <p className="mt-5 text-center text-h5 md:text-xl text-foreground line-clamp-1 leading-[2]">
                 {item.name}
               </p>
             </div>
           );
 
           return (
-            <div key={`${item.id}-${index}`} className="px-1 md:px-2">
+            <div key={`${item.id}-${index}`} className="px-1">
               {clickBehavior.type === "openInNewTab" ? (
                 <a
                   href={clickBehavior.href}
