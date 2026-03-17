@@ -98,12 +98,12 @@ export function CertificateCarousel({
       <ul>
         {Array.from({ length: items.length }, (_, index) => {
           return (
-            <li key={index} style={{ margin: "0 4px" }}>
+            <li key={index} className="mx-[1px] md:mx-0.5">
               <button
                 type="button"
                 onClick={() => sliderRef.current?.slickGoTo(cloneCount + index)}
                 className={cn(
-                  "mx-0.5 w-[48px] h-[10px] md:w-[40px] rounded-full transition-colors cursor-pointer border-0 p-0 block",
+                  "mx-0.5 w-[20px] h-[5px] md:w-[40px] md:h-[10px] rounded-full transition-colors cursor-pointer border-0 p-0 block",
                   index === realIndex ? "bg-[#78C9FA]" : "bg-[#D9D9D9]",
                   "hover:opacity-80"
                 )}
