@@ -83,9 +83,9 @@ body {
 
 /* 專業證照輪播：主素材置中時微放大 */
 .certificate-carousel .slick-slide.slick-current {
-  @apply scale-105 z-10 relative;
+  @apply scale-100 z-10 relative;
 }
 
 .certificate-carousel .slick-slide {
-  @apply scale-100 transition-transform duration-300;
+  @apply scale-90 transition-transform duration-300;
 }
