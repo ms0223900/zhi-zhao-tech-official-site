@@ -2,8 +2,6 @@ import type {
   CertificationGqlItem,
   CertificationsResponse,
 } from "@/lib/graphql";
-import type { CertificateMediaItem } from "@/types/certificate-media";
-import { transformCertificationsToCertificateMediaItems } from "@/lib/graphql";
 
 /**
  * GraphQL GetCertifications 的 Mock Data
@@ -73,11 +71,4 @@ export const mockCertificationsResponse: { data: CertificationsResponse } = {
     ] satisfies CertificationGqlItem[],
   },
 };
-
-/**
- * 將上方 GraphQL Mock Data 轉成前端直接可用的 CertificateMediaItem[]
- * - 完全沿用正式環境的轉換邏輯
- */
-export const mockCertificateMediaItems: CertificateMediaItem[] =
-  transformCertificationsToCertificateMediaItems(mockCertificationsResponse.data);
 

@@ -111,7 +111,7 @@ export function CertificateCarousel({
   if (items.length === 0) return null;
 
   return (
-    <div className="certificate-carousel relative px-12 md:px-14">
+    <div className="certificate-carousel relative px-4 md:px-14">
       <Slider {...settings}>
         {items.map((item) => {
           const clickBehavior = getClickBehavior(item);

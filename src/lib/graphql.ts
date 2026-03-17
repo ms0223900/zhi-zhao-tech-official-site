@@ -387,10 +387,8 @@ export async function fetchCertificateMediaItems(): Promise<CertificateMediaItem
 
     return transformCertificationsToCertificateMediaItems(response.data);
   } catch (error) {
-    // 實務上可視需求改成回傳 mock 或記錄更完整錯誤資訊
-    // 這裡先與現有 News / Career News 錯誤處理風格一致
     // eslint-disable-next-line no-console
     console.error("Failed to fetch certifications:", error);
-    return [];
+    throw error;
   }
 }

@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { Metadata } from "next";
 import RelatedIndustriesSection from "@/components/common/RelatedIndustriesSection";
+import { CertificateSection } from "@/components/certificate";
 import React from "react";
 import Banner from "@/components/common/Banner";
 import TitleWithEngSubtitle from "@/components/common/TitleWithEngSubtitle";
@@ -29,6 +30,7 @@ export default function About() {
             <ProfessionalLicensesSection />
             <EnergyManagementSolutionSection />
             <RelatedIndustriesSection />
+            <CertificateSection />
         </div>
     );
 }
