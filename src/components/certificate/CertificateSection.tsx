@@ -49,7 +49,7 @@ function CertificateSectionContent({
 
   if (isLoading) {
     return (
-      <section className="container py-16 px-4 md:px-8" aria-labelledby="certificate-section-title">
+      <section className="container py-16 px-5 md:px-0" aria-labelledby="certificate-section-title">
         <TitleWithEngSubtitle
           title={title}
           subtitle={subtitle}
@@ -65,7 +65,7 @@ function CertificateSectionContent({
 
   if (error) {
     return (
-      <section className="container py-16 px-4 md:px-8" aria-labelledby="certificate-section-title">
+      <section className="container py-16 px-5 md:px-0" aria-labelledby="certificate-section-title">
         <TitleWithEngSubtitle
           title={title}
           subtitle={subtitle}
@@ -83,7 +83,7 @@ function CertificateSectionContent({
   }
 
   return (
-    <section className="container py-16 px-4 md:px-8" aria-labelledby="certificate-section-title">
+    <section className="container py-16 px-5 md:px-0" aria-labelledby="certificate-section-title">
       <TitleWithEngSubtitle
         title={title}
         subtitle={subtitle}

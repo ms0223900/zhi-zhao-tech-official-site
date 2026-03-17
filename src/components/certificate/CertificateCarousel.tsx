@@ -95,7 +95,7 @@ export function CertificateCarousel({
   const handleAppendDots = (dots: React.ReactNode) => {
     console.log("dots", dots);
     return (
-      <ul className="!bottom-[-32px] py-3 flex justify-center list-none">
+      <ul>
         {Array.from({ length: items.length }, (_, index) => {
           return (
             <li key={index} style={{ margin: "0 4px" }}>
@@ -103,8 +103,8 @@ export function CertificateCarousel({
                 type="button"
                 onClick={() => sliderRef.current?.slickGoTo(cloneCount + index)}
                 className={cn(
-                  "mx-0.5 w-2 h-2 rounded-full transition-colors cursor-pointer border-0 p-0 block",
-                  index === realIndex ? "bg-[#55BBF9]" : "bg-[#000]",
+                  "mx-0.5 w-[48px] h-[10px] md:w-[40px] rounded-full transition-colors cursor-pointer border-0 p-0 block",
+                  index === realIndex ? "bg-[#78C9FA]" : "bg-[#D9D9D9]",
                   "hover:opacity-80"
                 )}
                 aria-label={`前往第 ${index + 1} 頁`} />
@@ -117,7 +117,7 @@ export function CertificateCarousel({
 
   const settings: Settings = {
     dots: true,
-    dotsClass: "!bottom-[-32px] py-3 flex justify-center list-none",
+    dotsClass: "!bottom-[-32px] pt-[25px] flex justify-center list-none",
     infinite: items.length > 1,
     speed: 300,
     cssEase: "ease-in-out",
@@ -136,7 +136,7 @@ export function CertificateCarousel({
         breakpoint: 768,
         settings: {
           slidesToShow: 2,
-          centerPadding: "12px",
+          centerPadding: "0",
         },
       },
     ],
@@ -146,12 +146,12 @@ export function CertificateCarousel({
   if (items.length === 0) return null;
 
   return (
-    <div className="certificate-carousel relative px-4 md:px-14">
+    <div className="certificate-carousel relative">
       <Slider ref={sliderRef} {...settings}>
         {displayedItems.map((item, index) => {
           const clickBehavior = getClickBehavior(item);
           const cardContent = (
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center px-1">
               <div className="w-full aspect-[4/5] overflow-hidden rounded-2xl bg-gray-100">
                 <img
                   src={item.previewImageUrl}
@@ -159,7 +159,7 @@ export function CertificateCarousel({
                   className="w-full h-full object-cover"
                 />
               </div>
-              <p className="mt-3 text-center text-h5 text-foreground line-clamp-2">
+              <p className="mt-3 text-center text-h5 text-foreground line-clamp-1 leading-[2]">
                 {item.name}
               </p>
             </div>
