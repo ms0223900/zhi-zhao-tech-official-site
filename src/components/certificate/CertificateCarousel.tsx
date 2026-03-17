@@ -29,7 +29,7 @@ function CarouselArrow({
         "rounded-full bg-white/80",
         "flex items-center justify-center",
         "hover:bg-gray-50 transition-colors shadow-sm",
-        direction === "prev" ? "left-0 md:-left-2" : "right-0 md:-right-2"
+        direction === "prev" ? "left-0 md:-left-1" : "right-0 md:-right-1"
       )}
       aria-label={direction === "prev" ? "上一張" : "下一張"}
     >
