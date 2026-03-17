@@ -1,13 +1,17 @@
 "use client";
 
 /* eslint-disable @next/next/no-img-element */
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Slider, { Settings } from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import type { CertificateMediaItem } from "@/types/certificate-media";
 import { getClickBehavior } from "@/types/certificate-media";
 import { cn } from "@/utils/cn";
+import { repeatArrayItems } from "@/utils/repeatArrayItems";
+
+/** PC 版 slidesToShow，用於 clone 數量 */
+const SLIDES_TO_SHOW = 5;
 
 function CarouselArrow({
   direction,
@@ -47,11 +51,18 @@ export interface CertificateCarouselProps {
   onChangeActive?: (index: number) => void;
 }
 
+/** 將 raw slide index 對應回原始 items 的 index (0 ~ items.length-1) */
+function getRealIndex(rawIndex: number, cloneCount: number, itemCount: number): number {
+  if (itemCount <= 0) return 0;
+  return (((rawIndex - cloneCount) % itemCount) + itemCount) % itemCount;
+}
+
 /**
  * 專業證照輪播元件
  * PC 版：3 欄，主素材置中、左右露出相鄰預覽
  * Mobile 版：2 欄，主素材置中、左右露出相鄰預覽
  * 預覽圖維持 4:5 比例，底部顯示素材名稱與輪播進度指示器
+ * 使用 clone 方式達成順暢無限滑動，dots 只顯示原始數量與正確 index
  */
 export function CertificateCarousel({
   items,
@@ -59,23 +70,54 @@ export function CertificateCarousel({
   onChangeActive,
 }: CertificateCarouselProps) {
   const [mounted, setMounted] = useState(false);
-  const [currentSlide, setCurrentSlide] = useState(activeIndex);
+  const [realIndex, setRealIndex] = useState(activeIndex);
+  // log realIndex
+  console.log("realIndex", realIndex);
+  const sliderRef = useRef<Slider>(null);
+
+  const cloneCount = items.length > 1 ? SLIDES_TO_SHOW : 0;
+  const displayedItems = repeatArrayItems(items, cloneCount);
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
   useEffect(() => {
-    setCurrentSlide(activeIndex);
-  }, [activeIndex]);
+    setRealIndex(Math.min(activeIndex, Math.max(0, items.length - 1)));
+  }, [activeIndex, items.length]);
 
   const handleBeforeChange = (_current: number, next: number) => {
-    setCurrentSlide(next);
-    onChangeActive?.(next);
+    const nextReal = getRealIndex(next, cloneCount, items.length);
+    setRealIndex(nextReal);
+    onChangeActive?.(nextReal);
+  };
+
+  const handleAppendDots = (dots: React.ReactNode) => {
+    console.log("dots", dots);
+    return (
+      <ul className="!bottom-[-32px] py-3 flex justify-center list-none">
+        {Array.from({ length: items.length }, (_, index) => {
+          return (
+            <li key={index} style={{ margin: "0 4px" }}>
+              <button
+                type="button"
+                onClick={() => sliderRef.current?.slickGoTo(cloneCount + index)}
+                className={cn(
+                  "mx-0.5 w-2 h-2 rounded-full transition-colors cursor-pointer border-0 p-0 block",
+                  index === realIndex ? "bg-[#55BBF9]" : "bg-[#000]",
+                  "hover:opacity-80"
+                )}
+                aria-label={`前往第 ${index + 1} 頁`} />
+            </li>
+          );
+        })}
+      </ul>
+    );
   };
 
   const settings: Settings = {
     dots: true,
+    dotsClass: "!bottom-[-32px] py-3 flex justify-center list-none",
     infinite: items.length > 1,
     speed: 300,
     cssEase: "ease-in-out",
@@ -83,19 +125,11 @@ export function CertificateCarousel({
     slidesToScroll: 1,
     centerMode: true,
     centerPadding: "16px",
-    initialSlide: Math.min(activeIndex, Math.max(0, items.length - 1)),
+    initialSlide: cloneCount + Math.min(activeIndex, Math.max(0, items.length - 1)),
     nextArrow: <CarouselArrow direction="next" />,
     prevArrow: <CarouselArrow direction="prev" />,
-    dotsClass: "slick-dots !bottom-[-32px]",
-    customPaging: (index: number) => (
-      <div
-        className={cn(
-          "mx-0.5 w-2 h-2 rounded-full transition-colors cursor-pointer",
-          index === currentSlide ? "bg-[#55BBF9]" : "bg-[#D9D9D9]",
-          "hover:opacity-80"
-        )}
-      />
-    ),
+    // customPaging: handleAppendDots,
+    appendDots: handleAppendDots,
     beforeChange: handleBeforeChange,
     responsive: [
       {
@@ -113,8 +147,8 @@ export function CertificateCarousel({
 
   return (
     <div className="certificate-carousel relative px-4 md:px-14">
-      <Slider {...settings}>
-        {items.map((item) => {
+      <Slider ref={sliderRef} {...settings}>
+        {displayedItems.map((item, index) => {
           const clickBehavior = getClickBehavior(item);
           const cardContent = (
             <div className="flex flex-col items-center">
@@ -132,7 +166,7 @@ export function CertificateCarousel({
           );
 
           return (
-            <div key={item.id} className="px-1 md:px-2">
+            <div key={`${item.id}-${index}`} className="px-1 md:px-2">
               {clickBehavior.type === "openInNewTab" ? (
                 <a
                   href={clickBehavior.href}
