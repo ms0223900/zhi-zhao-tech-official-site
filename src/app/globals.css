@@ -81,11 +81,13 @@ body {
   @apply opacity-100;
 }
 
-/* 專業證照輪播：主素材置中時微放大 */
-.certificate-carousel .slick-slide.slick-current {
-  @apply scale-100 z-10 relative;
-}
+/* 專業證照輪播：主素材置中時微放大（僅 PC 768px 以上） */
+@media (min-width: 768px) {
+  .certificate-carousel .slick-slide.slick-current {
+    @apply scale-100 z-10 relative;
+  }
 
-.certificate-carousel .slick-slide {
-  @apply scale-90 transition-transform duration-300;
+  .certificate-carousel .slick-slide {
+    @apply scale-90 transition-transform duration-300;
+  }
 }
