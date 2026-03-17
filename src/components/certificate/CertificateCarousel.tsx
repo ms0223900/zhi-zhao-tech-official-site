@@ -33,11 +33,13 @@ function CarouselArrow({
       )}
       aria-label={direction === "prev" ? "上一張" : "下一張"}
     >
-      {direction === "prev" ? (
-        <span className="text-black font-medium text-lg leading-none">&lt;</span>
-      ) : (
-        <span className="text-black font-medium text-lg leading-none">&gt;</span>
-      )}
+      <div className="w-2 h-auto md:w-3">
+        {direction === "prev" ? (
+          <img src="/images/icons/certification-arrow-left-icon.svg" alt="上一張" />
+        ) : (
+          <img src="/images/icons/certification-arrow-right-icon.svg" alt="下一張" />
+        )}
+      </div>
     </button>
   );
 }
