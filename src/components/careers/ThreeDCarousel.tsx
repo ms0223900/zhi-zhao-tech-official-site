@@ -6,6 +6,7 @@ import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import { CareerCarouselItem } from './data'
 import { cn } from '@/utils/cn'
+import { repeatArrayItems } from '@/utils/repeatArrayItems'
 
 interface ThreeDCarouselProps {
     carouselItems: CareerCarouselItem[]
@@ -42,8 +43,7 @@ export default function ThreeDCarousel({ carouselItems, settings }: ThreeDCarous
 
     if (!mounted) return null
 
-    // clone carouselItems for safety
-    const clonedCarouselItems = [...carouselItems, ...carouselItems, ...carouselItems, ...carouselItems]
+    const clonedCarouselItems = repeatArrayItems(carouselItems, 4)
 
     return (
         <div className={cn(
@@ -68,4 +68,4 @@ export default function ThreeDCarousel({ carouselItems, settings }: ThreeDCarous
             </Slider>
         </div>
     )
-} 
+}
