@@ -29,7 +29,7 @@ function CarouselArrow({
         "rounded-full bg-white/80",
         "flex items-center justify-center",
         "hover:bg-gray-50 transition-colors shadow-sm",
-        direction === "prev" ? "left-0 md:-left-1" : "right-0 md:-right-1"
+        direction === "prev" ? "-left-10 md:-left-1" : "-right-10 md:-right-1"
       )}
       aria-label={direction === "prev" ? "上一張" : "下一張"}
     >
@@ -137,6 +137,7 @@ export function CertificateCarousel({
       {
         breakpoint: 768,
         settings: {
+          className: "",
           slidesToShow: 2,
           centerPadding: "0",
         },
@@ -148,7 +149,7 @@ export function CertificateCarousel({
   if (items.length === 0) return null;
 
   return (
-    <div className="certificate-carousel relative">
+    <div className="certificate-carousel relative max-w-[80%] mx-auto">
       <Slider ref={sliderRef} {...settings}>
         {displayedItems.map((item, index) => {
           const clickBehavior = getClickBehavior(item);
