@@ -60,6 +60,16 @@ export const mockCertificationsResponse: { data: CertificationsResponse } = {
           mime: "application/pdf",
         },
       },
+      // video
+      {
+        documentId: "ymuuh5ptazbynibk2m5romfz",
+        title: "Video",
+        thumbnail: {
+          url: "https://zhi-zhao-s3.s3.us-east-1.amazonaws.com/Snipaste_2026_03_16_20_39_32_6133df66da.png",
+        },
+        videoUrl: "https://youtu.be/qzGxK6Uiu04?si=WmECFHlLWvwznq7s",
+        mediaFile: null,
+      },
     ] satisfies CertificationGqlItem[],
   },
 };

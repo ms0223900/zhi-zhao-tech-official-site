@@ -320,7 +320,7 @@ export interface CertificationGqlItem {
   mediaFile: {
     url: string;
     mime: string;
-  };
+  } | null;
 }
 
 /** GetCertifications 查詢的 GraphQL 響應包裝 */
@@ -342,10 +342,10 @@ export function transformCertificationsToCertificateMediaItems(
       url: replaceS3UrlWithCloudFront(item.thumbnail.url),
     },
     videoUrl: item.videoUrl,
-    mediaFile: {
-      ...item.mediaFile,
-      url: replaceS3UrlWithCloudFront(item.mediaFile.url),
-    },
+    mediaFile: item.mediaFile ? {
+        ...item.mediaFile,
+        url: replaceS3UrlWithCloudFront(item.mediaFile.url),
+      } : null,
   }));
 
   return convertCertificateMedia(normalizedCertifications);
