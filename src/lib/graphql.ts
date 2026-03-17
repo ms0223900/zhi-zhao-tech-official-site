@@ -1,3 +1,4 @@
+import { mockCertificationsResponse } from "@/components/certificate/mockCertificationsData";
 import { csrClient } from "@/gql/client";
 import type { CertificateMediaItem } from "@/types/certificate-media";
 import { convertCertificateMedia } from "@/types/certificate-media";
@@ -374,13 +375,15 @@ export const GET_CERTIFICATIONS = gql`
  */
 export async function fetchCertificateMediaItems(): Promise<CertificateMediaItem[]> {
   try {
-    const response = await csrClient.query<CertificationsResponse>({
-      query: GET_CERTIFICATIONS,
-    });
+    // TODO: remove mock data
+    const response = mockCertificationsResponse;
+    // const response = await csrClient.query<CertificationsResponse>({
+    //   query: GET_CERTIFICATIONS,
+    // });
 
-    if (!response.data || !Array.isArray(response.data.certifications)) {
-      return [];
-    }
+    // if (!response.data || !Array.isArray(response.data.certifications)) {
+    //   return [];
+    // }
 
     return transformCertificationsToCertificateMediaItems(response.data);
   } catch (error) {
