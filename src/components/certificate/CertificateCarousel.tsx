@@ -6,6 +6,7 @@ import Slider, { Settings } from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import type { CertificateMediaItem } from "@/types/certificate-media";
+import { getClickBehavior } from "@/types/certificate-media";
 import { cn } from "@/utils/cn";
 
 function CarouselArrow({
@@ -112,8 +113,9 @@ export function CertificateCarousel({
   return (
     <div className="certificate-carousel relative px-12 md:px-14">
       <Slider {...settings}>
-        {items.map((item) => (
-          <div key={item.id} className="px-1 md:px-2">
+        {items.map((item) => {
+          const clickBehavior = getClickBehavior(item);
+          const cardContent = (
             <div className="flex flex-col items-center">
               <div className="w-full aspect-[4/5] overflow-hidden rounded-2xl bg-gray-100">
                 <img
@@ -126,8 +128,25 @@ export function CertificateCarousel({
                 {item.name}
               </p>
             </div>
-          </div>
-        ))}
+          );
+
+          return (
+            <div key={item.id} className="px-1 md:px-2">
+              {clickBehavior.type === "openInNewTab" ? (
+                <a
+                  href={clickBehavior.href}
+                  target={clickBehavior.target}
+                  rel={clickBehavior.rel}
+                  aria-label={`開啟 ${item.name}`}
+                >
+                  {cardContent}
+                </a>
+              ) : (
+                cardContent
+              )}
+            </div>
+          );
+        })}
       </Slider>
     </div>
   );

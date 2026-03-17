@@ -8,7 +8,9 @@ import {
   CERTIFICATE_MEDIA_TYPES,
   convertCertificateMedia,
   detectMediaType,
+  getClickBehavior,
 } from ".";
+import type { CertificateMediaItem } from ".";
 
 describe("detectMediaType", () => {
   it("應依 image mime 判斷為 image", () => {
@@ -136,5 +138,49 @@ describe("convertCertificateMedia", () => {
     expect(convertCertificateMedia({} as unknown as CertificationGqlItem[])).toEqual(
       []
     );
+  });
+});
+
+describe("getClickBehavior", () => {
+  const baseItem: CertificateMediaItem = {
+    id: "1",
+    previewImageUrl: "https://example.com/preview.webp",
+    sourceUrl: "https://example.com/source",
+    name: "測試素材",
+    mediaType: "image",
+  };
+
+  it("image 素材應回傳 type: none，不帶 href", () => {
+    const result = getClickBehavior({ ...baseItem, mediaType: "image" });
+    expect(result).toEqual({ type: "none" });
+    expect(result.href).toBeUndefined();
+  });
+
+  it("pdf 素材應回傳 openInNewTab，含正確 href、target 與 rel", () => {
+    const result = getClickBehavior({
+      ...baseItem,
+      mediaType: "pdf",
+      sourceUrl: "https://example.com/cert.pdf",
+    });
+    expect(result).toEqual({
+      type: "openInNewTab",
+      href: "https://example.com/cert.pdf",
+      target: "_blank",
+      rel: "noopener noreferrer",
+    });
+  });
+
+  it("video 素材應回傳 openInNewTab，含正確 href、target 與 rel", () => {
+    const result = getClickBehavior({
+      ...baseItem,
+      mediaType: "video",
+      sourceUrl: "https://youtu.be/demo",
+    });
+    expect(result).toEqual({
+      type: "openInNewTab",
+      href: "https://youtu.be/demo",
+      target: "_blank",
+      rel: "noopener noreferrer",
+    });
   });
 });

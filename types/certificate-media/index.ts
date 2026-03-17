@@ -15,3 +15,5 @@ export {
 export { CertificateMediaEntity } from "./entity";
 
 export { detectMediaType, convertCertificateMedia } from "./convert";
+
+export { type LinkAction, getClickBehavior } from "./link-action";
