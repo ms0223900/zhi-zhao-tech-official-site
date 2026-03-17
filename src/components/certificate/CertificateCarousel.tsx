@@ -77,7 +77,8 @@ export function CertificateCarousel({
   const settings: Settings = {
     dots: true,
     infinite: items.length > 1,
-    speed: 500,
+    speed: 300,
+    cssEase: "ease-in-out",
     slidesToShow: 3,
     slidesToScroll: 1,
     centerMode: true,
