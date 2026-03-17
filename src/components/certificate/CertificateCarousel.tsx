@@ -80,6 +80,10 @@ export function CertificateCarousel({
   const cloneCount = items.length > 1 ? SLIDES_TO_SHOW : 0;
   const displayedItems = repeatArrayItems(items, cloneCount);
 
+  const isCurrentIndex = (index: number) => {
+    return index === realIndex;
+  };
+
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -106,7 +110,7 @@ export function CertificateCarousel({
                 onClick={() => sliderRef.current?.slickGoTo(cloneCount + index)}
                 className={cn(
                   "mx-0.5 w-[20px] h-[5px] md:w-[40px] md:h-[10px] rounded-full transition-colors cursor-pointer border-0 p-0 block",
-                  index === realIndex ? "bg-[#78C9FA]" : "bg-[#D9D9D9]",
+                  isCurrentIndex(index) ? "bg-[#78C9FA]" : "bg-[#D9D9D9]",
                   "hover:opacity-80"
                 )}
                 aria-label={`前往第 ${index + 1} 頁`} />
@@ -162,7 +166,7 @@ export function CertificateCarousel({
                   className="w-full h-auto object-cover"
                 />
               </div>
-              <p className="mt-5 text-center text-h5 md:text-xl text-foreground line-clamp-1 leading-[2]">
+              <p className="flex justify-center mt-5 text-center text-h5 md:text-xl text-foreground w-[80%] whitespace-pre-wrap md:whitespace-nowrap md:max-w-[300%]">
                 {item.name}
               </p>
             </div>
