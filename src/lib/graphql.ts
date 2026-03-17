@@ -1,4 +1,3 @@
-import { mockCertificationsResponse } from "@/components/certificate/mockCertificationsData";
 import { csrClient } from "@/gql/client";
 import type { CertificateMediaItem } from "@/types/certificate-media";
 import { convertCertificateMedia } from "@/types/certificate-media";
@@ -343,9 +342,9 @@ export function transformCertificationsToCertificateMediaItems(
     },
     videoUrl: item.videoUrl,
     mediaFile: item.mediaFile ? {
-        ...item.mediaFile,
-        url: replaceS3UrlWithCloudFront(item.mediaFile.url),
-      } : null,
+      ...item.mediaFile,
+      url: replaceS3UrlWithCloudFront(item.mediaFile.url),
+    } : null,
   }));
 
   return convertCertificateMedia(normalizedCertifications);
@@ -376,14 +375,14 @@ export const GET_CERTIFICATIONS = gql`
 export async function fetchCertificateMediaItems(): Promise<CertificateMediaItem[]> {
   try {
     // TODO: remove mock data
-    const response = mockCertificationsResponse;
-    // const response = await csrClient.query<CertificationsResponse>({
-    //   query: GET_CERTIFICATIONS,
-    // });
+    // const response = mockCertificationsResponse;
+    const response = await csrClient.query<CertificationsResponse>({
+      query: GET_CERTIFICATIONS,
+    });
 
-    // if (!response.data || !Array.isArray(response.data.certifications)) {
-    //   return [];
-    // }
+    if (!response.data || !Array.isArray(response.data.certifications)) {
+      return [];
+    }
 
     return transformCertificationsToCertificateMediaItems(response.data);
   } catch (error) {
