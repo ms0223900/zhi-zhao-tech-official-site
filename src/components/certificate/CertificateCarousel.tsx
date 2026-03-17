@@ -1,14 +1,14 @@
 "use client";
 
 /* eslint-disable @next/next/no-img-element */
-import { useEffect, useRef, useState } from "react";
-import Slider, { Settings } from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import type { CertificateMediaItem } from "@/types/certificate-media";
 import { getClickBehavior } from "@/types/certificate-media";
 import { cn } from "@/utils/cn";
 import { repeatArrayItems } from "@/utils/repeatArrayItems";
+import { useEffect, useRef, useState } from "react";
+import Slider, { Settings } from "react-slick";
+import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
 
 /** PC 版 slidesToShow，用於 clone 數量 */
 const SLIDES_TO_SHOW = 5;
@@ -152,11 +152,11 @@ export function CertificateCarousel({
           const clickBehavior = getClickBehavior(item);
           const cardContent = (
             <div className="flex flex-col items-center px-1">
-              <div className="w-full aspect-[4/5] overflow-hidden rounded-2xl bg-gray-100">
+              <div className="w-full aspect-[4/5] overflow-hidden rounded-2xl bg-gray-100 flex items-center justify-center">
                 <img
                   src={item.previewImageUrl}
                   alt={item.name}
-                  className="w-full h-full object-cover"
+                  className="w-full h-auto object-cover"
                 />
               </div>
               <p className="mt-3 text-center text-h5 text-foreground line-clamp-1 leading-[2]">
